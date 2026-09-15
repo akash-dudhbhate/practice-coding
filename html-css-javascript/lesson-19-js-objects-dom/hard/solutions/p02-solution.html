@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Dynamic Table with Search</title>
+<style>
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #ddd; padding: 8px; }
+  input { padding: 8px; margin: 10px 0; width: 200px; }
+</style>
+</head>
+<body>
+<input type="text" id="search" placeholder="Search...">
+<table id="table"></table>
+<script>
+  const users = [
+    { name: "Alice", age: 30, city: "Mumbai" },
+    { name: "Bob", age: 25, city: "Delhi" },
+    { name: "Charlie", age: 35, city: "Pune" },
+  ];
+
+  function renderTable(data) {
+    const table = document.getElementById("table");
+    if (data.length === 0) { table.innerHTML = ""; return; }
+    const headers = Object.keys(data[0]);
+    let html = "<thead><tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr></thead><tbody>";
+    html += data.map(row => "<tr>" + headers.map(h => `<td>${row[h]}</td>`).join("") + "</tr>").join("");
+    html += "</tbody>";
+    table.innerHTML = html;
+  }
+
+  document.getElementById("search").addEventListener("input", (e) => {
+    const q = e.target.value.toLowerCase();
+    renderTable(users.filter(u => Object.values(u).some(v => String(v).toLowerCase().includes(q))));
+  });
+
+  renderTable(users);
+</script>
+</body>
+</html>

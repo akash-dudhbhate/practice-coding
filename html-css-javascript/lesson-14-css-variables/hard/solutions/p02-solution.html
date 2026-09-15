@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Responsive Design System</title>
+<style>
+  :root {
+    --spacing: 16px; --font-size: 16px; --container-width: 100%;
+  }
+  @media (min-width: 768px) {
+    :root { --spacing: 24px; --font-size: 18px; --container-width: 720px; }
+  }
+  @media (min-width: 1024px) {
+    :root { --spacing: 32px; --font-size: 20px; --container-width: 1200px; }
+  }
+  body { margin: 0; font-size: var(--font-size); }
+  .container { max-width: var(--container-width); margin: 0 auto; padding: var(--spacing); }
+  .card { padding: var(--spacing); background: #f0f0f0; border-radius: 8px; margin-bottom: var(--spacing); }
+  header { background: #333; color: #fff; padding: var(--spacing); }
+  footer { background: #333; color: #fff; padding: var(--spacing); text-align: center; }
+</style>
+</head>
+<body>
+<header>Header</header>
+<div class="container">
+  <div class="card">Card 1 — spacing and font adapt to breakpoint</div>
+  <div class="card">Card 2</div>
+</div>
+<footer>Footer</footer>
+</body>
+</html>

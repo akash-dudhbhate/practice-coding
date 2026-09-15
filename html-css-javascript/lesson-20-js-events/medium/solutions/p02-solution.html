@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Form Validation</title></head>
+<body>
+<form id="form">
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+  <button type="submit">Submit</button>
+</form>
+<p id="message"></p>
+<script>
+  document.getElementById("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const msg = document.getElementById("message");
+    if (!name || !email) {
+      msg.textContent = "Error: Both fields are required.";
+      msg.style.color = "red";
+    } else {
+      msg.textContent = "Success! Form submitted.";
+      msg.style.color = "green";
+    }
+  });
+</script>
+</body>
+</html>

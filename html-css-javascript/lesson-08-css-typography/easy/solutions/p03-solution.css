@@ -1,0 +1,4 @@
+/* Lesson 08 — Easy P03: line-height + text-align */
+p { line-height: 1.5; text-align: left; }
+h1 { line-height: 1.2; text-align: center; }
+.date { text-align: right; }

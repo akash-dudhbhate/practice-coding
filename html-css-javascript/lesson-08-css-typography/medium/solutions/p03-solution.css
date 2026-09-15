@@ -1,0 +1,5 @@
+/* Lesson 08 — Medium P03: letter-spacing + text-transform */
+h1 { letter-spacing: 2px; text-transform: uppercase; }
+.btn { letter-spacing: 1px; text-transform: uppercase; }
+.label { text-transform: capitalize; }
+.lower { text-transform: lowercase; }

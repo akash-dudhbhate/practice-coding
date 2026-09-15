@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Color Palette</title>
+<style>
+  :root {
+    --c1: #e74c3c; --c2: #3498db; --c3: #2ecc71; --c4: #f39c12; --c5: #9b59b6;
+  }
+  .palette { display: flex; gap: 10px; }
+  .swatch { width: 120px; text-align: center; padding: 20px 10px; color: #fff; }
+  .s1 { background: var(--c1); }
+  .s2 { background: var(--c2); }
+  .s3 { background: var(--c3); }
+  .s4 { background: var(--c4); }
+  .s5 { background: var(--c5); }
+  .swatch p { margin: 4px 0; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="palette">
+  <div class="swatch s1"><p>#e74c3c</p><p>rgb(231,76,60)</p><p>hsl(0,77%,60%)</p></div>
+  <div class="swatch s2"><p>#3498db</p><p>rgb(52,152,219)</p><p>hsl(204,70%,53%)</p></div>
+  <div class="swatch s3"><p>#2ecc71</p><p>rgb(46,204,113)</p><p>hsl(145,63%,49%)</p></div>
+  <div class="swatch s4"><p>#f39c12</p><p>rgb(243,156,18)</p><p>hsl(35,90%,51%)</p></div>
+  <div class="swatch s5"><p>#9b59b6</p><p>rgb(155,89,182)</p><p>hsl(271,39%,53%)</p></div>
+</div>
+</body>
+</html>

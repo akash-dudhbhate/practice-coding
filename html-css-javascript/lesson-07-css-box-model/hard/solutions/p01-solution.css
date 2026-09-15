@@ -1,0 +1,10 @@
+/* Lesson 07 — Hard P01: Complete card layout */
+* { box-sizing: border-box; }
+.container { max-width: 960px; margin: 0 auto; }
+.card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin: 16px 0;
+  background: #fff;
+}
+.card img { max-width: 100%; height: auto; display: block; }

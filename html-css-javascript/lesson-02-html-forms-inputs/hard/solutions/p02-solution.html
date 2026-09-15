@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Job Application Form</title></head>
+<body>
+<form>
+  <fieldset><legend>Job Application</legend>
+    <label for="resume">Upload Resume:</label>
+    <input type="file" id="resume" accept=".pdf,.doc" required><br><br>
+    <label for="date">Available From:</label>
+    <input type="date" id="date" required><br><br>
+    <label for="cover">Cover Letter:</label><br>
+    <textarea id="cover" rows="5" cols="40"></textarea><br><br>
+    <label for="pos">Position:</label>
+    <select id="pos">
+      <option>Frontend Developer</option>
+      <option>Backend Developer</option>
+      <option>Full Stack Developer</option>
+    </select><br><br>
+    <p>Availability:</p>
+    <label><input type="radio" name="avail" value="full"> Full-time</label>
+    <label><input type="radio" name="avail" value="part"> Part-time</label><br><br>
+    <button type="submit">Apply</button>
+  </fieldset>
+</form>
+</body>
+</html>

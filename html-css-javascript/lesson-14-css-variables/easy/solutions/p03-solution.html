@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Scoped Variables</title>
+<style>
+  .card {
+    --card-color: #667eea;
+    background: var(--card-color);
+    border: 2px solid var(--card-color);
+    padding: 20px; color: #fff; border-radius: 8px;
+  }
+  .card.alt { --card-color: #e74c3c; }
+</style>
+</head>
+<body>
+<div class="card">Card 1 — scoped variable</div>
+<div class="card alt">Card 2 — different scoped variable</div>
+</body>
+</html>

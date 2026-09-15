@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Calendar Grid</title>
+<style>
+  .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; padding: 20px; }
+  .day-name { text-align: center; font-weight: bold; padding: 8px; background: #333; color: #fff; }
+  .day { min-height: 80px; padding: 8px; background: #f0f0f0; border-radius: 4px; }
+  .day.event { background: #667eea; color: #fff; }
+  .day.event-span { grid-column: span 3; }
+</style>
+</head>
+<body>
+<div class="calendar">
+  <div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div>
+  <div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div><div class="day-name">Sun</div>
+  <div class="day">1</div><div class="day">2</div><div class="day event">3</div><div class="day">4</div>
+  <div class="day">5</div><div class="day">6</div><div class="day">7</div>
+  <div class="day">8</div><div class="day">9</div><div class="day event event-span">10-12</div>
+  <div class="day">13</div><div class="day">14</div>
+  <div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
+  <div class="day">19</div><div class="day">20</div><div class="day">21</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Auto Dark Mode</title>
+<style>
+  :root { --bg: #fff; --text: #333; --card-bg: #f0f0f0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #222; --text: #fff; --card-bg: #333; }
+  }
+  body { background: var(--bg); color: var(--text); }
+  .card { background: var(--card-bg); padding: 20px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="card"><p>Theme follows your OS setting.</p></div>
+</body>
+</html>

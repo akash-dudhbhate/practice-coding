@@ -1,0 +1,9 @@
+/* Lesson 07 — Easy P02: border-box reset + two boxes side by side */
+* { box-sizing: border-box; }
+.box1, .box2 {
+  width: 50%;
+  padding: 20px;
+  border: 2px solid #333;
+  display: inline-block;
+  vertical-align: top;
+}

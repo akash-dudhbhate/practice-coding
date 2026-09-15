@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Toggle Selected</title>
+<style>
+  .item { padding: 12px; margin: 4px; background: #f0f0f0; cursor: pointer; }
+  .item.selected { background: #667eea; color: #fff; }
+</style>
+</head>
+<body>
+<div class="item">Item 1</div>
+<div class="item">Item 2</div>
+<div class="item">Item 3</div>
+<script>
+  document.querySelectorAll(".item").forEach(item => {
+    item.addEventListener("click", () => item.classList.toggle("selected"));
+  });
+</script>
+</body>
+</html>

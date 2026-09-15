@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Full Accessible Page</title>
+<style>
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 10px; top: 10px; background: #fff; padding: 8px; z-index: 100; }
+  *:focus { outline: 3px solid #00f; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to main content</a>
+<header>
+  <h1>Accessible Page</h1>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="/" aria-current="page">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article>
+    <h2>About Accessibility</h2>
+    <p>Web accessibility means that people with disabilities can use the web.</p>
+    <img src="https://picsum.photos/200" alt="Illustration of accessible web design">
+    <section aria-labelledby="tips-h">
+      <h3 id="tips-h">Tips</h3>
+      <ul>
+        <li>Use semantic HTML</li>
+        <li>Add alt text to images</li>
+        <li>Use ARIA landmarks</li>
+      </ul>
+    </section>
+  </article>
+  <aside aria-label="Sidebar">
+    <h3>Quick Links</h3>
+    <ul><li><a href="#">WCAG Guide</a></li><li><a href="#">ARIA Spec</a></li></ul>
+  </aside>
+</main>
+<footer><p>&copy; 2024 Accessible Page</p></footer>
+</body>
+</html>

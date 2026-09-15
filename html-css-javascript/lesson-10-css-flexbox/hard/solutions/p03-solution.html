@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Pricing Table</title>
+<style>
+  .pricing { display: flex; align-items: stretch; gap: 16px; padding: 20px; justify-content: center; }
+  .tier {
+    flex: 1; max-width: 300px; padding: 30px; text-align: center;
+    border: 1px solid #ddd; border-radius: 12px; background: #fff;
+  }
+  .tier.popular { order: 2; transform: scale(1.1); border-color: #667eea; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+  .tier.cheap { order: 1; }
+  .tier.premium { order: 3; }
+  .badge { background: #667eea; color: #fff; padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+  .price { font-size: 36px; font-weight: bold; margin: 16px 0; }
+  .tier ul { list-style: none; padding: 0; }
+  .tier li { padding: 8px 0; border-bottom: 1px solid #eee; }
+  .tier button { margin-top: 16px; padding: 10px 24px; border: none; border-radius: 6px; background: #667eea; color: #fff; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="pricing">
+  <div class="tier cheap">
+    <h3>Basic</h3><div class="price">$9</div>
+    <ul><li>5GB Storage</li><li>3 Users</li><li>Email Support</li></ul>
+    <button>Choose</button>
+  </div>
+  <div class="tier popular">
+    <span class="badge">Popular</span>
+    <h3>Pro</h3><div class="price">$29</div>
+    <ul><li>50GB Storage</li><li>Unlimited Users</li><li>24/7 Support</li></ul>
+    <button>Choose</button>
+  </div>
+  <div class="tier premium">
+    <h3>Enterprise</h3><div class="price">$99</div>
+    <ul><li>Unlimited Storage</li><li>Unlimited Users</li><li>Dedicated Support</li></ul>
+    <button>Choose</button>
+  </div>
+</div>
+</body>
+</html>

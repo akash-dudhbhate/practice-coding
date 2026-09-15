@@ -1,0 +1,17 @@
+/* Lesson 06 — Hard P01: Complete stylesheet with specificity comments */
+/* Element selector (0,0,1) */
+body { font-family: Arial, sans-serif; margin: 0; }
+/* Class selector (0,1,0) */
+.card { padding: 16px; border: 1px solid #ddd; }
+/* ID selector (1,0,0) */
+#header { background: #222; color: #fff; }
+/* Descendant combinator (0,0,2) */
+article p { line-height: 1.6; }
+/* Direct child (0,0,2) */
+nav > ul { list-style: none; padding: 0; }
+/* Adjacent sibling (0,0,2) */
+h2 + p { margin-top: 0; }
+/* Pseudo-class (0,1,1) */
+a:hover { color: red; }
+/* Grouped (each 0,0,1) */
+h1, h2, h3 { color: #333; }

@@ -1,0 +1,4 @@
+/* Lesson 07 — Medium P03: display block, inline, inline-block */
+.block { display: block; width: 200px; height: 50px; background: #aef; }       /* respects w/h */
+.inline { display: inline; width: 200px; height: 50px; background: #faa; }     /* ignores w/h */
+.inline-block { display: inline-block; width: 200px; height: 50px; background: #afa; } /* respects w/h, flows inline */

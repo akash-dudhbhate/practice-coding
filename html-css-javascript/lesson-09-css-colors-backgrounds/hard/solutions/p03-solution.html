@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Animated Hero</title>
+<style>
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  body { margin: 0; }
+  .hero {
+    height: 100vh;
+    background: linear-gradient(270deg, #667eea, #764ba2, #f093fb, #667eea);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .hero h1 {
+    font-size: 3rem; color: transparent;
+    background: linear-gradient(to right, #fff, #e0e0ff);
+    -webkit-background-clip: text; background-clip: text;
+  }
+  .navbar {
+    position: fixed; top: 0; width: 100%;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    padding: 16px 20px; box-sizing: border-box;
+  }
+  .navbar a { color: #fff; text-decoration: none; margin: 0 12px; }
+  .floating-card {
+    width: 200px; padding: 20px; margin: 20px;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+    border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    color: #fff; text-align: center;
+  }
+</style>
+</head>
+<body>
+<nav class="navbar"><a href="#">Home</a><a href="#">About</a><a href="#">Contact</a></nav>
+<section class="hero">
+  <h1>Animated Hero</h1>
+  <div class="floating-card"><p>Floating glass card</p></div>
+</section>
+</body>
+</html>

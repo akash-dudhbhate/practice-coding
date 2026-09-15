@@ -1,0 +1,7 @@
+/* Lesson 06 — Easy P01: Element, class selectors */
+/* All <p> tags gray */
+p { color: gray; }
+/* All <h1> tags blue */
+h1 { color: blue; }
+/* .highlight class with yellow background */
+.highlight { background: yellow; }

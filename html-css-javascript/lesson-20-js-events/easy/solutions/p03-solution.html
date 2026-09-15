@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Prevent Default</title></head>
+<body>
+<a href="https://google.com" id="link">Go to Google</a>
+<script>
+  document.getElementById("link").addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Navigation prevented!");
+  });
+</script>
+</body>
+</html>

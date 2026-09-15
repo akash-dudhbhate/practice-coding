@@ -1,0 +1,29 @@
+# ============================================================
+# _redirects file for Netlify (place in public/ directory)
+# ============================================================
+# SPA routing: redirect all routes to index.html so Vue Router
+# can handle client-side routing. Without this, refreshing a
+# deep link (e.g., /users/123) returns a 404 because Netlify
+# looks for a file at that path.
+# Format: <from> <to> <status>
+/*    /index.html   200
+
+# ============================================================
+# vercel.json for Vercel (place in project root)
+# ============================================================
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
+# Why this is needed:
+# SPA (Single Page Application) routing happens client-side.
+# The server only has index.html — there are no real files for
+# routes like /dashboard or /users/123. Without rewrite rules,
+# the server returns 404 for any deep-linked route.
+# The rewrite rule sends all requests to index.html, where
+# Vue Router then renders the correct page based on the URL.

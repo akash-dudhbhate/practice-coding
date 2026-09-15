@@ -1,0 +1,5 @@
+/* Lesson 08 — Medium P02: text-decoration for links */
+a { text-decoration: underline; color: #0066cc; }
+a:hover { text-decoration: none; }
+nav a { text-decoration: none; }
+.done { text-decoration: line-through; }

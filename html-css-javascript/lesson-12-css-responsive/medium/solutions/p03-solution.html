@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Hero</title>
+<style>
+  .hero {
+    min-height: 100vh;
+    background: url("https://picsum.photos/1920/1080") center/cover;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #fff; text-align: center; padding: 20px;
+  }
+  .hero h1 { font-size: clamp(2rem, 6vw, 4rem); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+  .cta { padding: 12px 30px; background: #667eea; color: #fff; border: none; border-radius: 6px; font-size: 1.2rem; cursor: pointer; }
+  @media (max-width: 768px) { .cta { width: 100%; } }
+</style>
+</head>
+<body>
+<section class="hero">
+  <h1>Welcome</h1>
+  <p>Build amazing things</p>
+  <button class="cta">Get Started</button>
+</section>
+</body>
+</html>

@@ -1,0 +1,9 @@
+/* Lesson 06 — Easy P02: Link styling with pseudo-classes */
+/* Default links blue */
+a { color: blue; }
+/* Hover red */
+a:hover { color: red; }
+/* Focus underline */
+a:focus { text-decoration: underline; }
+/* .btn class for buttons */
+.btn { padding: 8px 16px; display: inline-block; }

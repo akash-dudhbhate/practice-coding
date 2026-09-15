@@ -1,0 +1,4 @@
+/* Lesson 08 — Easy P01: font-family with font stack */
+body { font-family: "Helvetica Neue", Arial, sans-serif; }
+h1 { font-family: Georgia, serif; }
+code { font-family: "Courier New", monospace; }

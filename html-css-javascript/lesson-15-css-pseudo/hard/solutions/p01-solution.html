@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>CSS Accordion</title>
+<style>
+  .faq-item { margin: 10px 0; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s; padding: 0 16px; }
+  .faq-answer:target { max-height: 200px; padding: 16px; }
+  .faq-q { display: block; padding: 12px 16px; background: #f0f0f0; text-decoration: none; color: #333; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="faq-item">
+  <a href="#faq1" class="faq-q">What is HTML?</a>
+  <div class="faq-answer" id="faq1"><p>HTML is a markup language for creating web pages.</p></div>
+</div>
+<div class="faq-item">
+  <a href="#faq2" class="faq-q">What is CSS?</a>
+  <div class="faq-answer" id="faq2"><p>CSS is used for styling web pages.</p></div>
+</div>
+</body>
+</html>

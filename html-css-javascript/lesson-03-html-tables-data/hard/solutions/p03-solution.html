@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Responsive Table</title>
+<style>
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 600px; }
+  th, td { border: 1px solid #333; padding: 8px; }
+  th { background: #f0f0f0; }
+  @media (max-width: 600px) { th, td { font-size: 12px; padding: 4px; } }
+</style>
+</head>
+<body>
+<div class="table-wrap">
+<table>
+  <caption>Sales Data</caption>
+  <thead><tr><th scope="col">Product</th><th scope="col">Q1</th><th scope="col">Q2</th><th scope="col">Q3</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">A</th><td>100</td><td>150</td><td>200</td></tr>
+    <tr><th scope="row">B</th><td>80</td><td>120</td><td>90</td></tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

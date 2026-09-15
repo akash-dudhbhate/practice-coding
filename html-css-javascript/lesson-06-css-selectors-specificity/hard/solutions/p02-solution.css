@@ -1,0 +1,9 @@
+/* Lesson 06 — Hard P02: Attribute selectors */
+/* Text inputs */
+input[type="text"] { border: 1px solid #ccc; padding: 4px 8px; }
+/* External links (href starts with https) */
+a[href^="https"] { color: green; }
+/* PDF links (href ends with .pdf) */
+a[href$=".pdf"] { color: red; }
+/* Disabled inputs */
+input[disabled] { background: #eee; cursor: not-allowed; }

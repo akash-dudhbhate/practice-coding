@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Modify DOM</title>
+<style>
+  .highlight { background: yellow; font-weight: bold; }
+</style>
+</head>
+<body>
+<p id="text">Hello</p>
+<script>
+  const el = document.getElementById("text");
+  el.textContent = "Modified by JS";
+  el.classList.add("highlight");
+</script>
+</body>
+</html>

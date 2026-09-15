@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>CSS Variables</title>
+<style>
+  :root { --primary: #667eea; --spacing: 16px; --radius: 8px; }
+  .btn { padding: var(--spacing); background: var(--primary); color: #fff; border: none; border-radius: var(--radius); }
+  .card { padding: var(--spacing); border: 1px solid #ddd; border-radius: var(--radius); }
+  input { padding: var(--spacing); border: 1px solid #ccc; border-radius: var(--radius); }
+</style>
+</head>
+<body>
+<button class="btn">Button</button>
+<div class="card">Card</div>
+<input type="text" placeholder="Input">
+</body>
+</html>

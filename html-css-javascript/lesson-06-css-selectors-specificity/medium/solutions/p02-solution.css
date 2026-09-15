@@ -1,0 +1,8 @@
+/* Lesson 06 — Medium P02: Specificity demonstration */
+/* Element level (specificity 0,0,1) */
+p { color: black; }
+/* Class level (specificity 0,1,0) — beats element */
+p.text { color: blue; }
+/* ID level (specificity 1,0,0) — beats class */
+p#important { color: red; }
+/* ID wins: red. Class would be blue if no ID. Element is black if neither. */

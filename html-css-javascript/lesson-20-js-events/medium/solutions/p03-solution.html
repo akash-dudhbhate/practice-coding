@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Keyboard Shortcuts</title></head>
+<body>
+<input type="text" id="search" placeholder="Press Ctrl+K to focus, Esc to clear">
+<script>
+  const search = document.getElementById("search");
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "k") { e.preventDefault(); search.focus(); }
+    if (e.key === "Escape" && document.activeElement === search) { search.value = ""; search.blur(); }
+  });
+</script>
+</body>
+</html>

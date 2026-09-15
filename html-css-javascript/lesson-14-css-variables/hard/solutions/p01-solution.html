@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Theme Customizer</title>
+<style>
+  :root { --primary: #667eea; --secondary: #764ba2; --accent: #f093fb; }
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  .card { padding: 20px; background: var(--primary); color: #fff; border-radius: 8px; margin: 10px 0; }
+  .card.secondary { background: var(--secondary); }
+  .card.accent { background: var(--accent); }
+  .controls { display: flex; gap: 16px; align-items: center; margin-bottom: 20px; }
+  .controls label { font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="controls">
+  <label>Primary <input type="color" id="c1" value="#667eea" oninput="document.documentElement.style.setProperty('--primary', this.value)"></label>
+  <label>Secondary <input type="color" id="c2" value="#764ba2" oninput="document.documentElement.style.setProperty('--secondary', this.value)"></label>
+  <label>Accent <input type="color" id="c3" value="#f093fb" oninput="document.documentElement.style.setProperty('--accent', this.value)"></label>
+  <button onclick="['#667eea','#764ba2','#f093fb'].forEach((c,i)=>{document.documentElement.style.setProperty(['--primary','--secondary','--accent'][i],c);document.getElementById('c'+(i+1)).value=c})">Reset</button>
+</div>
+<div class="card">Primary card</div>
+<div class="card secondary">Secondary card</div>
+<div class="card accent">Accent card</div>
+</body>
+</html>

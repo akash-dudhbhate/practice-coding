@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Card Grid</title>
+<style>
+  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 20px; }
+  @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .card { padding: 20px; background: #f0f0f0; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="card">1</div><div class="card">2</div><div class="card">3</div>
+  <div class="card">4</div><div class="card">5</div><div class="card">6</div>
+</div>
+</body>
+</html>

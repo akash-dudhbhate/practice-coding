@@ -1,0 +1,10 @@
+/* Lesson 07 — Easy P01: Box with four layers */
+.box {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid #333;
+  margin: 30px;
+  background: #aef;       /* shows padding area */
+  border-color: #f00;     /* shows border */
+  /* margin is transparent — shows as space around */
+}

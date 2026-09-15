@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Variable with Fallback</title>
+<style>
+  .btn {
+    padding: 10px 20px;
+    background: var(--btn-bg, #ccc);
+    color: #fff; border: none; border-radius: 6px;
+  }
+  :root { --btn-bg: #0066cc; }
+  /* If --btn-bg is removed, falls back to #ccc */
+</style>
+</head>
+<body>
+<button class="btn">Button with fallback</button>
+</body>
+</html>

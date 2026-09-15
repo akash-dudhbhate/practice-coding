@@ -1,0 +1,25 @@
+/* Lesson 08 — Hard P03: Typography system with CSS variables */
+:root {
+  --font-body: "Helvetica Neue", Arial, sans-serif;
+  --font-heading: Georgia, serif;
+  --color-text: #333;
+  --color-link: #0066cc;
+}
+html { font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+h1 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+h2 { font-size: 1.75rem; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.lead { font-size: 1.25rem; line-height: 1.5; color: #555; }
+.caption { font-style: italic; font-size: 0.875rem; color: #777; }

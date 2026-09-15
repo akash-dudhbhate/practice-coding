@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Draggable Element</title>
+<style>
+  .draggable {
+    width: 100px; height: 100px; background: #667eea; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    position: absolute; cursor: grab; user-select: none; border-radius: 8px;
+  }
+  .draggable:active { cursor: grabbing; }
+</style>
+</head>
+<body>
+<div class="draggable" id="drag">Drag Me</div>
+<script>
+  const drag = document.getElementById("drag");
+  let isDragging = false, offsetX = 0, offsetY = 0;
+
+  drag.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    offsetX = e.clientX - drag.offsetLeft;
+    offsetY = e.clientY - drag.offsetTop;
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    drag.style.left = (e.clientX - offsetX) + "px";
+    drag.style.top = (e.clientY - offsetY) + "px";
+  });
+
+  document.addEventListener("mouseup", () => {
+    if (isDragging) {
+      isDragging = false;
+      drag.dispatchEvent(new CustomEvent("dropped", { detail: { x: drag.offsetLeft, y: drag.offsetTop } }));
+    }
+  });
+
+  drag.addEventListener("dropped", (e) => console.log("Dropped at:", e.detail));
+</script>
+</body>
+</html>

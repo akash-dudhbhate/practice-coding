@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Profile Card</title>
+<style>
+  body { margin: 0; background: #f0f0f0; display: flex; justify-content: center; padding: 40px; }
+  .profile {
+    width: 300px; background: #fff; border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    overflow: hidden; text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .profile:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+  .avatar {
+    width: 80px; height: 80px; border-radius: 50%; margin: 20px auto;
+    background: radial-gradient(circle at 30% 30%, #667eea, #764ba2);
+  }
+  .stats { display: flex; justify-content: space-around; padding: 16px 0; }
+  .stat { font-size: 14px; }
+  .stat strong { display: block; font-size: 20px; }
+  .follow {
+    display: block; margin: 16px auto; padding: 8px 30px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff; border: none; border-radius: 6px; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="profile">
+  <div class="avatar"></div>
+  <h3>Akash Dev</h3>
+  <p style="color:#777;font-size:14px">Full Stack Developer</p>
+  <div class="stats">
+    <div class="stat"><strong>42</strong>Posts</div>
+    <div class="stat"><strong>1.2k</strong>Followers</div>
+    <div class="stat"><strong>350</strong>Following</div>
+  </div>
+  <button class="follow">Follow</button>
+</div>
+</body>
+</html>

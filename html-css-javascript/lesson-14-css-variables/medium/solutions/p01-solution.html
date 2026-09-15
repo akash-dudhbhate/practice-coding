@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Dark/Light Theme Toggle</title>
+<style>
+  :root { --bg: #fff; --text: #333; --card-bg: #f0f0f0; }
+  [data-theme="dark"] { --bg: #222; --text: #fff; --card-bg: #333; }
+  body { background: var(--bg); color: var(--text); transition: all 0.3s; }
+  .card { background: var(--card-bg); padding: 20px; border-radius: 8px; }
+  .toggle { padding: 8px 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+<button class="toggle" onclick="document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark'">Toggle Theme</button>
+<div class="card"><p>Themed card content.</p></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.eggs/
+.Python
+env/
+venv/
+.env
+.env.*
+
+# Node / JavaScript
+node_modules/
+dist/
+*.log
+
+# Quasar / Vue
+.quasar/
+dist/
+.babel_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.pem
+*.key

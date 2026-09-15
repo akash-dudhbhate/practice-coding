@@ -1,0 +1,10 @@
+/* Lesson 06 — Hard P03: Specificity challenge (no !important) */
+/* Class beats element: .text wins over p */
+p { color: black; }          /* (0,0,1) */
+p.text { color: blue; }      /* (0,1,1) — wins */
+/* ID beats class: #main wins over .text */
+p.text { font-size: 16px; }  /* (0,1,1) */
+#main { font-size: 24px; }   /* (1,0,0) — wins */
+/* Override ID without !important: use a more specific selector */
+#main { color: red; }        /* (1,0,0) */
+body #main { color: green; } /* (1,0,1) — wins, more specific than #main alone */

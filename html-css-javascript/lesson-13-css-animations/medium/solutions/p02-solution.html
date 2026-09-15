@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Bouncing Ball</title>
+<style>
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); animation-timing-function: ease-in; }
+    50% { transform: translateY(-100px); animation-timing-function: ease-out; }
+  }
+  @keyframes shadowScale {
+    0%, 100% { transform: scaleX(1); opacity: 0.5; }
+    50% { transform: scaleX(0.5); opacity: 0.2; }
+  }
+  .ball { width: 40px; height: 40px; background: #667eea; border-radius: 50%; animation: bounce 1s infinite; margin: 0 auto; }
+  .shadow { width: 40px; height: 10px; background: rgba(0,0,0,0.3); border-radius: 50%; margin: 110px auto 0; animation: shadowScale 1s infinite; }
+  .container { text-align: center; padding-top: 50px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="ball"></div>
+  <div class="shadow"></div>
+</div>
+</body>
+</html>

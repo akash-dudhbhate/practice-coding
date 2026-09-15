@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Card Grid</title>
+<style>
+  .grid { display: flex; gap: 16px; }
+  .card {
+    width: 200px; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background: #fff;
+  }
+  .card-img {
+    height: 120px;
+    background: url("https://picsum.photos/200/120") center/cover;
+    position: relative;
+  }
+  .card-img::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .card:hover .card-img::after { opacity: 1; }
+  .card-body { padding: 12px; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="card"><div class="card-img"></div><div class="card-body"><h3>Card 1</h3><p>Description</p></div></div>
+  <div class="card"><div class="card-img"></div><div class="card-body"><h3>Card 2</h3><p>Description</p></div></div>
+  <div class="card"><div class="card-img"></div><div class="card-body"><h3>Card 3</h3><p>Description</p></div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+/* Lesson 07 — Medium P02: Margin collapsing */
+/* Two stacked boxes — vertical margins collapse to the larger one */
+.box-a {
+  margin-bottom: 30px;
+  background: #aef;
+  height: 50px;
+}
+.box-b {
+  margin-top: 20px;
+  background: #faa;
+  height: 50px;
+}
+/* Actual gap between them = 30px (max of 30 and 20), NOT 50px */

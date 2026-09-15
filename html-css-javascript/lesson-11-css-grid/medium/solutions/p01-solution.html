@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Grid Template Areas</title>
+<style>
+  .layout {
+    display: grid;
+    grid-template-areas: "header header" "sidebar content" "footer footer";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 60px 1fr 40px;
+    min-height: 100vh; gap: 0;
+  }
+  header { grid-area: header; background: #333; color: #fff; padding: 16px; }
+  aside { grid-area: sidebar; background: #f0f0f0; padding: 20px; }
+  main { grid-area: content; padding: 20px; }
+  footer { grid-area: footer; background: #333; color: #fff; padding: 10px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <header>Header</header>
+  <aside>Sidebar</aside>
+  <main>Content</main>
+  <footer>Footer</footer>
+</div>
+</body>
+</html>

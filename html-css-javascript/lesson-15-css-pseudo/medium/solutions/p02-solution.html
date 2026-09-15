@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Styled Form</title>
+<style>
+  input { padding: 8px; border: 2px solid #ccc; border-radius: 4px; transition: border-color 0.3s; }
+  input:focus { border-color: #667eea; outline: none; }
+  input:invalid { border-color: #e74c3c; }
+  input:disabled { background: #eee; color: #999; }
+  input:checked + label { color: #667eea; font-weight: bold; }
+</style>
+</head>
+<body>
+<form>
+  <input type="email" placeholder="Email" required><br><br>
+  <input type="text" placeholder="Disabled" disabled><br><br>
+  <input type="checkbox" id="chk"><label for="chk">Check me</label>
+</form>
+</body>
+</html>

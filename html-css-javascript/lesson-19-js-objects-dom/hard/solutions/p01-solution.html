@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Todo List</title>
+<style>
+  .todo { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; }
+  .todo button { background: #e74c3c; color: #fff; border: none; padding: 4px 8px; cursor: pointer; }
+</style>
+</head>
+<body>
+<input type="text" id="todoInput" placeholder="Add todo">
+<button id="addBtn">Add</button>
+<ul id="todoList"></ul>
+<script>
+  const todos = [];
+  const input = document.getElementById("todoInput");
+  const list = document.getElementById("todoList");
+
+  function render() {
+    list.innerHTML = "";
+    todos.forEach((todo, i) => {
+      const li = document.createElement("li");
+      li.className = "todo";
+      li.innerHTML = `<span>${todo}</span>`;
+      const del = document.createElement("button");
+      del.textContent = "Delete";
+      del.onclick = () => { todos.splice(i, 1); render(); };
+      li.appendChild(del);
+      list.appendChild(li);
+    });
+  }
+
+  document.getElementById("addBtn").addEventListener("click", () => {
+    if (input.value.trim()) { todos.push(input.value.trim()); input.value = ""; render(); }
+  });
+</script>
+</body>
+</html>

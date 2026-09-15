@@ -1,0 +1,6 @@
+/* Lesson 08 — Medium P01: font-weight + font-style */
+h1 { font-weight: 700; }
+p { font-weight: 400; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+.caption { font-style: italic; font-weight: 300; }

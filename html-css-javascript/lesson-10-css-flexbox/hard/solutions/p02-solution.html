@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Responsive Feature Section</title>
+<style>
+  .features { display: flex; flex-wrap: wrap; gap: 20px; padding: 20px; }
+  .feature {
+    flex: 1 1 300px; min-width: 300px;
+    padding: 24px; text-align: center; background: #f9f9f9; border-radius: 8px;
+  }
+  .feature .icon { font-size: 40px; }
+  @media (max-width: 900px) { .feature { flex-basis: 45%; } }
+  @media (max-width: 600px) { .feature { flex-basis: 100%; } }
+</style>
+</head>
+<body>
+<div class="features">
+  <div class="feature"><div class="icon">&#9889;</div><h3>Fast</h3><p>Lightning quick performance.</p></div>
+  <div class="feature"><div class="icon">&#128274;</div><h3>Secure</h3><p>Bank-level security.</p></div>
+  <div class="feature"><div class="icon">&#128640;</div><h3>Reliable</h3><p>99.9% uptime.</p></div>
+</div>
+</body>
+</html>

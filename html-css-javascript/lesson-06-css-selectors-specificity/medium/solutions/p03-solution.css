@@ -1,0 +1,9 @@
+/* Lesson 06 — Medium P03: Pseudo-classes on a list */
+/* First child */
+li:first-child { font-weight: bold; }
+/* Last child */
+li:last-child { border-bottom: 2px solid #333; }
+/* Odd children (zebra striping) */
+li:nth-child(odd) { background: #f0f0f0; }
+/* Everything except .active */
+li:not(.active) { opacity: 0.6; }

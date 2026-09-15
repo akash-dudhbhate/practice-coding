@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Form to Object</title></head>
+<body>
+<form id="userForm">
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+  <button type="button" id="submitBtn">Submit</button>
+</form>
+<div id="output"></div>
+<script>
+  document.getElementById("submitBtn").addEventListener("click", () => {
+    const user = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+    };
+    document.getElementById("output").textContent = JSON.stringify(user, null, 2);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Settings Form</title></head>
+<body>
+<form>
+  <fieldset><legend>Notifications</legend>
+    <label><input type="checkbox" name="notif" value="email" checked> Email</label>
+    <label><input type="checkbox" name="notif" value="sms"> SMS</label>
+    <label><input type="checkbox" name="notif" value="push"> Push</label>
+  </fieldset>
+  <fieldset><legend>Privacy</legend>
+    <label><input type="radio" name="visibility" value="public"> Public</label>
+    <label><input type="radio" name="visibility" value="private" checked> Private</label>
+  </fieldset>
+  <fieldset><legend>Preferences</legend>
+    <label for="lang">Language:</label>
+    <select id="lang"><option>English</option><option>Spanish</option><option>French</option></select><br><br>
+    <label for="tz">Timezone:</label>
+    <select id="tz"><option>UTC</option><option>IST</option><option>EST</option></select>
+  </fieldset><br>
+  <button type="submit">Save</button>
+  <button type="reset">Reset</button>
+</form>
+</body>
+</html>

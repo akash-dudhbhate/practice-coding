@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>CSS Tooltip</title>
+<style>
+  .tooltip { position: relative; display: inline-block; cursor: pointer; color: #0066cc; border-bottom: 1px dotted; }
+  .tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+    background: #333; color: #fff; padding: 6px 12px; border-radius: 4px;
+    white-space: nowrap; font-size: 14px; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .tooltip:hover::after { opacity: 1; }
+</style>
+</head>
+<body>
+<p>Hover over <span class="tooltip" data-tooltip="I am a tooltip!">this text</span> to see a tooltip.</p>
+</body>
+</html>

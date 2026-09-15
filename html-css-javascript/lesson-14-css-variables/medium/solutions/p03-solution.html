@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Design System</title>
+<style>
+  :root {
+    --color-primary: #667eea; --color-secondary: #764ba2;
+    --color-accent: #f093fb; --color-success: #2ecc71; --color-danger: #e74c3c;
+    --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px;
+    --font-sm: 12px; --font-md: 16px; --font-lg: 20px; --font-xl: 28px;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 16px;
+  }
+  .card {
+    padding: var(--space-lg); background: #f9f9f9;
+    border-radius: var(--radius-md); font-size: var(--font-md);
+  }
+  .btn {
+    padding: var(--space-sm) var(--space-md); background: var(--color-primary);
+    color: #fff; border: none; border-radius: var(--radius-sm); font-size: var(--font-md);
+  }
+  .btn.danger { background: var(--color-danger); }
+  h1 { font-size: var(--font-xl); color: var(--color-secondary); }
+</style>
+</head>
+<body>
+<h1>Design System</h1>
+<div class="card"><p>Card with design system variables.</p></div>
+<button class="btn">Primary Button</button>
+<button class="btn danger">Danger Button</button>
+</body>
+</html>

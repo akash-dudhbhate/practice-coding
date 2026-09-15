@@ -1,0 +1,12 @@
+/* Lesson 08 — Hard P02: text-shadow for readability */
+.hero h1 {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.hero p {
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+.glow {
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+}

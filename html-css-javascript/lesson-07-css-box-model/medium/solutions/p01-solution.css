@@ -1,0 +1,7 @@
+/* Lesson 07 — Medium P01: Card with padding vs margin */
+.card {
+  padding: 20px;        /* internal spacing (inside background) */
+  margin: 16px;         /* external spacing (between cards) */
+  background: #f9f9f9;  /* padding area shows this color */
+  border: 1px solid #ddd;
+}

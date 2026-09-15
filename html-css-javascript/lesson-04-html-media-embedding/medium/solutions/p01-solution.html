@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Responsive Images</title>
+<style>
+  img { max-width: 100%; height: auto; display: block; margin: 10px 0; }
+</style>
+</head>
+<body>
+<h2>Responsive Images</h2>
+<picture>
+  <source media="(min-width: 800px)" srcset="https://picsum.photos/800/400">
+  <source media="(min-width: 400px)" srcset="https://picsum.photos/400/200">
+  <img src="https://picsum.photos/200/100" alt="Responsive photo">
+</picture>
+</body>
+</html>

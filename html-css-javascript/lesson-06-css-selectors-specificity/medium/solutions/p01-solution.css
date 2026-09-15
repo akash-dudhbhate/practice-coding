@@ -1,0 +1,7 @@
+/* Lesson 06 — Medium P01: Combinators */
+/* Descendant: <p> inside <article> */
+article p { color: #444; }
+/* Direct child: <li> directly under <ul> */
+ul > li { list-style: square; }
+/* Adjacent sibling: <p> right after <h2> */
+h2 + p { font-weight: bold; }
