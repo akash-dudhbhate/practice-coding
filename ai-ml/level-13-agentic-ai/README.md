@@ -1,5 +1,7 @@
 # Level 13 — Agentic AI
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Agent decision-making — pick the right tool for the goal
 - Tool registry — a dict of functions the agent can call

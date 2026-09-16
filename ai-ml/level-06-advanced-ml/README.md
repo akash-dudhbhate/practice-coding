@@ -1,5 +1,7 @@
 # Level 06 — Advanced ML
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Polynomial features (nonlinear data with linear models)
 - One-hot encoding, feature scaling

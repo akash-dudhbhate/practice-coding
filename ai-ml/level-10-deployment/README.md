@@ -1,5 +1,7 @@
 # Level 10 — Model Deployment
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Save/load models with joblib
 - Flask prediction API

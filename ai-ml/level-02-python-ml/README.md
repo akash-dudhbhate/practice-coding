@@ -1,5 +1,7 @@
 # Level 02 — Python for ML
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - NumPy arrays — the foundation of all ML data
 - pandas DataFrames — loading, inspecting, cleaning data

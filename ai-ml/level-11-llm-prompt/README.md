@@ -1,5 +1,7 @@
 # Level 11 — LLM & Prompt Engineering
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Three prompt styles: vague → detailed → structured
 - Few-shot prompting (examples in the prompt)

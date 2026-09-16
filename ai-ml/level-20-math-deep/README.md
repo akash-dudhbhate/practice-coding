@@ -1,5 +1,7 @@
 # Level 20 — Deep Math for ML
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Eigendecomposition — the math behind PCA and spectral methods
 - Vector projection — the building block of attention and cosine similarity

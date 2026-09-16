@@ -1,5 +1,7 @@
 # Level 01 — ML Foundations
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - What machine learning actually is (vs traditional programming)
 - The three types: supervised, unsupervised, reinforcement

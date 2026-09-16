@@ -1,5 +1,7 @@
 # Level 16 — Real RAG (Embeddings + Vector DB)
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Sentence embeddings — text → dense vectors (`TfidfVectorizer` stands in for a neural embedder)
 - Cosine similarity of one query against a whole doc matrix in a single matmul

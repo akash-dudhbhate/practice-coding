@@ -1,5 +1,7 @@
 # Level 18 — Agent Frameworks (Graph-Based Agents)
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - `State` — a dict-based container that tracks every write (`.history`)
 - `Node` — a named function wrapper: `node(state) → new_state`

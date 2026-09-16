@@ -1,5 +1,7 @@
 # Level 12 — RAG Systems
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Text similarity via TF-IDF + cosine
 - Document retrieval — find relevant docs for a query

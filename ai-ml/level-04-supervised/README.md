@@ -1,5 +1,7 @@
 # Level 04 — Supervised Learning
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Linear and logistic regression FROM SCRATCH (numpy only)
 - Gradient descent — how models actually learn

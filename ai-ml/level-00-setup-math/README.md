@@ -1,5 +1,7 @@
 # Level 00 — Setup & Math Foundations
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Verify your Python environment works
 - Vectors and dot products (the math inside every ML model)

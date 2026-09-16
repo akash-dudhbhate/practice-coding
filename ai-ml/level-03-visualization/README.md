@@ -1,5 +1,7 @@
 # Level 03 — Data Visualization
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - matplotlib: lines, scatter, histograms, subplots
 - seaborn: heatmaps, box plots, swarm plots

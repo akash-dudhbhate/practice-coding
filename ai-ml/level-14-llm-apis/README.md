@@ -1,5 +1,7 @@
 # Level 14 — Real LLM APIs
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 > Level-11 taught prompt patterns on a *simulated* LLM.
 > Level-14 uses the **same prompts but real API calls** — one env var
 > flips between simulated (offline), Ollama (local, free), and OpenAI.

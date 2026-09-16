@@ -1,5 +1,7 @@
 # Level 17 — Fine-Tuning / LoRA
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Freezing layers — `requires_grad=False` on a pretrained backbone
 - Counting trainable vs total parameters

@@ -1,5 +1,7 @@
 # Level 05 — Model Evaluation
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Accuracy, precision, recall, F1 from scratch
 - Confusion matrices

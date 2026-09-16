@@ -1,5 +1,7 @@
 # Level 07 — Unsupervised Learning
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - K-Means clustering — group unlabeled data
 - Elbow method and silhouette score — pick the right K

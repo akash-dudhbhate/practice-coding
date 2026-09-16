@@ -1,5 +1,7 @@
 # Level 08 — Neural Networks
 
+> **Math level:** 10th grade is enough. See [MATH-YOU-NEED.md](../MATH-YOU-NEED.md) — it explains every symbol used here.
+
 ## What You'll Learn
 - Perceptron — the simplest neuron
 - Activation functions (sigmoid, ReLU, tanh)
