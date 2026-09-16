@@ -1,0 +1,18 @@
+/*
+LESSON 06 — CSS Selectors & Specificity
+========================================
+
+PROBLEM: Grouped Selectors + ID (Easy)
+Share one rule across h1/h2/h3, then override a single heading by ID.
+
+TRY THIS:
+  - Group: h1, h2, h3 { font-family: Arial, sans-serif; color: #333 }.
+  - #main-title overrides with a different color and font-family
+    (ID specificity 1,0,0 beats element 0,0,1).
+
+EXPECTED OUTPUT: All three heading levels share the group style, except
+#main-title which renders differently.
+
+CHECK: python3 check.py easy/p03
+*/
+/* TODO: Write your complete CSS from scratch below. */

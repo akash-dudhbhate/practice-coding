@@ -9,5 +9,5 @@ def write_file(path, text):
 
 if __name__ == "__main__":
     assert write_file("/tmp/test_write.txt", "content") == True
-    assert read_file := open("/tmp/test_write.txt").read() == "content"
+    assert open("/tmp/test_write.txt").read() == "content"
     print("All tests passed!")

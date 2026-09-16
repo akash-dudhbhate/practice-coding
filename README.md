@@ -70,6 +70,7 @@ Each level = one topic, one mini-project, 9 auto-checked problems.
 ```
 ai-ml/
 ├── FOUNDATIONS (00-13)
+│   ├── level-00a-what-is-ai/    # ZERO-knowledge start: what is AI, weights, RAG
 │   ├── level-00-setup-math/     # Python env, vectors, stats, gradients
 │   ├── level-01-foundations/    # What is ML, features/labels, problem types
 │   ├── level-02-python-ml/      # NumPy, Pandas, sklearn basics

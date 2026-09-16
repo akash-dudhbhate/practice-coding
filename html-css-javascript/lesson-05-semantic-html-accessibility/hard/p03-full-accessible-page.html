@@ -1,0 +1,31 @@
+<!--
+LESSON 05 — Semantic HTML & Accessibility
+==========================================
+
+PROBLEM: Full Accessible Page (Hard)
+Put it all together: skip link, landmarks, headings, alt text, ARIA.
+
+TRY THIS:
+  - Skip link to <main id="main">, hidden off-screen until :focus.
+  - <header> with <h1> and <nav aria-label="Main navigation"> whose
+    active link has aria-current="page".
+  - <main> holding an <article> (<h2>, <p>, an <img> with descriptive
+    alt) and a <section aria-labelledby="...">, plus an
+    <aside aria-label="Sidebar">.
+  - Visible :focus outline styles in a <style> block; <footer> last.
+
+EXPECTED OUTPUT: A page that works completely by keyboard and announces
+every region, heading, and image to a screen reader.
+
+CHECK: python3 check.py hard/p03
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Full Accessible Page</title>
+</head>
+<body>
+  <!-- TODO: Write your complete solution (HTML + a <style> block) here. -->
+</body>
+</html>

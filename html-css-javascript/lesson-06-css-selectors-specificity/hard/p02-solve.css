@@ -1,0 +1,19 @@
+/*
+LESSON 06 — CSS Selectors & Specificity
+========================================
+
+PROBLEM: Attribute Selectors (Hard)
+Style elements based on their attributes, not their tags or classes.
+
+TRY THIS:
+  - input[type="text"] — bordered, padded text inputs.
+  - a[href^="https"] — external links (e.g. green).
+  - a[href$=".pdf"] — PDF links (e.g. red).
+  - input[disabled] — grayed-out, not-allowed cursor.
+
+EXPECTED OUTPUT: Styles apply purely from attribute matching — PDF and
+external links are colored differently, disabled inputs look inactive.
+
+CHECK: python3 check.py hard/p02
+*/
+/* TODO: Write your complete CSS from scratch below. */

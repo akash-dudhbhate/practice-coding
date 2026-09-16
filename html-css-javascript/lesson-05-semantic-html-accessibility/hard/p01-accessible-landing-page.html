@@ -1,0 +1,31 @@
+<!--
+LESSON 05 — Semantic HTML & Accessibility
+==========================================
+
+PROBLEM: Accessible Landing Page (Hard)
+Combine a skip link, labeled landmarks, and aria-current navigation.
+
+TRY THIS:
+  - A skip link: <a href="#main" class="skip"> visually hidden off-screen
+    (position: absolute; left: -9999px) and revealed on :focus.
+  - <header> containing a <nav aria-label="Main"> list where the active
+    link uses aria-current="page".
+  - <main id="main"> with <h1>, a paragraph, and a <section> labelled by
+    aria-labelledby pointing at its <h2 id="...">.
+  - <footer>.
+
+EXPECTED OUTPUT: Keyboard users can Tab to a skip link that jumps to
+<main>; screen readers hear named landmarks and the current page.
+
+CHECK: python3 check.py hard/p01
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible Landing Page</title>
+</head>
+<body>
+  <!-- TODO: Write your complete solution (HTML + a <style> block) here. -->
+</body>
+</html>

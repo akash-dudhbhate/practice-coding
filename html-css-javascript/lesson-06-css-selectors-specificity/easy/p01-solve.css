@@ -1,0 +1,18 @@
+/*
+LESSON 06 — CSS Selectors & Specificity
+========================================
+
+PROBLEM: Element & Class Selectors (Easy)
+Style elements by tag name and by class.
+
+TRY THIS:
+  - All <p> tags get color: gray.
+  - All <h1> tags get color: blue.
+  - A .highlight class gets background: yellow.
+
+EXPECTED OUTPUT: Paragraphs render gray, h1 headings blue, and any
+element with class="highlight" gets a yellow background.
+
+CHECK: python3 check.py easy/p01
+*/
+/* TODO: Write your complete CSS from scratch below. */

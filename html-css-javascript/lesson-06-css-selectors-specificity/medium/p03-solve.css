@@ -1,0 +1,19 @@
+/*
+LESSON 06 — CSS Selectors & Specificity
+========================================
+
+PROBLEM: Pseudo-Classes on a List (Medium)
+Style list items by their position and a negation.
+
+TRY THIS:
+  - li:first-child — bold first item.
+  - li:last-child — border-bottom on the last item.
+  - li:nth-child(odd) — zebra-stripe odd rows (e.g. background #f0f0f0).
+  - li:not(.active) — dim every item except .active (opacity < 1).
+
+EXPECTED OUTPUT: First item bold, last item has a bottom border, odd
+rows are striped, and only .active stays fully opaque.
+
+CHECK: python3 check.py medium/p03
+*/
+/* TODO: Write your complete CSS from scratch below. */
