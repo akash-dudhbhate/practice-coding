@@ -244,14 +244,14 @@ Follow subjects in parallel or sequentially. If sequential:
 
 ---
 
-# 4. AI / ML (14 Levels + 14 Projects + Capstone)
+# 4. AI / ML (21 Levels + 21 Projects + Capstone)
 
 **NEW: Level-based structure.** Each `level-XX-*` has 9 auto-checked
 problems (3 easy + 3 medium + 3 hard), a mini-project in `project/`,
 and a `check.py`. The capstone `CAPSTONE/` grows one milestone per
 level into a complete AI system ("DataMind").
 
-## Phase 1: Foundations (Levels 00–03)
+## FOUNDATIONS TIER (Levels 00–13)
 
 | # | Level | Key Concepts |
 |---|-------|-------------|
@@ -259,36 +259,28 @@ level into a complete AI system ("DataMind").
 | 01 | ML Foundations | supervised/unsupervised, features/labels, train/test, bias-variance |
 | 02 | Python for ML | NumPy arrays, Pandas DataFrames, sklearn pipelines, data leakage |
 | 03 | Visualization | matplotlib, seaborn, histograms, scatter, correlation, dashboards |
-
-## Phase 2: Supervised Learning (Levels 04–05)
-
-| # | Level | Key Concepts |
-|---|-------|-------------|
 | 04 | Supervised ML | linear/logistic regression, decision trees, RF, SVM, KNN, gradient descent |
 | 05 | Model Evaluation | metrics, confusion matrix, k-fold CV, ROC-AUC, grid search, nested CV |
-
-## Phase 3: Advanced ML (Levels 06–07)
-
-| # | Level | Key Concepts |
-|---|-------|-------------|
-| 06 | Advanced ML | polynomial features, encoding, scaling, imbalance, class_weight, custom transformers |
+| 06 | Advanced ML | polynomial features, encoding, scaling, imbalance, class_weight, transformers |
 | 07 | Unsupervised | K-Means, elbow, silhouette, DBSCAN, hierarchical, PCA, segmentation, anomalies |
-
-## Phase 4: Deep Learning (Levels 08–09)
-
-| # | Level | Key Concepts |
-|---|-------|-------------|
 | 08 | Neural Networks | perceptron, activations, XOR, PyTorch, backprop, MNIST |
 | 09 | Deep Learning | convolution, pooling, CNNs, CIFAR-10, BatchNorm, dropout, transfer learning |
-
-## Phase 5: Production AI (Levels 10–13)
-
-| # | Level | Key Concepts |
-|---|-------|-------------|
 | 10 | Deployment | joblib, Flask/FastAPI, Docker, monitoring, versioning, A/B testing |
 | 11 | LLM & Prompting | prompt styles, few-shot, CoT, temperature, personas, JSON output, evaluation |
 | 12 | RAG | TF-IDF embeddings, retrieval, chunking, vector store, rerank, hybrid search |
 | 13 | Agentic AI | tool registry, ReAct loop, tool calling, planning, memory, multi-agent, autonomy |
+
+## MASTERY TIER (Levels 14–20)
+
+| # | Level | Key Concepts |
+|---|-------|-------------|
+| 14 | Real LLM APIs | chat() abstraction, system prompts, temperature, JSON output, streaming, tool calling, cost tracking |
+| 15 | Transformers | tokenizer, embeddings, attention QKV, multi-head, positional encoding, autoregressive generation |
+| 16 | Real RAG | embeddings, vector store, chunking, retrieval, hybrid search, RAG pipeline, evaluation |
+| 17 | Fine-Tuning | freeze backbone, replace head, LoRA, param efficiency, catastrophic forgetting |
+| 18 | Agent Frameworks | state, nodes, graph agents, conditional routing, self-correction, parallel execution |
+| 19 | MLOps | experiment tracking, model registry, data versioning, reproducibility, CI gates |
+| 20 | Math Deep | eigen/SVD, PCA from scratch, gradient descent, Newton's method, Adam, entropy, KL |
 
 ## Verification
 

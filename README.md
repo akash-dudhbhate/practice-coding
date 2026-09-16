@@ -63,27 +63,43 @@ See the full roadmap: [ROADMAP.md](ROADMAP.md)
 
 ## AI/ML Track — Level-Based (NEW structure)
 
-The `ai-ml/` track is organized as **14 levels** (00-13), not lessons.
+The `ai-ml/` track is organized as **21 levels** (00-20), not lessons.
+Levels 00-13 = Foundations tier. Levels 14-20 = **Mastery tier**.
 Each level = one topic, one mini-project, 9 auto-checked problems.
 
 ```
 ai-ml/
-├── level-00-setup-math/     # Python env, vectors, stats, gradients
-├── level-01-foundations/    # What is ML, features/labels, problem types
-├── level-02-python-ml/      # NumPy, Pandas, sklearn basics
-├── level-03-visualization/  # Matplotlib/Seaborn, EDA dashboards
-├── level-04-supervised/     # Regression, classification, trees, ensembles
-├── level-05-evaluation/     # Metrics, CV, ROC, grid search, model compare
-├── level-06-advanced-ml/    # Feature engineering, imbalance, PCA
-├── level-07-unsupervised/   # Clustering, DBSCAN, anomaly detection
-├── level-08-neural-networks/# Perceptron→PyTorch, backprop, MNIST
-├── level-09-deep-learning/  # CNNs, CIFAR-10, transfer learning, augmentation
-├── level-10-deployment/     # Flask/FastAPI, Docker, monitoring, A/B test
-├── level-11-llm-prompt/     # Prompt engineering, CoT, evaluation
-├── level-12-rag/            # Embeddings, retrieval, vector stores, hybrid
-├── level-13-agentic-ai/     # Agents, tools, ReAct, planning, memory
-└── requirements.txt         # pip install -r ai-ml/requirements.txt
+├── FOUNDATIONS (00-13)
+│   ├── level-00-setup-math/     # Python env, vectors, stats, gradients
+│   ├── level-01-foundations/    # What is ML, features/labels, problem types
+│   ├── level-02-python-ml/      # NumPy, Pandas, sklearn basics
+│   ├── level-03-visualization/  # Matplotlib/Seaborn, EDA dashboards
+│   ├── level-04-supervised/     # Regression, classification, trees, ensembles
+│   ├── level-05-evaluation/     # Metrics, CV, ROC, grid search, model compare
+│   ├── level-06-advanced-ml/    # Feature engineering, imbalance, PCA
+│   ├── level-07-unsupervised/   # Clustering, DBSCAN, anomaly detection
+│   ├── level-08-neural-networks/# Perceptron→PyTorch, backprop, MNIST
+│   ├── level-09-deep-learning/  # CNNs, CIFAR-10, transfer learning, augmentation
+│   ├── level-10-deployment/     # Flask/FastAPI, Docker, monitoring, A/B test
+│   ├── level-11-llm-prompt/     # Prompt engineering, CoT, evaluation
+│   ├── level-12-rag/            # TF-IDF retrieval, chunking, vector stores
+│   └── level-13-agentic-ai/     # Agents, tools, ReAct, planning, memory
+│
+├── MASTERY TIER (14-20)
+│   ├── level-14-llm-apis/       # Real API calls: OpenAI/Ollama/simulated
+│   ├── level-15-transformers/   # Attention, QKV, tokenizer, mini-GPT internals
+│   ├── level-16-real-rag/       # Embeddings, vector store, hybrid search, eval
+│   ├── level-17-fine-tuning/    # Freeze backbone, replace head, LoRA, forgetting
+│   ├── level-18-agent-frameworks/# Graph agents, state machines, LangGraph-style
+│   ├── level-19-mlops/          # Experiment tracking, registry, reproducibility
+│   └── level-20-math-deep/      # Eigen/SVD, Newton, Adam, KL divergence, PCA
+│
+└── requirements.txt             # pip install -r ai-ml/requirements.txt
 ```
+
+**Mastery tier notes:** levels 14-18 use a **simulated LLM backend**
+by default (no API key needed). Set `LLM_BACKEND=ollama` or
+`LLM_BACKEND=openai` to use a real model — same code path.
 
 **How to work a level:**
 ```bash

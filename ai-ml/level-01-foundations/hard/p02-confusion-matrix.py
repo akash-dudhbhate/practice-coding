@@ -51,6 +51,7 @@ EXPECTED OUTPUT:
   ```
 
 Write your function below.
+CHECK: python3 check.py hard/p02
 """
 
 # === WRITE YOUR CODE BELOW ===

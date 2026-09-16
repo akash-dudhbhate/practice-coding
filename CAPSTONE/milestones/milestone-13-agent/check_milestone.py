@@ -11,14 +11,11 @@ def check():
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
 
-    if not hasattr(mod, 'predict') or mod.predict([10, 20, 30]) is None:
-        print("FAIL — predict() missing or still a TODO")
-        return False
     pred = mod.predict([10, 20, 30]) if hasattr(mod, 'predict') else None
     if pred is None:
         print("FAIL — predict() missing or still a TODO")
         return False
-    if abs(mod.predict([10, 20, 30]) - 17.1) > 0.01:
+    if abs(pred - 17.1) > 0.01:
         print("FAIL — predict() broken")
         return False
 

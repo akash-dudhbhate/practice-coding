@@ -39,6 +39,7 @@ EXPECTED OUTPUT:
   ```
 
 Write your function below.
+CHECK: python3 check.py medium/p02
 """
 
 # === WRITE YOUR CODE BELOW ===

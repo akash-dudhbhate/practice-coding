@@ -34,6 +34,7 @@ EXPECTED OUTPUT:
   ```
 
 Write your function below.
+CHECK: python3 check.py easy/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
