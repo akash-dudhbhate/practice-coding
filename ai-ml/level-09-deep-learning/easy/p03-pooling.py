@@ -1,30 +1,38 @@
 """
-LEVEL 09 DEEP LEARNING
-EASY P03 — Pooling
-==================================================
+LEVEL 09 — Deep Learning
+EASY P03 — Max Pooling
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Pooling downsamples: take the max in each 2×2 window.
+  Keeps the strongest signal, halves the size. 4×4 → 2×2.
+
+  Why: makes the network focus on "is a feature present?" not
+  "exactly where is it?" — translation invariance.
 
 PROBLEM:
-  Implement max pooling and average pooling from scratch.
+  Write `max_pool(image)` that does 2×2 max pooling
+  on a 2D array (even dimensions).
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  img = np.array([[1,3,2,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+  out = max_pool(img)
+  print(out)   # [[6,8],[14,16]]
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p03-solution.py
+  ```
+  [[ 6.  8.]
+   [14. 16.]]
+  ```
+  (top-left 2×2 block [1,3,5,6] → max is 6)
 
-  Then compare your output format with theirs.
+HINT:
+  Loop over i in range(0, H, 2), j in range(0, W, 2):
+  result[i//2, j//2] = image[i:i+2, j:j+2].max()
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +40,6 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# import numpy as np
+# img = np.array([[1,3,2,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+# print(max_pool(img))

@@ -1,60 +1,40 @@
-# Level 09 Deep Learning — Deep Learning
+# Level 09 — Deep Learning
 
 ## What You'll Learn
-- CNN architecture
-- Convolution and pooling
-- Batch normalization
-- Dropout and regularization
-- Transfer learning
-- Data augmentation
+- Convolution — sliding filters over images
+- CNN architecture — conv → pool → classify
+- Max pooling — downsampling with strongest signal
+- CIFAR-10 training, batch norm, dropout
+- Transfer learning — ResNet18 pretrained
+- Data augmentation — flips, crops, jitter
+- Custom nn.Module — real model architecture
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- Level 08 (PyTorch basics)
 
 ## Problems
 
 ### Easy
-1. `easy/p01-conv-basic.py` — Implement a simple convolution operation from scratch....
-2. `easy/p02-cnn-basic.py` — Build a basic CNN for MNIST using PyTorch or Keras....
-3. `easy/p03-pooling.py` — Implement max pooling and average pooling from scratch....
+1. `easy/p01-convolution.py` — `convolve(img, kernel)` → 2D conv by hand
+2. `easy/p02-cnn-architecture.py` — `build_cnn()` → nn.Sequential CNN
+3. `easy/p03-pooling.py` — `max_pool(img)` → 2×2 pooling by hand
 
 ### Medium
-4. `medium/p01-cifar10.py` — Build a CNN for CIFAR-10. Train and evaluate....
-5. `medium/p02-batchnorm.py` — Add batch normalization to a network. Compare training....
-6. `medium/p03-dropout.py` — Add dropout to prevent overfitting. Compare with/without....
+4. `medium/p01-cnn-training.py` — `train_cnn()` → CIFAR-10 CNN
+5. `medium/p02-batchnorm.py` — `compare_bn()` → with/without BatchNorm
+6. `medium/p03-dropout.py` — `compare_dropout()` → dropout effect
 
 ### Hard
-7. `hard/p01-resnet.py` — Use a pretrained ResNet for transfer learning on a custom da...
-8. `hard/p02-data-augmentation.py` — Implement data augmentation pipeline (rotation, flip, crop)....
-9. `hard/p03-custom-cnn.py` — Design and train a custom CNN architecture for a specific ta...
+7. `hard/p01-transfer-learning.py` — `transfer_learn()` → ResNet on CIFAR-10
+8. `hard/p02-augmentation.py` — `augment_pipeline()` → transform.Compose
+9. `hard/p03-custom-module.py` — `CustomCNN` + `count_params()` → real model class
 
 ### Project
-`project/` — Build an image classifier for a custom dataset using CNN.
+`project/` — Full CIFAR-10 classifier with augmentation.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-conv-basic.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.

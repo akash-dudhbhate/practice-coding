@@ -1,30 +1,45 @@
 """
-LEVEL 08 NEURAL NETWORKS
-EASY P01 — Perceptron
-==================================================
+LEVEL 08 — Neural Networks
+EASY P01 — Perceptron (Simplest Neuron)
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  A perceptron = weighted_sum + step function.
+    output = 1 if (x·w + b) > 0 else 0
+
+  Training: if prediction wrong, nudge weights toward the right answer:
+    if y==1 and pred==0: w += x (increase)
+    if y==0 and pred==1: w -= x (decrease)
 
 PROBLEM:
-  Implement a single perceptron from scratch. Train on OR gate.
+  Write `train_perceptron()` that:
+    1. X = [[0,0],[0,1],[1,0],[1,1]], y = [0,1,1,1] (OR gate)
+    2. w = [0.1, 0.1], b = 0.0, epochs = 20
+    3. For each epoch: for each sample, predict, update w/b
+    4. Returns (w, b)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  w, b = train_perceptron()
+  print(w, b)
+  # Test: for each X, compute step(x·w + b)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p01-solution.py
+  ```
+  [0.1 0.1] 0.0   (or converged weights that solve OR)
+  [0 0] -> 0 (expected 0)
+  [0 1] -> 1 (expected 1)
+  [1 0] -> 1 (expected 1)
+  [1 1] -> 1 (expected 1)
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  pred = 1 if np.dot(x, w) + b > 0 else 0
+  if y == 1 and pred == 0: w += x; b += 0.1
+  if y == 0 and pred == 1: w -= x; b -= 0.1
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +47,7 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# import numpy as np
+# w, b = train_perceptron()
+# for x in [[0,0],[0,1],[1,0],[1,1]]:
+#     print(x, 1 if np.dot(x, w) + b > 0 else 0)

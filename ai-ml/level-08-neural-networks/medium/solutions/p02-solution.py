@@ -1,34 +1,24 @@
-"""Level 08 Neural Networks — Medium P02 Solution"""
+"""Level 08 — Neural Networks — Medium P02 Solution"""
 
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
 
-def solve():
-    np.random.seed(42)
+def train_linear():
     torch.manual_seed(42)
-    X = torch.randn(100, 2)
-    y = (X[:, 0] + X[:, 1] > 0).float()
-    model = nn.Sequential(
-        nn.Linear(2, 8),
-        nn.ReLU(),
-        nn.Linear(8, 1),
-        nn.Sigmoid()
-    )
-    criterion = nn.BCELoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.01)
+    X = torch.randn(100, 1)
+    y = 3 * X + 2 + torch.randn(100, 1) * 0.1
+    model = nn.Linear(1, 1)
+    optimizer = optim.SGD(model.parameters(), lr=0.01)
+    criterion = nn.MSELoss()
     for epoch in range(100):
+        pred = model(X)
+        loss = criterion(pred, y)
         optimizer.zero_grad()
-        outputs = model(X).squeeze()
-        loss = criterion(outputs, y)
         loss.backward()
         optimizer.step()
-    with torch.no_grad():
-        preds = (model(X).squeeze() > 0.5).float()
-        accuracy = (preds == y).float().mean()
-    print(f"Accuracy: {accuracy:.4f}")
-    return model
+    return loss.item(), model.weight.item(), model.bias.item()
 
 if __name__ == "__main__":
-    solve()
+    loss, w, b = train_linear()
+    print(f"{loss:.4f} {w:.4f} {b:.4f}")

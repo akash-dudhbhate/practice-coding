@@ -1,30 +1,42 @@
 """
-LEVEL 10 DEPLOYMENT
-MEDIUM P02 — Batch Predict
-==================================================
+LEVEL 10 — Model Deployment
+MEDIUM P02 — Batch Prediction Endpoint
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  One prediction at a time is slow. Real APIs accept batches:
+    POST /predict-batch {"features": [[...], [...], [...]]}
+  Return all predictions in one response.
+
+  model.predict(features_list) — sklearn handles 2D arrays natively.
 
 PROBLEM:
-  Create a batch prediction endpoint that processes multiple inputs.
+  Write `create_batch_app()` that:
+    1. Trains + loads iris model
+    2. FastAPI app with POST /predict-batch
+    3. Accepts {"features": [[5.1,3.5,1.4,0.2], [6.0,2.2,5.0,1.5]]}
+    4. Returns {"predictions": [0, 2]}
+    5. Returns the app object
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  app = create_batch_app()
+  from fastapi.testclient import TestClient
+  c = TestClient(app)
+  r = c.post('/predict-batch', json={'features': [[5.1,3.5,1.4,0.2],[6.0,2.2,5.0,1.5]]})
+  print(r.json())
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p02-solution.py
+  ```
+  {'predictions': [0, 2]}
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  class BatchInput(BaseModel): features: list[list[float]]
+  model.predict(input.features).tolist()
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +44,7 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# app = create_batch_app()
+# from fastapi.testclient import TestClient
+# c = TestClient(app)
+# print(c.post('/predict-batch', json={'features':[[5.1,3.5,1.4,0.2],[6.0,2.2,5.0,1.5]]}).json())

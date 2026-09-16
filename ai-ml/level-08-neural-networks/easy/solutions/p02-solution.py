@@ -1,30 +1,18 @@
-"""Level 08 Neural Networks — Easy P02 Solution"""
+"""Level 08 — Neural Networks — Easy P02 Solution"""
 
 import numpy as np
-import matplotlib.pyplot as plt
 
-def solve():
-    x = np.linspace(-5, 5, 100)
-    sigmoid = 1 / (1 + np.exp(-x))
-    relu = np.maximum(0, x)
-    tanh = np.tanh(x)
-    plt.figure(figsize=(12, 4))
-    plt.subplot(1, 3, 1)
-    plt.plot(x, sigmoid)
-    plt.title('Sigmoid')
-    plt.grid(True, alpha=0.3)
-    plt.subplot(1, 3, 2)
-    plt.plot(x, relu)
-    plt.title('ReLU')
-    plt.grid(True, alpha=0.3)
-    plt.subplot(1, 3, 3)
-    plt.plot(x, tanh)
-    plt.title('Tanh')
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig('activations.png', dpi=150, bbox_inches='tight')
-    plt.show()
-    print("Activation functions plotted")
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+def relu(z):
+    return np.maximum(0, z)
+
+def tanh(z):
+    return np.tanh(z)
 
 if __name__ == "__main__":
-    solve()
+    print(sigmoid(0))
+    print(relu(-2))
+    print(relu(3))
+    print(tanh(0))

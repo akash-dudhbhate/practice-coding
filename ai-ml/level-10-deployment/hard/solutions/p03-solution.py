@@ -1,38 +1,30 @@
-"""Level 10 Deployment — Hard P03 Solution"""
+"""Level 10 — Model Deployment — Hard P03 Solution"""
 
-import random
 import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
-def solve():
-    class ABTest:
-        def __init__(self, model_a, model_b, split=0.5):
-            self.model_a = model_a
-            self.model_b = model_b
-            self.split = split
-            self.results_a = []
-            self.results_b = []
-        def predict(self, features):
-            if random.random() < self.split:
-                pred = self.model_a(features)
-                self.results_a.append(pred)
-                return pred, 'A'
-            else:
-                pred = self.model_b(features)
-                self.results_b.append(pred)
-                return pred, 'B'
-        def get_results(self):
-            return {
-                'model_a': {'count': len(self.results_a), 'mean': np.mean(self.results_a)},
-                'model_b': {'count': len(self.results_b), 'mean': np.mean(self.results_b)}
-            }
-    # Dummy models
-    model_a = lambda x: 1 if sum(x) > 0 else 0
-    model_b = lambda x: 1 if sum(x) > 0.5 else 0
-    ab = ABTest(model_a, model_b)
-    for i in range(100):
-        ab.predict([random.random() for _ in range(5)])
-    print(ab.get_results())
-    return ab
+def ab_test():
+    iris = load_iris()
+    X_train, X_test, y_train, y_test = train_test_split(
+        iris.data, iris.target, test_size=0.2, random_state=42)
+    model_a = LogisticRegression(max_iter=200, random_state=42).fit(X_train, y_train)
+    model_b = RandomForestClassifier(random_state=42).fit(X_train, y_train)
+
+    np.random.seed(42)
+    test_samples = X_test[np.random.choice(len(X_test), 100, replace=True)]
+    results = {'model_a': {'count': 0, 'correct': 0}, 'model_b': {'count': 0, 'correct': 0}}
+    for sample in test_samples:
+        route = hash(tuple(sample)) % 2
+        if route == 0:
+            pred = model_a.predict([sample])[0]
+            results['model_a']['count'] += 1
+        else:
+            pred = model_b.predict([sample])[0]
+            results['model_b']['count'] += 1
+    return results
 
 if __name__ == "__main__":
-    solve()
+    print(ab_test())

@@ -1,60 +1,42 @@
-# Level 10 Deployment — Model Deployment
+# Level 10 — Model Deployment
 
 ## What You'll Learn
-- Saving and loading models
-- FastAPI/Flask APIs
+- Save/load models with joblib
+- Flask prediction API
+- FastAPI with Pydantic validation
+- Batch predictions
 - Model versioning
-- Docker basics
-- Monitoring and logging
+- Dockerfile generation
+- Model monitoring (latency, stats)
 - A/B testing
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- Level 05 (trained models)
+- `pip install flask fastapi uvicorn httpx2`
 
 ## Problems
 
 ### Easy
-1. `easy/p01-save-model.py` — Train a model, save it with joblib/pickle, load and predict....
-2. `easy/p02-simple-api.py` — Create a Flask API that takes features and returns predictio...
-3. `easy/p03-model-info.py` — Create an API endpoint that returns model metadata....
+1. `easy/p01-save-model.py` — `save_and_load()` → joblib save/load
+2. `easy/p02-flask-api.py` — `create_app()` → Flask /predict POST
+3. `easy/p03-model-endpoint.py` — `create_predict_app()` → GET with query params
 
 ### Medium
-4. `medium/p01-fastapi-predict.py` — Build a FastAPI endpoint with input validation and predictio...
-5. `medium/p02-batch-predict.py` — Create a batch prediction endpoint that processes multiple i...
-6. `medium/p03-model-versioning.py` — Implement model versioning — load different versions....
+4. `medium/p01-fastapi-validation.py` — `create_fastapi_app()` → Pydantic validation
+5. `medium/p02-batch-predict.py` — `create_batch_app()` → batch predictions
+6. `medium/p03-model-versioning.py` — `build_registry()` → version tracking
 
 ### Hard
-7. `hard/p01-docker-ml.py` — Create a Dockerfile for an ML API....
-8. `hard/p02-monitoring.py` — Add logging and monitoring to an ML API....
-9. `hard/p03-a-b-testing.py` — Implement A/B testing logic for model comparison....
+7. `hard/p01-dockerfile.py` — `generate_dockerfile()` → container config
+8. `hard/p02-monitoring.py` — `create_monitored_model()` → latency + stats
+9. `hard/p03-ab-testing.py` — `ab_test()` → A/B model routing
 
 ### Project
-`project/` — Build a complete ML API with FastAPI, Docker, and monitoring.
+`project/` — Deploy a model API end-to-end.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-save-model.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.

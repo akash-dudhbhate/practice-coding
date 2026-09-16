@@ -1,60 +1,41 @@
-# Level 08 Neural Networks — Neural Networks & PyTorch
+# Level 08 — Neural Networks
 
 ## What You'll Learn
-- Perceptron and activation functions
-- Forward and backward propagation
-- Loss functions and optimizers
-- PyTorch tensors and autograd
-- Building nn.Module
-- Training loops
+- Perceptron — the simplest neuron
+- Activation functions (sigmoid, ReLU, tanh)
+- Why hidden layers are needed (XOR problem)
+- Backpropagation from scratch
+- PyTorch: tensors, nn.Linear, training loops, MLPs
+- MNIST digit recognition
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- Level 00 (dot product, weighted sum)
+- Level 04 (gradient descent intuition)
+- `pip install torch torchvision` (CPU version is fine)
 
 ## Problems
 
 ### Easy
-1. `easy/p01-perceptron.py` — Implement a single perceptron from scratch. Train on OR gate...
-2. `easy/p02-activation-functions.py` — Implement sigmoid, ReLU, and tanh from scratch. Plot them....
-3. `easy/p03-pytorch-tensor.py` — Create PyTorch tensors, do basic operations, compute gradien...
+1. `easy/p01-perceptron.py` — `train_perceptron()` → solve OR gate
+2. `easy/p02-activation-functions.py` — `sigmoid/relu/tanh(z)` → implement all three
+3. `easy/p03-pytorch-tensors.py` — `tensor_basics()` → torch operations
 
 ### Medium
-4. `medium/p01-mlp-scratch.py` — Build a 2-layer neural network from scratch. Train on XOR....
-5. `medium/p02-pytorch-nn.py` — Build a neural network with nn.Module. Train on synthetic da...
-6. `medium/p03-training-loop.py` — Write a complete PyTorch training loop with loss tracking....
+4. `medium/p01-xor-hidden-layer.py` — `solve_xor()` → 2-2-1 network
+5. `medium/p02-pytorch-linear.py` — `train_linear()` → nn.Linear training loop
+6. `medium/p03-pytorch-mlp.py` — `train_mlp()` → Linear→ReLU→Linear
 
 ### Hard
-7. `hard/p01-backprop-scratch.py` — Implement backpropagation from scratch for a 2-layer network...
-8. `hard/p02-custom-loss.py` — Implement a custom loss function in PyTorch....
-9. `hard/p03-transfer-learning.py` — Use a pretrained model (ResNet) for a new classification tas...
+7. `hard/p01-manual-backprop.py` — `train_manual()` → numpy backprop on XOR
+8. `hard/p02-pytorch-full-training.py` — `train()` → DataLoader + val loop
+9. `hard/p03-mnist-nn.py` — `train_mnist()` → real handwritten digits
 
 ### Project
-`project/` — Build a MNIST digit recognizer with PyTorch from scratch.
+`project/` — MNIST digit recognizer with visualization.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-perceptron.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.

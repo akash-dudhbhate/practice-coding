@@ -1,41 +1,35 @@
-"""Level 08 Neural Networks — Medium P03 Solution"""
+"""Level 08 — Neural Networks — Medium P03 Solution"""
 
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
-import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
 
-def solve():
-    np.random.seed(42)
-    torch.manual_seed(42)
-    X = torch.randn(100, 2)
-    y = (X[:, 0] + X[:, 1] > 0).float()
+def train_mlp():
+    X, y = make_classification(n_samples=200, n_features=5, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train = torch.tensor(X_train, dtype=torch.float32)
+    X_test = torch.tensor(X_test, dtype=torch.float32)
+    y_train = torch.tensor(y_train, dtype=torch.long)
+    y_test = torch.tensor(y_test, dtype=torch.long)
     model = nn.Sequential(
-        nn.Linear(2, 8),
+        nn.Linear(5, 10),
         nn.ReLU(),
-        nn.Linear(8, 1),
-        nn.Sigmoid()
+        nn.Linear(10, 2)
     )
-    criterion = nn.BCELoss()
+    criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.01)
-    losses = []
-    for epoch in range(100):
+    for epoch in range(200):
         optimizer.zero_grad()
-        outputs = model(X).squeeze()
-        loss = criterion(outputs, y)
+        out = model(X_train)
+        loss = criterion(out, y_train)
         loss.backward()
         optimizer.step()
-        losses.append(loss.item())
-        if epoch % 20 == 0:
-            print(f"Epoch {epoch}: loss={loss.item():.4f}")
-    plt.plot(losses)
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.title('Training Loss')
-    plt.savefig('training_loss.png', dpi=150, bbox_inches='tight')
-    plt.show()
-    return losses
+    with torch.no_grad():
+        preds = model(X_test).argmax(dim=1)
+        acc = (preds == y_test).float().mean().item()
+    return acc
 
 if __name__ == "__main__":
-    solve()
+    print(f"{train_mlp():.4f}")

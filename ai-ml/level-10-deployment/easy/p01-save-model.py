@@ -1,30 +1,39 @@
 """
-LEVEL 10 DEPLOYMENT
-EASY P01 — Save Model
-==================================================
+LEVEL 10 — Model Deployment
+EASY P01 — Save and Load a Model
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Once trained, save the model to disk. Then any app can load
+  and predict — no retraining needed.
+
+  joblib.dump(model, 'model.pkl') → save
+  joblib.load('model.pkl') → load
 
 PROBLEM:
-  Train a model, save it with joblib/pickle, load and predict.
+  Write `save_and_load()` that:
+    1. Trains LogisticRegression on iris (seed=42)
+    2. Saves to 'model.pkl'
+    3. Loads it back
+    4. Returns predictions for the first 5 test samples
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  preds = save_and_load()
+  print(preds)   # [0 1 0 0 1]
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p01-solution.py
+  ```
+  [1 0 2 1 1]
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  import joblib
+  joblib.dump(model, 'model.pkl')
+  loaded = joblib.load('model.pkl')
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +41,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# p = save_and_load()
+# print(p)

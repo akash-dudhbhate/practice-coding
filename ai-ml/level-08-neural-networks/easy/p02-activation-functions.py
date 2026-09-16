@@ -1,30 +1,45 @@
 """
-LEVEL 08 NEURAL NETWORKS
+LEVEL 08 — Neural Networks
 EASY P02 — Activation Functions
-==================================================
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Without activation functions, a neural network = just one big
+  linear regression. Activations add the nonlinearity that lets
+  networks learn curves, circles, anything.
+
+  Key ones:
+    sigmoid(z)  = 1/(1+e^-z)      — squash to (0,1)
+    relu(z)     = max(0, z)        — kill negatives
+    tanh(z)     = (e^z - e^-z)/(e^z + e^-z) — squash to (-1,1)
 
 PROBLEM:
-  Implement sigmoid, ReLU, and tanh from scratch. Plot them.
+  Write three functions: `sigmoid(z)`, `relu(z)`, `tanh(z)`
+  Each takes a number or array, returns the activated value.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  print(sigmoid(0))     # 0.5
+  print(relu(-2))       # 0
+  print(relu(3))        # 3
+  print(tanh(0))        # 0.0
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p02-solution.py
+  ```
+  0.5
+  0
+  3
+  0.0
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  import numpy as np
+  sigmoid: 1 / (1 + np.exp(-z))
+  relu: np.maximum(0, z)
+  tanh: np.tanh(z)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +47,4 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# print(sigmoid(0), relu(-2), relu(3), tanh(0))

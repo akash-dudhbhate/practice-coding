@@ -1,33 +1,24 @@
-"""Level 10 Deployment — Medium P03 Solution"""
+"""Level 10 — Model Deployment — Medium P03 Solution"""
 
-import pickle
-import os
-import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.model_selection import train_test_split
 
-def solve():
-    # Simulate model versioning
-    versions = {
-        'v1': {'model': 'logistic_regression', 'accuracy': 0.82},
-        'v2': {'model': 'random_forest', 'accuracy': 0.88},
-        'v3': {'model': 'gradient_boosting', 'accuracy': 0.91},
-    }
-    # Save each version
-    for version, info in versions.items():
-        filename = f'model_{version}.pkl'
-        with open(filename, 'wb') as f:
-            pickle.dump(info, f)
-    # Load specific version
-    def load_model(version):
-        filename = f'model_{version}.pkl'
-        if os.path.exists(filename):
-            with open(filename, 'rb') as f:
-                return pickle.load(f)
-        return None
-    # Test loading
-    for v in ['v1', 'v2', 'v3']:
-        model = load_model(v)
-        print(f"{v}: {model}")
-    return load_model
+def build_registry():
+    iris = load_iris()
+    X_train, X_test, y_train, y_test = train_test_split(
+        iris.data, iris.target, test_size=0.2, random_state=42)
+    models = [
+        ('v1', 'logistic_regression', LogisticRegression(max_iter=200, random_state=42)),
+        ('v2', 'random_forest', RandomForestClassifier(random_state=42)),
+        ('v3', 'gradient_boosting', GradientBoostingClassifier(random_state=42)),
+    ]
+    registry = {}
+    for ver, name, model in models:
+        model.fit(X_train, y_train)
+        registry[ver] = {'model': name, 'accuracy': round(model.score(X_test, y_test), 2)}
+    return registry
 
 if __name__ == "__main__":
-    solve()
+    print(build_registry())
