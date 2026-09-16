@@ -1,60 +1,46 @@
-# Level 02 Python Ml — Python for ML
+# Level 02 — Python for ML
 
 ## What You'll Learn
-- NumPy arrays and operations
-- Pandas DataFrames
-- Data loading and inspection
-- Missing value handling
-- Feature scaling
-- Train/test splitting
+- NumPy arrays — the foundation of all ML data
+- pandas DataFrames — loading, inspecting, cleaning data
+- Filling missing values (imputation)
+- Scaling features and encoding categories
+- Pipelines and ColumnTransformer
+- Preventing data leakage
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
+- Level 01 complete
+- Python basics (functions, lists, dicts)
 
 ---
 
 ## Problems
 
 ### Easy
-1. `easy/p01-create-array.py` — Create a 4x5 NumPy array of random integers (0-100) with a f...
-2. `easy/p02-load-csv.py` — Load a CSV file into a pandas DataFrame. Print the first 5 r...
-3. `easy/p03-fill-missing.py` — Given a DataFrame with NaN values, fill numeric columns with...
+1. `easy/p01-create-array.py` — `create_array()` → 4×5 random array, print stats
+2. `easy/p02-load-csv.py` — `load_data()` → build a DataFrame
+3. `easy/p03-fill-missing.py` — `fill_missing()` → impute NaN correctly
 
 ### Medium
-4. `medium/p01-preprocess-pipeline.py` — Build a preprocessing pipeline: impute missing values, scale...
-5. `medium/p02-detect-outliers.py` — Detect outliers using IQR method. Cap them and return the cl...
-6. `medium/p03-mixed-types.py` — Handle a DataFrame with numeric, categorical, and datetime c...
+4. `medium/p01-preprocess-pipeline.py` — `build_pipeline()` → sklearn Pipeline
+5. `medium/p02-detect-outliers.py` — `detect_outliers(data)` → IQR capping
+6. `medium/p03-mixed-types.py` — `process()` → datetime + encode + scale
 
 ### Hard
-7. `hard/p01-data-leakage.py` — Prevent data leakage: split FIRST, then fit preprocessing on...
-8. `hard/p02-column-transformer.py` — Use ColumnTransformer to apply different preprocessing to nu...
-9. `hard/p03-stratified-split.py` — Create imbalanced data (95/5), split with and without strati...
+7. `hard/p01-data-leakage.py` — `train_clean()` → split-first pipeline
+8. `hard/p02-column-transformer.py` — `build()` → mixed preprocessing
+9. `hard/p03-stratified-split.py` — `compare_splits()` → stratify=y
 
 ### Project
-`project/` — Clean a real messy dataset — handle missing values, encode categories, scale features, train a model, evaluate.
+`project/` — Clean a real messy dataset end-to-end.
 
 ---
 
 ## Verify Your Work
 
 ```bash
-# Run a problem
-python3 easy/p01-create-array.py
-
-# Check your answer
-python3 check.py easy/p01
+python3 check.py easy/p01    # one problem
+python3 check.py all         # all 9 problems
 ```
 
-When `check.py` says "PASS", add `# DONE` to the first line and move on.
+When it says PASS, add `# DONE` to the first line of your file.

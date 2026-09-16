@@ -9,29 +9,41 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 
-def solve():
+def train_clean():
+    np.random.seed(42)
+    n = 200
     df = pd.DataFrame({
-        'age': [25, np.nan, 30, 35, np.nan, 28],
-        'income': [50000, 60000, np.nan, 70000, 55000, 62000],
-        'city': ['Mumbai', 'Delhi', 'Mumbai', 'Chennai', 'Delhi', 'Mumbai'],
-        'target': [0, 1, 0, 1, 0, 1]
+        'age': np.random.randint(18, 70, n).astype(float),
+        'income': np.random.randint(20000, 120000, n).astype(float),
+        'city': np.random.choice(['Mumbai', 'Delhi', 'Chennai'], n),
     })
+    df['target'] = (df['age'] > 40).astype(int)
+    df.loc[np.random.choice(n, 20, replace=False), 'age'] = np.nan
+    df.loc[np.random.choice(n, 15, replace=False), 'city'] = np.nan
+
     X = df.drop('target', axis=1)
     y = df['target']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-    numeric_features = ['age', 'income']
-    categorical_features = ['city']
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42)
+
     preprocessor = ColumnTransformer([
-        ('num', Pipeline([('imputer', SimpleImputer(strategy='median')), ('scaler', StandardScaler())]), numeric_features),
-        ('cat', Pipeline([('imputer', SimpleImputer(strategy='most_frequent')), ('onehot', OneHotEncoder())]), categorical_features)
+        ('num', Pipeline([
+            ('imputer', SimpleImputer(strategy='median')),
+            ('scaler', StandardScaler())
+        ]), ['age', 'income']),
+        ('cat', Pipeline([
+            ('imputer', SimpleImputer(strategy='most_frequent')),
+            ('onehot', OneHotEncoder(handle_unknown='ignore'))
+        ]), ['city'])
     ])
-    model = Pipeline([('preprocessor', preprocessor), ('classifier', RandomForestClassifier(random_state=42))])
+
+    model = Pipeline([
+        ('preprocessor', preprocessor),
+        ('classifier', RandomForestClassifier(n_estimators=50, random_state=42))
+    ])
     model.fit(X_train, y_train)
-    train_acc = model.score(X_train, y_train)
-    test_acc = model.score(X_test, y_test)
-    print(f"Train accuracy: {train_acc:.4f}")
-    print(f"Test accuracy: {test_acc:.4f}")
-    return train_acc, test_acc
+    return model.score(X_train, y_train), model.score(X_test, y_test)
 
 if __name__ == "__main__":
-    solve()
+    tr, te = train_clean()
+    print(f"Train: {tr:.4f}  Test: {te:.4f}")

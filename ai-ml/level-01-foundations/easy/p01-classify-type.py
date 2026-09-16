@@ -1,20 +1,48 @@
 """
 LEVEL 01 — ML Foundations
-EASY P01 — Classify the Problem Type (Solution)
-==================================================
+EASY P01 — Classify the Problem Type
+========================================
+
+CONCEPT:
+  Supervised learning = you have labeled data (input + correct answer).
+    - Regression: predict a NUMBER (price, temperature)
+    - Classification: predict a CATEGORY (spam/ham, dog/cat)
+
+  Unsupervised learning = no labels, model finds patterns on its own.
+    - Clustering: group similar items (customer segments)
+
+PROBLEM:
+  Classify each scenario below. Write a function `classify(scenario)`
+  that returns the correct type.
+
+  Scenarios:
+    A) Predicting house prices from size and location
+    B) Grouping shoppers by purchase history (no labels)
+    C) Is a tumor malignant or benign from medical images?
+
+TRY THIS INPUT:
+  ```python
+  print(classify("A"))  # should print "supervised-regression"
+  print(classify("B"))  # should print "unsupervised"
+  print(classify("C"))  # should print "supervised-classification"
+  ```
+
+EXPECTED OUTPUT:
+  ```
+  supervised-regression
+  unsupervised
+  supervised-classification
+  ```
+
+Write your function below.
 """
 
-def classify(scenario):
-    """Classify a scenario as supervised-regression, supervised-classification, or unsupervised."""
-    answers = {
-        "A": "supervised-regression",      # House price = predict a number
-        "B": "unsupervised",               # No labels, group shoppers
-        "C": "supervised-classification",  # Tumor = predict a category
-    }
-    return answers.get(scenario, "unknown")
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.
 
 
-if __name__ == "__main__":
-    print(classify("A"))
-    print(classify("B"))
-    print(classify("C"))
+# === TEST ===
+# Uncomment to test your solution:
+# print(classify("A"))
+# print(classify("B"))
+# print(classify("C"))

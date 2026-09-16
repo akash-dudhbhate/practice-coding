@@ -1,30 +1,43 @@
 """
-LEVEL 03 VISUALIZATION
-MEDIUM P03 — Box Plot
-==================================================
+LEVEL 03 — Data Visualization
+MEDIUM P03 — Box Plot with Swarm Overlay
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  sns.boxplot — shows median, quartiles, outliers per group.
+  sns.swarmplot — shows every data point on top.
+  Together: shape of distribution AND raw points.
 
 PROBLEM:
-  Create a box plot comparing distributions across categories. Add swarm plot overlay.
+  Write `plot_box()` that:
+    1. np.random.seed(42)
+    2. DataFrame: category A/B/C/D (50 rows each),
+       values = normal(50,10), normal(60,15), normal(55,12), normal(70,8)
+    3. sns.boxplot + sns.swarmplot overlay
+    4. Save 'boxplot.png', show, return the DataFrame
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  df = plot_box()
+  print(df.shape)                        # (200, 2)
+  print(df.groupby('category')['value'].mean())
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p03-solution.py
+  ```
+  (200, 2)
+  category
+  A    ~50
+  B    ~60
+  C    ~55
+  D    ~70
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  np.repeat(['A','B','C','D'], 50) for categories.
+  np.concatenate([...]) for the four value groups.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +45,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# df = plot_box()
+# print(df.groupby('category')['value'].mean())

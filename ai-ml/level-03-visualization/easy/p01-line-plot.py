@@ -1,30 +1,43 @@
 """
-LEVEL 03 VISUALIZATION
-EASY P01 — Line Plot
-==================================================
+LEVEL 03 — Data Visualization
+EASY P01 — Line Plot of Trig Functions
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  matplotlib is the core plotting library.
+    plt.plot(x, y, label=...) — line plot
+    plt.xlabel / ylabel / title — labels
+    plt.legend() — show labels
+    plt.grid(True) — grid lines
+    plt.savefig('file.png') — save figure
 
 PROBLEM:
-  Plot y = sin(x) and y = cos(x) on the same figure with labels, legend, title, and grid.
+  Write `plot_trig()` that:
+    1. Creates x = np.linspace(0, 10, 100)
+    2. Plots sin(x) and cos(x) on the same figure
+    3. Adds labels, title, legend, grid
+    4. Saves to 'trig_plot.png' and shows it
+    5. Returns the x array (so check.py can verify)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  x = plot_trig()
+  print(len(x))       # 100
+  print(x[0], x[-1])  # 0.0 10.0
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p01-solution.py
+  ```
+  100
+  0.0 10.0
+  ```
+  (plus a saved PNG with both curves)
 
-  Then compare your output format with theirs.
+HINT:
+  import matplotlib.pyplot as plt
+  plt.plot(x, np.sin(x), label='sin(x)')
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +45,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# x = plot_trig()
+# print(len(x))

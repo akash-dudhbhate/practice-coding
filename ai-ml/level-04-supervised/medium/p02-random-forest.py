@@ -1,30 +1,38 @@
 """
-LEVEL 04 SUPERVISED
-MEDIUM P02 — Random Forest
-==================================================
+LEVEL 04 — Supervised Learning
+MEDIUM P02 — Random Forest Feature Importance
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  RandomForestClassifier = many decision trees voting together.
+  feature_importances_ = which features the trees relied on most.
+  Sums to 1.0. High importance = that feature drives predictions.
 
 PROBLEM:
-  Train a random forest on a synthetic dataset. Show feature importances.
+  Write `train_forest()` that:
+    1. make_classification(200, 5 features, n_informative=3, seed=42)
+    2. Split 80/20 (seed=42)
+    3. RandomForestClassifier(100 trees, seed=42)
+    4. Returns (test_accuracy, feature_importances_array)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  acc, imp = train_forest()
+  print(f"{acc:.4f}")
+  print(f"{imp[0]:.4f}")   # feature 0 importance
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p02-solution.py
+  ```
+  0.9500
+  0.4379
+  ```
+  (Feature 0 dominates — it's an "informative" feature)
 
-  Then compare your output format with theirs.
+HINT:
+  rf.feature_importances_ — numpy array, one value per feature.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +40,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# acc, imp = train_forest()
+# print(acc, imp)

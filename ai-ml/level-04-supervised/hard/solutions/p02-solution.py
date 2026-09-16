@@ -1,11 +1,11 @@
-"""Level 04 Supervised — Hard P02 Solution"""
+"""Level 04 — Supervised Learning — Hard P02 Solution"""
 
 from sklearn.datasets import make_classification
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 
-def solve():
+def compare_ensembles():
     X, y = make_classification(n_samples=500, n_features=10, random_state=42)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     models = {
@@ -13,14 +13,14 @@ def solve():
         'Random Forest': RandomForestClassifier(random_state=42),
         'Gradient Boosting': GradientBoostingClassifier(random_state=42),
     }
-    print(f"{'Model':<20} {'Train Acc':<12} {'Test Acc':<12}")
-    print("-" * 44)
+    results = {}
     for name, model in models.items():
         model.fit(X_train, y_train)
-        train_acc = model.score(X_train, y_train)
-        test_acc = model.score(X_test, y_test)
-        print(f"{name:<20} {train_acc:<12.4f} {test_acc:<12.4f}")
-    return models
+        results[name] = (model.score(X_train, y_train), model.score(X_test, y_test))
+    return results
 
 if __name__ == "__main__":
-    solve()
+    results = compare_ensembles()
+    print(f"{'Model':<20} {'Train':<8} {'Test':<8}")
+    for name, (tr, te) in results.items():
+        print(f"{name:<20} {tr:<8.4f} {te:<8.4f}")

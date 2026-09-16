@@ -1,30 +1,45 @@
 """
-LEVEL 02 PYTHON ML
-MEDIUM P02 — Detect Outliers
-==================================================
+LEVEL 02 — Python for ML
+MEDIUM P02 — Detect and Cap Outliers (IQR)
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Outliers = values far from the rest. They skew models.
+
+  IQR method:
+    Q1 = 25th percentile, Q3 = 75th percentile
+    IQR = Q3 - Q1
+    Outlier if: value < Q1 - 1.5×IQR  OR  value > Q3 + 1.5×IQR
+
+  "Capping" = replace outliers with the boundary value
+  (np.clip does this).
 
 PROBLEM:
-  Detect outliers using IQR method. Cap them and return the cleaned array with outlier count.
+  Write `detect_outliers(data)` that:
+    1. Computes Q1, Q3, IQR, lower/upper bounds
+    2. Finds outlier values
+    3. Returns (cleaned_array, outlier_count)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  data = np.array([1,2,3,4,5,6,7,8,9,100])
+  cleaned, n = detect_outliers(data)
+  print(f"Outliers found: {n}")
+  print(f"Cleaned: {cleaned}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p02-solution.py
+  ```
+  Outliers found: 1
+  Cleaned: [ 1.   2.   3.   4.   5.   6.   7.   8.   9.  14.5]
+  ```
+  (The 100 gets capped to upper bound 14.5)
 
-  Then compare your output format with theirs.
+HINT:
+  np.percentile(data, 25) and np.percentile(data, 75).
+  np.clip(data, lower, upper) caps values.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +47,7 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# import numpy as np
+# data = np.array([1,2,3,4,5,6,7,8,9,100])
+# cleaned, n = detect_outliers(data)
+# print(n, cleaned)

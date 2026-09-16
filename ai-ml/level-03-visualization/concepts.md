@@ -1,22 +1,43 @@
-# Level 03 Visualization — Concepts Reference
+# Level 03 — Concepts Reference
 
-## Key Concepts
+## Easy
 
-### Matplotlib basics
-- Brief explanation of matplotlib basics.
+### Line Plots
+- `plt.plot(x, y, label='name')` — line chart
+- `plt.legend()`, `plt.grid(True)`, `plt.savefig('f.png')`
 
-### Seaborn for statistical plots
-- Brief explanation of seaborn for statistical plots.
+### Scatter Plots
+- `plt.scatter(x, y, c=color, alpha=0.6)` — points
+- Color by group: plot each subset separately with a label
 
-### Line, bar, scatter, histogram
-- Brief explanation of line, bar, scatter, histogram.
+### Histograms
+- `plt.hist(data, bins=20, edgecolor='black')` — distribution
+- `plt.axvline(mean, color='red', linestyle='--')` — reference line
 
-### Heatmaps and correlation
-- Brief explanation of heatmaps and correlation.
+## Medium
 
-### Subplots and figure sizing
-- Brief explanation of subplots and figure sizing.
+### Correlation Heatmap
+- `df.corr()` → matrix; `sns.heatmap(corr, annot=True, cmap='coolwarm')`
+- Diagonal is always 1.0 (self-correlation)
 
-### Saving figures
-- Brief explanation of saving figures.
+### Subplots
+- `fig, axes = plt.subplots(2, 2)` → grid of axes
+- `axes[i, j].plot(...)` — each subplot is its own axes
 
+### Box Plots
+- `sns.boxplot(x='cat', y='val', data=df)` — distribution per group
+- `sns.swarmplot(...)` — raw points on top
+
+## Hard
+
+### Dashboards
+- `df.groupby('col')['val'].sum().plot(kind='bar')` — pandas plots
+- `.unstack()` pivots groupby output for heatmaps
+
+### Animation
+- `FuncAnimation(fig, update, frames=100)` — calls update per frame
+- `line.set_ydata(...)` to mutate the plotted data
+
+### Publication Quality
+- `rcParams['font.family']='serif'`; `spines['top'].set_visible(False)`
+- `savefig(dpi=300)` for print quality

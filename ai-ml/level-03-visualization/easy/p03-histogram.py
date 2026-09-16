@@ -1,30 +1,39 @@
 """
-LEVEL 03 VISUALIZATION
-EASY P03 — Histogram
-==================================================
+LEVEL 03 — Data Visualization
+EASY P03 — Histogram with Mean/Median Lines
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  plt.hist(data, bins=20) — distribution of values.
+  plt.axvline(x, ...) — vertical reference line.
+  np.mean / np.median — summary stats.
+  np.clip(data, 0, 100) — keep in range.
 
 PROBLEM:
-  Plot a histogram of exam scores. Add mean and median lines. Label everything.
+  Write `plot_histogram()` that:
+    1. np.random.seed(42); scores = normal(75, 15, 200), clipped 0-100
+    2. Histogram with 20 bins, edgecolor, alpha
+    3. Red dashed mean line, green dashed median line (with labels)
+    4. Save 'histogram.png', show, return scores array
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  scores = plot_histogram()
+  print(len(scores))          # 200
+  print(f"{scores.mean():.1f}")   # ~74
+  print(scores.min(), scores.max())  # within 0-100
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p03-solution.py
+  ```
+  200
+  74.5
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  plt.axvline(np.mean(scores), color='red', linestyle='--', label='Mean')
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +41,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# s = plot_histogram()
+# print(len(s), s.mean())

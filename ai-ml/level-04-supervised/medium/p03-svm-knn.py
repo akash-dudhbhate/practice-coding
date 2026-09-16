@@ -1,30 +1,38 @@
 """
-LEVEL 04 SUPERVISED
-MEDIUM P03 — Svm Knn
-==================================================
+LEVEL 04 — Supervised Learning
+MEDIUM P03 — SVM vs KNN Comparison
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  SVM = finds the boundary that maximizes the margin between classes.
+  KNN = classifies by the K nearest neighbors' majority vote.
+
+  Different algorithms → different decision boundaries → different
+  accuracy on the same data. Always compare!
 
 PROBLEM:
-  Compare SVM and KNN on a classification dataset. Print accuracy for both.
+  Write `compare_models()` that:
+    1. make_classification(200, 5 features, seed=42)
+    2. Split 80/20 (seed=42)
+    3. SVC(seed=42) and KNeighborsClassifier(n_neighbors=5)
+    4. Returns (svm_accuracy, knn_accuracy)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  s, k = compare_models()
+  print(f"SVM: {s:.4f}  KNN: {k:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p03-solution.py
+  ```
+  SVM: 0.8500  KNN: 0.8000
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  from sklearn.svm import SVC
+  from sklearn.neighbors import KNeighborsClassifier
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +40,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# s, k = compare_models()
+# print(s, k)

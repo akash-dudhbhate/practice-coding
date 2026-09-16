@@ -1,9 +1,11 @@
-"""Level 03 Visualization — Easy P01 Solution"""
+"""Level 03 — Data Visualization — Easy P01 Solution"""
 
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')  # headless — remove if you want plt.show()
 import matplotlib.pyplot as plt
 
-def solve():
+def plot_trig():
     x = np.linspace(0, 10, 100)
     plt.figure(figsize=(10, 6))
     plt.plot(x, np.sin(x), label='sin(x)', linewidth=2)
@@ -14,8 +16,10 @@ def solve():
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig('trig_plot.png', dpi=150, bbox_inches='tight')
-    plt.show()
-    print("Plot saved to trig_plot.png")
+    plt.close()
+    return x
 
 if __name__ == "__main__":
-    solve()
+    x = plot_trig()
+    print(len(x))
+    print(x[0], x[-1])

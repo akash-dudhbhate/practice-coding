@@ -1,28 +1,27 @@
-"""Level 04 Supervised — Easy P02 Solution"""
+"""Level 04 — Supervised Learning — Easy P02 Solution"""
 
 import numpy as np
 
-def solve():
-    def sigmoid(z):
-        return 1 / (1 + np.exp(-z))
-    X = np.array([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]])
-    y = np.array([0, 0, 0, 1, 1])
-    weights = np.zeros(X.shape[1])
-    bias = 0
-    lr = 0.1
-    for _ in range(1000):
-        z = np.dot(X, weights) + bias
-        y_pred = sigmoid(z)
-        dw = np.dot(X.T, (y_pred - y)) / len(y)
-        db = np.sum(y_pred - y) / len(y)
-        weights -= lr * dw
-        bias -= lr * db
-    predictions = sigmoid(np.dot(X, weights) + bias)
-    accuracy = np.mean((predictions > 0.5) == y)
-    print(f"Accuracy: {accuracy:.4f}")
-    print(f"Weights: {weights}")
-    print(f"Bias: {bias:.4f}")
-    return weights, bias
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+def train_logreg(X, y, lr=0.1, epochs=1000):
+    X = np.array(X, dtype=float)
+    y = np.array(y, dtype=float)
+    w = np.zeros(X.shape[1])
+    b = 0.0
+    n = len(y)
+    for _ in range(epochs):
+        z = X @ w + b
+        p = sigmoid(z)
+        w -= lr * (X.T @ (p - y)) / n
+        b -= lr * np.sum(p - y) / n
+    return w, b
 
 if __name__ == "__main__":
-    solve()
+    X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
+    y = [0, 0, 0, 1, 1]
+    w, b = train_logreg(X, y)
+    preds = (sigmoid(np.array(X) @ w + b) > 0.5).astype(int)
+    print(f"Accuracy: {(preds == np.array(y)).mean():.4f}")
+    print(f"Weights: {w}, Bias: {b:.4f}")

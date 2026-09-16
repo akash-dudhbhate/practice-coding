@@ -2,15 +2,14 @@
 
 import numpy as np
 
-def solve():
+def create_array():
     np.random.seed(42)
-    arr = np.random.randint(0, 100, (4, 5))
-    print(f"Shape: {arr.shape}")
-    print(f"Dtype: {arr.dtype}")
-    print(f"Ndim: {arr.ndim}")
-    print(f"Size: {arr.size}")
-    print(f"Column means: {arr.mean(axis=0)}")
-    return arr
+    return np.random.randint(0, 100, (4, 5))
 
 if __name__ == "__main__":
-    solve()
+    arr = create_array()
+    print(arr.shape)
+    print(arr.dtype)
+    print(arr.ndim)
+    print(arr.size)
+    print(arr.mean(axis=0))

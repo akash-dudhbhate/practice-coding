@@ -1,30 +1,40 @@
 """
-LEVEL 04 SUPERVISED
-HARD P02 — Ensemble Compare
-==================================================
+LEVEL 04 — Supervised Learning
+HARD P02 — Ensemble Comparison
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Ensembles combine multiple models:
+    Decision Tree: 1 tree — fast, but overfits (train 1.0!)
+    Random Forest: many trees on random subsets — less overfit
+    Gradient Boosting: trees built sequentially, each fixing errors
+
+  Watch train vs test gap: 1.0 train / 0.92 test = overfitting.
 
 PROBLEM:
-  Compare decision tree, random forest, and gradient boosting on same dataset.
+  Write `compare_ensembles()` that:
+    1. make_classification(500, 10 features, seed=42); split 80/20
+    2. Trains DecisionTree, RandomForest, GradientBoosting (all seed=42)
+    3. Returns dict {name: (train_acc, test_acc)}
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  r = compare_ensembles()
+  for name, (tr, te) in r.items():
+      print(f"{name}: {tr:.4f} / {te:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p02-solution.py
+  ```
+  Decision Tree: 1.0000 / 0.9200
+  Random Forest: 1.0000 / 0.9400
+  Gradient Boosting: 1.0000 / 0.9500
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  All three are in sklearn.tree / sklearn.ensemble.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# r = compare_ensembles()
+# print(r)

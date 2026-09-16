@@ -1,30 +1,40 @@
 """
-LEVEL 03 VISUALIZATION
+LEVEL 03 — Data Visualization
 HARD P02 — Animated Plot
-==================================================
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  matplotlib.animation.FuncAnimation updates a plot each frame:
+    anim = FuncAnimation(fig, update_func, frames=N, interval=ms)
+  Inside update(frame): change the line's data, return the artists.
 
 PROBLEM:
-  Create an animated plot showing data changing over time (use matplotlib.animation).
+  Write `animate()` that:
+    1. x = linspace(0, 2π, 100); line = plot sin(x)
+    2. update(frame) shifts phase: sin(x + frame/10)
+    3. FuncAnimation(fig, update, frames=100, interval=50, blit=True)
+    4. Show it, return the x array
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  x = animate()
+  print(len(x))                # 100
+  print(f"{x[-1]:.4f}")        # 6.2832 (2π)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p02-solution.py
+  ```
+  100
+  6.2832
+  ```
+  (plus an animated sine wave window)
 
-  Then compare your output format with theirs.
+HINT:
+  def update(frame):
+      line.set_ydata(np.sin(x + frame / 10))
+      return line,
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# x = animate()
+# print(len(x))

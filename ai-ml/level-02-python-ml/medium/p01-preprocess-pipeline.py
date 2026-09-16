@@ -1,30 +1,46 @@
 """
-LEVEL 02 PYTHON ML
-MEDIUM P01 — Preprocess Pipeline
-==================================================
+LEVEL 02 — Python for ML
+MEDIUM P01 — Preprocessing Pipeline
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  A Pipeline chains steps so they run in order and are fit ONLY
+  on training data (prevents leakage):
+
+    impute missing → scale features → train model
+
+  sklearn Pipeline:
+    Pipeline([('name1', Step1()), ('name2', Step2()), ...])
+    pipeline.fit(X_train, y_train)
+    pipeline.score(X_test, y_test)
 
 PROBLEM:
-  Build a preprocessing pipeline: impute missing values, scale features, train a logistic regression. Return accuracy.
+  Write `build_pipeline()` that:
+    1. Generates data: make_classification(n_samples=200, n_features=5,
+       random_state=42)
+    2. Splits 80/20 (random_state=42)
+    3. Builds a Pipeline: SimpleImputer(mean) → StandardScaler →
+       LogisticRegression
+    4. Fits on train, returns test accuracy
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  acc = build_pipeline()
+  print(f"Accuracy: {acc:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p01-solution.py
+  ```
+  Accuracy: 0.8750
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  from sklearn.pipeline import Pipeline
+  from sklearn.impute import SimpleImputer
+  from sklearn.preprocessing import StandardScaler
+  from sklearn.linear_model import LogisticRegression
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +48,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# acc = build_pipeline()
+# print(f"Accuracy: {acc:.4f}")

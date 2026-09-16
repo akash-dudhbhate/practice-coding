@@ -1,30 +1,41 @@
 """
-LEVEL 03 VISUALIZATION
-HARD P03 — Publication Figure
-==================================================
+LEVEL 03 — Data Visualization
+HARD P03 — Publication-Quality Figure
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Publication figures need: serif fonts, no top/right spines,
+  fill_between for shading, tight_layout, and 300 DPI export.
+
+  matplotlib.rcParams['font.family'] = 'serif'
+  ax.spines['top'].set_visible(False)
+  plt.savefig('fig.png', dpi=300)
 
 PROBLEM:
-  Create a publication-quality figure with custom fonts, colors, and export at 300 DPI.
+  Write `plot_publication()` that:
+    1. Serif font, size 12
+    2. x = linspace(0, 10, 100); plot sin(x) and cos(x)
+    3. fill_between shading between curves
+    4. No top/right spines, legend, grid
+    5. Save 'publication_figure.png' at dpi=300, show, return x
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  x = plot_publication()
+  import os
+  print(os.path.exists('publication_figure.png'))  # True
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p03-solution.py
+  ```
+  True
+  ```
+  (plus a high-res PNG)
 
-  Then compare your output format with theirs.
+HINT:
+  ax.fill_between(x, np.sin(x), np.cos(x), alpha=0.2)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +43,6 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# import os
+# x = plot_publication()
+# print(os.path.exists('publication_figure.png'))

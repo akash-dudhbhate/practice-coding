@@ -1,30 +1,40 @@
 """
-LEVEL 03 VISUALIZATION
+LEVEL 03 — Data Visualization
 MEDIUM P01 — Correlation Heatmap
-==================================================
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Correlation = how much two variables move together (-1 to +1).
+  df.corr() → correlation matrix.
+  sns.heatmap(matrix, annot=True, cmap='coolwarm', center=0)
+    — color-coded grid; red=positive, blue=negative.
 
 PROBLEM:
-  Create a correlation heatmap of a dataset. Use seaborn. Annotate values.
+  Write `plot_corr()` that:
+    1. np.random.seed(42); DataFrame with 5 columns
+       (feature_a..feature_d, target) of 100 random normals
+    2. Computes corr matrix
+    3. sns.heatmap with annot=True, coolwarm, fmt='.2f'
+    4. Save 'correlation_heatmap.png', show, return corr matrix
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  corr = plot_corr()
+  print(corr.shape)           # (5, 5)
+  print(corr.loc['feature_a','feature_a'])  # 1.0 (self-corr)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p01-solution.py
+  ```
+  (5, 5)
+  1.0
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  import seaborn as sns
+  corr = df.corr()
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# c = plot_corr()
+# print(c.shape)

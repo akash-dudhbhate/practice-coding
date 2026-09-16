@@ -1,30 +1,38 @@
 """
-LEVEL 03 VISUALIZATION
-MEDIUM P02 — Subplots
-==================================================
+LEVEL 03 — Data Visualization
+MEDIUM P02 — 2×2 Subplot Dashboard
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+  axes[0,0] is top-left, axes[1,1] is bottom-right.
+  Each axes works like plt: axes[0,0].plot(...), .hist(...), .bar(...)
 
 PROBLEM:
-  Create a 2x2 subplot figure with: line plot, scatter, histogram, and bar chart.
+  Write `plot_dashboard()` that builds a 2×2 grid:
+    [0,0] line plot: sin(x) over 0-10
+    [0,1] scatter: 50 random points
+    [1,0] histogram: 200 random normals
+    [1,1] bar chart: categories A-D, values [23,45,56,78]
+  np.random.seed(42) first. Save 'dashboard.png', show, return fig.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  fig = plot_dashboard()
+  print(len(fig.axes))   # 4
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p02-solution.py
+  ```
+  4
+  ```
+  (plus a saved PNG with all four plots)
 
-  Then compare your output format with theirs.
+HINT:
+  fig, axes = plt.subplots(2, 2)
+  axes[0, 0].plot(x, np.sin(x))
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +40,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# fig = plot_dashboard()
+# print(len(fig.axes))

@@ -1,30 +1,53 @@
 """
-LEVEL 02 PYTHON ML
-EASY P02 — Load Csv
-==================================================
+LEVEL 02 — Python for ML
+EASY P02 — Load Data into a DataFrame
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  pandas DataFrame = a table of data (rows × columns).
+  In ML, your dataset is almost always a DataFrame first.
+
+  Key operations:
+    - pd.DataFrame({...}) — create from dict of lists
+    - df.head() — first 5 rows
+    - df.shape — (rows, cols)
+    - df.dtypes — type of each column
 
 PROBLEM:
-  Load a CSV file into a pandas DataFrame. Print the first 5 rows, shape, and column dtypes.
+  Write `load_data()` that creates and returns this DataFrame:
+
+      name      age  city
+      Alice     25   Mumbai
+      Bob       30   Delhi
+      Charlie   35   Bangalore
+      Diana     28   Chennai
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  df = load_data()
+  print(df.head())
+  print(df.shape)
+  print(df.dtypes)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p02-solution.py
+  ```
+       name  age       city
+  0   Alice   25     Mumbai
+  1     Bob   30      Delhi
+  2 Charlie   35  Bangalore
+  3   Diana   28    Chennai
+  (4, 3)
+  name    object
+  age      int64
+  city    object
+  dtype: object
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  pd.DataFrame({'name': [...], 'age': [...], 'city': [...]})
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +55,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# df = load_data()
+# print(df.head())

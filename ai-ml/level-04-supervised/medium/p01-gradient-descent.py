@@ -1,30 +1,43 @@
 """
-LEVEL 04 SUPERVISED
-MEDIUM P01 — Gradient Descent
-==================================================
+LEVEL 04 — Supervised Learning
+MEDIUM P01 — Gradient Descent From Scratch
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Gradient descent = iterative optimization. Instead of the
+  closed-form formula, we nudge m and b downhill on the MSE surface:
+
+    MSE = mean((y - ŷ)²)
+    dm = -2·mean(x·(y - ŷ));  db = -2·mean(y - ŷ)
+    m -= lr·dm;  b -= lr·db
+
+  Repeat until loss stops dropping.
 
 PROBLEM:
-  Implement gradient descent for linear regression. Track MSE over iterations.
+  Write `gradient_descent()` that:
+    1. np.random.seed(42); X = randn(100); y = 3X + 2 + noise(0.5)
+    2. Starts m=0, b=0, lr=0.1, runs 100 iterations
+    3. Tracks MSE each iteration
+    4. Returns (m, b, losses)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  m, b, losses = gradient_descent()
+  print(f"{m:.4f} {b:.4f}")
+  print(f"{losses[0]:.4f} -> {losses[-1]:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p01-solution.py
+  ```
+  2.9284 2.0037
+  10.1116 -> 0.2209
+  ```
+  (m≈3, b≈2 — recovered the true line; loss dropped 10→0.22)
 
-  Then compare your output format with theirs.
+HINT:
+  y_pred = m * X + b; MSE = np.mean((y - y_pred) ** 2)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +45,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# m, b, losses = gradient_descent()
+# print(m, b, losses[-1])

@@ -1,11 +1,13 @@
-"""Level 03 Visualization — Medium P01 Solution"""
+"""Level 03 — Data Visualization — Medium P01 Solution"""
 
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def solve():
+def plot_corr():
     np.random.seed(42)
     data = pd.DataFrame({
         'feature_a': np.random.randn(100),
@@ -21,8 +23,10 @@ def solve():
     plt.title('Correlation Heatmap')
     plt.tight_layout()
     plt.savefig('correlation_heatmap.png', dpi=150, bbox_inches='tight')
-    plt.show()
-    print("Plot saved to correlation_heatmap.png")
+    plt.close()
+    return corr
 
 if __name__ == "__main__":
-    solve()
+    c = plot_corr()
+    print(c.shape)
+    print(c.loc['feature_a', 'feature_a'])

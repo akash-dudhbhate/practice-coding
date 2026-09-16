@@ -1,11 +1,13 @@
-"""Level 03 Visualization — Medium P03 Solution"""
+"""Level 03 — Data Visualization — Medium P03 Solution"""
 
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def solve():
+def plot_box():
     np.random.seed(42)
     data = pd.DataFrame({
         'category': np.repeat(['A', 'B', 'C', 'D'], 50),
@@ -17,15 +19,14 @@ def solve():
         ])
     })
     plt.figure(figsize=(10, 6))
-    sns.boxplot(x='category', y='value', data=data, palette='Set2')
+    sns.boxplot(x='category', y='value', data=data, hue='category', palette='Set2', legend=False)
     sns.swarmplot(x='category', y='value', data=data, color='black', alpha=0.5, size=3)
     plt.title('Distribution by Category')
-    plt.xlabel('Category')
-    plt.ylabel('Value')
-    plt.grid(True, alpha=0.3)
     plt.savefig('boxplot.png', dpi=150, bbox_inches='tight')
-    plt.show()
-    print("Plot saved to boxplot.png")
+    plt.close()
+    return data
 
 if __name__ == "__main__":
-    solve()
+    df = plot_box()
+    print(df.shape)
+    print(df.groupby('category')['value'].mean())

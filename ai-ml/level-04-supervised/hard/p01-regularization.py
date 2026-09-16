@@ -1,30 +1,40 @@
 """
-LEVEL 04 SUPERVISED
-HARD P01 — Regularization
-==================================================
+LEVEL 04 — Supervised Learning
+HARD P01 — L1 vs L2 Regularization
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Regularization penalizes large coefficients → simpler models.
+    L1 (Lasso): adds |w| penalty → pushes weak coefs to EXACTLY 0
+    L2 (Ridge): adds w² penalty → shrinks all coefs, keeps them nonzero
+
+  L1 = feature selection (kills features). L2 = gentle shrinkage.
 
 PROBLEM:
-  Implement L1 and L2 regularization from scratch. Show effect on coefficients.
+  Write `compare_regularization()` that:
+    1. make_regression(100, 10 features, noise=10, seed=42)
+    2. Fits LinearRegression, Lasso(alpha=1.0), Ridge(alpha=1.0)
+    3. Returns (linear_coefs, lasso_coefs, ridge_coefs)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  lr, la, ri = compare_regularization()
+  print(f"{lr[0]:.4f} {la[0]:.4f} {ri[0]:.4f}")
+  print(f"{la[2]:.4f}")   # Lasso shrinks weak features harder
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p01-solution.py
+  ```
+  18.4465 17.3065 18.4271
+  2.2856
+  ```
+  (Feature 2: linear=3.91, lasso=2.29 — L1 shrunk it most)
 
-  Then compare your output format with theirs.
+HINT:
+  from sklearn.linear_model import Lasso, Ridge
+  coef_ attribute holds the learned weights.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# lr, la, ri = compare_regularization()
+# print(la)

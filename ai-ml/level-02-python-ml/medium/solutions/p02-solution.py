@@ -2,8 +2,7 @@
 
 import numpy as np
 
-def solve():
-    data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 100])
+def detect_outliers(data):
     q1 = np.percentile(data, 25)
     q3 = np.percentile(data, 75)
     iqr = q3 - q1
@@ -11,9 +10,10 @@ def solve():
     upper = q3 + 1.5 * iqr
     outliers = data[(data < lower) | (data > upper)]
     cleaned = np.clip(data, lower, upper)
-    print(f"Outliers: {outliers}")
-    print(f"Cleaned: {cleaned}")
     return cleaned, len(outliers)
 
 if __name__ == "__main__":
-    solve()
+    data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 100])
+    cleaned, n = detect_outliers(data)
+    print(f"Outliers: {n}")
+    print(f"Cleaned: {cleaned}")

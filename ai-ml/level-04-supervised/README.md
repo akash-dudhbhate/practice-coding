@@ -1,60 +1,38 @@
-# Level 04 Supervised — Supervised Learning
+# Level 04 — Supervised Learning
 
 ## What You'll Learn
-- Linear regression from scratch
-- Logistic regression
-- Decision trees
-- Random forests
-- SVM and KNN
-- Feature importance
+- Linear and logistic regression FROM SCRATCH (numpy only)
+- Gradient descent — how models actually learn
+- Decision trees, random forests, gradient boosting
+- SVM vs KNN
+- Regularization (L1/L2) and feature selection
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- Level 02 (NumPy, sklearn basics)
 
 ## Problems
 
 ### Easy
-1. `easy/p01-linear-scratch.py` — Implement linear regression from scratch using numpy. Calcul...
-2. `easy/p02-logistic-scratch.py` — Implement sigmoid function and logistic regression from scra...
-3. `easy/p03-decision-tree.py` — Train a decision tree on Iris dataset. Print accuracy and vi...
+1. `easy/p01-linear-scratch.py` — `linreg(x, y)` → closed-form slope/intercept
+2. `easy/p02-logistic-scratch.py` — `sigmoid(z)`, `train_logreg(X,y,...)` → scratch logistic regression
+3. `easy/p03-decision-tree.py` — `train_tree()` → sklearn tree on Iris
 
 ### Medium
-4. `medium/p01-gradient-descent.py` — Implement gradient descent for linear regression. Track MSE ...
-5. `medium/p02-random-forest.py` — Train a random forest on a synthetic dataset. Show feature i...
-6. `medium/p03-svm-knn.py` — Compare SVM and KNN on a classification dataset. Print accur...
+4. `medium/p01-gradient-descent.py` — `gradient_descent()` → iterative learning
+5. `medium/p02-random-forest.py` — `train_forest()` → feature importances
+6. `medium/p03-svm-knn.py` — `compare_models()` → SVM vs KNN
 
 ### Hard
-7. `hard/p01-regularization.py` — Implement L1 and L2 regularization from scratch. Show effect...
-8. `hard/p02-ensemble-compare.py` — Compare decision tree, random forest, and gradient boosting ...
-9. `hard/p03-feature-selection.py` — Implement recursive feature elimination. Show which features...
+7. `hard/p01-regularization.py` — `compare_regularization()` → L1/L2/Ridge
+8. `hard/p02-ensemble-compare.py` — `compare_ensembles()` → 3 models compared
+9. `hard/p03-feature-selection.py` — `select_features()` → RFE
 
 ### Project
-`project/` — Build a house price predictor using linear regression from scratch, compare with sklearn.
+`project/` — House price predictor, from-scratch vs sklearn.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-linear-scratch.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.

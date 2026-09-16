@@ -1,30 +1,45 @@
 """
-LEVEL 02 PYTHON ML
-HARD P02 — Column Transformer
-==================================================
+LEVEL 02 — Python for ML
+HARD P02 — ColumnTransformer on Mixed Data
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  ColumnTransformer applies DIFFERENT preprocessing to DIFFERENT
+  columns in one step — the professional way to handle mixed data.
+
+  ColumnTransformer([
+      ('num', num_pipeline, ['num_col1', 'num_col2']),
+      ('cat', cat_pipeline, ['cat_col'])
+  ])
 
 PROBLEM:
-  Use ColumnTransformer to apply different preprocessing to numeric vs categorical columns.
+  Write `build()` that:
+    1. make_classification(200 samples, 5 features, n_informative=3, seed=42)
+       → DataFrame with cols feature_0..feature_4
+    2. Add a 'category' column: random choice of A/B/C (seeded!)
+    3. Split 80/20 (random_state=42)
+    4. ColumnTransformer:
+         features → impute(mean) + StandardScaler
+         category → impute(most_frequent) + OneHotEncoder
+    5. Pipeline → RandomForestClassifier(seed=42)
+    6. Return test accuracy
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  acc = build()
+  print(f"Accuracy: {acc:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p02-solution.py
+  ```
+  Accuracy: 0.9750
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  np.random.seed(42) before adding the category column, so the
+  random categories are reproducible.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +47,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# acc = build()
+# print(acc)

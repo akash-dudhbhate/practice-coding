@@ -1,30 +1,48 @@
 """
-LEVEL 02 PYTHON ML
-HARD P01 — Data Leakage
-==================================================
+LEVEL 02 — Python for ML
+HARD P01 — Prevent Data Leakage
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  DATA LEAKAGE = when info from test data "leaks" into training.
+  Example: if you fit a scaler on ALL data before splitting, the
+  test data's statistics influenced training → inflated scores.
+
+  RULE: split FIRST. Then fit preprocessing on train ONLY.
+
+  sklearn Pipeline does this correctly — inside fit(), each step
+  only sees training data.
 
 PROBLEM:
-  Prevent data leakage: split FIRST, then fit preprocessing on train only. Train a model and return both accuracies.
+  Write `train_clean()` that:
+    1. Builds this dataset (200 rows):
+         age (int 18-70, ~20 NaN), income (int 20k-120k),
+         city (Mumbai/Delhi/Chennai, ~15 NaN),
+         target = 1 if age > 40 else 0  (compute BEFORE injecting NaN!)
+    2. Splits 80/20 (random_state=42)
+    3. ColumnTransformer:
+         numeric [age, income] → SimpleImputer(median) + StandardScaler
+         categorical [city]    → SimpleImputer(most_frequent) + OneHotEncoder
+    4. Pipeline(preprocessor → RandomForestClassifier(50, seed=42))
+    5. Returns (train_acc, test_acc)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  tr, te = train_clean()
+  print(f"Train: {tr:.4f}  Test: {te:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p01-solution.py
+  ```
+  Train: 1.0000  Test: 0.9500
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  ColumnTransformer([('num', Pipeline([...]), ['age','income']),
+                     ('cat', Pipeline([...]), ['city'])])
+  Use OneHotEncoder(handle_unknown='ignore').
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +50,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# tr, te = train_clean()
+# print(tr, te)

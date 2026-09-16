@@ -1,30 +1,49 @@
 """
-LEVEL 02 PYTHON ML
-HARD P03 — Stratified Split
-==================================================
+LEVEL 02 — Python for ML
+HARD P03 — Stratified Splitting
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  With imbalanced data (e.g., 95% class 0, 5% class 1), a random
+  split can put almost NO minority samples in train or test.
+
+  stratify=y keeps the SAME class ratio in both splits:
+    Without: train [757, 43], test [193, 7]
+    With:    train [760, 40], test [190, 10]  ← 5% ratio preserved
+
+  train_test_split(..., stratify=y)
 
 PROBLEM:
-  Create imbalanced data (95/5), split with and without stratify, compare class distributions.
+  Write `compare_splits()` that:
+    1. make_classification(1000 samples, 10 features, n_informative=5,
+       weights=[0.95, 0.05], flip_y=0.0, random_state=42)
+    2. Split WITHOUT stratify → print class counts (np.bincount)
+    3. Split WITH stratify=y → print class counts
+    4. Train RandomForestClassifier(seed=42) on each, print both
+       test accuracies
+    5. Return (acc_without, acc_with)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  a, b = compare_splits()
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p03-solution.py
+  ```
+  Without stratify:
+    Train: [757  43]
+    Test:  [193   7]
+  With stratify:
+    Train: [760  40]
+    Test:  [190  10]
+  Without stratify test accuracy: 0.9750
+  With stratify test accuracy: 0.9700
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +51,4 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# a, b = compare_splits()

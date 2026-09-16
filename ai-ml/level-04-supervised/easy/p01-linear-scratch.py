@@ -1,30 +1,33 @@
 """
-LEVEL 04 SUPERVISED
-EASY P01 — Linear Scratch
-==================================================
+LEVEL 04 — Supervised Learning
+EASY P01 — Linear Regression From Scratch
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Linear regression finds the best line y = mx + b.
+  Closed-form formula:
+    m = Σ((x - x̄)(y - ȳ)) / Σ((x - x̄)²)
+    b = ȳ - m·x̄
+  R² measures fit quality: 1 = perfect, 0 = no better than mean.
 
 PROBLEM:
-  Implement linear regression from scratch using numpy. Calculate slope and intercept.
+  Write `linreg(x, y)` that takes two lists and returns (m, b).
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  m, b = linreg([1,2,3,4,5], [2,4,5,4,5])
+  print(f"{m:.4f} {b:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p01-solution.py
+  ```
+  0.6000 2.2000
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  x_mean = np.mean(x); numerator = np.sum((x - x_mean) * (y - y_mean))
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +35,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# m, b = linreg([1,2,3,4,5], [2,4,5,4,5])
+# print(m, b)
