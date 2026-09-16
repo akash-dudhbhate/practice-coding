@@ -77,7 +77,10 @@ def js_ok(path, extra=""):
     try:
         r = run_js(path, extra)
     except Exception as e:
-        return False, f"could not run node: {e}"
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            return False, f"could not run node: {e}"
     if r.returncode != 0:
         lines = r.stderr.strip().splitlines() or ["runtime error"]
         err = next((l.strip() for l in lines if "Error" in l), lines[-1])
@@ -101,7 +104,10 @@ def check_easy_p01(path):
     try:
         r = run_js(path)
     except Exception as e:
-        return False, f"could not run node: {e}"
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            return False, f"could not run node: {e}"
     if r.returncode != 0:
         return False, "file should run under node without errors"
     if not r.stdout.strip():
@@ -293,8 +299,11 @@ def run_one(check_id):
     try:
         passed, msg = CHECKS[check_id](path)
     except Exception as e:
-        print(f"  {check_id}: ERROR — {e}")
-        return False
+        if "NoneType" in str(e):
+            print(f"  {check_id}: FAIL — a function returned None — write the body!")
+        else:
+            print(f"  {check_id}: ERROR — {e}")
+            return False
     if passed:
         print(f"  {check_id}: PASS — {msg}")
         rel = os.path.relpath(path, LESSON_DIR)

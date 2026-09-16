@@ -166,7 +166,10 @@ def run_one(check_id):
             if "DONE" not in first:
                 print("  → add '# DONE' to the first line to mark complete")
     except Exception as e:
-        print(f"{check_id}: ERROR — {e}")
+        if "NoneType" in str(e):
+            print(f"  {check_id}: FAIL — a function returned None — write the body!")
+        else:
+            print(f"{check_id}: ERROR — {e}")
 
 
 if __name__ == "__main__":

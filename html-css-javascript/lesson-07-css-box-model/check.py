@@ -223,8 +223,11 @@ def run_one(check_id):
     try:
         passed, msg = CHECKS[check_id](path)
     except Exception as e:
-        print(f"  {check_id}: ERROR — {e}")
-        return False
+        if "NoneType" in str(e):
+            print(f"  {check_id}: FAIL — a function returned None — write the body!")
+        else:
+            print(f"  {check_id}: ERROR — {e}")
+            return False
     if passed:
         print(f"  {check_id}: PASS — {msg}")
         rel = os.path.relpath(path, LESSON_DIR)

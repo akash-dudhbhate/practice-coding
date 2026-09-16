@@ -146,14 +146,20 @@ def check_hard_p01(module):
     except module.DivideByZeroError:
         pass
     except Exception as e:
-        return False, f"safe_divide(1, 0) raised {type(e).__name__}, expected DivideByZeroError"
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            return False, f"safe_divide(1, 0) raised {type(e).__name__}, expected DivideByZeroError"
     try:
         module.safe_divide("a", 1)
         return False, "safe_divide('a', 1) should raise TypeError"
     except TypeError:
         pass
     except Exception as e:
-        return False, f"safe_divide('a', 1) raised {type(e).__name__}, expected TypeError"
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            return False, f"safe_divide('a', 1) raised {type(e).__name__}, expected TypeError"
     return True, "All tests passed!"
 
 
@@ -195,7 +201,10 @@ def check_hard_p03(module):
             except module.ConfigError:
                 pass
             except Exception as e:
-                return False, f"config_loader with {desc} raised {type(e).__name__}, expected ConfigError"
+                if "NoneType" in str(e):
+                    print(f"FAIL — a function returned None — write the body!")
+                else:
+                    return False, f"config_loader with {desc} raised {type(e).__name__}, expected ConfigError"
     finally:
         os.remove(good)
         os.remove(nohost)
@@ -240,7 +249,10 @@ def main():
                 status = "PASS" if passed else "FAIL"
                 print(f"  {check_id}: {status} — {msg}")
             except Exception as e:
-                print(f"  {check_id}: ERROR — {e}")
+                if "NoneType" in str(e):
+                    print(f"  {check_id}: FAIL — a function returned None — write the body!")
+                else:
+                    print(f"  {check_id}: ERROR — {e}")
         print("=" * 60)
         return
 
@@ -264,9 +276,12 @@ def main():
         else:
             print(f"FAIL — {msg}")
     except Exception as e:
-        print(f"ERROR — {e}")
-        import traceback
-        traceback.print_exc()
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            print(f"ERROR — {e}")
+            import traceback
+            traceback.print_exc()
 
 
 if __name__ == "__main__":

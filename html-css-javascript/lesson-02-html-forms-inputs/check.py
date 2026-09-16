@@ -231,8 +231,11 @@ def run_one(cid):
     try:
         passed, msg = CHECKS[cid](path)
     except Exception as e:
-        print(f"ERROR — {e}")
-        return False
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            print(f"ERROR — {e}")
+            return False
     if passed:
         ext = os.path.splitext(path)[1]
         print("PASS — All tests passed!")

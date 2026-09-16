@@ -211,7 +211,10 @@ def run_one(level_dir, check_id):
     try:
         passed, msg = CHECKS[check_id](filepath)
     except Exception as e:
-        return "ERROR", f"{e} (in {filepath})"
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            return "ERROR", f"{e} (in {filepath})"
     return ("PASS" if passed else "FAIL"), msg, filepath
 
 

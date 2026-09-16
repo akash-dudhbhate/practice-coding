@@ -216,7 +216,10 @@ def main():
                 status = "PASS" if passed else "FAIL"
                 print(f"  {check_id}: {status} — {msg}")
             except Exception as e:
-                print(f"  {check_id}: ERROR — {e}")
+                if "NoneType" in str(e):
+                    print(f"  {check_id}: FAIL — a function returned None — write the body!")
+                else:
+                    print(f"  {check_id}: ERROR — {e}")
         print("=" * 60)
         return
 
@@ -240,9 +243,12 @@ def main():
         else:
             print(f"FAIL — {msg}")
     except Exception as e:
-        print(f"ERROR — {e}")
-        import traceback
-        traceback.print_exc()
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            print(f"ERROR — {e}")
+            import traceback
+            traceback.print_exc()
 
 
 if __name__ == "__main__":

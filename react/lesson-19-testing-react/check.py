@@ -89,8 +89,11 @@ def run_one(check_id):
     try:
         passed, msg = CHECKS[check_id](path)
     except Exception as exc:  # never crash on a learner's file
-        print(f"ERROR — {exc}")
-        return False
+        if "NoneType" in str(exc):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            print(f"ERROR — {exc}")
+            return False
     rel = os.path.relpath(path, BASE)
     if passed:
         print(f"PASS — All tests passed! ({rel})")

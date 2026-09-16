@@ -46,7 +46,10 @@ def js_syntax_ok(path):
             capture_output=True, text=True, timeout=15,
         )
     except Exception as e:
-        return True, f"syntax check skipped ({e})"
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            return True, f"syntax check skipped ({e})"
     if result.returncode != 0:
         detail = (result.stderr or result.stdout).strip().splitlines()
         return False, "syntax error: " + (detail[0] if detail else "unknown")
@@ -242,8 +245,11 @@ def run_one(check_id):
     try:
         passed, msg = CHECKS[check_id](filepath)
     except Exception as e:
-        print(f"ERROR — {e}")
-        return False
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            print(f"ERROR — {e}")
+            return False
     if passed:
         print(f"PASS — {msg}")
         rel = os.path.relpath(filepath, LESSON_DIR)

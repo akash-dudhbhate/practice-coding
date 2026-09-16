@@ -22,8 +22,11 @@ def check():
     try:
         app = mod.make_app()
     except Exception as e:
-        print(f"FAIL — make_app() raised {e}")
-        return False
+        if "NoneType" in str(e):
+            print(f"FAIL — a function returned None — write the body!")
+        else:
+            print(f"FAIL — make_app() raised {e}")
+            return False
     if app is None:
         print("FAIL — make_app() returned None")
         return False
