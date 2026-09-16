@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Accessible Toggle Widget</title></head>
+<body>
+<button id="toggleBtn" aria-expanded="false" aria-controls="panel">Show Details</button>
+<div id="panel" hidden>
+  <p>Here are the hidden details revealed by the toggle.</p>
+</div>
+<div id="status" role="status" aria-live="polite"></div>
+<script>
+  const btn = document.getElementById("toggleBtn");
+  const panel = document.getElementById("panel");
+  const status = document.getElementById("status");
+  btn.addEventListener("click", () => {
+    const open = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!open));
+    panel.hidden = open;
+    status.textContent = open ? "Details hidden." : "Details shown.";
+  });
+</script>
+</body>
+</html>

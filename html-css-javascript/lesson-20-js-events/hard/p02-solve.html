@@ -1,0 +1,34 @@
+<!--
+LESSON 20 — JavaScript Events
+==============================
+
+PROBLEM: Draggable Element (Hard)
+Drag a div with the mouse; fire a custom 'dropped' event on release.
+
+TRY THIS:
+  - .draggable absolute-positioned div.
+  - mousedown on it: record isDragging + offsets
+    (e.clientX - offsetLeft, e.clientY - offsetTop).
+  - document mousemove: while dragging, set style.left/top.
+  - document mouseup: stop dragging and dispatchEvent(
+    new CustomEvent("dropped", { detail: {...} })).
+  - A 'dropped' listener logging e.detail.
+
+EXPECTED OUTPUT: The box follows the cursor while held; dropping logs
+its final coordinates.
+
+CHECK: python3 check.py hard/p02
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draggable Element</title>
+  <style>
+    /* TODO: CSS (if needed) */
+  </style>
+</head>
+<body>
+  <!-- TODO: Write your HTML here, then your <script> below. -->
+</body>
+</html>

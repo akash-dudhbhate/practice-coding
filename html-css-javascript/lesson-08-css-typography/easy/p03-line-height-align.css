@@ -1,0 +1,18 @@
+/*
+LESSON 08 — CSS Text & Typography
+==================================
+
+PROBLEM: Line-Height & Text-Align (Easy)
+Control vertical rhythm and horizontal alignment.
+
+TRY THIS:
+  - p { line-height: 1.5; text-align: left }.
+  - h1 { line-height: 1.2; text-align: center }.
+  - .date { text-align: right }.
+
+EXPECTED OUTPUT: Comfortable paragraph spacing, a centered heading,
+and right-aligned dates.
+
+CHECK: python3 check.py easy/p03
+*/
+/* TODO: Write your complete CSS from scratch below. */

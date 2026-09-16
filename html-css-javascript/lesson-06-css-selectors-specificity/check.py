@@ -38,13 +38,24 @@ def require_all(content, reqs):
     return True, "All tests passed!"
 
 
+def strip_comments(src):
+    """Remove HTML/CSS/JS comments so TODO instructions can't satisfy checks."""
+    src = re.sub(r"<!--.*?-->", "", src, flags=re.DOTALL)
+    src = re.sub(r"/\*.*?\*/", "", src, flags=re.DOTALL)
+    return src
+
+
 def count(content, pattern):
     return len(re.findall(pattern, content, FLAGS))
 
 
 def run_js(path, extra=""):
-    """Run a .js file under Node (extra code is appended for testing)."""
-    src = read_file(path) + "\n" + extra
+    """Run a .js file under Node (extra code is appended for testing).
+
+    Assertions run inside a block so their locals can't collide with
+    the learner's top-level names.
+    """
+    src = read_file(path) + "\n{\n" + extra + "\n}\n"
     return subprocess.run([NODE, "-e", src],
                           capture_output=True, text=True, timeout=10)
 
@@ -62,7 +73,7 @@ def find_file(level, num):
 # ---------- easy ----------
 
 def check_easy_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\bp\s*\{[^}]*color\s*:\s*gray", "Missing 'p { color: gray }'"),
         (r"\bh1\s*\{[^}]*color\s*:\s*blue", "Missing 'h1 { color: blue }'"),
@@ -72,7 +83,7 @@ def check_easy_p01(path):
 
 
 def check_easy_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\ba\s*\{[^}]*color\s*:\s*blue", "Missing 'a { color: blue }'"),
         (r"a\s*:hover[^}]*color\s*:\s*red", "Missing 'a:hover { color: red }'"),
@@ -83,7 +94,7 @@ def check_easy_p02(path):
 
 
 def check_easy_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"h1\s*,\s*h2\s*,\s*h3\s*\{",
          "Missing grouped selector 'h1, h2, h3 { ... }'"),
@@ -98,7 +109,7 @@ def check_easy_p03(path):
 # ---------- medium ----------
 
 def check_medium_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"article\s+p\s*\{", "Missing descendant selector 'article p'"),
         (r"ul\s*>\s*li\s*\{", "Missing child selector 'ul > li'"),
@@ -107,7 +118,7 @@ def check_medium_p01(path):
 
 
 def check_medium_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"\bp\s*\{[^}]*color", "Missing element-level 'p { color: ... }'"),
         (r"\.text|p\.text", "Missing class-level rule (p.text / .text)"),
@@ -121,7 +132,7 @@ def check_medium_p02(path):
 
 
 def check_medium_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"li\s*:first-child", "Missing 'li:first-child'"),
         (r"li\s*:last-child", "Missing 'li:last-child'"),
@@ -133,7 +144,7 @@ def check_medium_p03(path):
 # ---------- hard ----------
 
 def check_hard_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\bbody\s*\{", "Missing element rule on 'body'"),
         (r"\.card\s*\{", "Missing class rule '.card'"),
@@ -147,7 +158,7 @@ def check_hard_p01(path):
 
 
 def check_hard_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r'\[\s*type\s*=\s*"text"\s*\]', 'Missing [type="text"] selector'),
         (r'\[\s*href\s*\^\=\s*"https"\s*\]',
@@ -159,7 +170,7 @@ def check_hard_p02(path):
 
 
 def check_hard_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"\bp\s*\{", "Missing element-level 'p' rule"),
         (r"\.text", "Missing class-level '.text' rule"),
@@ -169,8 +180,7 @@ def check_hard_p03(path):
     ])
     if not ok:
         return ok, msg
-    code = re.sub(r"/\*.*?\*/", "", c, flags=re.DOTALL)
-    if re.search(r"!important", code, FLAGS):
+    if re.search(r"!important", c, FLAGS):
         return False, "Do not use !important — win with higher specificity"
     return True, "All tests passed!"
 

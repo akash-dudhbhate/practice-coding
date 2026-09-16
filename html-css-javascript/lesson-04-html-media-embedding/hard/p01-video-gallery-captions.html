@@ -1,0 +1,35 @@
+<!--
+LESSON 04 — HTML Media & Embedding
+===================================
+
+PROBLEM: Video Gallery with Captions (Hard)
+Build a gallery of 2+ videos, each wrapped in <figure> with a
+<figcaption> — and give at least one a subtitle <track>.
+
+TRY THIS:
+  - Two <figure> blocks, each containing:
+      <video controls width="300">
+        <source src="..." type="video/mp4">
+        <track kind="subtitles" srclang="en" label="English">  (at least one video)
+      </video>
+      <figcaption>Caption describing the video</figcaption>
+  - Free sample mp4: https://www.w3schools.com/html/mov_bbb.mp4
+
+EXPECTED OUTPUT: Two videos with captions underneath; the first
+offers subtitles in the player's CC menu.
+
+WHY: <figure>/<figcaption> ties the caption to the media
+semantically — screen readers announce them together.
+
+CHECK: python3 check.py hard/p01
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Gallery with Captions</title>
+</head>
+<body>
+  <!-- TODO: Write 2+ <figure> video blocks with <figcaption> + <track> here. -->
+</body>
+</html>

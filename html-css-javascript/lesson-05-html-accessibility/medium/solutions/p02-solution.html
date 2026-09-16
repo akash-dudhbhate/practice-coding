@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Accessible Form with Errors</title></head>
+<body>
+<form novalidate>
+  <fieldset>
+    <legend>Sign Up</legend>
+    <label for="username">Username</label>
+    <input type="text" id="username" required aria-describedby="username-hint">
+    <p id="username-hint">At least 4 characters.</p>
+    <p role="alert" id="username-error">Username is required.</p>
+
+    <label for="email2">Email</label>
+    <input type="email" id="email2" required aria-describedby="email2-hint">
+    <p id="email2-hint">Use a valid address.</p>
+    <p role="alert" id="email2-error">Email is required.</p>
+
+    <button type="submit">Sign Up</button>
+  </fieldset>
+</form>
+</body>
+</html>

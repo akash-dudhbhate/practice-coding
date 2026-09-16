@@ -35,6 +35,13 @@ def require_all(content, reqs):
     return True, "All tests passed!"
 
 
+def strip_comments(src):
+    """Remove HTML/CSS/JS comments so TODO instructions can't satisfy checks."""
+    src = re.sub(r"<!--.*?-->", "", src, flags=re.DOTALL)
+    src = re.sub(r"/\*.*?\*/", "", src, flags=re.DOTALL)
+    return src
+
+
 def count(content, pattern):
     return len(re.findall(pattern, content, FLAGS))
 
@@ -52,7 +59,7 @@ def find_file(level, num):
 # ---------- easy ----------
 
 def check_easy_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"<table", "Missing <table> element"),
         (r"<thead", "Missing <thead> for the header row"),
@@ -71,7 +78,7 @@ def check_easy_p01(path):
 
 
 def check_easy_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"<form", "Missing <form> element"),
         (r"<label[^>]*for\s*=", "Missing <label for=\"...\"> paired with an input"),
@@ -88,7 +95,7 @@ def check_easy_p02(path):
 
 
 def check_easy_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"<nav", "Missing <nav> element"),
         (r"<ul", "Missing <ul> unordered list inside <nav>"),
@@ -106,7 +113,7 @@ def check_easy_p03(path):
 # ---------- medium ----------
 
 def check_medium_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"<article", "Missing <article> wrapper"),
         (r"<header", "Missing <header> inside the article"),
@@ -119,7 +126,7 @@ def check_medium_p01(path):
 
 
 def check_medium_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"<figure", "Missing <figure> elements"),
         (r"<img[^>]*alt\s*=", 'Missing <img ... alt="...">'),
@@ -137,7 +144,7 @@ def check_medium_p02(path):
 
 
 def check_medium_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"<dl", "Missing <dl> definition list"),
         (r"<dt", "Missing <dt> definition terms"),
@@ -155,7 +162,7 @@ def check_medium_p03(path):
 # ---------- hard ----------
 
 def check_hard_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r'href\s*=\s*"#main"|class\s*=\s*"[^"]*skip-link',
          'Missing skip link (<a href="#main" class="skip-link">)'),
@@ -169,7 +176,7 @@ def check_hard_p01(path):
 
 
 def check_hard_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"<article", "Missing <article> elements"),
         (r"<section", "Missing <section> wrapping the comments"),
@@ -185,7 +192,7 @@ def check_hard_p02(path):
 
 
 def check_hard_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"<table", "Missing <table> element"),
         (r"<caption", "Missing <caption> describing the table"),

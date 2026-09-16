@@ -1,0 +1,33 @@
+<!--
+LESSON 04 — HTML Media & Embedding
+===================================
+
+PROBLEM: Google Maps Embed (Hard)
+Embed an interactive map — done right: lazy-loaded and accessible.
+
+TRY THIS:
+  - An <iframe> with a Google Maps *embed* URL in src
+    (https://www.google.com/maps/embed?pb=... — get one via
+    Maps → Share → "Embed a map").
+  - Attributes: width="600" height="450" loading="lazy"
+    allowfullscreen style="border:0;"
+
+EXPECTED OUTPUT: An interactive map that only loads when scrolled
+into view.
+
+WHY loading="lazy"? Maps are heavy — deferring them keeps the
+initial page load fast. It's one attribute for a real performance
+win.
+
+CHECK: python3 check.py hard/p02
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Map Embed</title>
+</head>
+<body>
+  <!-- TODO: Write your lazy-loaded Google Maps <iframe> here. -->
+</body>
+</html>

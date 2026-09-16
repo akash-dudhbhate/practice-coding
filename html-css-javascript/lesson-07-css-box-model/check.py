@@ -38,13 +38,24 @@ def require_all(content, reqs):
     return True, "All tests passed!"
 
 
+def strip_comments(src):
+    """Remove HTML/CSS/JS comments so TODO instructions can't satisfy checks."""
+    src = re.sub(r"<!--.*?-->", "", src, flags=re.DOTALL)
+    src = re.sub(r"/\*.*?\*/", "", src, flags=re.DOTALL)
+    return src
+
+
 def count(content, pattern):
     return len(re.findall(pattern, content, FLAGS))
 
 
 def run_js(path, extra=""):
-    """Run a .js file under Node (extra code is appended for testing)."""
-    src = read_file(path) + "\n" + extra
+    """Run a .js file under Node (extra code is appended for testing).
+
+    Assertions run inside a block so their locals can't collide with
+    the learner's top-level names.
+    """
+    src = read_file(path) + "\n{\n" + extra + "\n}\n"
     return subprocess.run([NODE, "-e", src],
                           capture_output=True, text=True, timeout=10)
 
@@ -62,7 +73,7 @@ def find_file(level, num):
 # ---------- easy ----------
 
 def check_easy_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\.box\s*\{", "Missing '.box' rule"),
         (r"\.box\s*\{[^}]*width\s*:", ".box needs a width"),
@@ -74,7 +85,7 @@ def check_easy_p01(path):
 
 
 def check_easy_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\*\s*\{[^}]*box-sizing\s*:\s*border-box",
          "Missing '* { box-sizing: border-box }' reset"),
@@ -87,7 +98,7 @@ def check_easy_p02(path):
 
 
 def check_easy_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\.button\s*\{", "Missing '.button' rule"),
         (r"padding\s*:\s*10px\s+20px", "Need 'padding: 10px 20px'"),
@@ -100,7 +111,7 @@ def check_easy_p03(path):
 # ---------- medium ----------
 
 def check_medium_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\.card\s*\{", "Missing '.card' rule"),
         (r"\.card\s*\{[^}]*padding\s*:", ".card needs padding (internal space)"),
@@ -111,7 +122,7 @@ def check_medium_p01(path):
 
 
 def check_medium_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\.box-a\s*\{[^}]*margin-bottom\s*:\s*30px",
          "Need '.box-a { margin-bottom: 30px }'"),
@@ -122,7 +133,7 @@ def check_medium_p02(path):
 
 
 def check_medium_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\.block\s*\{[^}]*display\s*:\s*block",
          "Missing '.block { display: block }'"),
@@ -138,7 +149,7 @@ def check_medium_p03(path):
 # ---------- hard ----------
 
 def check_hard_p01(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\*\s*\{[^}]*box-sizing\s*:\s*border-box",
          "Missing '* { box-sizing: border-box }' reset"),
@@ -152,7 +163,7 @@ def check_hard_p01(path):
 
 
 def check_hard_p02(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     ok, msg = require_all(c, [
         (r"\.btn-group\s+\.btn\s*\{[^}]*display\s*:\s*inline-block",
          "Missing '.btn-group .btn { display: inline-block }'"),
@@ -172,7 +183,7 @@ def check_hard_p02(path):
 
 
 def check_hard_p03(path):
-    c = read_file(path)
+    c = strip_comments(read_file(path))
     return require_all(c, [
         (r"\*\s*\{[^}]*box-sizing\s*:\s*border-box",
          "Missing box-sizing reset"),

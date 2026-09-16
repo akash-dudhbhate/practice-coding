@@ -1,0 +1,32 @@
+<!--
+LESSON 04 — HTML Media & Embedding
+===================================
+
+PROBLEM: Responsive Images with <picture> (Medium)
+Serve different images for different screen sizes using <picture>
+and <source media="...">.
+
+TRY THIS:
+  - A <picture> element containing:
+      <source media="(min-width: 800px)" srcset="big image url">
+      <source media="(min-width: 400px)" srcset="medium image url">
+      <img src="small image url" alt="...">  (the fallback)
+  - Use https://picsum.photos/W/H for placeholder images.
+  - Add a <style> rule: img { max-width: 100%; height: auto; }
+
+EXPECTED OUTPUT: On wide screens the big image loads; on narrow
+screens the small one does. The <img> inside <picture> is the
+required fallback for browsers without support.
+
+CHECK: python3 check.py medium/p01
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Responsive Images</title>
+</head>
+<body>
+  <!-- TODO: Write your <picture> element with 2 <source> + 1 <img> here. -->
+</body>
+</html>
