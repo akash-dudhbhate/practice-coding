@@ -16,10 +16,12 @@ import glob
 TRACK_DIR = os.path.dirname(os.path.abspath(__file__))
 LESSON_DIR = os.path.join(TRACK_DIR, "ai-ml")
 
+
 def get_lessons():
     """Find all lesson directories."""
     lessons = sorted(glob.glob(os.path.join(LESSON_DIR, "lesson-*")))
     return lessons
+
 
 def count_problems(lesson_path, level):
     """Count total and solved problems for a difficulty level."""
@@ -40,54 +42,98 @@ def count_problems(lesson_path, level):
                 solved += 1
     return total, solved
 
+
+def check_project(lesson_path):
+    """Check if the project file is done."""
+    projects = glob.glob(os.path.join(lesson_path, "project-*.py"))
+    if not projects:
+        return None
+    with open(projects[0]) as f:
+        first_line = f.readline().strip()
+        return "DONE" in first_line
+
+
 def show_progress():
     lessons = get_lessons()
     if not lessons:
         print("No lessons found in", LESSON_DIR)
         return
 
-    print("=" * 60)
+    print("=" * 70)
     print("  AI/ML TRACK — PROGRESS")
-    print("=" * 60)
+    print("=" * 70)
 
     total_all = 0
     solved_all = 0
     level_totals = {"easy": 0, "medium": 0, "hard": 0}
     level_solved = {"easy": 0, "medium": 0, "hard": 0}
+    lesson_stats = []
 
     for lesson_path in lessons:
         lesson_name = os.path.basename(lesson_path)
-        print(f"\n  {lesson_name}")
-        print(f"  {'-' * 50}")
+        lesson_done = 0
+        lesson_total = 0
+
+        stats = {"name": lesson_name, "easy": (0, 0), "medium": (0, 0), "hard": (0, 0)}
 
         for level in ["easy", "medium", "hard"]:
             total, solved = count_problems(lesson_path, level)
+            stats[level] = (solved, total)
             level_totals[level] += total
             level_solved[level] += solved
             total_all += total
             solved_all += solved
+            lesson_done += solved
+            lesson_total += total
 
-            bar_len = 20
-            filled = int(bar_len * solved / total) if total > 0 else 0
-            bar = "█" * filled + "░" * (bar_len - filled)
-            print(f"    {level.capitalize():8} {bar} {solved}/{total}")
+        stats["project"] = check_project(lesson_path)
+        stats["done"] = lesson_done
+        stats["total"] = lesson_total
+        lesson_stats.append(stats)
 
-        # Check for project file
-        projects = glob.glob(os.path.join(lesson_path, "project-*.py"))
-        for proj in projects:
-            proj_name = os.path.basename(proj).replace("project-", "").replace(".py", "").replace("-", " ").title()
-            with open(proj) as f:
-                first_line = f.readline().strip()
-                done = "DONE" in first_line
-            status = "DONE" if done else "TODO"
-            print(f"    Project  {proj_name:30} [{status}]")
+    # Show per-lesson breakdown
+    print("\n  PER-LESSON BREAKDOWN")
+    print("  " + "-" * 66)
 
-    print(f"\n  {'=' * 50}")
-    print(f"  OVERALL: {solved_all}/{total_all} problems solved")
-    print(f"  Easy:    {level_solved['easy']}/{level_totals['easy']}")
-    print(f"  Medium:  {level_solved['medium']}/{level_totals['medium']}")
-    print(f"  Hard:    {level_solved['hard']}/{level_totals['hard']}")
-    print(f"  {'=' * 50}")
+    for stats in lesson_stats:
+        name = stats["name"]
+        e_s, e_t = stats["easy"]
+        m_s, m_t = stats["medium"]
+        h_s, h_t = stats["hard"]
+        proj = stats["project"]
+        done = stats["done"]
+        total = stats["total"]
+
+        # Status icon
+        if done == total and total > 0:
+            icon = "✓"
+        elif done > 0:
+            icon = "◐"
+        else:
+            icon = "○"
+
+        proj_str = "P" if proj else " "
+        print(f"  {icon} {name[:40]:40} E:{e_s}/{e_t} M:{m_s}/{m_t} H:{h_s}/{h_t} [{proj_str}]")
+
+    # Show totals
+    print(f"\n  {'=' * 66}")
+    print("  TOTALS BY LEVEL")
+    print("  " + "-" * 66)
+
+    for level in ["easy", "medium", "hard"]:
+        solved = level_solved[level]
+        total = level_totals[level]
+        pct = int(100 * solved / total) if total > 0 else 0
+        bar_len = 30
+        filled = int(bar_len * solved / total) if total > 0 else 0
+        bar = "█" * filled + "░" * (bar_len - filled)
+        print(f"  {level.capitalize():8} {bar} {solved:3}/{total:3} ({pct:3}%)")
+
+    print("  " + "-" * 66)
+    overall_pct = int(100 * solved_all / total_all) if total_all > 0 else 0
+    print(f"  OVERALL: {solved_all}/{total_all} problems ({overall_pct}%)")
+    print("  " + "=" * 66)
+
 
 if __name__ == "__main__":
     show_progress()

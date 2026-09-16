@@ -15,5 +15,22 @@ Write a function `solve()` that implements the solution.
 # Check your answer: compare with solutions/p02-solution.py
 """
 
+TRY THIS INPUT:
+  Add this test code at the bottom of your file:
+
+  ```python
+  x = torch.tensor([2.0], requires_grad=True)
+
+  # Call your function
+  result = solve(...)
+  print(result)
+  ```
+
+EXPECTED OUTPUT:
+  Run the solution file to see expected output:
+    python3 easy/solutions/p02-solution.py
+
+  Then compare your output format with theirs.
+
 # === WRITE YOUR CODE BELOW ===
 # TODO: Write your solution from scratch.
