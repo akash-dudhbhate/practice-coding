@@ -1,30 +1,37 @@
 """
-LEVEL 05 EVALUATION
-EASY P03 — Kfold Cv
-==================================================
+LEVEL 05 — Model Evaluation
+EASY P03 — K-Fold Cross-Validation
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  One train/test split can be lucky or unlucky. K-fold CV:
+    split data into 5 parts → train on 4, test on 1, rotate ×5
+    → 5 scores. Mean = estimate. Std = stability.
+
+  cross_val_score(model, X, y, cv=5)
 
 PROBLEM:
-  Run 5-fold cross-validation on a model. Print mean and std of accuracy.
+  Write `cross_validate()` that:
+    1. Loads iris
+    2. cross_val_score(RandomForestClassifier(seed=42), X, y, cv=5)
+    3. Returns (mean_accuracy, std_accuracy)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  m, s = cross_validate()
+  print(f"{m:.4f} ± {s:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p03-solution.py
+  ```
+  0.9667 ± 0.0211
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  from sklearn.model_selection import cross_val_score
+  scores.mean(), scores.std()
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +39,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# m, s = cross_validate()
+# print(m, s)

@@ -1,25 +1,18 @@
-"""Level 07 Unsupervised — Easy P03 Solution"""
+"""Level 07 — Unsupervised Learning — Easy P03 Solution"""
 
-import numpy as np
-from sklearn.decomposition import PCA
 from sklearn.datasets import load_iris
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
-def solve():
+def pca_2d():
     iris = load_iris()
-    X = iris.data
+    X = StandardScaler().fit_transform(iris.data)
     pca = PCA(n_components=2)
-    X_pca = pca.fit_transform(X)
-    plt.figure(figsize=(8, 6))
-    scatter = plt.scatter(X_pca[:, 0], X_pca[:, 1], c=iris.target, cmap='viridis')
-    plt.xlabel('First Principal Component')
-    plt.ylabel('Second Principal Component')
-    plt.title('PCA of Iris Dataset')
-    plt.colorbar(scatter)
-    plt.savefig('pca.png', dpi=150, bbox_inches='tight')
-    plt.show()
-    print(f"Explained variance: {pca.explained_variance_ratio_}")
-    return X_pca
+    X_2d = pca.fit_transform(X)
+    return X_2d, pca.explained_variance_ratio_
 
 if __name__ == "__main__":
-    solve()
+    X2, ev = pca_2d()
+    print(X2.shape)
+    print(f"{ev[0]:.4f}")
+    print(f"{ev.sum():.4f}")

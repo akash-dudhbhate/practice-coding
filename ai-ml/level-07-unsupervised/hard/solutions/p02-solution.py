@@ -1,22 +1,19 @@
-"""Level 07 Unsupervised — Hard P02 Solution"""
+"""Level 07 — Unsupervised Learning — Hard P02 Solution"""
 
 import numpy as np
 from sklearn.ensemble import IsolationForest
-import matplotlib.pyplot as plt
 
-def solve():
+def detect_anomalies():
     np.random.seed(42)
-    normal = np.random.randn(100, 2)
-    anomalies = np.random.uniform(-4, 4, (10, 2))
-    X = np.vstack([normal, anomalies])
+    normal = np.random.normal(0, 0.5, (100, 2))
+    outliers = np.random.uniform(-5, 5, (10, 2))
+    X = np.vstack([normal, outliers])
     iso = IsolationForest(contamination=0.1, random_state=42)
-    labels = iso.fit_predict(X)
-    plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')
-    plt.title('Anomaly Detection (Isolation Forest)')
-    plt.savefig('anomalies.png', dpi=150, bbox_inches='tight')
-    plt.show()
-    print(f"Anomalies detected: {sum(labels == -1)}")
-    return labels
+    preds = iso.fit_predict(X)
+    n_anomalies = (preds == -1).sum()
+    return preds, n_anomalies
 
 if __name__ == "__main__":
-    solve()
+    preds, n = detect_anomalies()
+    print(len(preds))
+    print(f"Anomalies detected: {n}")

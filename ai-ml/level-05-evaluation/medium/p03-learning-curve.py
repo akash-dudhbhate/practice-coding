@@ -1,30 +1,43 @@
 """
-LEVEL 05 EVALUATION
+LEVEL 05 — Model Evaluation
 MEDIUM P03 — Learning Curve
-==================================================
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Learning curve = score vs training-set size.
+    - Train score high + val score low + gap → overfitting
+    - Both low and converging → underfitting / need better model
+    - Both high and converging → good; more data won't help much
+
+  sklearn's learning_curve() does the sampling + CV for you.
 
 PROBLEM:
-  Plot learning curve showing train vs validation error over training size.
+  Write `plot_learning_curve()` that:
+    1. make_classification(500, 10 features, seed=42)
+    2. learning_curve(LogisticRegression, cv=5,
+                      train_sizes=linspace(0.1, 1.0, 10))
+    3. Plots train vs validation mean scores, saves
+       'learning_curve.png'
+    4. Returns (train_sizes, train_mean, val_mean)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  ts, tr, va = plot_learning_curve()
+  print(len(ts))          # 10
+  print(f"{va[-1]:.4f}")  # final validation score
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p03-solution.py
+  ```
+  10
+  0.8xxx
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  from sklearn.model_selection import learning_curve
+  train_scores is (10, 5) — take np.mean(axis=1)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +45,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# ts, tr, va = plot_learning_curve()
+# print(va[-1])

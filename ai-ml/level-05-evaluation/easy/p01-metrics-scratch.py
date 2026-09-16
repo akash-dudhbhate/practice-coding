@@ -1,30 +1,38 @@
 """
-LEVEL 05 EVALUATION
-EASY P01 — Metrics Scratch
-==================================================
+LEVEL 05 — Model Evaluation
+EASY P01 — Metrics From Scratch
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Accuracy  = (TP+TN)/total     — overall correctness
+  Precision = TP/(TP+FP)        — of predicted YES, how many right?
+  Recall    = TP/(TP+FN)        — of actual YES, how many caught?
+  F1        = 2·P·R/(P+R)       — harmonic mean of precision/recall
 
 PROBLEM:
-  Implement accuracy, precision, recall, and F1 from scratch. Test with sample data.
+  Write `compute_metrics(y_true, y_pred)` that returns a dict:
+    {"accuracy": x, "precision": x, "recall": x, "f1": x}
+  Pure Python — no sklearn.metrics.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  y_true = [0,0,1,1,1,0,1,0,1,1]
+  y_pred = [0,1,1,1,0,0,1,0,1,1]
+  m = compute_metrics(y_true, y_pred)
+  print(m)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p01-solution.py
+  ```
+  {'accuracy': 0.8, 'precision': 0.833..., 'recall': 0.833..., 'f1': 0.833...}
+  ```
+  (TP=5, FP=1, TN=3, FN=1)
 
-  Then compare your output format with theirs.
+HINT:
+  TP = sum(1 for t,p in zip(y_true,y_pred) if t==1 and p==1)
+  Guard division by zero (return 0.0).
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +40,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# m = compute_metrics([0,0,1,1,1,0,1,0,1,1], [0,1,1,1,0,0,1,0,1,1])
+# print(m)

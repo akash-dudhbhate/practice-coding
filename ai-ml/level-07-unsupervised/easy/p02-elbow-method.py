@@ -1,30 +1,41 @@
 """
-LEVEL 07 UNSUPERVISED
+LEVEL 07 — Unsupervised Learning
 EASY P02 — Elbow Method
-==================================================
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  How to pick K? Try K=1..10, plot inertia (sum of distances to
+  nearest center). The "elbow" — where adding more K barely helps —
+  is the sweet spot.
+
+  model.inertia_ = total within-cluster distance.
 
 PROBLEM:
-  Use the elbow method to find optimal K. Plot inertias.
+  Write `elbow()` that:
+    1. make_blobs(300, centers=3, seed=42)
+    2. For K=1..10: KMeans → inertia
+    3. Returns list of 10 inertias
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  inertias = elbow()
+  print(len(inertias))          # 10
+  print(f"{inertias[0]:.0f}")   # ~13142 (K=1, worst)
+  print(f"{inertias[2]:.0f}")   # ~364  (K=3, elbow!)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p02-solution.py
+  ```
+  10
+  20402
+  567
+  ```
+  (massive drop at K=3 → 3 is the right number of clusters)
 
-  Then compare your output format with theirs.
+HINT:
+  inertias.append(KMeans(n_clusters=k, n_init=10).fit(X).inertia_)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +43,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# ins = elbow()
+# print(ins[0], ins[2])

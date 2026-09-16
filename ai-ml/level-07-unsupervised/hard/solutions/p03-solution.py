@@ -1,29 +1,29 @@
-"""Level 07 Unsupervised — Hard P03 Solution"""
+"""Level 07 — Unsupervised Learning — Hard P03 Solution"""
 
-from sklearn.decomposition import LatentDirichletAllocation
-from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import NMF
 
-def solve():
+def topics():
     docs = [
-        "machine learning is great for prediction",
-        "deep learning uses neural networks",
-        "data science involves statistics",
-        "python is a programming language",
-        "machine learning models need data",
-        "neural networks are powerful",
-        "statistics helps understand data",
-        "python is popular for ml",
+        "python machine learning model data neural network",
+        "deep learning pytorch neural network training model",
+        "recipe cooking food kitchen ingredients bake",
+        "cooking delicious meal recipe dinner food"
     ]
-    vectorizer = CountVectorizer(stop_words='english')
-    X = vectorizer.fit_transform(docs)
-    lda = LatentDirichletAllocation(n_components=2, random_state=42)
-    lda.fit(X)
-    feature_names = vectorizer.get_feature_names_out()
-    for topic_idx, topic in enumerate(lda.components_):
-        top_words = [feature_names[i] for i in topic.argsort()[-5:]]
-        print(f"Topic {topic_idx}: {', '.join(top_words)}")
-    return lda
+    vec = TfidfVectorizer(stop_words='english')
+    X = vec.fit_transform(docs)
+    nmf = NMF(n_components=2, random_state=42)
+    W = nmf.fit_transform(X)
+    feature_names = vec.get_feature_names_out()
+    topic_words = []
+    for i in range(2):
+        top_idx = nmf.components_[i].argsort()[-5:][::-1]
+        topic_words.append([feature_names[j] for j in top_idx])
+    return topic_words, W
 
 if __name__ == "__main__":
-    solve()
+    words, W = topics()
+    for i, ws in enumerate(words):
+        print(f"Topic {i}: {', '.join(ws)}")
+    print(W.shape)

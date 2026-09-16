@@ -1,30 +1,46 @@
 """
-LEVEL 06 ADVANCED ML
-HARD P02 — Feature Engineering Pipeline
-==================================================
+LEVEL 06 — Advanced ML
+HARD P02 — Full Feature Engineering Pipeline
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Real feature engineering = creating NEW features from existing ones:
+    - income_per_age = income / age
+    - age_squared = age²
+    - is_weekend = day_of_week >= 5
+    - income_log = log1p(income)
+
+  Then feed everything into a Pipeline: engineer → scale → model.
 
 PROBLEM:
-  Build a complete feature engineering pipeline with multiple steps.
+  Write `engineer_and_train()` that:
+    1. Creates DataFrame (200 rows, seed=42):
+       age 18-70, income 20k-120k, day_of_week 0-6
+       target = 1 if income/age > 1500 else 0
+    2. Adds features: income_per_age, age_sq, income_log, is_weekend
+    3. Split 80/20 (seed=42)
+    4. Pipeline: StandardScaler → LogisticRegression(seed=42)
+    5. Returns (test_acc, feature_names_list)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  acc, feats = engineer_and_train()
+  print(f"{acc:.4f}")
+  print(feats)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p02-solution.py
+  ```
+  ~0.95+  (engineered feature income_per_age IS the target rule)
+  ['age', 'income', 'day_of_week', 'income_per_age', 'age_sq',
+   'income_log', 'is_weekend']
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  df['income_per_age'] = df['income'] / df['age']
+  df['is_weekend'] = (df['day_of_week'] >= 5).astype(int)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +48,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# acc, feats = engineer_and_train()
+# print(acc, feats)

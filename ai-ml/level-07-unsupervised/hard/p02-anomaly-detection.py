@@ -1,30 +1,40 @@
 """
-LEVEL 07 UNSUPERVISED
-HARD P02 — Anomaly Detection
-==================================================
+LEVEL 07 — Unsupervised Learning
+HARD P02 — Anomaly Detection (IsolationForest)
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  IsolationForest: anomalies are "easy to isolate" — a random
+  split tree reaches them in fewer steps. contamination = the
+  fraction of expected anomalies.
+
+  predict() returns -1 (anomaly) or 1 (normal).
 
 PROBLEM:
-  Detect anomalies using isolation forest or LOF.
+  Write `detect_anomalies()` that:
+    1. Normal data: np.random.normal(0, 0.5, (100,2)) seed=42
+    2. Inject 10 outliers: uniform(-5,5,(10,2))
+    3. IsolationForest(contamination=0.1, random_state=42)
+    4. Returns (predictions_array, n_anomalies_detected)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  preds, n = detect_anomalies()
+  print(len(preds))   # 110
+  print(n)            # ~11 anomalies flagged
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p02-solution.py
+  ```
+  110
+  11
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  np.vstack([normal, outliers]) to combine.
+  preds == -1 → anomalies.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# preds, n = detect_anomalies()
+# print(len(preds), n)

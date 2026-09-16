@@ -1,30 +1,40 @@
 """
-LEVEL 06 ADVANCED ML
-EASY P02 — Label Encode
-==================================================
+LEVEL 06 — Advanced ML
+EASY P02 — One-Hot Encode Categories
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Models only understand numbers. 'red', 'blue', 'green' must
+  become columns: is_red, is_blue, is_green — each 0 or 1.
+
+  pd.get_dummies(df, columns=[...]) — one-hot encoding.
+  (LabelEncoder gives 0/1/2 which falsely implies order —
+   only use it for truly ordinal categories.)
 
 PROBLEM:
-  Encode categorical features using label encoding and one-hot encoding.
+  Write `encode()` that:
+    1. Creates DataFrame: color [red,blue,green,red,green],
+       size [S,M,L,S,M]
+    2. One-hot encodes BOTH columns
+    3. Returns the encoded DataFrame
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  df = encode()
+  print(df.shape)
+  print(list(df.columns))
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p02-solution.py
+  ```
+  (5, 6)
+  ['color_blue', 'color_green', 'color_red', 'size_L', 'size_M', 'size_S']
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  pd.get_dummies(df) — no need to pass columns, it auto-detects objects.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# df = encode()
+# print(df.shape, list(df.columns))

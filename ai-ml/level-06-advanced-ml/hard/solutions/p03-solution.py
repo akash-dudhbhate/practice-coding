@@ -1,26 +1,26 @@
-"""Level 06 Advanced Ml — Hard P03 Solution"""
+"""Level 06 — Advanced ML — Hard P03 Solution"""
 
-import numpy as np
 from sklearn.datasets import make_classification
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-from imblearn.ensemble import BalancedRandomForestClassifier
+from sklearn.metrics import recall_score, f1_score
 
-def solve():
-    X, y = make_classification(n_samples=2000, n_features=10, weights=[0.98, 0.02], random_state=42)
+def compare_balanced():
+    X, y = make_classification(n_samples=1000, n_features=10, n_informative=5,
+                               weights=[0.95, 0.05], flip_y=0.0, random_state=42)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    # Regular RF
-    rf = RandomForestClassifier(random_state=42).fit(X_train, y_train)
-    y_pred = rf.predict(X_test)
-    print("Regular RandomForest:")
-    print(classification_report(y_test, y_pred))
-    # Balanced RF
-    brf = BalancedRandomForestClassifier(random_state=42).fit(X_train, y_train)
-    y_pred = brf.predict(X_test)
-    print("Balanced RandomForest:")
-    print(classification_report(y_test, y_pred))
-    return y_pred
+
+    default = LogisticRegression(random_state=42, max_iter=1000).fit(X_train, y_train)
+    balanced = LogisticRegression(random_state=42, max_iter=1000,
+                                  class_weight='balanced').fit(X_train, y_train)
+
+    r_default = recall_score(y_test, default.predict(X_test))
+    r_balanced = recall_score(y_test, balanced.predict(X_test))
+    f1_default = f1_score(y_test, default.predict(X_test))
+    f1_balanced = f1_score(y_test, balanced.predict(X_test))
+    return r_default, r_balanced, f1_default, f1_balanced
 
 if __name__ == "__main__":
-    solve()
+    rd, rb, fd, fb = compare_balanced()
+    print(f"Default  — recall: {rd:.4f}, F1: {fd:.4f}")
+    print(f"Balanced — recall: {rb:.4f}, F1: {fb:.4f}")

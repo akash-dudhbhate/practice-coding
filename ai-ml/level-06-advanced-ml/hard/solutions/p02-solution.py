@@ -1,30 +1,40 @@
-"""Level 06 Advanced Ml — Hard P02 Solution"""
+"""Level 06 — Advanced ML — Hard P02 Solution"""
 
-import pandas as pd
 import numpy as np
-from sklearn.compose import ColumnTransformer
+import pandas as pd
 from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.datasets import make_classification
 
-def solve():
-    X, y = make_classification(n_samples=300, n_features=5, n_informative=3, random_state=42)
-    df = pd.DataFrame(X, columns=[f'num_{i}' for i in range(5)])
-    df['cat'] = np.random.choice(['A', 'B', 'C'], 300)
-    df['cat2'] = np.random.choice(['X', 'Y'], 300)
-    X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2, random_state=42)
-    preprocessor = ColumnTransformer([
-        ('num', Pipeline([('imputer', SimpleImputer(strategy='median')), ('scaler', StandardScaler())]), [f'num_{i}' for i in range(5)]),
-        ('cat', Pipeline([('imputer', SimpleImputer(strategy='most_frequent')), ('onehot', OneHotEncoder())]), ['cat', 'cat2'])
+def engineer_and_train():
+    np.random.seed(42)
+    n = 200
+    df = pd.DataFrame({
+        'age': np.random.randint(18, 70, n),
+        'income': np.random.randint(20000, 120000, n),
+        'day_of_week': np.random.randint(0, 7, n),
+    })
+    df['target'] = (df['income'] / df['age'] > 1500).astype(int)
+    df['income_per_age'] = df['income'] / df['age']
+    df['age_sq'] = df['age'] ** 2
+    df['income_log'] = np.log1p(df['income'])
+    df['is_weekend'] = (df['day_of_week'] >= 5).astype(int)
+
+    feature_cols = ['age', 'income', 'day_of_week', 'income_per_age',
+                    'age_sq', 'income_log', 'is_weekend']
+    X = df[feature_cols]
+    y = df['target']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    pipe = Pipeline([
+        ('scaler', StandardScaler()),
+        ('model', LogisticRegression(random_state=42, max_iter=1000))
     ])
-    model = Pipeline([('preprocessor', preprocessor), ('classifier', RandomForestClassifier(random_state=42))])
-    model.fit(X_train, y_train)
-    accuracy = model.score(X_test, y_test)
-    print(f"Pipeline accuracy: {accuracy:.4f}")
-    return accuracy
+    pipe.fit(X_train, y_train)
+    return pipe.score(X_test, y_test), feature_cols
 
 if __name__ == "__main__":
-    solve()
+    acc, feats = engineer_and_train()
+    print(f"{acc:.4f}")
+    print(feats)

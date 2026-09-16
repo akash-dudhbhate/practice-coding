@@ -1,30 +1,41 @@
 """
-LEVEL 06 ADVANCED ML
-MEDIUM P01 — Smote Imbalance
-==================================================
+LEVEL 06 — Advanced ML
+MEDIUM P01 — Fix Imbalance by Resampling
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  With 95% class-0 / 5% class-1, a model can get 95% accuracy by
+  predicting 0 always — useless. Fix: OVERSAMPLE the minority class
+  (duplicate random samples) until classes are balanced.
+
+  Manual oversampling (no extra libraries needed):
+    minority = X[y==1]; repeat/choice until counts match.
 
 PROBLEM:
-  Handle imbalanced data with SMOTE. Compare before/after metrics.
+  Write `oversample(X, y)` that:
+    1. Finds majority/minority class counts
+    2. Randomly resamples the minority (with replacement) to match
+    3. Returns (X_balanced, y_balanced) as numpy arrays
+  np.random.seed(42) inside the function.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  X = np.arange(100).reshape(-1, 1)   # 100 samples
+  y = np.array([0]*95 + [1]*5)        # 95:5 imbalance
+  Xb, yb = oversample(X, y)
+  print(np.bincount(yb))   # [95 95]
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p01-solution.py
+  ```
+  [95 95]
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  minority_idx = np.where(y == minority_label)[0]
+  np.random.choice(minority_idx, size=needed, replace=True)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +43,6 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# import numpy as np
+# Xb, yb = oversample(np.arange(100).reshape(-1,1), np.array([0]*95+[1]*5))
+# print(np.bincount(yb))

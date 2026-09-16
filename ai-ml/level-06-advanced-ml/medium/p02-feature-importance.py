@@ -1,30 +1,39 @@
 """
-LEVEL 06 ADVANCED ML
-MEDIUM P02 — Feature Importance
-==================================================
+LEVEL 06 — Advanced ML
+MEDIUM P02 — Feature Importance Filtering
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Not all features help. Noise features hurt — they add variance
+  without signal. Use feature importance to keep only the top ones.
+
+  Compare: all features vs top-5 → top-5 often scores HIGHER.
 
 PROBLEM:
-  Use feature importance to select top features. Compare model performance.
+  Write `select_top()` that:
+    1. make_classification(200, 10 features, n_informative=5, seed=42)
+    2. Split 80/20 (seed=42)
+    3. Train RF on all → all_acc
+    4. Get importances, pick top-5 indices, retrain on those → top5_acc
+    5. Returns (all_acc, top5_acc, top5_indices)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  a, b, idx = select_top()
+  print(f"All: {a:.4f}  Top5: {b:.4f}")
+  print(idx)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p02-solution.py
+  ```
+  All: 0.9000  Top5: 0.9500
+  [3, 4, 5, 6, 8]
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  np.argsort(importances)[-5:] → top-5 indices (or sort descending)
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +41,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# a, b, idx = select_top()
+# print(a, b, idx)

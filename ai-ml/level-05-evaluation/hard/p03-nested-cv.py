@@ -1,30 +1,42 @@
 """
-LEVEL 05 EVALUATION
-HARD P03 — Nested Cv
-==================================================
+LEVEL 05 — Model Evaluation
+HARD P03 — Nested Cross-Validation
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Regular CV + grid search on the same data = biased estimate
+  (you tuned ON the test folds). Nested CV fixes it:
+
+    Outer loop (5-fold): splits data for honest evaluation
+    Inner loop (3-fold): tunes hyperparameters within each
+                         outer train fold only
+
+  Result = unbiased estimate of the tuned pipeline's performance.
 
 PROBLEM:
-  Implement nested cross-validation for unbiased model evaluation.
+  Write `nested_cv()` that:
+    1. make_classification(200, 10 features, seed=42)
+    2. Inner: GridSearchCV(RandomForest(seed=42),
+       {n_estimators:[50,100], max_depth:[3,5]}, cv=3)
+    3. Outer: cross_val_score(inner_cv_object, X, y, cv=5)
+    4. Returns the 5 outer scores array
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  s = nested_cv()
+  print(f"{s.mean():.4f} ± {s.std():.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p03-solution.py
+  ```
+  0.8850 ± 0.0300
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  Pass the GridSearchCV OBJECT to cross_val_score —
+  it refits (and retunes) inside each outer fold.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +44,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# s = nested_cv()
+# print(s.mean(), s.std())

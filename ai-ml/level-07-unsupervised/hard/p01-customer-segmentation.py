@@ -1,30 +1,42 @@
 """
-LEVEL 07 UNSUPERVISED
+LEVEL 07 — Unsupervised Learning
 HARD P01 — Customer Segmentation
-==================================================
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  The classic business use of clustering: group customers by
+  behavior. Cluster stats (mean per group) reveal segments:
+    "young big-spenders" vs "old small-spenders" etc.
+
+  Pipeline: scale → KMeans → groupby means → interpret.
 
 PROBLEM:
-  Build a customer segmentation pipeline with profiling.
+  Write `segment()` that:
+    1. Creates DataFrame (200 rows, seed=42):
+       age 18-70, income 20k-100k, spending 1-100
+    2. StandardScaler → KMeans(5, seed=42, n_init=10)
+    3. Adds 'cluster' column to df
+    4. Returns (df_with_cluster, cluster_means_df)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  df, means = segment()
+  print(df.shape)     # (200, 4)
+  print(means.shape)  # (5, 3)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p01-solution.py
+  ```
+  (200, 4)
+  (5, 3)
+  ```
+  means shows e.g. cluster 0: young + high income + low spending
 
-  Then compare your output format with theirs.
+HINT:
+  df['cluster'] = km.labels_
+  means = df.groupby('cluster')[['age','income','spending']].mean()
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +44,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# df, means = segment()
+# print(means)

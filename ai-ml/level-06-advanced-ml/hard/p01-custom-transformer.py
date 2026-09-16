@@ -1,30 +1,43 @@
 """
-LEVEL 06 ADVANCED ML
-HARD P01 — Custom Transformer
-==================================================
+LEVEL 06 — Advanced ML
+HARD P01 — Custom sklearn Transformer
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  You can write your own transformer that plugs into any Pipeline.
+  Rules: subclass BaseEstimator + TransformerMixin, implement
+  fit() and transform(). fit() returns self; transform() returns data.
+
+  Why: reusable feature engineering — e.g., log-transform skewed
+  columns, add interaction terms, bin ages.
 
 PROBLEM:
-  Build a custom sklearn transformer for a specific preprocessing step.
+  Write a class `LogTransformer` (subclass BaseEstimator,
+  TransformerMixin) that:
+    - fit(X, y=None): returns self
+    - transform(X): returns np.log1p(X) — but ONLY on columns
+      given at init: LogTransformer(cols=[0, 2])
+  Then use it in a Pipeline before LogisticRegression on
+  make_classification(200, 5 features, seed=42), return test acc.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  acc = run_pipeline()
+  print(f"{acc:.4f}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p01-solution.py
+  ```
+  0.8750
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  from sklearn.base import BaseEstimator, TransformerMixin
+  transform: copy X, apply np.log1p to self.cols only.
+  Careful: log1p needs non-negative values — use np.abs first if
+  features can be negative.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +45,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# acc = run_pipeline()
+# print(acc)

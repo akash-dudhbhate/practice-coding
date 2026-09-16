@@ -1,30 +1,34 @@
 """
-LEVEL 05 EVALUATION
+LEVEL 05 — Model Evaluation
 EASY P02 — Confusion Matrix
-==================================================
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Confusion matrix = the 4 outcomes of binary prediction:
+    TP (hit)  |  FN (miss)
+    FP (false alarm) |  TN (correct reject)
+
+  Everything else (accuracy, precision, recall) derives from these.
 
 PROBLEM:
-  Build a confusion matrix from predictions. Print TP, FP, TN, FN.
+  Write `confusion(y_true, y_pred)` that returns
+  {"TP": x, "FP": x, "TN": x, "FN": x}
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  c = confusion([0,0,1,1,1,0,1,0,1,1], [0,1,1,1,0,0,1,0,1,1])
+  print(c)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p02-solution.py
+  ```
+  {'TP': 5, 'FP': 1, 'TN': 3, 'FN': 1}
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  Loop over pairs; count each of the 4 cases.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +36,4 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# print(confusion([0,0,1,1,1,0,1,0,1,1], [0,1,1,1,0,0,1,0,1,1]))

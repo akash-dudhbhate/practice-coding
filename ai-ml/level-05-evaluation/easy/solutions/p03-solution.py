@@ -1,19 +1,15 @@
-"""Level 05 Evaluation — Easy P03 Solution"""
+"""Level 05 — Model Evaluation — Easy P03 Solution"""
 
 from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
-import numpy as np
 
-def solve():
+def cross_validate():
     iris = load_iris()
-    X, y = iris.data, iris.target
-    rf = RandomForestClassifier(random_state=42)
-    scores = cross_val_score(rf, X, y, cv=5)
-    print(f"Fold scores: {scores}")
-    print(f"Mean accuracy: {scores.mean():.4f}")
-    print(f"Std accuracy: {scores.std():.4f}")
-    return scores
+    scores = cross_val_score(RandomForestClassifier(random_state=42),
+                             iris.data, iris.target, cv=5)
+    return scores.mean(), scores.std()
 
 if __name__ == "__main__":
-    solve()
+    m, s = cross_validate()
+    print(f"{m:.4f} ± {s:.4f}")

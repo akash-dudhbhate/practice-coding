@@ -1,30 +1,40 @@
 """
-LEVEL 07 UNSUPERVISED
-MEDIUM P03 — Hierarchical
-==================================================
+LEVEL 07 — Unsupervised Learning
+MEDIUM P03 — Hierarchical Clustering (Agglomerative)
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  AgglomerativeClustering builds clusters bottom-up:
+    start with every point as its own cluster,
+    merge the two closest, repeat until K remain.
+  Produces a dendrogram (tree of merges).
+
+  n_clusters=K; linkage='ward' minimizes merge variance.
 
 PROBLEM:
-  Apply hierarchical clustering. Plot dendrogram.
+  Write `hierarchical()` that:
+    1. make_blobs(50, centers=3, seed=42)
+    2. AgglomerativeClustering(n_clusters=3)
+    3. Returns labels array
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  labels = hierarchical()
+  print(len(labels))     # 50
+  print(set(labels))     # {0, 1, 2}
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p03-solution.py
+  ```
+  50
+  {0, 1, 2}
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  from sklearn.cluster import AgglomerativeClustering
+  .fit_predict(X) returns labels directly.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py medium/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# labels = hierarchical()
+# print(set(labels))

@@ -1,30 +1,39 @@
 """
-LEVEL 05 EVALUATION
-HARD P02 — Model Comparison
-==================================================
+LEVEL 05 — Model Evaluation
+HARD P02 — Multi-Model Comparison Table
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Never trust one metric or one model. Compare several models on
+  several metrics: accuracy (overall), F1 (balance), AUC (ranking).
 
 PROBLEM:
-  Compare 5 models with 3 metrics each. Print a comparison table.
+  Write `compare_all()` that:
+    1. make_classification(500, 10 features, seed=42); split 80/20
+    2. Trains 5 models: LogisticRegression, RandomForest,
+       GradientBoosting, SVC(probability=True), KNN — all seed=42
+    3. Returns dict: {name: {"accuracy": x, "f1": x, "auc": x}}
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  r = compare_all()
+  print(r['Random Forest']['accuracy'])   # 0.94
+  print(r['Gradient Boosting']['auc'])    # ~0.99
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p02-solution.py
+  ```
+  Logistic Regression    acc=0.8800 f1=0.8723 auc=0.9461
+  Random Forest          acc=0.9400 f1=0.9348 auc=0.9893
+  Gradient Boosting      acc=0.9500 f1=0.9462 auc=0.9948
+  SVM                    acc=0.8800 f1=0.8723 auc=0.9674
+  KNN                    acc=0.9000 f1=0.8913 auc=0.9593
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  roc_auc_score needs probabilities → model.predict_proba(X_test)[:, 1]
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +41,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# r = compare_all()
+# print(r['Gradient Boosting'])

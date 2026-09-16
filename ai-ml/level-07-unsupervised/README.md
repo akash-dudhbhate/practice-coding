@@ -1,60 +1,39 @@
-# Level 07 Unsupervised — Unsupervised Learning
+# Level 07 — Unsupervised Learning
 
 ## What You'll Learn
-- K-Means clustering
+- K-Means clustering — group unlabeled data
+- Elbow method and silhouette score — pick the right K
+- PCA for dimensionality reduction and visualization
+- DBSCAN — non-spherical clusters
 - Hierarchical clustering
-- DBSCAN
-- Dimensionality reduction
-- Anomaly detection
-- Association rules
+- Customer segmentation, anomaly detection, topic modeling
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- Level 06 (feature engineering)
 
 ## Problems
 
 ### Easy
-1. `easy/p01-kmeans-basic.py` — Apply K-Means to a dataset. Print cluster centers and labels...
-2. `easy/p02-elbow-method.py` — Use the elbow method to find optimal K. Plot inertias....
-3. `easy/p03-pca-basic.py` — Apply PCA to reduce 4D data to 2D. Plot the result....
+1. `easy/p01-kmeans.py` — `cluster()` → K-Means on blobs
+2. `easy/p02-elbow-method.py` — `elbow()` → inertia vs K
+3. `easy/p03-pca-intro.py` — `pca_2d()` → iris 4D → 2D
 
 ### Medium
-4. `medium/p01-silhouette-score.py` — Use silhouette score to evaluate clustering quality....
-5. `medium/p02-dbscan-vs-kmeans.py` — Compare K-Means and DBSCAN on non-spherical data....
-6. `medium/p03-hierarchical.py` — Apply hierarchical clustering. Plot dendrogram....
+4. `medium/p01-silhouette.py` — `best_k()` → silhouette scoring
+5. `medium/p02-dbscan.py` — `compare_algorithms()` → KMeans vs DBSCAN
+6. `medium/p03-hierarchical.py` — `hierarchical()` → agglomerative
 
 ### Hard
-7. `hard/p01-customer-segmentation.py` — Build a customer segmentation pipeline with profiling....
-8. `hard/p02-anomaly-detection.py` — Detect anomalies using isolation forest or LOF....
-9. `hard/p03-topic-modeling.py` — Apply LDA to discover topics in text data....
+7. `hard/p01-customer-segmentation.py` — `segment()` → business clusters
+8. `hard/p02-anomaly-detection.py` — `detect_anomalies()` → IsolationForest
+9. `hard/p03-topic-modeling.py` — `topics()` → NMF on documents
 
 ### Project
-`project/` — Build a customer segmentation engine with cluster profiling and visualization.
+`project/` — Segment real customer data and profile each segment.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-kmeans-basic.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.
