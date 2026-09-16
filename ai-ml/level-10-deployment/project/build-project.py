@@ -1,23 +1,55 @@
 """
-LEVEL 10 DEPLOYMENT PROJECT — Model Deployment
-==================================================
+LEVEL 10 PROJECT — Production-Ready Iris API
+=============================================
 
-Build a complete ML API with FastAPI, Docker, and monitoring.
+Ship a complete model service — the full level-10 skillset in
+one FastAPI app.
 
-This is a design + implementation exercise. Apply everything
-you learned in this level to build a real system.
+BUILD `create_service()` that returns a FastAPI app with:
 
-INSTRUCTIONS:
-  1. Read the project description above
-  2. Plan your approach (write comments first)
-  3. Implement step by step
-  4. Test each component
-  5. Document your design decisions
+  GET  /health            → {"status": "ok", "model": "iris-rf", "version": "1.0"}
+  POST /predict           → {"prediction": int, "probability": float}
+                            body: {"features": [4 floats]}
+  POST /predict-batch     → {"predictions": [ints]}
+                            body: {"features": [[4 floats], ...]}
+  GET  /model-info        → {"type": "RandomForest", "n_features": 4,
+                             "classes": ["setosa","versicolor","virginica"],
+                             "test_accuracy": 0.9x}
 
-EXPECTED OUTPUT:
-  A working system that demonstrates the concepts from this level.
-  Write code, comments, and documentation.
+MODEL: RandomForestClassifier(42) on iris, save+load via joblib
+at startup (production pattern: load once, reuse).
+
+TEST IT (this should run end-to-end):
+  ```python
+  from fastapi.testclient import TestClient
+  app = create_service()
+  c = TestClient(app)
+  print(c.get('/health').json())
+  print(c.post('/predict', json={'features':[5.1,3.5,1.4,0.2]}).json())
+  ```
+
+EXPECTED:
+  ```
+  {'status': 'ok', 'model': 'iris-rf', 'version': '1.0'}
+  {'prediction': 0, 'probability': 0.9x}
+  ```
+
+BONUS: add request logging — print each /predict latency.
 """
 
 # === WRITE YOUR CODE BELOW ===
-# TODO: Build the project step by step.
+
+def create_service():
+    # TODO
+    pass
+
+
+if __name__ == "__main__":
+    from fastapi.testclient import TestClient
+    app = create_service()
+    c = TestClient(app)
+    print(c.get('/health').json())
+    print(c.post('/predict', json={'features': [5.1, 3.5, 1.4, 0.2]}).json())
+    print(c.post('/predict-batch',
+                 json={'features': [[5.1,3.5,1.4,0.2],[6.0,2.2,5.0,1.5]]}).json())
+    print(c.get('/model-info').json())

@@ -4,14 +4,20 @@ Progress Tracker — AI/ML Track
 Run this to see your progress through all levels.
 
 Usage:
-    python3 progress.py
+    python3 progress.py                    # show progress
+    python3 progress.py --verify 07        # check all level-07 problems,
+                                           # auto-mark # DONE on PASS
+    python3 progress.py --verify 07 easy/p01   # verify one problem
 
 It checks each level's easy/medium/hard problems for a "DONE" marker.
-Add "# DONE" to the first line of a problem file when you finish it.
+--verify runs the level's check.py and adds "# DONE" automatically
+when a problem passes.
 """
 
 import os
 import glob
+import subprocess
+import sys
 
 TRACK_DIR = os.path.dirname(os.path.abspath(__file__))
 LEVEL_DIR = os.path.join(TRACK_DIR, "ai-ml")
@@ -138,5 +144,67 @@ def show_progress():
     print("  " + "=" * 66)
 
 
+def find_problem_file(level_path, difficulty, num):
+    """Locate the learner's problem file for a check id."""
+    num_clean = num.lstrip("p")
+    d = os.path.join(level_path, difficulty)
+    exact = os.path.join(d, f"p{num_clean}-solve.py")
+    if os.path.exists(exact):
+        return exact
+    matches = [f for f in glob.glob(os.path.join(d, f"p{num_clean}-*.py"))
+               if "solutions" not in f]
+    return matches[0] if matches else None
+
+
+def mark_done(filepath):
+    """Add '# DONE' to the first line if not already present."""
+    with open(filepath) as f:
+        content = f.read()
+    if content.lstrip().startswith("# DONE") or "DONE" in content.split("\n")[0]:
+        return False
+    with open(filepath, "w") as f:
+        f.write("# DONE\n" + content)
+    return True
+
+
+def verify(level_arg, problem_arg=None):
+    """Run a level's check.py and auto-mark DONE on pass."""
+    levels = get_levels()
+    matches = [l for l in levels if f"level-{level_arg.zfill(2)}" in os.path.basename(l)]
+    if not matches:
+        print(f"No level matching '{level_arg}'")
+        return
+    level_path = matches[0]
+    check_py = os.path.join(level_path, "check.py")
+    if not os.path.exists(check_py):
+        print(f"No check.py in {os.path.basename(level_path)}")
+        return
+
+    if problem_arg:
+        targets = [problem_arg]
+    else:
+        targets = [f"{d}/p{n:02d}" for d in ["easy", "medium", "hard"]
+                   for n in range(1, 4)]
+
+    for target in targets:
+        difficulty, num = target.split("/")
+        filepath = find_problem_file(level_path, difficulty, num)
+        if not filepath:
+            print(f"  {target}: FILE NOT FOUND")
+            continue
+        r = subprocess.run([sys.executable, "check.py", target],
+                           cwd=level_path, capture_output=True, text=True)
+        out = r.stdout.strip()
+        first = out.split("\n")[0] if out else r.stderr.split("\n")[0]
+        if first.startswith("PASS"):
+            marked = mark_done(filepath)
+            print(f"  {target}: PASS" + (" (marked DONE)" if marked else " (already DONE)"))
+        else:
+            print(f"  {target}: {first}")
+
+
 if __name__ == "__main__":
-    show_progress()
+    if len(sys.argv) >= 3 and sys.argv[1] == "--verify":
+        verify(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)
+    else:
+        show_progress()

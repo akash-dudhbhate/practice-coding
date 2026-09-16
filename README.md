@@ -58,24 +58,48 @@ See the full roadmap: [ROADMAP.md](ROADMAP.md)
 | 1 | HTML / CSS / JavaScript | `html-css-javascript/` | 20 | Master UI/frontend fundamentals → advanced UI expertise |
 | 2 | React | `react/` | 20 | Master component-based UI architecture & state |
 | 3 | Python | `python/` | 20 | Master backend programming, logic, and scripting |
-| 4 | AI / ML | `ai-ml/` | 20 | Master AI/ML concepts, models, and applied ML |
+| 4 | AI / ML | `ai-ml/` | 14 levels | Master AI/ML: setup→math, classical ML, DL, LLMs, RAG, agents |
 | 5 | Quasar (Vue) | `quasar/` | 20 | Master cross-platform app development with Quasar + Vue 3 |
 
-## Progress Tracking
+## AI/ML Track — Level-Based (NEW structure)
 
-```bash
-python3 progress.py              # compact: only lessons with progress
-python3 progress.py --all        # show all 100 lessons
-python3 progress.py --projects   # show project status only
+The `ai-ml/` track is organized as **14 levels** (00-13), not lessons.
+Each level = one topic, one mini-project, 9 auto-checked problems.
+
+```
+ai-ml/
+├── level-00-setup-math/     # Python env, vectors, stats, gradients
+├── level-01-foundations/    # What is ML, features/labels, problem types
+├── level-02-python-ml/      # NumPy, Pandas, sklearn basics
+├── level-03-visualization/  # Matplotlib/Seaborn, EDA dashboards
+├── level-04-supervised/     # Regression, classification, trees, ensembles
+├── level-05-evaluation/     # Metrics, CV, ROC, grid search, model compare
+├── level-06-advanced-ml/    # Feature engineering, imbalance, PCA
+├── level-07-unsupervised/   # Clustering, DBSCAN, anomaly detection
+├── level-08-neural-networks/# Perceptron→PyTorch, backprop, MNIST
+├── level-09-deep-learning/  # CNNs, CIFAR-10, transfer learning, augmentation
+├── level-10-deployment/     # Flask/FastAPI, Docker, monitoring, A/B test
+├── level-11-llm-prompt/     # Prompt engineering, CoT, evaluation
+├── level-12-rag/            # Embeddings, retrieval, vector stores, hybrid
+├── level-13-agentic-ai/     # Agents, tools, ReAct, planning, memory
+└── requirements.txt         # pip install -r ai-ml/requirements.txt
 ```
 
-This scans every problem file, detects which ones are completed (no remaining `TODO` markers), and prints **green** horizontal bar charts showing completion percentage per subject, broken down by **easy / medium / hard**.
+**How to work a level:**
+```bash
+cd ai-ml/level-XX-topic/
+python3 check.py easy/p01       # check one problem
+python3 check.py all            # check all 9 in the level
+python3 progress.py             # from repo root: see overall progress
+python3 progress.py --verify 07 # auto-mark DONE for all passing
+```
 
-A file is considered **completed** when:
-- It contains no `TODO` markers (case-insensitive).
-- For Python files: no function body is just `pass` (the placeholder).
+**Cumulative capstone:** `CAPSTONE/` — the DataMind AI assistant.
+Each level adds a milestone to `datamind.py`. By level 13 you have
+a complete AI system you built yourself.
 
-A project is considered **completed** when its README no longer has placeholder text.
+**Other tracks** (html-css-javascript, react, python, quasar) still use
+the original lesson-XX structure with 20 lessons each.
 
 ## Commands you can use
 

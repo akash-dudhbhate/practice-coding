@@ -1,23 +1,49 @@
 """
-LEVEL 08 NEURAL NETWORKS PROJECT — Neural Networks & PyTorch
-==================================================
+LEVEL 08 PROJECT — Handwritten Digit Recognizer (built-in data)
+================================================================
 
-Build a MNIST digit recognizer with PyTorch from scratch.
+MNIST needs a download. sklearn's `load_digits()` is the same idea —
+1797 tiny 8×8 digit images, built-in, instant.
 
-This is a design + implementation exercise. Apply everything
-you learned in this level to build a real system.
+BUILD `train_digits()`:
+  1. load_digits() → X (1797×64), y (0-9)
+  2. Scale: X / 16.0 (pixels are 0-16)
+  3. Split 80/20, convert to torch tensors
+  4. nn.Sequential: Linear(64,64) → ReLU → Linear(64,10)
+     CrossEntropyLoss + Adam(lr=0.001), train 300 epochs (full batch)
+  5. Return (test_accuracy, model, X_test, y_test)
 
-INSTRUCTIONS:
-  1. Read the project description above
-  2. Plan your approach (write comments first)
-  3. Implement step by step
-  4. Test each component
-  5. Document your design decisions
+ALSO write `show_mistakes(model, X_test, y_test, n=5)`:
+  prints the n test samples the model got wrong
+  (predicted vs true label) — looking at errors is how
+  real practitioners debug.
 
 EXPECTED OUTPUT:
-  A working system that demonstrates the concepts from this level.
-  Write code, comments, and documentation.
+  ```
+  Test accuracy: ~0.97
+  Mistakes:
+    predicted 8, was 9
+    predicted 5, was 6
+    ...
+  ```
+
+WHY IT MATTERS: this is the SAME architecture as MNIST — just
+smaller images (8×8=64 inputs instead of 28×28=784).
 """
 
 # === WRITE YOUR CODE BELOW ===
-# TODO: Build the project step by step.
+
+def train_digits():
+    # TODO
+    pass
+
+
+def show_mistakes(model, X_test, y_test, n=5):
+    # TODO
+    pass
+
+
+if __name__ == "__main__":
+    acc, model, X_te, y_te = train_digits()
+    print(f"Test accuracy: {acc:.4f}")
+    show_mistakes(model, X_te, y_te)

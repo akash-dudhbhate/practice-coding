@@ -244,64 +244,59 @@ Follow subjects in parallel or sequentially. If sequential:
 
 ---
 
-# 4. AI / ML (20 Lessons + 6 Projects)
+# 4. AI / ML (14 Levels + 14 Projects + Capstone)
 
-## Phase 1: ML Foundations (Lessons 1–5)
+**NEW: Level-based structure.** Each `level-XX-*` has 9 auto-checked
+problems (3 easy + 3 medium + 3 hard), a mini-project in `project/`,
+and a `check.py`. The capstone `CAPSTONE/` grows one milestone per
+level into a complete AI system ("DataMind").
 
-| # | Lesson | Key Concepts |
-|---|--------|-------------|
-| 1 | What is ML? | supervised/unsupervised, regression/classification, features/labels |
-| 2 | Data Preprocessing | cleaning, missing values, encoding, scaling, normalization |
-| 3 | NumPy Fundamentals | arrays, shapes, indexing, broadcasting, vectorized ops |
-| 4 | Pandas for ML | DataFrame, filtering, groupby, merge, feature extraction |
-| 5 | Data Visualization | matplotlib, seaborn, histograms, scatter, correlation, EDA |
+## Phase 1: Foundations (Levels 00–03)
 
-**Mini Project 13:** Data Cleaning Pipeline ($50–150)
-> Take a messy CSV, clean it, handle missing values, encode categoricals, export clean dataset.
+| # | Level | Key Concepts |
+|---|-------|-------------|
+| 00 | Setup & Math | env check, dot product, normalize, distance, gradient intuition |
+| 01 | ML Foundations | supervised/unsupervised, features/labels, train/test, bias-variance |
+| 02 | Python for ML | NumPy arrays, Pandas DataFrames, sklearn pipelines, data leakage |
+| 03 | Visualization | matplotlib, seaborn, histograms, scatter, correlation, dashboards |
 
-## Phase 2: Supervised Learning (Lessons 6–10)
+## Phase 2: Supervised Learning (Levels 04–05)
 
-| # | Lesson | Key Concepts |
-|---|--------|-------------|
-| 6 | Linear Regression | equation, fit, predict, R², MSE, residuals, assumptions |
-| 7 | Logistic Regression | sigmoid, binary classification, probabilities, thresholds |
-| 8 | Decision Trees & Random Forests | splits, entropy, Gini, ensemble, feature importance |
-| 9 | Model Evaluation Deep Dive | accuracy, precision, recall, F1, ROC-AUC, confusion matrix |
-| 10 | Cross-Validation & Tuning | k-fold, GridSearchCV, RandomizedSearchCV, overfitting prevention |
+| # | Level | Key Concepts |
+|---|-------|-------------|
+| 04 | Supervised ML | linear/logistic regression, decision trees, RF, SVM, KNN, gradient descent |
+| 05 | Model Evaluation | metrics, confusion matrix, k-fold CV, ROC-AUC, grid search, nested CV |
 
-**Mini Project 14:** House Price Predictor ($100–200)
-> Train a regression model on housing data, evaluate, and predict prices.
+## Phase 3: Advanced ML (Levels 06–07)
 
-**Medium Project 7:** Spam Classifier ($200–500)
-> Build a spam detection model with text features, evaluate with precision/recall, deploy as API.
+| # | Level | Key Concepts |
+|---|-------|-------------|
+| 06 | Advanced ML | polynomial features, encoding, scaling, imbalance, class_weight, custom transformers |
+| 07 | Unsupervised | K-Means, elbow, silhouette, DBSCAN, hierarchical, PCA, segmentation, anomalies |
 
-## Phase 3: Advanced ML (Lessons 11–15)
+## Phase 4: Deep Learning (Levels 08–09)
 
-| # | Lesson | Key Concepts |
-|---|--------|-------------|
-| 11 | Feature Engineering | polynomial features, interactions, binning, target encoding |
-| 12 | Handling Imbalanced Data | SMOTE, class weights, undersampling, stratified sampling |
-| 13 | SVM & KNN | margins, kernels, distance metrics, K selection, scaling importance |
-| 14 | Gradient Boosting (XGBoost) | boosting concept, XGBoost, LightGBM, hyperparameters |
-| 15 | Unsupervised Learning | K-Means, DBSCAN, PCA, silhouette score, dimensionality reduction |
+| # | Level | Key Concepts |
+|---|-------|-------------|
+| 08 | Neural Networks | perceptron, activations, XOR, PyTorch, backprop, MNIST |
+| 09 | Deep Learning | convolution, pooling, CNNs, CIFAR-10, BatchNorm, dropout, transfer learning |
 
-**Mini Project 15:** Customer Segmentation ($100–200)
+## Phase 5: Production AI (Levels 10–13)
 
-## Phase 4: Deep Learning & Deployment (Lessons 16–20)
+| # | Level | Key Concepts |
+|---|-------|-------------|
+| 10 | Deployment | joblib, Flask/FastAPI, Docker, monitoring, versioning, A/B testing |
+| 11 | LLM & Prompting | prompt styles, few-shot, CoT, temperature, personas, JSON output, evaluation |
+| 12 | RAG | TF-IDF embeddings, retrieval, chunking, vector store, rerank, hybrid search |
+| 13 | Agentic AI | tool registry, ReAct loop, tool calling, planning, memory, multi-agent, autonomy |
 
-| # | Lesson | Key Concepts |
-|---|--------|-------------|
-| 16 | Neural Networks Basics | perceptron, layers, activation, backprop, loss functions |
-| 17 | PyTorch Fundamentals | tensors, autograd, nn.Module, training loop, DataLoader |
-| 18 | CNNs for Image Classification | conv, pooling, filters, transfer learning, data augmentation |
-| 19 | Model Deployment | Flask/FastAPI model serving, Docker, model serialization |
-| 20 | LLMs & Prompt Engineering | transformers, tokenization, fine-tuning, prompt patterns, RAG |
+## Verification
 
-**Medium Project 8:** Image Classifier API ($300–500)
-> Train a CNN, serve via FastAPI, Docker container, test endpoints.
-
-**Capstone Project 4:** End-to-End ML Pipeline ($1000–2000)
-> Data collection → preprocessing → training → evaluation → deployment → monitoring. Full production system.
+```bash
+cd ai-ml/level-XX-topic/
+python3 check.py all            # check all 9 problems in the level
+python3 verify_solutions.py     # from repo root: verify all reference solutions
+```
 
 ---
 
