@@ -13,6 +13,7 @@ Every level assumes only the levels before it. No jumping, no
 | After level | You can build... | You still can't... |
 |-------------|------------------|---------------------|
 | 00A | Explain what AI/ML/model/weights/RAG/agent mean — zero knowledge assumed | Any code |
+| 00B | Derive gradient descent by hand — weights, bias, loss, learning rate | Anything multi-input or nonlinear |
 | 00–03 | Data cleaning scripts, EDA reports, visual dashboards | Train models |
 | 04–05 | Real classifiers/regressors with honest evaluation | Anything non-tabular |
 | 06–07 | Feature pipelines, fraud detection, customer segmentation | Neural nets |

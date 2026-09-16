@@ -1,0 +1,9 @@
+# LESSON 20 HARD P01 — Full CI/CD Pipeline
+# PROBLEM: Write a multi-job pipeline: lint job → test job with coverage
+# artifact → build job as a matrix over two build modes (spa + pwa)
+# uploading each dist as an artifact → security job (audit + optional
+# scanner) → staging deploy on branch push → production deploy on
+# release → a final notify job that pings Slack when any stage fails.
+# Use env for the Node version, secrets for all tokens, npm caching.
+# CHECK: python3 check.py hard/p01
+# TODO: write the workflow below
