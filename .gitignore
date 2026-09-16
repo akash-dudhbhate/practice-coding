@@ -36,3 +36,8 @@ Thumbs.db
 # Misc
 *.pem
 *.key
+
+# ML artifacts (datasets auto-download, models regenerate on run)
+ai-ml/**/data/
+ai-ml/**/*.pkl
+*.pkl
