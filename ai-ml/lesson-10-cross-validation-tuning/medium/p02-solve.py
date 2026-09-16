@@ -1,12 +1,19 @@
 """
-PROBLEM: Cross-Validation & Tuning — Medium P02
-===============================================
+LESSON — Cross Validation Tuning
+MEDIUM P02 — Use `RandomizedSearchCV` with 20 iterations on the same parameter space (expanded with more values). Compare the best score and time taken with grid search.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use `RandomizedSearchCV` with 20 iterations on the same parameter space (expanded with more values). Compare the best score and time taken with grid search
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

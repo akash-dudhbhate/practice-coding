@@ -1,12 +1,19 @@
 """
-PROBLEM: Data Visualization — Hard P03
-======================================
+LESSON — Data Visualization
+HARD P03 — Missing data visualization
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a DataFrame with intentionally missing values (some columns have more missing than others). Create two visualizations: (a) a heatmap of missing values (white=missing, using `sns.heatmap(df.isnull())`), and (b) a bar chart showing the count of missing values per column. Save both figures. Write a summary of which columns have the most missing data
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

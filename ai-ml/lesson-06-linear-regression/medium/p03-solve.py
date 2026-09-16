@@ -1,12 +1,19 @@
 """
-PROBLEM: Linear Regression — Medium P03
-=======================================
+LESSON — Linear Regression
+MEDIUM P03 — Compare simple vs multiple regression: same dataset, first use one feature, then three. Compare R² and MSE. Document which is better and why.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Compare simple vs multiple regression: same dataset, first use one feature, then three. Compare R² and MSE. Document which is better and why
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

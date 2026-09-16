@@ -1,19 +1,32 @@
 """
-PROBLEM: Identify Features and Labels (Easy)
-=============================================
+LESSON 01 — What is ML?
+EASY P02 — Identify Features and Labels
+========================================
 
-CONCEPT: Distinguishing features (X) from the label/target (y).
+CONCEPT:
+  Features (X) = the INPUTS — clues the model uses to predict.
+  Label (y)   = the OUTPUT — what you're trying to predict.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  For each scenario, identify the features (X) and label (y).
+  Write a function that returns a dictionary with "features" and "label".
 
-would be. Write your answers as strings (replace TODO).
+  Scenarios:
+    A) Predicting whether a student will pass an exam.
+    B) Predicting the total sales of a store next month.
 
-SCENARIOS
----------
-A) Predicting whether a student will pass an exam.
-B) Predicting the total sales of a store next month.
+EXAMPLE:
+  Input:  identify("A")
+  Output: {"features": ["study_hours", "attendance", "past_scores"], "label": "pass_fail"}
 
+  Input:  identify("B")
+  Output: {"features": ["month", "last_month_sales", "season"], "label": "total_sales"}
+
+EXPECTED OUTPUT:
+  When you run this file, it should print:
+    A: features=["study_hours", "attendance", "past_scores"] | label="pass_fail"
+    B: features=["month", "last_month_sales", "season"] | label="total_sales"
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

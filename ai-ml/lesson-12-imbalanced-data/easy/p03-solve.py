@@ -1,12 +1,19 @@
 """
-PROBLEM: Handling Imbalanced Data — Easy P03
-============================================
+LESSON — Imbalanced Data
+EASY P03 — Use `stratify=y` in `train_test_split` on the imbalanced dataset. Verify both train and test have the same class ratio. Print class counts for each.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use `stratify=y` in `train_test_split` on the imbalanced dataset. Verify both train and test have the same class ratio. Print class counts for each
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

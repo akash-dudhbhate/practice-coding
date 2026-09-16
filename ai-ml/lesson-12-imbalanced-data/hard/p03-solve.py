@@ -1,12 +1,19 @@
 """
-PROBLEM: Handling Imbalanced Data — Hard P03
-============================================
+LESSON — Imbalanced Data
+HARD P03 — Build a comparison of evaluation metrics: train a model on imbalanced data. Calculate accuracy, F1, ROC-AUC, PR-AUC. Show that accuracy and ROC-AUC look good but F1 and PR-AUC reveal the truth. Plot both ROC and PR curves. Explain which is more honest.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a comparison of evaluation metrics: train a model on imbalanced data. Calculate accuracy, F1, ROC-AUC, PR-AUC. Show that accuracy and ROC-AUC look good but F1 and PR-AUC reveal the truth. Plot both ROC and PR curves. Explain which is more honest
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

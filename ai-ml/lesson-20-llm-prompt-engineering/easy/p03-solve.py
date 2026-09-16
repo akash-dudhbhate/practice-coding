@@ -1,12 +1,19 @@
 """
-PROBLEM: LLMs & Prompt Engineering — Easy P03
-=============================================
+LESSON — Llm Prompt Engineering
+EASY P03 — Write a chain-of-thought prompt for a math problem. Show the step-by-step reasoning. Compare with a direct prompt (no reasoning). Document which gives the correct answer more reliably.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a chain-of-thought prompt for a math problem. Show the step-by-step reasoning. Compare with a direct prompt (no reasoning). Document which gives the correct answer more reliably
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

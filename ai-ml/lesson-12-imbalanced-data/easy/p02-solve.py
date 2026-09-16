@@ -1,12 +1,19 @@
 """
-PROBLEM: Handling Imbalanced Data — Easy P02
-============================================
+LESSON — Imbalanced Data
+EASY P02 — Use `class_weight='balanced'` on the same dataset. Compare recall for class 1 with and without class weights. Print both classification reports.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use `class_weight='balanced'` on the same dataset. Compare recall for class 1 with and without class weights. Print both classification reports
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

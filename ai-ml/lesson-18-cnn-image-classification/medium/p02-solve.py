@@ -1,12 +1,19 @@
 """
-PROBLEM: CNNs for Image Classification — Medium P02
-===================================================
+LESSON — Cnn Image Classification
+MEDIUM P02 — Add data augmentation (RandomRotation, RandomAffine) to the MNIST training data. Train the same CNN. Compare test accuracy with and without augmentation.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Add data augmentation (RandomRotation, RandomAffine) to the MNIST training data. Train the same CNN. Compare test accuracy with and without augmentation
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

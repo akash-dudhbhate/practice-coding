@@ -1,12 +1,19 @@
 """
-PROBLEM: Feature Engineering — Hard P02
-=======================================
+LESSON — Feature Engineering
+HARD P02 — Build a feature engineering comparison: take a dataset, train a model with (a) raw features, (b) scaled features, (c) scaled + encoded, (d) scaled + encoded + interactions. Compare accuracy for each stage. Show the improvement at each step.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a feature engineering comparison: take a dataset, train a model with (a) raw features, (b) scaled features, (c) scaled + encoded, (d) scaled + encoded + interactions. Compare accuracy for each stage. Show the improvement at each step
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

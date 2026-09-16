@@ -1,12 +1,19 @@
 """
-PROBLEM: Logistic Regression — Hard P02
-=======================================
+LESSON — Logistic Regression
+HARD P02 — Implement logistic regression from scratch using gradient descent. Implement sigmoid, cost (log-loss), and gradient. Train on synthetic data. Plot the loss curve and decision boundary.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Implement logistic regression from scratch using gradient descent. Implement sigmoid, cost (log-loss), and gradient. Train on synthetic data. Plot the loss curve and decision boundary
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

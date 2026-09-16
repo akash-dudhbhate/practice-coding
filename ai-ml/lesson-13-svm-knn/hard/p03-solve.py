@@ -1,12 +1,19 @@
 """
-PROBLEM: SVM & KNN — Hard P03
-=============================
+LESSON — Svm Knn
+HARD P03 — Build an SVM from scratch using gradient descent (linear SVM with hinge loss). Implement the loss function and gradient. Train on a 2D dataset. Plot the decision boundary and margin. Compare with sklearn's SVC.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build an SVM from scratch using gradient descent (linear SVM with hinge loss). Implement the loss function and gradient. Train on a 2D dataset. Plot the decision boundary and margin. Compare with sklearn's SVC
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

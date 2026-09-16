@@ -1,12 +1,19 @@
 """
-PROBLEM: CNNs for Image Classification — Easy P02
-=================================================
+LESSON — Cnn Image Classification
+EASY P02 — Create a single `Conv2d` layer (1→16 channels, 3x3 kernel). Pass a 28x28 MNIST image through it. Print input and output shapes. Visualize a few output feature maps.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a single `Conv2d` layer (1→16 channels, 3x3 kernel). Pass a 28x28 MNIST image through it. Print input and output shapes. Visualize a few output feature maps
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

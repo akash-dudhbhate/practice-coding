@@ -1,12 +1,19 @@
 """
-PROBLEM: Neural Networks Basics — Hard P01
-==========================================
+LESSON — Neural Networks
+HARD P01 — Implement a complete neural network from scratch: forward prop, backprop, gradient descent. Train on a 2D classification dataset (make_moons). Plot the decision boundary and loss curve. Use ReLU + sigmoid.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Implement a complete neural network from scratch: forward prop, backprop, gradient descent. Train on a 2D classification dataset (make_moons). Plot the decision boundary and loss curve. Use ReLU + sigmoid
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

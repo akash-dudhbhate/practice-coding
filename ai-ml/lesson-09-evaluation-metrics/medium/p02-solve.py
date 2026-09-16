@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Evaluation Deep Dive — Medium P02
-================================================
+LESSON — Evaluation Metrics
+MEDIUM P02 — Plot the ROC curve for a logistic regression model. Calculate AUC. Add a random baseline line (diagonal). Interpret: AUC=0.9 means what?
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Plot the ROC curve for a logistic regression model. Calculate AUC. Add a random baseline line (diagonal). Interpret: AUC=0.9 means what?
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

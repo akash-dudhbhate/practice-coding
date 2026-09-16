@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Deployment — Hard P01
-====================================
+LESSON — Model Deployment
+HARD P01 — Build a complete deployment package: train a model, save it, create a FastAPI app with `/predict` and `/health` endpoints, write a Dockerfile, write tests, and create a `README.md` with usage instructions. Include a `client.py` script that sends a test request.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a complete deployment package: train a model, save it, create a FastAPI app with `/predict` and `/health` endpoints, write a Dockerfile, write tests, and create a `README.md` with usage instructions. Include a `client.py` script that sends a test request
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

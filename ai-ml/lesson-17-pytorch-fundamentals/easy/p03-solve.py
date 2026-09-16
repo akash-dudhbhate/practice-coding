@@ -1,12 +1,19 @@
 """
-PROBLEM: PyTorch Fundamentals — Easy P03
-========================================
+LESSON — Pytorch Fundamentals
+EASY P03 — Build a single-layer `nn.Module` (Linear with 5 inputs, 1 output). Create random input, pass it through the model, print the output. No training yet.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a single-layer `nn.Module` (Linear with 5 inputs, 1 output). Create random input, pass it through the model, print the output. No training yet
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

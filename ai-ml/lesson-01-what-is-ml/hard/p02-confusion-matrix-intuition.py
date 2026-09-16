@@ -1,22 +1,38 @@
 """
-PROBLEM: Confusion Matrix Intuition (Hard)
-===========================================
+LESSON 01 — What is ML?
+HARD P02 — Confusion Matrix Intuition
+=======================================
 
-CONCEPT: Understanding true/false positives/negatives and why they matter.
+CONCEPT:
+  When a model makes predictions, there are 4 outcomes:
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+                Predicted YES    Predicted NO
+    Actual YES   TP (correct)     FN (missed)
+    Actual NO    FP (false alarm)  TN (correct)
 
-Answer these questions (replace TODO with numbers or explanations):
+  TP and TN = correct. FP and FN = errors.
+  Accuracy = (TP + TN) / total — but accuracy alone is misleading.
 
-1. What are True Positives (TP)? How many here?
-2. What are False Positives (FP)? How many here?
-3. What are True Negatives (TN)? How many here?
-4. What are False Negatives (FN)? How many here?
-5. What is the accuracy? (formula: (TP+TN) / total)
-6. In a medical test for a serious disease, which is worse:
-   a false positive or a false negative? Why?
+PROBLEM:
+  A medical test was run on 1000 patients:
+    - 80 patients have the disease, 70 were correctly detected (TP)
+    - 10 patients with disease were missed (FN)
+    - 920 patients don't have the disease
+    - 890 were correctly cleared (TN), 30 got false alarms (FP)
 
+  Write a function `analyze()` that returns a dictionary with:
+    TP, FP, TN, FN, accuracy, and worse_error
+
+EXAMPLE OUTPUT:
+  {
+    "TP": 70,
+    "FP": 30,
+    "TN": 890,
+    "FN": 10,
+    "accuracy": 0.96,
+    "worse_error": "false-negative"  # missing a disease is worse than a false alarm
+  }
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

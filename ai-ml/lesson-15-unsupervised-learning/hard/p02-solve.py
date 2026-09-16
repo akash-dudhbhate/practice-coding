@@ -1,12 +1,19 @@
 """
-PROBLEM: Unsupervised Learning — Hard P02
-=========================================
+LESSON — Unsupervised Learning
+HARD P02 — Build an anomaly detection pipeline: create a dataset with 5% anomalies, compare Isolation Forest, DBSCAN, and Local Outlier Factor. For each: detect anomalies, calculate detection rate (if ground truth known), and visualize. Create a comparison table.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build an anomaly detection pipeline: create a dataset with 5% anomalies, compare Isolation Forest, DBSCAN, and Local Outlier Factor. For each: detect anomalies, calculate detection rate (if ground truth known), and visualize. Create a comparison table
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

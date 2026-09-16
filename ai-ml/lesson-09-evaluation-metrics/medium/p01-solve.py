@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Evaluation Deep Dive — Medium P01
-================================================
+LESSON — Evaluation Metrics
+MEDIUM P01 — Create an imbalanced dataset (95% class 0, 5% class 1). Train a model. Show that accuracy is high (95%) but recall for class 1 is low. Print the classification report.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create an imbalanced dataset (95% class 0, 5% class 1). Train a model. Show that accuracy is high (95%) but recall for class 1 is low. Print the classification report
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

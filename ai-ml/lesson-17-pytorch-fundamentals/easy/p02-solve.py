@@ -1,12 +1,19 @@
 """
-PROBLEM: PyTorch Fundamentals — Easy P02
-========================================
+LESSON — Pytorch Fundamentals
+EASY P02 — Use autograd: create a tensor with `requires_grad=True`, compute y = x³ + 2x² + 1, call `backward()`, print the gradient (dy/dx = 3x² + 4x). Verify manually.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use autograd: create a tensor with `requires_grad=True`, compute y = x³ + 2x² + 1, call `backward()`, print the gradient (dy/dx = 3x² + 4x). Verify manually
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

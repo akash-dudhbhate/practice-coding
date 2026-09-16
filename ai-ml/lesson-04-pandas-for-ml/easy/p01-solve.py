@@ -1,12 +1,19 @@
 """
-PROBLEM: Pandas for ML — Easy P01
-=================================
+LESSON — Pandas For Ml
+EASY P01 — Load and inspect a DataFrame
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a DataFrame from a dictionary with 5 rows and columns: name, age, salary, department. Print shape, column names, dtypes, and summary statistics. Return the DataFrame
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

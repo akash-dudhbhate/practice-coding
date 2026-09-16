@@ -1,12 +1,19 @@
 """
-PROBLEM: Data Preprocessing — Hard P02
-======================================
+LESSON — Data Preprocessing
+HARD P02 — ColumnTransformer for mixed data types
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use `sklearn.compose.ColumnTransformer` to apply different preprocessing to numeric columns (impute + scale) vs categorical columns (impute + one-hot) in a single transformer. Chain it with a RandomForestClassifier in a Pipeline. Fit, predict, and return the accuracy
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Deployment — Easy P02
-====================================
+LESSON — Model Deployment
+EASY P02 — Create a Flask app with one `/predict` endpoint. Load a saved model. Accept JSON input `{"features": [...]}`, return `{"prediction": ...}`. Test with a sample request (use `requests` or curl).
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a Flask app with one `/predict` endpoint. Load a saved model. Accept JSON input `{"features": [...]}`, return `{"prediction": ...}`. Test with a sample request (use `requests` or curl)
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

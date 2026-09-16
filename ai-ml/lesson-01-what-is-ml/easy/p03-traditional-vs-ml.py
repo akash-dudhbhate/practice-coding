@@ -1,10 +1,42 @@
 """
-PROBLEM: Traditional vs ML Match (Easy)
-========================================
+LESSON 01 — What is ML?
+EASY P03 — Traditional vs ML
+============================
 
-CONCEPT: Recognizing when to use traditional programming vs ML.
+CONCEPT:
+  Traditional = you write the RULES yourself.
+  ML          = you give examples, the model learns the rules.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+  Rule of thumb: simple fixed rules → traditional.
+                 Complex or changing patterns → ML.
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+PROBLEM:
+  For each scenario, decide whether to use traditional programming or ML.
+  Write a function that takes a scenario letter and returns "traditional" or "ml".
+
+  Scenarios:
+    A) Calculate the total of a shopping cart.
+    B) Detect spam in emails.
+    C) Sort a list of names alphabetically.
+    D) Recognize faces in photos.
+
+EXAMPLE:
+  Input:  choose("A")
+  Output: "traditional"
+
+  Input:  choose("B")
+  Output: "ml"
+
+  Input:  choose("D")
+  Output: "ml"
+
+EXPECTED OUTPUT:
+  When you run this file, it should print:
+    A: traditional
+    B: ml
+    C: traditional
+    D: ml
+"""
+
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

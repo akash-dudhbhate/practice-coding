@@ -1,12 +1,19 @@
 """
-PROBLEM: NumPy Fundamentals — Hard P01
-======================================
+LESSON — Numpy Fundamentals
+HARD P01 — Linear regression with NumPy
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Implement linear regression from scratch using the normal equation: `w = (X^T X)^{-1} X^T y`. Add a bias column (column of 1s) to X. Fit on synthetic data, predict, and compute MSE. Return the weights, predictions, and MSE
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

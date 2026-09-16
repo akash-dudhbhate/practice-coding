@@ -1,12 +1,19 @@
 """
-PROBLEM: Neural Networks Basics — Medium P01
-============================================
+LESSON — Neural Networks
+MEDIUM P01 — Implement forward propagation for a 2-layer network from scratch: input (3) → hidden (4, ReLU) → output (1, sigmoid). Use random weights. Print the output for a batch of inputs.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Implement forward propagation for a 2-layer network from scratch: input (3) → hidden (4, ReLU) → output (1, sigmoid). Use random weights. Print the output for a batch of inputs
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

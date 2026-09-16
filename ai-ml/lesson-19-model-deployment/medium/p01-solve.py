@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Deployment — Medium P01
-======================================
+LESSON — Model Deployment
+MEDIUM P01 — Build a complete model serving pipeline: train a model on a real dataset, save the model AND the scaler (use a sklearn Pipeline), create a FastAPI app that accepts raw input, scales it, and predicts. Test with 3 sample inputs.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a complete model serving pipeline: train a model on a real dataset, save the model AND the scaler (use a sklearn Pipeline), create a FastAPI app that accepts raw input, scales it, and predicts. Test with 3 sample inputs
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

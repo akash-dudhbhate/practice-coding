@@ -1,12 +1,19 @@
 """
-PROBLEM: Data Visualization — Medium P02
-========================================
+LESSON — Data Visualization
+MEDIUM P02 — Box plots by category
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a DataFrame with a numeric column and a categorical column (3+ categories). Plot a box plot of the numeric values grouped by category using seaborn. Add a title and labels. Save the figure
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

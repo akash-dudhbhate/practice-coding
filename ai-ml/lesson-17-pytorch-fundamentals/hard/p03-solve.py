@@ -1,12 +1,19 @@
 """
-PROBLEM: PyTorch Fundamentals — Hard P03
-========================================
+LESSON — Pytorch Fundamentals
+HARD P03 — Build a regression pipeline: create a non-linear regression dataset, build a PyTorch MLP, train with MSE loss and Adam optimizer, plot predictions vs actual, and track train/val loss. Add dropout and show it reduces overfitting.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a regression pipeline: create a non-linear regression dataset, build a PyTorch MLP, train with MSE loss and Adam optimizer, plot predictions vs actual, and track train/val loss. Add dropout and show it reduces overfitting
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

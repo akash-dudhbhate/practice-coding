@@ -1,12 +1,19 @@
 """
-PROBLEM: Handling Imbalanced Data — Medium P03
-==============================================
+LESSON — Imbalanced Data
+MEDIUM P03 — Adjust the decision threshold: train a model, get probabilities, try thresholds 0.3, 0.5, 0.7. For each, print precision, recall, F1. Find the threshold that maximizes F1.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Adjust the decision threshold: train a model, get probabilities, try thresholds 0.3, 0.5, 0.7. For each, print precision, recall, F1. Find the threshold that maximizes F1
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

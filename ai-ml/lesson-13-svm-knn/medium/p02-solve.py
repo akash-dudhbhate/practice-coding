@@ -1,12 +1,19 @@
 """
-PROBLEM: SVM & KNN — Medium P02
-===============================
+LESSON — Svm Knn
+MEDIUM P02 — Compare SVM kernels (linear, RBF, poly) on a non-linear dataset (`make_circles` or `make_moons`). Print accuracy for each. Plot decision boundaries for all three.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Compare SVM kernels (linear, RBF, poly) on a non-linear dataset (`make_circles` or `make_moons`). Print accuracy for each. Plot decision boundaries for all three
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Cross-Validation & Tuning — Easy P01
-=============================================
+LESSON — Cross Validation Tuning
+EASY P01 — Run 5-fold cross-validation on a random forest with the Iris dataset. Print mean and std of accuracy. Compare with a single train/test split.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Run 5-fold cross-validation on a random forest with the Iris dataset. Print mean and std of accuracy. Compare with a single train/test split
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

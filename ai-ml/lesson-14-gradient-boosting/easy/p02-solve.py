@@ -1,12 +1,19 @@
 """
-PROBLEM: Gradient Boosting (XGBoost) — Easy P02
-===============================================
+LESSON — Gradient Boosting
+EASY P02 — Train XGBoost on the same dataset. Print accuracy. Compare with sklearn's gradient boosting (should be similar or better).
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Train XGBoost on the same dataset. Print accuracy. Compare with sklearn's gradient boosting (should be similar or better)
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

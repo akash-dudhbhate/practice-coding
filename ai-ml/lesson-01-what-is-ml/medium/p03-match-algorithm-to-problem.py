@@ -1,24 +1,42 @@
 """
-PROBLEM: Match Algorithm to Problem (Medium)
-=============================================
+LESSON 01 — What is ML?
+MEDIUM P03 — Match Algorithm to Problem
+========================================
 
-CONCEPT: Knowing which type of algorithm fits which type of problem.
+CONCEPT:
+  Linear Regression   → predicts a NUMBER
+  Logistic Regression → predicts a CATEGORY
+  K-Means Clustering  → finds GROUPS in unlabeled data
+  Decision Tree       → both, interpretable
+  Neural Network      → complex patterns (images, text, audio)
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Match each scenario to the best algorithm. Write a function `match(scenario)`
+  that returns one of:
+    "linear-regression", "logistic-regression", "kmeans-clustering",
+    "decision-tree", "neural-network"
 
-Write your answer as a string (replace TODO). Choose from:
-  "linear-regression", "logistic-regression", "kmeans-clustering",
-  "decision-tree", "neural-network"
+  Scenarios:
+    A) Predicting tomorrow's temperature (a number)
+    B) Grouping customers into 5 segments (no labels)
+    C) Classifying emails as spam or not spam (binary, labeled)
+    D) Predicting house prices from 50 features (continuous, labeled)
+    E) Recognizing objects in photos (complex patterns, labeled images)
 
-SCENARIOS
----------
-A) Predicting the temperature tomorrow (a continuous number).
-B) Grouping customers into 5 segments (no labels given).
-C) Classifying emails as spam or not spam (binary, labeled).
-D) Predicting house prices from 50 features (continuous, labeled).
-E) Recognizing objects in photos (complex patterns, labeled images).
+EXAMPLE:
+  Input:  match("A")
+  Output: "linear-regression"
 
+  Input:  match("B")
+  Output: "kmeans-clustering"
+
+EXPECTED OUTPUT:
+  A: linear-regression
+  B: kmeans-clustering
+  C: logistic-regression
+  D: linear-regression
+  E: neural-network
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

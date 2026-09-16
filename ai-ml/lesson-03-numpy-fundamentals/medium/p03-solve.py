@@ -1,12 +1,19 @@
 """
-PROBLEM: NumPy Fundamentals — Medium P03
-========================================
+LESSON — Numpy Fundamentals
+MEDIUM P03 — Boolean masking and conditional replacement
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Given a 2D array, replace all negative values with 0, replace all values above 100 with 100 (clipping), and count how many values were changed in each operation. Return the clipped array and both counts
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Evaluation Deep Dive — Medium P03
-================================================
+LESSON — Evaluation Metrics
+MEDIUM P03 — Plot the precision-recall curve for the same model. Calculate average precision. Compare with the ROC curve — which is more informative for imbalanced data?
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Plot the precision-recall curve for the same model. Calculate average precision. Compare with the ROC curve — which is more informative for imbalanced data?
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Data Preprocessing — Easy P03
-======================================
+LESSON — Data Preprocessing
+EASY P03 — Standardize features
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Given a 2D NumPy array of features, fit a `StandardScaler` and return the scaled array. Verify the mean is ~0 and std is ~1 for each column
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

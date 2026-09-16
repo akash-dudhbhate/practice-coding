@@ -1,12 +1,19 @@
 """
-PROBLEM: Logistic Regression — Easy P02
-=======================================
+LESSON — Logistic Regression
+EASY P02 — Use sklearn to train logistic regression on `make_classification` (binary). Print accuracy, precision, recall, and F1-score.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use sklearn to train logistic regression on `make_classification` (binary). Print accuracy, precision, recall, and F1-score
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Linear Regression — Hard P02
-=====================================
+LESSON — Linear Regression
+HARD P02 — Implement polynomial regression: use `PolynomialFeatures` to add x², x³ terms. Compare linear vs polynomial fit on non-linear data. Plot both fits. Identify when polynomial overfits.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Implement polynomial regression: use `PolynomialFeatures` to add x², x³ terms. Compare linear vs polynomial fit on non-linear data. Plot both fits. Identify when polynomial overfits
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Handling Imbalanced Data — Medium P02
-==============================================
+LESSON — Imbalanced Data
+MEDIUM P02 — Apply SMOTE to the imbalanced dataset. Train a model. Compare F1 with random oversampling. Use `imblearn.pipeline.Pipeline` to ensure SMOTE is applied inside CV (no leakage).
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Apply SMOTE to the imbalanced dataset. Train a model. Compare F1 with random oversampling. Use `imblearn.pipeline.Pipeline` to ensure SMOTE is applied inside CV (no leakage)
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

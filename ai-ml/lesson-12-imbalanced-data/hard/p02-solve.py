@@ -1,12 +1,19 @@
 """
-PROBLEM: Handling Imbalanced Data — Hard P02
-============================================
+LESSON — Imbalanced Data
+HARD P02 — Build a fraud detection simulation: create synthetic transaction data (amount, merchant, time, is_fraud). Handle imbalance with SMOTE. Train a model. Plot the precision-recall curve. Find the threshold that gives 80% recall. Report the precision at that threshold.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a fraud detection simulation: create synthetic transaction data (amount, merchant, time, is_fraud). Handle imbalance with SMOTE. Train a model. Plot the precision-recall curve. Find the threshold that gives 80% recall. Report the precision at that threshold
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

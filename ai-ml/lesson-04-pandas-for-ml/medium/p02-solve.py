@@ -1,12 +1,19 @@
 """
-PROBLEM: Pandas for ML — Medium P02
-===================================
+LESSON — Pandas For Ml
+MEDIUM P02 — Merge two DataFrames
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Given an employees DataFrame (emp_id, name, dept_id) and a departments DataFrame (dept_id, dept_name), perform a left join to get employee names with their department names. Handle employees with no matching department (fill with "Unassigned"). Return the merged DataFrame
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

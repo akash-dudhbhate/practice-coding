@@ -1,21 +1,30 @@
 """
-PROBLEM: Train vs Test Split Explanation (Medium)
-==================================================
+LESSON 01 — What is ML?
+MEDIUM P02 — Train vs Test Split
+=================================
 
-CONCEPT: Why we split data into train and test sets, overfitting intuition.
+CONCEPT:
+  Train set = model learns from this (~80%).
+  Test set  = used ONLY to evaluate (~20%). Model never sees it during training.
+  Why? To know if the model generalizes, not just memorizes.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a function `explain()` that returns a dictionary answering:
 
-Answer the following questions about train/test splits (replace TODO):
+  Questions:
+    1. why_split: Why do we split data into train and test?
+    2. typical_ratio: What ratio is typical? (e.g., "80/20")
+    3. overfitting: What is overfitting in one sentence?
+    4. interpret: If train=99% and test=60%, what does this mean?
 
-1. Why do we split data into a training set and a test set?
-   (Why not train on ALL the data?)
-2. What is a typical train/test split ratio? (e.g., 80/20)
-3. What is "overfitting" in one sentence?
-4. If a model gets 99% accuracy on training data but 60% on test data,
-   what does that tell you?
-
+EXAMPLE OUTPUT:
+  {
+    "why_split": "To evaluate if the model generalizes to unseen data",
+    "typical_ratio": "80/20",
+    "overfitting": "Model memorizes training data including noise, fails on new data",
+    "interpret": "Classic overfitting — the model memorized, didn't learn"
+  }
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

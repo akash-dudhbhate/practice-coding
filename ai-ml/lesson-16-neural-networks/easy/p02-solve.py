@@ -1,12 +1,19 @@
 """
-PROBLEM: Neural Networks Basics — Easy P02
-==========================================
+LESSON — Neural Networks
+EASY P02 — Train sklearn's `MLPClassifier` on the Iris dataset (scaled). Print accuracy. Compare with logistic regression. Show that NN can match or beat LR.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Train sklearn's `MLPClassifier` on the Iris dataset (scaled). Print accuracy. Compare with logistic regression. Show that NN can match or beat LR
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

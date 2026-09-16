@@ -1,12 +1,19 @@
 """
-PROBLEM: Decision Trees & Random Forests — Medium P01
-=====================================================
+LESSON — Decision Trees Forests
+MEDIUM P01 — Train a random forest on `make_classification` (1000 samples, 20 features). Print accuracy. Extract and plot feature importances. Identify the top 5 features.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Train a random forest on `make_classification` (1000 samples, 20 features). Print accuracy. Extract and plot feature importances. Identify the top 5 features
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

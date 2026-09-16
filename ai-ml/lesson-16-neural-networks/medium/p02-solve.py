@@ -1,12 +1,19 @@
 """
-PROBLEM: Neural Networks Basics — Medium P02
-============================================
+LESSON — Neural Networks
+MEDIUM P02 — Train MLPClassifier with different architectures: (8,), (16, 8), (32, 16, 8). Compare accuracy and training time. Identify the best architecture for the dataset.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Train MLPClassifier with different architectures: (8,), (16, 8), (32, 16, 8). Compare accuracy and training time. Identify the best architecture for the dataset
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

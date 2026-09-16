@@ -1,12 +1,19 @@
 """
-PROBLEM: NumPy Fundamentals — Easy P01
-======================================
+LESSON — Numpy Fundamentals
+EASY P01 — Create and inspect arrays
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a 4×5 array of random integers (0-100) with a fixed seed. Print its shape, dtype, ndim, size, and the mean of each column. Return the array and the column means
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

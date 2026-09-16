@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Deployment — Medium P02
-======================================
+LESSON — Model Deployment
+MEDIUM P02 — Write a Dockerfile for the FastAPI app. Include: Python base image, requirements installation, model file, app code, and CMD. Write the `requirements.txt` file. Document the build and run commands in comments.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a Dockerfile for the FastAPI app. Include: Python base image, requirements installation, model file, app code, and CMD. Write the `requirements.txt` file. Document the build and run commands in comments
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

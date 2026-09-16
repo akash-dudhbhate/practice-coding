@@ -1,12 +1,19 @@
 """
-PROBLEM: Gradient Boosting (XGBoost) — Easy P03
-===============================================
+LESSON — Gradient Boosting
+EASY P03 — Train gradient boosting with `n_iter_no_change=10` (early stopping). Print the actual number of trees used (`n_estimators_`). Show that it stops before the max.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Train gradient boosting with `n_iter_no_change=10` (early stopping). Print the actual number of trees used (`n_estimators_`). Show that it stops before the max
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

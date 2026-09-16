@@ -1,12 +1,19 @@
 """
-PROBLEM: Unsupervised Learning — Medium P01
-===========================================
+LESSON — Unsupervised Learning
+MEDIUM P01 — Use the elbow method: run K-Means with K=1 to 10. Plot inertia vs K. Identify the elbow. Then use silhouette score for K=2 to 10. Compare both methods.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use the elbow method: run K-Means with K=1 to 10. Plot inertia vs K. Identify the elbow. Then use silhouette score for K=2 to 10. Compare both methods
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

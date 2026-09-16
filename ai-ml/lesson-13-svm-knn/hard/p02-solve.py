@@ -1,12 +1,19 @@
 """
-PROBLEM: SVM & KNN — Hard P02
-=============================
+LESSON — Svm Knn
+HARD P02 — Build a KNN from scratch: implement Euclidean distance, find K nearest neighbors, majority vote. Train on a 2D dataset. Plot the decision boundary. Compare with sklearn's KNN.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a KNN from scratch: implement Euclidean distance, find K nearest neighbors, majority vote. Train on a 2D dataset. Plot the decision boundary. Compare with sklearn's KNN
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

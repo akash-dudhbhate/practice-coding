@@ -1,12 +1,19 @@
 """
-PROBLEM: Unsupervised Learning — Medium P03
-===========================================
+LESSON — Unsupervised Learning
+MEDIUM P03 — Apply hierarchical clustering to a small dataset. Plot the dendrogram. Cut at a level to get 3 clusters. Compare with K-Means clusters.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Apply hierarchical clustering to a small dataset. Plot the dendrogram. Cut at a level to get 3 clusters. Compare with K-Means clusters
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Pandas for ML — Hard P02
-=================================
+LESSON — Pandas For Ml
+HARD P02 — Merge with aggregation for features
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Given a users DataFrame (user_id, signup_date, country) and a purchases DataFrame (user_id, purchase_date, amount), merge and compute per-user features: total_purchases, avg_purchase_amount, purchase_frequency (purchases per month since signup). Return the enriched users DataFrame
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

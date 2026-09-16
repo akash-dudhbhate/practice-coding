@@ -1,12 +1,19 @@
 """
-PROBLEM: Cross-Validation & Tuning — Medium P01
-===============================================
+LESSON — Cross Validation Tuning
+MEDIUM P01 — Use `GridSearchCV` to tune a random forest: `n_estimators` [50, 100, 200] and `max_depth` [3, 5, 10, None]. Print best params, best score, and all results in a table.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use `GridSearchCV` to tune a random forest: `n_estimators` [50, 100, 200] and `max_depth` [3, 5, 10, None]. Print best params, best score, and all results in a table
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

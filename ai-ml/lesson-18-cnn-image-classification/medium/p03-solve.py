@@ -1,12 +1,19 @@
 """
-PROBLEM: CNNs for Image Classification — Medium P03
-===================================================
+LESSON — Cnn Image Classification
+MEDIUM P03 — Build a CNN for CIFAR-10 (3 color channels, 32x32 images, 10 classes). Train for 5 epochs. Print test accuracy. Handle the 3-channel input correctly.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a CNN for CIFAR-10 (3 color channels, 32x32 images, 10 classes). Train for 5 epochs. Print test accuracy. Handle the 3-channel input correctly
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

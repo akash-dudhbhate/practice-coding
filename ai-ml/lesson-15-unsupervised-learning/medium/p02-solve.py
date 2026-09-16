@@ -1,12 +1,19 @@
 """
-PROBLEM: Unsupervised Learning — Medium P02
-===========================================
+LESSON — Unsupervised Learning
+MEDIUM P02 — Compare K-Means and DBSCAN on non-spherical data (`make_moons`). Plot both clusterings. Show that K-Means fails (spherical assumption) but DBSCAN succeeds.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Compare K-Means and DBSCAN on non-spherical data (`make_moons`). Plot both clusterings. Show that K-Means fails (spherical assumption) but DBSCAN succeeds
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

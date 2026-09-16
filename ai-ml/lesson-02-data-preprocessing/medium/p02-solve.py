@@ -1,12 +1,19 @@
 """
-PROBLEM: Data Preprocessing — Medium P02
-========================================
+LESSON — Data Preprocessing
+MEDIUM P02 — Detect and handle outliers with IQR
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Given a NumPy array, detect outliers using the IQR method (1.5 × IQR rule). Cap outliers to the boundary values (winsorization) and return the cleaned array along with the count of outliers found
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Model Evaluation Deep Dive — Hard P01
-==============================================
+LESSON — Evaluation Metrics
+HARD P01 — Build a metric comparison script: train 3 models (logistic regression, decision tree, random forest) on the same dataset. For each, print accuracy, precision, recall, F1, and AUC. Create a comparison table (pandas DataFrame).
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a metric comparison script: train 3 models (logistic regression, decision tree, random forest) on the same dataset. For each, print accuracy, precision, recall, F1, and AUC. Create a comparison table (pandas DataFrame)
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

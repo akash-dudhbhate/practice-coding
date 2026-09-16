@@ -1,12 +1,19 @@
 """
-PROBLEM: Feature Engineering — Easy P02
-=======================================
+LESSON — Feature Engineering
+EASY P02 — Create a DataFrame with two columns of different scales (age: 20-80, income: 20000-200000). Apply `StandardScaler`. Print before and after. Verify mean=0, std=1.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a DataFrame with two columns of different scales (age: 20-80, income: 20000-200000). Apply `StandardScaler`. Print before and after. Verify mean=0, std=1
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

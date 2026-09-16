@@ -1,12 +1,19 @@
 """
-PROBLEM: Unsupervised Learning — Hard P01
-=========================================
+LESSON — Unsupervised Learning
+HARD P01 — Build a customer segmentation pipeline: create synthetic customer data (age, income, spending score), scale, find optimal K with elbow + silhouette, apply K-Means, visualize clusters with PCA (2D), and interpret each cluster (e.g., "young high-spenders").
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a customer segmentation pipeline: create synthetic customer data (age, income, spending score), scale, find optimal K with elbow + silhouette, apply K-Means, visualize clusters with PCA (2D), and interpret each cluster (e.g., "young high-spenders")
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

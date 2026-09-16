@@ -1,12 +1,19 @@
 """
-PROBLEM: Feature Engineering — Medium P02
-=========================================
+LESSON — Feature Engineering
+MEDIUM P02 — Create a house dataset (sqft, bedrooms, price). Engineer: price_per_sqft, total_rooms, bedrooms_per_sqft. Train a model with and without engineered features. Compare R².
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a house dataset (sqft, bedrooms, price). Engineer: price_per_sqft, total_rooms, bedrooms_per_sqft. Train a model with and without engineered features. Compare R²
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

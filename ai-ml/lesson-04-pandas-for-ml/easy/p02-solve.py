@@ -1,12 +1,19 @@
 """
-PROBLEM: Pandas for ML — Easy P02
-=================================
+LESSON — Pandas For Ml
+EASY P02 — Filter rows
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Given a DataFrame of employees, filter to: (a) employees with salary > 60000, (b) employees in "Engineering" department, (c) employees with salary > 60000 AND in "Engineering". Return all three filtered DataFrames
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

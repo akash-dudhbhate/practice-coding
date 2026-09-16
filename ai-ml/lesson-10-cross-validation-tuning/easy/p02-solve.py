@@ -1,12 +1,19 @@
 """
-PROBLEM: Cross-Validation & Tuning — Easy P02
-=============================================
+LESSON — Cross Validation Tuning
+EASY P02 — Use `StratifiedKFold` with 5 folds on an imbalanced dataset (90% class 0). Verify each fold has the same class ratio. Print fold sizes and class counts.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Use `StratifiedKFold` with 5 folds on an imbalanced dataset (90% class 0). Verify each fold has the same class ratio. Print fold sizes and class counts
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

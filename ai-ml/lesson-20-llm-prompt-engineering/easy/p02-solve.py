@@ -1,12 +1,19 @@
 """
-PROBLEM: LLMs & Prompt Engineering — Easy P02
-=============================================
+LESSON — Llm Prompt Engineering
+EASY P02 — Create a few-shot prompt for sentiment classification. Include 3 examples (positive, negative, neutral). Test with 5 new sentences. Print the prompts and expected outputs.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Create a few-shot prompt for sentiment classification. Include 3 examples (positive, negative, neutral). Test with 5 new sentences. Print the prompts and expected outputs
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p02-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

@@ -1,12 +1,19 @@
 """
-PROBLEM: Linear Regression — Hard P01
-=====================================
+LESSON — Linear Regression
+HARD P01 — Build a complete regression pipeline: load a real dataset (e.g., California Housing from sklearn), preprocess (scale features), train, evaluate with MSE/R², and plot actual vs predicted values.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Build a complete regression pipeline: load a real dataset (e.g., California Housing from sklearn), preprocess (scale features), train, evaluate with MSE/R², and plot actual vs predicted values
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

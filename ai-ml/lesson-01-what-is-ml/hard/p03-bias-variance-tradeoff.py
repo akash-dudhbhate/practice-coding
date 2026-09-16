@@ -1,29 +1,36 @@
 """
-PROBLEM: Bias-Variance Tradeoff (Hard)
-=======================================
+LESSON 01 — What is ML?
+HARD P03 — Bias-Variance Tradeoff
+==================================
 
-CONCEPT: Understanding the bias-variance tradeoff and model complexity.
+CONCEPT:
+  Bias     = error from oversimplified assumptions. High bias → underfitting.
+  Variance = error from sensitivity to training data. High variance → overfitting.
+  Tradeoff = you can't have both low bias AND low variance.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a function `explain()` that returns a dictionary answering:
 
-(replace each TODO with a detailed answer):
+  Questions:
+    1. bias: what is bias in one sentence?
+    2. variance: what is variance in one sentence?
+    3. high_bias: high bias + low variance = ? (underfitting/overfitting)
+    4. high_variance: low bias + high variance = ? (underfitting/overfitting)
+    5. tree_100_65: 100% train, 65% test — high bias or high variance?
+    6. linear_70_70: 70% train, 70% test — high bias or high variance?
+    7. tradeoff: why can't we have both low bias AND low variance?
 
-1. What is "bias" in ML? (one sentence)
-2. What is "variance" in ML? (one sentence)
-3. A model with HIGH bias and LOW variance is said to be ___________.
-   (underfitting or overfitting?)
-4. A model with LOW bias and HIGH variance is said to be ___________.
-   (underfitting or overfitting?)
-5. You train a decision tree and let it grow to unlimited depth. It gets
-   100% accuracy on training data but 65% on test data. Is this high bias
-   or high variance? What would you do to fix it?
-6. You train a linear regression model on highly non-linear data. It gets
-   70% on both train and test. Is this high bias or high variance? What
-   would you do to fix it?
-7. Explain the "tradeoff" in one sentence: why can't we just always have
-   low bias AND low variance?
-
+EXAMPLE OUTPUT:
+  {
+    "bias": "Error from oversimplified assumptions — model is too simple",
+    "variance": "Error from sensitivity to training data — model memorizes noise",
+    "high_bias": "underfitting",
+    "high_variance": "overfitting",
+    "tree_100_65": "high variance (overfitting) — fix: prune the tree, limit depth",
+    "linear_70_70": "high bias (underfitting) — fix: use a more complex model",
+    "tradeoff": "Reducing bias increases variance and vice versa — it's a balance"
+  }
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

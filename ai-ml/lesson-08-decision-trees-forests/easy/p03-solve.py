@@ -1,12 +1,19 @@
 """
-PROBLEM: Decision Trees & Random Forests — Easy P03
-===================================================
+LESSON — Decision Trees Forests
+EASY P03 — Train a decision tree with and without `max_depth` limit. Compare training and test accuracy. Show that unlimited depth overfits (100% train, lower test).
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Train a decision tree with and without `max_depth` limit. Compare training and test accuracy. Show that unlimited depth overfits (100% train, lower test)
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p03-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.

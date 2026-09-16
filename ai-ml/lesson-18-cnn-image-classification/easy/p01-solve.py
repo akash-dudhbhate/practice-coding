@@ -1,12 +1,19 @@
 """
-PROBLEM: CNNs for Image Classification — Easy P01
-=================================================
+LESSON — Cnn Image Classification
+EASY P01 — Load MNIST using torchvision. Visualize 5 sample images with their labels using matplotlib. Print the shape of a single image tensor.
+==================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+CONCEPT:
+  See concepts.md in this lesson folder for detailed explanations.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Load MNIST using torchvision. Visualize 5 sample images with their labels using matplotlib. Print the shape of a single image tensor
 
+
+Write a function `solve()` that implements the solution.
+
+# Check your answer: compare with solutions/p01-solution.py
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# === WRITE YOUR CODE BELOW ===
+# TODO: Write your solution from scratch.
