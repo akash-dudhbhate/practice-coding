@@ -1,12 +1,12 @@
 """
 Progress Tracker — AI/ML Track
 ===============================
-Run this to see your progress through all lessons.
+Run this to see your progress through all levels.
 
 Usage:
     python3 progress.py
 
-It checks each lesson's easy/medium/hard problems for a "DONE" marker.
+It checks each level's easy/medium/hard problems for a "DONE" marker.
 Add "# DONE" to the first line of a problem file when you finish it.
 """
 
@@ -14,18 +14,18 @@ import os
 import glob
 
 TRACK_DIR = os.path.dirname(os.path.abspath(__file__))
-LESSON_DIR = os.path.join(TRACK_DIR, "ai-ml")
+LEVEL_DIR = os.path.join(TRACK_DIR, "ai-ml")
 
 
-def get_lessons():
-    """Find all lesson directories."""
-    lessons = sorted(glob.glob(os.path.join(LESSON_DIR, "lesson-*")))
-    return lessons
+def get_levels():
+    """Find all level directories."""
+    levels = sorted(glob.glob(os.path.join(LEVEL_DIR, "level-*")))
+    return levels
 
 
-def count_problems(lesson_path, level):
+def count_problems(level_path, difficulty):
     """Count total and solved problems for a difficulty level."""
-    level_dir = os.path.join(lesson_path, level)
+    level_dir = os.path.join(level_path, difficulty)
     if not os.path.isdir(level_dir):
         return 0, 0
 
@@ -43,9 +43,12 @@ def count_problems(lesson_path, level):
     return total, solved
 
 
-def check_project(lesson_path):
+def check_project(level_path):
     """Check if the project file is done."""
-    projects = glob.glob(os.path.join(lesson_path, "project-*.py"))
+    project_dir = os.path.join(level_path, "project")
+    if not os.path.isdir(project_dir):
+        return None
+    projects = glob.glob(os.path.join(project_dir, "*.py"))
     if not projects:
         return None
     with open(projects[0]) as f:
@@ -54,9 +57,9 @@ def check_project(lesson_path):
 
 
 def show_progress():
-    lessons = get_lessons()
-    if not lessons:
-        print("No lessons found in", LESSON_DIR)
+    levels = get_levels()
+    if not levels:
+        print("No levels found in", LEVEL_DIR)
         return
 
     print("=" * 70)
@@ -67,35 +70,35 @@ def show_progress():
     solved_all = 0
     level_totals = {"easy": 0, "medium": 0, "hard": 0}
     level_solved = {"easy": 0, "medium": 0, "hard": 0}
-    lesson_stats = []
+    level_stats = []
 
-    for lesson_path in lessons:
-        lesson_name = os.path.basename(lesson_path)
-        lesson_done = 0
-        lesson_total = 0
+    for level_path in levels:
+        level_name = os.path.basename(level_path)
+        level_done = 0
+        level_total = 0
 
-        stats = {"name": lesson_name, "easy": (0, 0), "medium": (0, 0), "hard": (0, 0)}
+        stats = {"name": level_name, "easy": (0, 0), "medium": (0, 0), "hard": (0, 0)}
 
         for level in ["easy", "medium", "hard"]:
-            total, solved = count_problems(lesson_path, level)
+            total, solved = count_problems(level_path, level)
             stats[level] = (solved, total)
             level_totals[level] += total
             level_solved[level] += solved
             total_all += total
             solved_all += solved
-            lesson_done += solved
-            lesson_total += total
+            level_done += solved
+            level_total += total
 
-        stats["project"] = check_project(lesson_path)
-        stats["done"] = lesson_done
-        stats["total"] = lesson_total
-        lesson_stats.append(stats)
+        stats["project"] = check_project(level_path)
+        stats["done"] = level_done
+        stats["total"] = level_total
+        level_stats.append(stats)
 
-    # Show per-lesson breakdown
-    print("\n  PER-LESSON BREAKDOWN")
+    # Show per-level breakdown
+    print("\n  PER-LEVEL BREAKDOWN")
     print("  " + "-" * 66)
 
-    for stats in lesson_stats:
+    for stats in level_stats:
         name = stats["name"]
         e_s, e_t = stats["easy"]
         m_s, m_t = stats["medium"]
