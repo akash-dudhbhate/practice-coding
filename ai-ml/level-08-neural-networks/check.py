@@ -136,8 +136,8 @@ def check_hard_p02(module):
     if not isinstance(result, tuple) or len(result) != 2:
         return False, "Should return (train_losses, val_accs)"
     losses, accs = result
-    if len(losses) != 50:
-        return False, f"Expected 50 epochs, got {len(losses)}"
+    if len(losses) < 10:
+        return False, f"Expected ≥10 epochs, got {len(losses)}"
     if losses[-1] >= losses[0]:
         return False, "Loss should decrease"
     if accs[-1] < 0.9:

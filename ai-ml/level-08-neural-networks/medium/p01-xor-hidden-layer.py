@@ -28,10 +28,11 @@ TRY THIS INPUT:
 
 EXPECTED OUTPUT:
   ```
-  [0 0] -> 0.0000 (expected 0)
-  [0 1] -> 0.9997 (expected 1)
-  [1 0] -> 0.9997 (expected 1)
-  [1 1] -> 0.0004 (expected 0)
+  [0 0] -> 0.05xx (expected 0)
+  [0 1] -> 0.95xx (expected 1)
+  [1 0] -> 0.95xx (expected 1)
+  [1 1] -> 0.04xx (expected 0)
+  Final loss: ~0.002
   ```
 
 HINT:

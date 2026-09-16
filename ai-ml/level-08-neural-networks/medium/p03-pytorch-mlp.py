@@ -27,7 +27,7 @@ TRY THIS INPUT:
 
 EXPECTED OUTPUT:
   ```
-  1.0000  (perfect — this dataset is easy for an MLP)
+  ~0.95+  (near-perfect — MLP handles this dataset easily)
   ```
 
 HINT:

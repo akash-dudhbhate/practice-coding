@@ -32,11 +32,11 @@ TRY THIS INPUT:
 
 EXPECTED OUTPUT:
   ```
-  Final loss: 0.000063
-  [0 0] -> 0.0029
-  [0 1] -> 0.9917
-  [1 0] -> 0.9916
-  [1 1] -> 0.0102
+  Final loss: ~0.0005
+  [0 0] -> 0.02xx (expected 0)
+  [0 1] -> 0.97xx (expected 1)
+  [1 0] -> 0.97xx (expected 1)
+  [1 1] -> 0.02xx (expected 0)
   ```
 
 HINT:
