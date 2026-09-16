@@ -1,21 +1,19 @@
-"""Level 11 Llm Prompt — Hard P02 Solution"""
+"""Level 11 — LLM & Prompt Engineering — Hard P02 Solution"""
 
-def solve():
-    def evaluate_llm_output(output, criteria):
-        scores = {}
-        for criterion in criteria:
-            if criterion == 'length':
-                scores['length'] = len(output) > 50
-            elif criterion == 'format':
-                scores['format'] = '{' in output or '[' in output
-            elif criterion == 'accuracy':
-                scores['accuracy'] = 'correct' in output.lower()
-        return scores
-    output = 'The answer is {"result": 42, "correct": true}'
-    criteria = ['length', 'format', 'accuracy']
-    scores = evaluate_llm_output(output, criteria)
-    print(f"Evaluation: {scores}")
-    return scores
+def evaluate_response(response, criteria):
+    result = {}
+    if "max_length" in criteria:
+        result["length"] = len(response) <= criteria["max_length"]
+    if "format" in criteria:
+        if criteria["format"] == "bullet":
+            result["format"] = response.strip().startswith("- ") or response.strip().startswith("•")
+        else:
+            result["format"] = True
+    if "contains" in criteria:
+        result["accuracy"] = criteria["contains"].lower() in response.lower()
+    return result
 
 if __name__ == "__main__":
-    solve()
+    r = evaluate_response("- Point one\n- Point two\n- Point three",
+                          {"max_length": 100, "format": "bullet", "contains": "point"})
+    print(r)

@@ -1,32 +1,21 @@
-"""Level 12 Rag — Hard P03 Solution"""
+"""Level 12 — RAG Systems — Hard P03 Solution"""
 
-def solve():
-    class AdvancedRAG:
-        def __init__(self):
-            self.documents = []
-        def rewrite_query(self, query):
-            # Expand query with synonyms
-            expansions = {'ML': 'machine learning', 'AI': 'artificial intelligence'}
-            for abbr, full in expansions.items():
-                query = query.replace(abbr, full)
-            return query
-        def multi_hop_retrieve(self, query):
-            # First hop: get initial docs
-            hop1 = self.retrieve(query)
-            # Second hop: use first results to refine
-            refined = self.retrieve(hop1[0][0])
-            return refined
-        def retrieve(self, query):
-            # Dummy retrieval
-            return [("Doc about " + query, 0.9)]
-    rag = AdvancedRAG()
-    query = "What is ML?"
-    rewritten = rag.rewrite_query(query)
-    print(f"Original: {query}")
-    print(f"Rewritten: {rewritten}")
-    results = rag.multi_hop_retrieve(rewritten)
-    print(f"Results: {results}")
-    return rag
+import re
+
+def rewrite_query(query):
+    replacements = {
+        r'\bML\b': 'machine learning',
+        r'\bDL\b': 'deep learning',
+        r'\bAI\b': 'artificial intelligence',
+        r'\bNLP\b': 'natural language processing',
+        r'\bCV\b': 'computer vision',
+        r'\bRL\b': 'reinforcement learning',
+    }
+    result = query
+    for abbrev, full in replacements.items():
+        result = re.sub(abbrev, full, result)
+    return result
 
 if __name__ == "__main__":
-    solve()
+    print(rewrite_query("What is ML?"))
+    print(rewrite_query("Tell me about NLP"))

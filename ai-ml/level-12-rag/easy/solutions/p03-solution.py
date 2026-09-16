@@ -1,22 +1,19 @@
-"""Level 12 Rag — Easy P03 Solution"""
+"""Level 12 — RAG Systems — Easy P03 Solution"""
 
-def solve():
-    text = "Machine learning is a subset of artificial intelligence. It uses algorithms to learn patterns from data. Deep learning is a type of machine learning that uses neural networks with many layers."
-    def chunk_text(text, chunk_size=50, overlap=10):
-        chunks = []
-        start = 0
-        while start < len(text):
-            end = start + chunk_size
-            chunks.append(text[start:end])
-            start = end - overlap
-        return chunks
-    chunks = chunk_text(text)
-    print(f"Original text ({len(text)} chars):")
-    print(text)
-    print(f"\nChunks ({len(chunks)}):")
-    for i, chunk in enumerate(chunks):
-        print(f"  {i}: {chunk}")
+def chunk_text(text, chunk_size, overlap):
+    step = chunk_size - overlap
+    chunks = []
+    for i in range(0, len(text), step):
+        chunk = text[i:i + chunk_size]
+        if chunk:
+            chunks.append(chunk)
+        if i + chunk_size >= len(text):
+            break
     return chunks
 
 if __name__ == "__main__":
-    solve()
+    text = "Machine learning is a subset of artificial intelligence. It uses algorithms to learn patterns from data. Deep learning is a type of machine learning that uses neural networks with many layers."
+    chunks = chunk_text(text, 50, 10)
+    print(len(chunks))
+    for i, c in enumerate(chunks):
+        print(f"  {i}: {c}")

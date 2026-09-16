@@ -1,30 +1,41 @@
 """
-LEVEL 12 RAG
-HARD P01 — Rag Pipeline
-==================================================
+LEVEL 12 — RAG Systems
+HARD P01 — Simple RAG Pipeline
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  RAG pipeline = retrieve → generate. No LLM needed for this exercise
+  — we simulate the "generate" step with a simple template.
+
+  retrieve: find most similar doc
+  generate: "Based on: {doc} Answer: {query} is related to {doc}."
 
 PROBLEM:
-  Build a complete RAG pipeline with retrieval and generation.
+  Write `rag(query, docs)` that:
+    1. Retrieves the most similar doc (use TF-IDF + cosine)
+    2. Generates a template answer referencing it
+    3. Returns (retrieved_doc, generated_answer)
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  docs = ["ML is a subset of AI", "Deep learning uses neural nets"]
+  doc, answer = rag("What is ML?", docs)
+  print(f"Retrieved: {doc}")
+  print(f"Answer: {answer}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p01-solution.py
+  ```
+  Retrieved: ML is a subset of AI
+  Answer: Based on: ML is a subset of AI
+  What is ML? is related to ML is a subset of AI.
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  Use your retrieve function from easy/p02 — or just find argmax
+  of cosine similarity.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +43,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# doc, ans = rag("What is ML?", ["ML is a subset of AI", "Deep learning is cool"])
+# print(doc, ans)

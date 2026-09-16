@@ -1,30 +1,36 @@
 """
-LEVEL 11 LLM PROMPT
-HARD P03 — System Prompts
-==================================================
+LEVEL 11 — LLM & Prompt Engineering
+HARD P03 — System Prompt Personas
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  System prompts set the model's personality and constraints:
+    "You are a helpful assistant." → generic
+    "You are an expert data scientist." → technical, detailed
+    "You are a critical reviewer." → finds flaws
+
+  Different personas → same question, different answer style.
 
 PROBLEM:
-  Design system prompts for different personas/tasks.
+  Write `get_personas()` that returns a dict of 4 personas:
+    {"helpful": ..., "expert": ..., "creative": ..., "critical": ...}
+  Each is a system prompt string.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  p = get_personas()
+  print(p["expert"])
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p03-solution.py
+  ```
+  You are an expert data scientist. Provide detailed technical explanations.
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  Four different system prompt strings, each setting a different role.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +38,6 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# p = get_personas()
+# for k, v in p.items():
+#     print(f"{k}: {v}")

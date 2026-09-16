@@ -1,21 +1,26 @@
-"""Level 12 Rag — Medium P03 Solution"""
+"""Level 12 — RAG Systems — Medium P03 Solution"""
 
-def solve():
-    def hybrid_search(query, documents, alpha=0.5):
-        # Keyword search (BM25-like)
-        keyword_scores = [len(set(query.split()) & set(doc.split())) for doc in documents]
-        # Semantic search (simulated)
-        semantic_scores = [np.random.random() for _ in documents]
-        # Combine
-        combined = [alpha * k + (1 - alpha) * s for k, s in zip(keyword_scores, semantic_scores)]
-        ranked = sorted(zip(documents, combined), key=lambda x: x[1], reverse=True)
-        return ranked
-    docs = ["Machine learning tutorial", "Deep learning guide", "Python programming"]
-    results = hybrid_search("machine learning", docs)
-    print("Hybrid search results:")
-    for doc, score in results:
-        print(f"  ({score:.2f}) {doc}")
-    return results
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+def hybrid_search(query, docs, top_k):
+    vec = TfidfVectorizer()
+    doc_vecs = vec.fit_transform(docs)
+    query_vec = vec.transform([query])
+    semantic = cosine_similarity(query_vec, doc_vecs).flatten()
+
+    query_words = set(query.lower().split())
+    keyword = np.array([len(query_words & set(d.lower().split())) / len(query_words)
+                        for d in docs])
+
+    combined = 0.5 * keyword + 0.5 * semantic
+    top_idx = np.argsort(combined)[::-1][:top_k]
+    return [(docs[i], combined[i]) for i in top_idx]
 
 if __name__ == "__main__":
-    solve()
+    docs = ["Python is a programming language", "ML models learn patterns",
+            "Cooking is an art", "AI and machine learning"]
+    r = hybrid_search("machine learning", docs, 2)
+    for d, s in r:
+        print(f"({s:.4f}) {d}")

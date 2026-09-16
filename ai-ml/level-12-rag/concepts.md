@@ -1,22 +1,43 @@
-# Level 12 Rag — Concepts Reference
+# Level 12 — Concepts Reference
 
-## Key Concepts
+## Easy
 
-### What is RAG
-- Brief explanation of what is rag.
+### TF-IDF + Cosine Similarity
+- `TfidfVectorizer` → text → sparse vectors weighted by word rarity
+- `cosine_similarity` → 0 (unrelated) to 1 (identical)
 
-### Embeddings and vector databases
-- Brief explanation of embeddings and vector databases.
+### Retrieval
+- Embed docs + query → rank by cosine → return top-k
+- This is the "R" in RAG — find relevant context first
 
-### Retrieval strategies
-- Brief explanation of retrieval strategies.
+### Chunking
+- Split long docs into overlapping chunks (LLM context limit)
+- `step = chunk_size - overlap` — keeps context between chunks
 
-### Chunking documents
-- Brief explanation of chunking documents.
+## Medium
+
+### Vector Store
+- Store doc → vector pairs; query → rank by similarity
+- No external DB needed — numpy + sklearn suffices
 
 ### Reranking
-- Brief explanation of reranking.
+- First-pass retrieval is fast but imprecise
+- Boost: `score + 0.1 × (query words in doc)` → re-sort
 
-### Evaluation of RAG
-- Brief explanation of evaluation of rag.
+### Hybrid Search
+- Keyword score (exact word match) + semantic score (TF-IDF cosine)
+- `0.5 × keyword + 0.5 × semantic` — best of both worlds
 
+## Hard
+
+### RAG Pipeline
+- retrieve → generate: find doc → template answer referencing it
+- The "G" can be an LLM or a simple template
+
+### RAG Evaluation
+- % of questions where correct doc is retrieved in top-k
+- Like accuracy — measures retrieval quality
+
+### Query Rewriting
+- Expand abbreviations before searching (ML → machine learning)
+- Better query → better retrieval

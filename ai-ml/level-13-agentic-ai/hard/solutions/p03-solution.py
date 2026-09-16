@@ -1,35 +1,17 @@
-"""Level 13 Agentic Ai — Hard P03 Solution"""
+"""Level 13 — Agentic AI — Hard P03 Solution"""
 
-def solve():
-    class AutonomousAgent:
-        def __init__(self):
-            self.steps_completed = 0
-            self.max_steps = 10
-        def think(self, state):
-            if self.steps_completed == 0:
-                return "search for information"
-            elif self.steps_completed == 1:
-                return "analyze results"
-            elif self.steps_completed == 2:
-                return "summarize findings"
-            else:
-                return "done"
-        def act(self, action):
-            self.steps_completed += 1
-            return f"Action {self.steps_completed}: {action}"
-        def run(self, goal):
-            print(f"Goal: {goal}")
-            state = "start"
-            while self.steps_completed < self.max_steps:
-                action = self.think(state)
-                if action == "done":
-                    break
-                result = self.act(action)
-                print(result)
-            return f"Completed in {self.steps_completed} steps"
-    agent = AutonomousAgent()
-    agent.run("Research a topic and write a summary")
-    return agent
+def autonomous_agent(goal):
+    g = goal.lower()
+    if "research" in g:
+        return ["search for information", "analyze results", "summarize findings"]
+    elif "build" in g:
+        return ["plan structure", "write code", "test it"]
+    elif "analyze" in g:
+        return ["collect data", "run analysis", "report results"]
+    return ["no plan found"]
 
 if __name__ == "__main__":
-    solve()
+    goal = "Research a topic and write a summary"
+    print(f"Goal: {goal}")
+    for i, action in enumerate(autonomous_agent(goal)):
+        print(f"Action {i+1}: {action}")

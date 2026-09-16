@@ -1,30 +1,43 @@
 """
-LEVEL 12 RAG
-EASY P03 — Chunking
-==================================================
+LEVEL 12 — RAG Systems
+EASY P03 — Text Chunking
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  LLMs have a context window limit. Long documents must be split
+  into chunks that fit. Overlap keeps context between chunks.
+
+  "Hello world this is a test" → chunks of 50 chars, overlap 10:
+    chunk 0: chars 0-50
+    chunk 1: chars 40-90 (overlap of 10)
+    ...
 
 PROBLEM:
-  Implement document chunking strategies.
+  Write `chunk_text(text, chunk_size, overlap)` that splits text
+  into overlapping chunks. Returns list of chunk strings.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  text = "Machine learning is a subset of artificial intelligence. It uses algorithms to learn patterns from data. Deep learning is a type of machine learning that uses neural networks with many layers."
+  chunks = chunk_text(text, 50, 10)
+  print(len(chunks))       # 5
+  print(chunks[0])         # "Machine learning is a subset of artificial intelli"
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p03-solution.py
+  ```
+  5
+  Machine learning is a subset of artificial intelli
+  al intelligence. It uses algorithms to learn patte
+  earn patterns from data. Deep learning is a type o
+  s a type of machine learning that uses neural netw
+  eural networks with many layers.
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  start at 0, take text[i:i+chunk_size], step = chunk_size - overlap
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py easy/p03
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +45,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# c = chunk_text("a" * 200, 50, 10)
+# print(len(c))

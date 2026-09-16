@@ -1,30 +1,47 @@
 """
-LEVEL 11 LLM PROMPT
-MEDIUM P01 — Chain Of Thought
-==================================================
+LEVEL 11 — LLM & Prompt Engineering
+MEDIUM P01 — Chain-of-Thought Prompting
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Chain-of-thought (CoT) = tell the model to "think step by step."
+  This dramatically improves math/logic reasoning:
+
+    "Solve this step by step:
+     Problem: 3 apples for $2, how much for 12?
+     Step 1: Find cost per apple.
+     Step 2: Multiply."
+
+  The model generates the reasoning, then the answer follows.
 
 PROBLEM:
-  Write a chain-of-thought prompt for math problems.
+  Write `chain_of_thought(problem)` that builds a CoT prompt:
+    - Takes a math/logic problem string
+    - Returns a prompt asking for step-by-step solution
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  p = chain_of_thought("If 3 apples cost $2, how much do 12 cost?")
+  print(p)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 medium/solutions/p01-solution.py
+  ```
+  Solve this step by step:
 
-  Then compare your output format with theirs.
+  Problem: If 3 apples cost $2, how much do 12 cost?
 
-Write a function `solve()` that implements the solution.
+  Step 1: Find the cost per apple.
+  $2 / 3 = $0.67 per apple
+
+  Step 2: Multiply by the number of apples.
+  $0.67 × 12 = $8.00
+  ```
+
+HINT:
+  The prompt should guide the model through the reasoning steps.
+
+CHECK: python3 check.py medium/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +49,4 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# print(chain_of_thought("If 3 apples cost $2, how much do 12 cost?"))

@@ -1,19 +1,17 @@
-"""Level 11 Llm Prompt — Medium P03 Solution"""
+"""Level 11 — LLM & Prompt Engineering — Medium P03 Solution"""
 
 import json
-import re
 
-def solve():
-    llm_output = '''
-The answer is 42.
-{"score": 0.95, "category": "positive"}
-'''
-    # Parse JSON from output
-    json_match = re.search(r'\{.*\}', llm_output, re.DOTALL)
-    if json_match:
-        parsed = json.loads(json_match.group())
-        print(f"Parsed: {parsed}")
-    return parsed
+def parse_llm_output(text):
+    start = text.find('{')
+    end = text.rfind('}')
+    if start == -1 or end == -1:
+        return None
+    try:
+        return json.loads(text[start:end+1])
+    except json.JSONDecodeError:
+        return None
 
 if __name__ == "__main__":
-    solve()
+    t = 'The sentiment is: {"score": 0.95, "category": "positive"}'
+    print(parse_llm_output(t))

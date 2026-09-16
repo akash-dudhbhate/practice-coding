@@ -1,24 +1,20 @@
-"""Level 12 Rag — Easy P02 Solution"""
+"""Level 12 — RAG Systems — Easy P02 Solution"""
 
-def solve():
-    documents = [
-        "Machine learning is a subset of AI.",
-        "Deep learning uses neural networks.",
-        "Data science combines statistics and programming."
-    ]
-    query = "What is machine learning?"
-    # Simple retrieval (in reality, use embeddings + vector DB)
-    def retrieve(query, docs, top_k=2):
-        # Dummy similarity — in reality, use embeddings
-        scores = [0.9, 0.3, 0.2]  # First doc is most similar
-        ranked = sorted(zip(docs, scores), key=lambda x: x[1], reverse=True)
-        return ranked[:top_k]
-    results = retrieve(query, documents)
-    print(f"Query: {query}")
-    print("Retrieved documents:")
-    for doc, score in results:
-        print(f"  ({score:.2f}) {doc}")
-    return results
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+def retrieve(query, docs, top_k=2):
+    vec = TfidfVectorizer()
+    doc_vecs = vec.fit_transform(docs)
+    query_vec = vec.transform([query])
+    scores = cosine_similarity(query_vec, doc_vecs).flatten()
+    top_idx = np.argsort(scores)[::-1][:top_k]
+    return [(docs[i], scores[i]) for i in top_idx]
 
 if __name__ == "__main__":
-    solve()
+    docs = ["ML is a subset of AI", "Deep learning uses neural nets",
+            "Cooking requires recipes", "NLP processes text"]
+    r = retrieve("What is machine learning?", docs, 2)
+    for doc, score in r:
+        print(f"({score:.2f}) {doc}")

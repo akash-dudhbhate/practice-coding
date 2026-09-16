@@ -1,20 +1,17 @@
-"""Level 13 Agentic Ai — Easy P01 Solution"""
+"""Level 13 — Agentic AI — Easy P01 Solution"""
 
-def solve():
-    class SimpleAgent:
-        def __init__(self):
-            self.tools = {
-                'calculator': lambda x: eval(x),
-                'greeter': lambda name: f"Hello, {name}!"
-            }
-        def use_tool(self, tool_name, *args):
-            if tool_name in self.tools:
-                return self.tools[tool_name](*args)
-            return "Tool not found"
-    agent = SimpleAgent()
-    print(agent.use_tool('calculator', '2 + 2'))
-    print(agent.use_tool('greeter', 'World'))
-    return agent
+def agent_decide(goal):
+    g = goal.lower()
+    if "calculate" in g:
+        return "use calculator"
+    elif "search" in g:
+        return "use search"
+    elif "write" in g:
+        return "use writer"
+    return "unknown goal"
 
 if __name__ == "__main__":
-    solve()
+    print(agent_decide("calculate 6 * 7"))
+    print(agent_decide("search for AI news"))
+    print(agent_decide("write a report"))
+    print(agent_decide("cook dinner"))

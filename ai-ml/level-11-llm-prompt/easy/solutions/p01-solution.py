@@ -1,14 +1,13 @@
-"""Level 11 Llm Prompt — Easy P01 Solution"""
+"""Level 11 — LLM & Prompt Engineering — Easy P01 Solution"""
 
-def solve():
-    prompts = {
-        'simple': 'Summarize this text.',
-        'detailed': 'Summarize this text in 3 bullet points.',
-        'structured': 'Summarize this text as JSON with keys: main_point, key_details.'
+def make_prompts(text):
+    return {
+        "simple": f"Summarize this text.",
+        "detailed": f"Summarize this text in 3 bullet points.",
+        "structured": f"Summarize this text as JSON with keys: main_point, key_details."
     }
-    for name, prompt in prompts.items():
-        print(f"{name}: {prompt}")
-    return prompts
 
 if __name__ == "__main__":
-    solve()
+    p = make_prompts("ML models learn from data")
+    for k, v in p.items():
+        print(f"{k}: {v}")

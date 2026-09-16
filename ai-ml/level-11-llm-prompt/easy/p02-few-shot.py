@@ -1,30 +1,48 @@
 """
-LEVEL 11 LLM PROMPT
-EASY P02 — Few Shot
-==================================================
+LEVEL 11 — LLM & Prompt Engineering
+EASY P02 — Few-Shot Classification Prompt
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Few-shot prompting = show examples in the prompt so the model
+  learns the pattern:
+
+    "Classify sentiment:
+     'I love it' → Positive
+     'Terrible' → Negative
+     'Meh' → Neutral
+     'This is amazing!' → ?"
+
+  The model continues the pattern — no training needed.
 
 PROBLEM:
-  Create a few-shot prompt for classification. Test with examples.
+  Write `few_shot_prompt(examples, query)` that builds a prompt:
+    - examples: list of (text, label) tuples
+    - query: the text to classify
+    Returns the full prompt string.
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  examples = [("I love it", "Positive"), ("Terrible", "Negative"),
+              ("Meh", "Neutral")]
+  p = few_shot_prompt(examples, "This is amazing!")
+  print(p)
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 easy/solutions/p02-solution.py
+  ```
+  Classify the sentiment:
 
-  Then compare your output format with theirs.
+  Text: "I love it" → Positive
+  Text: "Terrible" → Negative
+  Text: "Meh" → Neutral
+  Text: "This is amazing!" →
+  ```
 
-Write a function `solve()` that implements the solution.
+HINT:
+  Build a string with the examples formatted as 'Text: "..." → Label'
+
+CHECK: python3 check.py easy/p02
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +50,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# ex = [("I love it","Positive"),("Terrible","Negative")]
+# print(few_shot_prompt(ex, "Great!"))

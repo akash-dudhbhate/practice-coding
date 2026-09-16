@@ -1,21 +1,12 @@
-"""Level 11 Llm Prompt — Easy P02 Solution"""
+"""Level 11 — LLM & Prompt Engineering — Easy P02 Solution"""
 
-def solve():
-    few_shot = '''
-Classify the sentiment:
-
-Text: "I love this product!" → Positive
-Text: "Terrible experience." → Negative
-Text: "It's okay, nothing special." → Neutral
-Text: "Best purchase ever!" → Positive
-Text: "Would not recommend." → Negative
-Text: "Meh." → Neutral
-
-Text: "This is amazing!" → ?
-'''
-    print(few_shot)
-    print("Expected: Positive")
-    return few_shot
+def few_shot_prompt(examples, query):
+    lines = ["Classify the sentiment:", ""]
+    for text, label in examples:
+        lines.append(f'Text: "{text}" → {label}')
+    lines.append(f'Text: "{query}" →')
+    return "\n".join(lines)
 
 if __name__ == "__main__":
-    solve()
+    ex = [("I love it", "Positive"), ("Terrible", "Negative"), ("Meh", "Neutral")]
+    print(few_shot_prompt(ex, "This is amazing!"))

@@ -1,36 +1,23 @@
-"""Level 13 Agentic Ai — Medium P01 Solution"""
+"""Level 13 — Agentic AI — Medium P01 Solution"""
 
-def solve():
-    class MultiToolAgent:
-        def __init__(self):
-            self.tools = {
-                'search': lambda q: f"Results for: {q}",
-                'calculator': lambda x: eval(x),
-                'translator': lambda t, lang: f"Translated '{t}' to {lang}"
-            }
-        def plan(self, task):
-            if 'calculate' in task.lower():
-                return ['calculator']
-            elif 'search' in task.lower():
-                return ['search']
-            elif 'translate' in task.lower():
-                return ['translator']
-            return []
-        def execute(self, task):
-            tools_needed = self.plan(task)
-            results = []
-            for tool in tools_needed:
-                if tool == 'calculator':
-                    results.append(self.tools[tool]('2 + 2'))
-                elif tool == 'search':
-                    results.append(self.tools[tool](task))
-                elif tool == 'translator':
-                    results.append(self.tools[tool](task, 'Spanish'))
-            return results
-    agent = MultiToolAgent()
-    print(agent.execute("Calculate 5 * 5"))
-    print(agent.execute("Search for AI news"))
-    return agent
+def run_agent(task):
+    tools = {
+        "add": lambda a, b: a + b,
+        "multiply": lambda a, b: a * b,
+        "weather": lambda city: f"Weather in {city}: sunny"
+    }
+    parts = task.split()
+    if "add" in parts:
+        a, b = int(parts[1]), int(parts[3])
+        return ("add", tools["add"](a, b))
+    elif "multiply" in parts:
+        a, b = int(parts[1]), int(parts[3])
+        return ("multiply", tools["multiply"](a, b))
+    elif "weather" in parts:
+        return ("weather", tools["weather"](parts[1]))
+    return ("unknown", None)
 
 if __name__ == "__main__":
-    solve()
+    print(run_agent("add 2 and 3"))
+    print(run_agent("multiply 4 and 7"))
+    print(run_agent("weather Mumbai"))

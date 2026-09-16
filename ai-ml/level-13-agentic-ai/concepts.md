@@ -1,22 +1,43 @@
-# Level 13 Agentic Ai — Concepts Reference
+# Level 13 — Concepts Reference
 
-## Key Concepts
+## Easy
 
-### What are AI agents
-- Brief explanation of what are ai agents.
+### Agent Decision
+- Agent = function that maps goal → action/tool
+- Simplest form: if/elif on keywords
 
-### Tool use and function calling
-- Brief explanation of tool use and function calling.
+### Tool Registry
+- Dict of name → function; agent picks by name, calls it
+- This is the foundation of all agent frameworks
 
-### Agent loops and planning
-- Brief explanation of agent loops and planning.
+### ReAct
+- Think (reason about next step) → Act (call tool) → Observe (see result) → repeat
+- The core loop in AutoGPT, LangChain agents, etc.
 
-### Multi-agent systems
-- Brief explanation of multi-agent systems.
+## Medium
 
-### Memory and context
-- Brief explanation of memory and context.
+### Tool-Calling Agent
+- Parse task → pick tool → call with args → return (name, result)
+- Connects decision-making to actual execution
 
-### Agent evaluation
-- Brief explanation of agent evaluation.
+### Multi-Step Planner
+- Break complex goals into ordered steps
+- "research X" → search → read → write
 
+### Agent Memory
+- Store facts; include them in every response
+- Gives the agent persistent context across interactions
+
+## Hard
+
+### Multi-Agent System
+- Specialized agents (researcher, writer, reviewer) collaborate
+- Each handles one aspect; results chain together
+
+### Agent Evaluation
+- correctness (right answer?), efficiency (min steps?), completeness (all parts?)
+- Score each 0-1; optimize the weakest
+
+### Autonomous Decomposition
+- High-level goal → ordered action list
+- The agent decides WHAT to do, not just HOW

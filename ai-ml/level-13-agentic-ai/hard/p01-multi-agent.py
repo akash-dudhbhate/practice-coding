@@ -1,30 +1,40 @@
 """
-LEVEL 13 AGENTIC AI
-HARD P01 — Multi Agent
-==================================================
+LEVEL 13 — Agentic AI
+HARD P01 — Multi-Agent System
+========================================
 
 CONCEPT:
-  See concepts.md in this level folder for detailed explanations.
+  Multiple specialized agents work together:
+    Researcher → gathers info
+    Writer → creates content
+    Reviewer → checks quality
+
+  Each has a role; they pass work between them.
 
 PROBLEM:
-  Build a multi-agent system where agents collaborate.
+  Write `multi_agent(task)` that:
+    1. Creates 3 agents: researcher, writer, reviewer
+    2. Each takes the task, returns their contribution
+    3. Returns dict: {"researcher": ..., "writer": ..., "reviewer": ...}
 
 TRY THIS INPUT:
-  Add this test code at the bottom of your file:
-
   ```python
-  # Your test data here
-  result = solve(...)
-  print(result)
+  r = multi_agent("Write a blog post")
+  for role, output in r.items():
+      print(f"{role}: {output}")
   ```
 
 EXPECTED OUTPUT:
-  Run the solution file to see expected output:
-    python3 hard/solutions/p01-solution.py
+  ```
+  researcher: Working on Write a blog post
+  writer: Working on Write a blog post
+  reviewer: Working on Write a blog post
+  ```
 
-  Then compare your output format with theirs.
+HINT:
+  Each agent is a function that wraps the task string.
 
-Write a function `solve()` that implements the solution.
+CHECK: python3 check.py hard/p01
 """
 
 # === WRITE YOUR CODE BELOW ===
@@ -32,6 +42,5 @@ Write a function `solve()` that implements the solution.
 
 
 # === TEST ===
-# Uncomment to test your solution:
-# result = solve(...)
-# print(result)
+# r = multi_agent("Write a blog post")
+# print(r)

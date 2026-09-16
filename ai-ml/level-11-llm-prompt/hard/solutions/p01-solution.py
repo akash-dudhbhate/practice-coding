@@ -1,17 +1,13 @@
-"""Level 11 Llm Prompt — Hard P01 Solution"""
+"""Level 11 — LLM & Prompt Engineering — Hard P01 Solution"""
 
-def solve():
-    # Prompt optimization through iteration
-    iterations = [
-        {'version': 1, 'prompt': 'Summarize this.', 'score': 0.6},
-        {'version': 2, 'prompt': 'Summarize in 3 bullet points.', 'score': 0.75},
-        {'version': 3, 'prompt': 'Summarize in 3 bullet points with key metrics.', 'score': 0.85},
+def iterate_prompts(task):
+    prompts = [
+        (f"Summarize this.", 0.6),
+        (f"Summarize in 3 bullet points.", 0.75),
+        (f"Summarize in 3 bullet points with key metrics.", 0.85),
     ]
-    for it in iterations:
-        print(f"v{it['version']}: {it['prompt']} (score: {it['score']})")
-    best = max(iterations, key=lambda x: x['score'])
-    print(f"\nBest prompt: {best['prompt']}")
-    return best
+    return prompts
 
 if __name__ == "__main__":
-    solve()
+    for p, s in iterate_prompts("summarize a sales report"):
+        print(f"{s:.2f}: {p}")

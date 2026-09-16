@@ -1,60 +1,43 @@
-# Level 13 Agentic Ai — Agentic AI
+# Level 13 — Agentic AI
 
 ## What You'll Learn
-- What are AI agents
-- Tool use and function calling
-- Agent loops and planning
-- Multi-agent systems
-- Memory and context
-- Agent evaluation
+- Agent decision-making — pick the right tool for the goal
+- Tool registry — a dict of functions the agent can call
+- ReAct pattern — Think → Act → Observe loop
+- Tool-calling agent — decide → execute → return result
+- Multi-step planning — decompose goals into ordered actions
+- Agent memory — store facts across interactions
+- Multi-agent systems — specialized roles working together
+- Agent evaluation — correctness, efficiency, completeness
+- Autonomous goal decomposition
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- Level 11 (prompt patterns)
+- Level 12 (tool-like function calling)
 
 ## Problems
 
 ### Easy
-1. `easy/p01-simple-agent.py` — Build a simple agent that can use a calculator tool....
-2. `easy/p02-tool-use.py` — Implement function calling for an LLM....
-3. `easy/p03-agent-loop.py` — Create a basic agent loop: think, act, observe....
+1. `easy/p01-agent-decision.py` — `agent_decide()` → goal → tool name
+2. `easy/p02-tool-registry.py` — `build_tools()` → callable tool dict
+3. `easy/p03-react-loop.py` — `react_loop()` → Think→Act→Observe
 
 ### Medium
-4. `medium/p01-multi-tool.py` — Build an agent that can use multiple tools....
-5. `medium/p02-planning-agent.py` — Implement a planning agent that breaks down tasks....
-6. `medium/p03-memory-agent.py` — Add memory to an agent so it remembers context....
+4. `medium/p01-tool-calling.py` — `run_agent()` → decide + execute
+5. `medium/p02-planner.py` — `plan()` → multi-step plan
+6. `medium/p03-agent-memory.py` — `AgentMemory` → persistent context
 
 ### Hard
-7. `hard/p01-multi-agent.py` — Build a multi-agent system where agents collaborate....
-8. `hard/p02-agent-evaluation.py` — Build a framework to evaluate agent performance....
-9. `hard/p03-autonomous-agent.py` — Build an autonomous agent that completes a multi-step task....
+7. `hard/p01-multi-agent.py` — `multi_agent()` → 3 specialized roles
+8. `hard/p02-agent-eval.py` — `evaluate_agent()` → 3-metric scoring
+9. `hard/p03-autonomous.py` — `autonomous_agent()` → goal → action list
 
 ### Project
-`project/` — Build an AI agent that can research a topic and write a report.
+`project/` — Build a multi-tool agent that can plan and execute.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-simple-agent.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.

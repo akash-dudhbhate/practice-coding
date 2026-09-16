@@ -1,22 +1,43 @@
-# Level 11 Llm Prompt — Concepts Reference
+# Level 11 — Concepts Reference
 
-## Key Concepts
+## Easy
 
-### What are LLMs
-- Brief explanation of what are llms.
+### Prompt Styles
+- Vague → detailed → structured. More specific = more predictable.
+- Structured: JSON with named keys → parseable output.
 
-### Prompt design patterns
-- Brief explanation of prompt design patterns.
+### Few-Shot
+- Show examples in the prompt; model continues the pattern.
+- No training — just prompt engineering.
 
-### Few-shot learning
-- Brief explanation of few-shot learning.
+### Temperature
+- 0 = deterministic; 1 = creative; >1.2 = may lose coherence.
 
-### Chain-of-thought
-- Brief explanation of chain-of-thought.
+## Medium
 
-### Temperature and sampling
-- Brief explanation of temperature and sampling.
+### Chain-of-Thought
+- "Solve this step by step" → dramatically better reasoning
+- The model generates intermediate steps before answering
 
-### Evaluation of LLM outputs
-- Brief explanation of evaluation of llm outputs.
+### Persona + Format + Context
+- Persona: who the model is
+- Format: how to structure output
+- Context: what domain/knowledge to use
 
+### Structured Output
+- Ask for JSON → `json.loads()` → programmatic use
+- Find `{` to `}` in the response to extract it
+
+## Hard
+
+### Prompt Iteration
+- v1 vague → v2 add format → v3 add constraints
+- Score by specificity features
+
+### Evaluation
+- Check length, format compliance, keyword presence
+- Automate before shipping a prompt
+
+### System Prompts
+- Set persona + constraints once, affects all responses
+- Different personas = different answer styles for same question

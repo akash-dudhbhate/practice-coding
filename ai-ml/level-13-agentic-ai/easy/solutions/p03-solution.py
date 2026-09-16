@@ -1,22 +1,14 @@
-"""Level 13 Agentic Ai — Easy P03 Solution"""
+"""Level 13 — Agentic AI — Easy P03 Solution"""
 
-def solve():
-    class AgentLoop:
-        def __init__(self):
-            self.state = 'thinking'
-            self.steps = []
-        def run(self, task):
-            self.steps.append(f"THINK: I need to {task}")
-            self.steps.append(f"ACT: Use calculator tool")
-            self.steps.append(f"OBSERVE: Result is 42")
-            self.steps.append(f"THINK: I have the answer")
-            self.steps.append(f"ACT: Return 42")
-            return self.steps
-    agent = AgentLoop()
-    steps = agent.run("calculate 6 * 7")
-    for step in steps:
-        print(step)
-    return steps
+def react_loop(goal):
+    expr = goal.replace("calculate", "").strip()
+    print(f"THINK: I need to {goal}")
+    print(f"ACT: Use calculator tool")
+    result = eval(expr)
+    print(f"OBSERVE: Result is {result}")
+    print(f"THINK: I have the answer")
+    print(f"ACT: Return {result}")
+    return result
 
 if __name__ == "__main__":
-    solve()
+    print(react_loop("calculate 6 * 7"))

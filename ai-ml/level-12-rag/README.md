@@ -1,60 +1,41 @@
-# Level 12 Rag — RAG Systems
+# Level 12 — RAG Systems
 
 ## What You'll Learn
-- What is RAG
-- Embeddings and vector databases
-- Retrieval strategies
-- Chunking documents
-- Reranking
-- Evaluation of RAG
+- Text similarity via TF-IDF + cosine
+- Document retrieval — find relevant docs for a query
+- Text chunking — split docs into context-window-sized pieces
+- In-memory vector store
+- Reranking — boost initial retrieval results
+- Hybrid search — keyword + semantic combined
+- Simple RAG pipeline (retrieve → generate)
+- RAG evaluation and query rewriting
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- Level 11 (prompt concepts)
 
 ## Problems
 
 ### Easy
-1. `easy/p01-embeddings-basic.py` — Generate embeddings for text. Compute similarity....
-2. `easy/p02-simple-rag.py` — Build a simple RAG: embed documents, retrieve, generate....
-3. `easy/p03-chunking.py` — Implement document chunking strategies....
+1. `easy/p01-similarity.py` — `similarity()` → TF-IDF + cosine
+2. `easy/p02-simple-retrieval.py` — `retrieve()` → top-k docs
+3. `easy/p03-chunking.py` — `chunk_text()` → overlapping chunks
 
 ### Medium
-4. `medium/p01-vector-db.py` — Store and query embeddings in a vector database....
-5. `medium/p02-reranking.py` — Implement reranking of retrieved documents....
-6. `medium/p03-hybrid-search.py` — Combine keyword and semantic search....
+4. `medium/p01-vector-store.py` — `vector_store()` → embed + search
+5. `medium/p02-reranking.py` — `rerank()` → keyword-boost re-score
+6. `medium/p03-hybrid-search.py` — `hybrid_search()` → keyword + semantic
 
 ### Hard
-7. `hard/p01-rag-pipeline.py` — Build a complete RAG pipeline with retrieval and generation....
-8. `hard/p02-rag-evaluation.py` — Evaluate RAG quality with metrics....
-9. `hard/p03-advanced-rag.py` — Implement advanced RAG with query rewriting and multi-hop....
+7. `hard/p01-rag-pipeline.py` — `rag()` → retrieve → template answer
+8. `hard/p02-rag-eval.py` — `evaluate_rag()` → retrieval accuracy
+9. `hard/p03-query-rewriting.py` — `rewrite_query()` → expand abbreviations
 
 ### Project
-`project/` — Build a document Q&A system using RAG.
+`project/` — Build a mini RAG system on your own docs.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-embeddings-basic.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.

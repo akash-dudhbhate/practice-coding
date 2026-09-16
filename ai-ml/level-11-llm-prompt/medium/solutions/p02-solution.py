@@ -1,25 +1,15 @@
-"""Level 11 Llm Prompt — Medium P02 Solution"""
+"""Level 11 — LLM & Prompt Engineering — Medium P02 Solution"""
 
-def solve():
-    template = '''
-You are a {persona}. Your task is to {task}.
+def structured_prompt(persona, context, format, question):
+    return f"""You are a {persona}. Your task is to explain a concept.
 
 Context: {context}
 
 Format your response as:
 {format}
 
-Input: {input}
-'''
-    example = template.format(
-        persona='data scientist',
-        task='explain a concept',
-        context='machine learning basics',
-        format='3 bullet points',
-        input='What is overfitting?'
-    )
-    print(example)
-    return template
+Input: {question}"""
 
 if __name__ == "__main__":
-    solve()
+    print(structured_prompt("data scientist", "machine learning basics",
+                             "3 bullet points", "What is overfitting?"))

@@ -1,60 +1,41 @@
-# Level 11 Llm Prompt — LLM & Prompt Engineering
+# Level 11 — LLM & Prompt Engineering
 
 ## What You'll Learn
-- What are LLMs
-- Prompt design patterns
-- Few-shot learning
-- Chain-of-thought
-- Temperature and sampling
-- Evaluation of LLM outputs
+- Three prompt styles: vague → detailed → structured
+- Few-shot prompting (examples in the prompt)
+- Temperature control
+- Chain-of-thought reasoning
+- Persona + format + context prompt structure
+- Parsing structured (JSON) LLM output
+- Prompt iteration, evaluation, system prompts
 
 ## Prerequisites
-- Previous levels completed
-- Python basics
-
-## How This Level Works
-
-Each problem has:
-1. **CONCEPT** — the idea you need to understand
-2. **PROBLEM** — what to build
-3. **TRY THIS INPUT** — test code to verify your solution
-4. **EXPECTED OUTPUT** — what it should print
-5. **AUTO-CHECK** — run `check.py` to verify automatically
-
-Start with `easy/` problems, then `medium/`, then `hard/`, then the project.
-
----
+- No API keys needed — these exercises teach prompt design
+  as text patterns you can test with any LLM.
 
 ## Problems
 
 ### Easy
-1. `easy/p01-basic-prompts.py` — Write 3 prompts for the same task. Compare outputs....
-2. `easy/p02-few-shot.py` — Create a few-shot prompt for classification. Test with examp...
-3. `easy/p03-temperature.py` — Compare outputs at different temperature settings....
+1. `easy/p01-prompt-styles.py` — `make_prompts()` → 3 prompt variants
+2. `easy/p02-few-shot.py` — `few_shot_prompt()` → example-based prompting
+3. `easy/p03-temperature.py` — `explain_temperature()` → temp scale
 
 ### Medium
-4. `medium/p01-chain-of-thought.py` — Write a chain-of-thought prompt for math problems....
-5. `medium/p02-prompt-templates.py` — Create reusable prompt templates with variables....
-6. `medium/p03-output-parsing.py` — Parse structured output from LLM responses....
+4. `medium/p01-chain-of-thought.py` — `chain_of_thought()` → step-by-step
+5. `medium/p02-persona-format.py` — `structured_prompt()` → persona+format+context
+6. `medium/p03-parse-output.py` — `parse_llm_output()` → extract JSON
 
 ### Hard
-7. `hard/p01-prompt-optimization.py` — Optimize a prompt for a specific task through iteration....
-8. `hard/p02-llm-evaluation.py` — Build a framework to evaluate LLM outputs systematically....
-9. `hard/p03-system-prompts.py` — Design system prompts for different personas/tasks....
+7. `hard/p01-prompt-iteration.py` — `iterate_prompts()` → v1→v3 scoring
+8. `hard/p02-evaluate-prompt.py` — `evaluate_response()` → criteria checking
+9. `hard/p03-system-prompts.py` — `get_personas()` → 4 system prompts
 
 ### Project
-`project/` — Build a prompt engineering playground with testing framework.
+`project/` — Build a prompt library for a specific task.
 
----
-
-## Verify Your Work
+## Verify
 
 ```bash
-# Run a problem
-python3 easy/p01-basic-prompts.py
-
-# Check your answer
 python3 check.py easy/p01
+python3 check.py all
 ```
-
-When `check.py` says "PASS", add `# DONE` to the first line and move on.
