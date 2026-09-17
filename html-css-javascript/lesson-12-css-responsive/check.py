@@ -26,7 +26,12 @@ FLAGS = re.IGNORECASE | re.DOTALL
 
 def read_file(path):
     with open(path, "r", encoding="utf-8") as f:
-        return f.read()
+        text = f.read()
+    # Strip comments so the problem-header instructions can't satisfy checks.
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
+    text = re.sub(r"(?<!:)//[^\n]*", "", text)
+    return text
 
 
 def require_all(content, reqs):

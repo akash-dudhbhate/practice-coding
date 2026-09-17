@@ -25,9 +25,15 @@ LESSON_TITLE = "LESSON 02 — QUASAR LAYOUT"
 def _read(path):
     try:
         with open(path, "r", encoding="utf-8") as f:
-            return f.read()
+            text = f.read()
     except OSError:
         return None
+    # Strip comments so instruction text in the problem header (or any
+    # comment the learner adds) can't satisfy the structural checks.
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
+    text = re.sub(r"(?<!:)//[^\n]*", "", text)
+    return text
 
 
 def _vue_check(path, required):
@@ -211,10 +217,13 @@ def check_hard_p03(path):
     ])
     if not ok:
         return ok, msg
-    src = _read(path)
-    if "BlankLayout" not in src and "blank" not in src.lower():
+    # These two requirements intentionally live in a comment (the problem
+    # asks learners to describe BlankLayout + routes config), so read raw.
+    with open(path, "r", encoding="utf-8") as f:
+        raw = f.read()
+    if "BlankLayout" not in raw and "blank" not in raw.lower():
         return False, "expected the BlankLayout template described in a comment"
-    if "routes" not in src and "path:" not in src:
+    if "routes" not in raw and "path:" not in raw:
         return False, "expected the routes config described in a comment"
     return True, "All tests passed!"
 

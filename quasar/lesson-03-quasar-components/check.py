@@ -25,9 +25,15 @@ LESSON_TITLE = "LESSON 03 — QUASAR COMPONENTS"
 def _read(path):
     try:
         with open(path, "r", encoding="utf-8") as f:
-            return f.read()
+            text = f.read()
     except OSError:
         return None
+    # Strip comments so instruction text in the problem header (or any
+    # comment the learner adds) can't satisfy the structural checks.
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
+    text = re.sub(r"(?<!:)//[^\n]*", "", text)
+    return text
 
 
 def _vue_check(path, required):
