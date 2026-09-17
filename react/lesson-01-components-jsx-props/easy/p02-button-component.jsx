@@ -1,10 +1,11 @@
 /*
-PROBLEM: Button Component (Easy)
-================================
-
-CONCEPT: Components, JSX, multiple props, children.
-
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
-
-// TODO: Write your complete solution from scratch below (component + export).
-//       Remove this TODO line when done.
+LESSON 01 — Components, JSX & Props
+EASY P02 — Button Component
+============================================
+CONCEPT: Components can take several props. Inline styles use a `style` object with camelCase keys, and prop values drop into JSX inside curly braces.
+PROBLEM: Build a `Button` component taking `label` and `color` props. Render a `<button>` whose `style` prop sets `backgroundColor` to `color` (plus some padding/border-radius) and whose text content is `label`.
+TRY THIS: Render `<Button label="Save" color="#3498db" />`.
+EXPECTED OUTPUT: A button reading "Save" with a blue background.
+CHECK: python3 check.py easy/p02
+*/
+// TODO: write your component from scratch
