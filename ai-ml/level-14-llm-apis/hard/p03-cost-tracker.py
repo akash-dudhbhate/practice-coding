@@ -5,7 +5,7 @@ LEVEL 14 — HARD P03 — Cost Tracker
 LLM calls cost money — billed per TOKEN (~4 chars ≈ 1 token).
 Build a wrapper that tracks usage so you never get surprised.
 
-TASK:
+PROBLEM:
   Implement class `TrackedLLM`:
     - .call(prompt) → calls chat(), tracks stats, returns reply
     - .stats() → {"calls": n, "est_tokens": t, "est_cost_usd": c}
@@ -19,13 +19,13 @@ INPUT:
     llm.call("what is AI?")
     llm.stats()
 
-OUTPUT: {"calls": 2, "est_tokens": 5, "est_cost_usd": 0.0000x}
+EXPECTED OUTPUT:  {"calls": 2, "est_tokens": 5, "est_cost_usd": 0.0000x}
 
 WHY: production LLM apps MUST track usage — a runaway loop or
   a chatty user can burn real money. This is rate-limiting's
   foundation.
 
-Run:  python3 hard/p03-cost-tracker.py
+RUN: python3 hard/p03-cost-tracker.py
 CHECK: python3 check.py hard/p03
 """
 

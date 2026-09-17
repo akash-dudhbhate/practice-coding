@@ -6,7 +6,7 @@ The model can't DO things — it can only DECIDE what to do.
 You give it a list of tools; it returns which one + arguments
 as JSON. Your code executes it.
 
-TASK:
+PROBLEM:
   Implement `agent_decide(task)`:
     - build a prompt listing the tools: calc, search, weather
     - ask: "Which tool should handle this task? Return ONLY
@@ -15,15 +15,15 @@ TASK:
     - validate: tool must be one of the 3 names; if not,
       return {"tool": "unknown", "args": {}}
 
-INPUT:  agent_decide("what is 6 * 7?")
-OUTPUT: {"tool": "calc", "args": {"a": 6, "b": 7, "op": "*"}}
+TRY THIS INPUT:   agent_decide("what is 6 * 7?")
+EXPECTED OUTPUT:  {"tool": "calc", "args": {"a": 6, "b": 7, "op": "*"}}
         (simulated mode returns a plausible dict; real API picks
          the right tool from the description)
 
 WHY: this is EXACTLY how OpenAI function-calling and every agent
   framework works internally — LLM decides, code executes.
 
-Run:  python3 hard/p02-tool-call.py
+RUN: python3 hard/p02-tool-call.py
 CHECK: python3 check.py hard/p02
 """
 

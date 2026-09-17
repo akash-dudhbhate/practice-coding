@@ -5,7 +5,7 @@ LEVEL 14 — MEDIUM P03 — Batch Classification
 Classify MANY texts in ONE prompt — much cheaper than one call
 per text. Ask for a JSON array back.
 
-TASK:
+PROBLEM:
   Implement `classify_batch(texts, categories)`:
     - build one prompt: "Classify each text into one of
       {categories}. Return a JSON array of labels, in order."
@@ -14,14 +14,14 @@ TASK:
     - parse the JSON array
     - return the list of labels
 
-INPUT:  classify_batch(["I love this", "terrible product", "it's ok"],
+TRY THIS INPUT:   classify_batch(["I love this", "terrible product", "it's ok"],
                        ["positive", "negative", "neutral"])
-OUTPUT: ["positive", "negative", "neutral"] — same length as input
+EXPECTED OUTPUT:  ["positive", "negative", "neutral"] — same length as input
 
 WHY: 1 call for 100 texts > 100 calls. Cost and latency matter.
   (simulated mode returns a plausible array of the right length)
 
-Run:  python3 medium/p03-batch-call.py
+RUN: python3 medium/p03-batch-call.py
 CHECK: python3 check.py medium/p03
 """
 
