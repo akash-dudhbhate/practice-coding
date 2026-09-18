@@ -52,18 +52,101 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-qpage-with-heading.vue` — q-page wrapper with an h1.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +------------------------------------------+
+   |                                          |
+   |        Welcome to Quasar                 |   <- <h1> centered on
+   |                                          |       q-page (flex-center)
+   +------------------------------------------+
+   ```
 2. `easy/p02-two-buttons-colors.vue` — two q-btn components with different colors.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +--------------+  +--------------+
+   | [ Primary ]  |  | [Secondary]  |   <- two q-btn, side by side,
+   +--------------+  +--------------+      different colors
+   ```
 3. `easy/p03-toggle-visibility.vue` — toggle button showing/hiding a message with ref + v-if.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   HIDDEN:                  SHOWN (after click):
+   +-----------+            +-----------+
+   | [ Toggle ]|            | [ Toggle ]|
+   +-----------+            +-----------+
+                            Hello! I am visible   <- v-if message
+   ```
 
 ### Medium
 4. `medium/p01-text-input-display.vue` — q-input with v-model, real-time display.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------+
+   | hello                |   <- q-input (v-model)
+   +----------------------+
+   You typed: hello            <- live echo below
+   ```
 5. `medium/p02-counter-inc-dec.vue` — counter with increment/decrement/reset, disabled state.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+        2                        <- big number
+   +-----+ +-----+ +-------+
+   |  -  | |  +  | | Reset |
+   +-----+ +-----+ +-------+
+   ("-" button greyed out / disabled at 0)
+   ```
 6. `medium/p03-todo-list-add-only.vue` — add items to a list with q-input, q-btn, q-list.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------+ +-----+
+   | Buy milk       | | Add |   <- q-input + q-btn
+   +----------------+ +-----+
+   * Buy milk                    <- q-item rows below
+   * Walk the dog
+   ```
 
 ### Hard
 7. `hard/p01-todo-complete-delete.vue` — full todo list with toggle done, delete, empty state.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------+ [ Add ]
+   | new task       |
+   +----------------+
+   [ ] Buy milk              [x]
+   [x] -Walk the dog-        [x]   <- checked = strikethrough
+   ---------------------------------
+   1 of 2 completed                <- live counter
+   (empty list shows "No todos yet!")
+   ```
 8. `hard/p02-color-picker-card.vue` — q-color picker with live preview using q-card.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +-------------+   +------------------+
+   |  q-color    |   | Selected: #1976d2|
+   |  picker     |   | +--------------+ |
+   |  [######]   |   | |############| |   <- card box filled
+   |             |   | |############| |      with the color
+   +-------------+   | +--------------+ |
+                     +------------------+
+   ```
 9. `hard/p03-multi-step-form.vue` — 3-step form wizard with conditional rendering.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   STEP 1 of 3:             STEP 3 (review):
+   Name: [ Ada________ ]    Name:  Ada
+   Email: (hidden)          Email: ada@x.com
+                [ Next ]    [ Back ] [ Submit ]
+   (each step shows ONLY its own fields)
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

@@ -76,18 +76,90 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.vue` — Create a `ref` and a `reactive` side by side. ref holds a string (title), reactive holds `{ author, year }`. Display all three. Add a button that updates all values.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Title:  Vue Guide            <- ref string
+   Author: Evan You             <- reactive.author
+   Year:   2014                 <- reactive.year
+   [ Update All ]               <- changes all three at once
+   ```
 2. `easy/p02-solve.vue` — Create a nested reactive object (3 levels deep: `user.profile.settings.theme`). Change the deepest property via a button. Display the value and confirm the UI updates.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Theme: light                 <- deepest nested property
+   [ Toggle Theme ]             -> "Theme: dark" (and back)
+   ```
 3. `easy/p03-solve.vue` — Create a `computed` for `fullName` from `firstName` and `lastName` refs. Display it in TWO places in the template. Add a button that changes `firstName` — confirm the computed only calculates once (add a console.log in the computed to prove caching).
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Full name: Ada Lovelace      <- computed shown twice,
+   Again: Ada Lovelace              one cached calculation
+   [ Change First Name ]
+   CONSOLE: "computed ran" logs ONCE per actual change
+   ```
 
 ### Medium
 4. `medium/p01-solve.vue` — Create a `watchEffect` that sets `document.title` to `firstName + ' ' + lastName`. Change both names via inputs. Confirm the effect auto-tracks both dependencies.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Browser tab: { Ada Lovelace }      <- tab title tracks both
+   First: [ Ada________ ]
+   Last:  [ Lovelace___ ]
+   ```
 5. `medium/p02-solve.vue` — Create a `watch` on a reactive object's specific property using a getter function (`() => state.count`). Log old and new values. Also watch multiple sources (`[state.count, state.name]`).
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Count: 2   [ +1 ]
+   Name: Ada  [ Change ]
+   CONSOLE:
+   count: 1 -> 2                        <- old + new values logged
+   name: "Ada" -> "Bob"                     per source
+   ```
 6. `medium/p03-solve.vue` — Create a reactive form object. Use `toRefs` to destructure it. Watch one destructured ref. Confirm reactivity is preserved (changing the original reactive property triggers the watcher).
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Name:  [ Ada_______ ]    <- destructured refs still reactive
+   Email: [ a@b.com___ ]
+   Display: Ada / a@b.com
+   CONSOLE: watcher fires on each edit
+   ```
 
 ### Hard
 7. `hard/p01-solve.vue` — Build a comparison: a `computed` filtered list vs a `function` filtered list. Display both. Add a counter showing how many times each is called (use a ref counter incremented in each). Change the filter input and observe computed is called fewer times.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Filter: [ an__________ ]
+   Computed list:   * Banana * Orange
+   Function list:   * Banana * Orange
+   ----------------------------------
+   computed calls: 3        <- stays low (cached)
+   function calls: 12       <- climbs on every re-render
+   ```
 8. `hard/p02-solve.vue` — Use `nextTick` to focus an input after showing it with `v-if`. Button toggles `showInput`. After `showInput = true`, `await nextTick()` then call `inputRef.value.focus()`. Confirm no error.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   [ Toggle Input ]
+   +----------------------+
+   | |                    |   <- appears ALREADY focused
+   +----------------------+      (no null errors)
+   ```
 9. `hard/p03-solve.vue` — Create a `shallowRef` holding an array of 100 generated items. Show that mutating a nested property (e.g., `items.value[0].name = 'X'`) does NOT update the UI, but reassigning `.value` does. Add a `triggerRef` button to force update after nested mutation.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   First item: Item 1
+   [Mutate nested]      <- UI appears to do NOTHING
+   [triggerRef]         <- NOW the mutation shows: "X"
+   [Reassign .value]    <- direct change renders instantly
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

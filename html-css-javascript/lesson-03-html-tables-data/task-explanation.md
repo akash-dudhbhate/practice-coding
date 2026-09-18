@@ -62,18 +62,117 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.html` — A 3-column table (Name, Age, City) with header row and 3 data rows.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-------+-----+-------+
+   | Name  | Age | City  |   <- bold header row
+   +-------+-----+-------+
+   | ...   | ... | ...   |
+   | ...   | ... | ...   |   <- 3 data rows
+   | ...   | ... | ...   |
+   +-------+-----+-------+
+   ```
 2. `easy/p02-solve.html` — A table with `thead`, `tbody`, and a `<caption>` titled "Student Grades".
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+             Student Grades            <- <caption> sits above table
+   +---------+---------+-------+
+   | Student | Subject | Grade |   <- <thead> header row
+   +---------+---------+-------+
+   | ...     | ...     | ...   |   <- <tbody> data rows
+   | ...     | ...     | ...   |
+   +---------+---------+-------+
+   ```
 3. `easy/p03-solve.html` — A table with basic CSS borders and padding (inline or `<style>` block).
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-----------+-----------+   <- single merged lines
+   |  cell     |  cell     |      (border-collapse: collapse)
+   +-----------+-----------+
+   |  cell     |  cell     |   <- breathing room around text
+   +-----------+-----------+      (padding inside each cell)
+   ```
 
 ### Medium
 4. `medium/p01-solve.html` — A financial table with `thead`, `tbody`, `tfoot` (totals row), and `scope` on all headers.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +---------+--------+---------+
+   | Item    | Cost   | Profit  |   <- <thead>
+   +---------+--------+---------+
+   | ...     | ...    | ...     |   <- <tbody> rows
+   | ...     | ...    | ...     |
+   +---------+--------+---------+
+   | Total   |  ...   |  ...    |   <- <tfoot> renders at the BOTTOM
+   +---------+--------+---------+
+   ```
 5. `medium/p02-solve.html` — A table using `colgroup` to set 3 column widths, with a caption.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +----------------------+---------+---------+
+   | wide column (~50%)   |  col 2  |  col 3  |   <- widths set by
+   +----------------------+---------+---------+      <colgroup>, not cells
+   | ...                  |  ...    |  ...    |
+   +----------------------+---------+---------+
+   ```
 6. `medium/p03-solve.html` — A table with `colspan` (merged header) and `rowspan` (a cell spanning 2 rows).
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-------+-------+-----+
+   |       Name    | Age |   <- "Name" stretches over 2 cols (colspan)
+   +-------+-------+     |
+   | John  | Doe   |     |   <- "Age" stretches down 2 rows (rowspan)
+   +-------+-------+-----+
+   | Jane  | Smith |  30 |
+   +-------+-------+-----+
+   ```
 
 ### Hard
 7. `hard/p01-solve.html` — A full quarterly sales report: caption, colgroup, thead/tbody/tfoot, scope, zebra-striped rows with CSS.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Q1 Sales Report                              <- <caption>
+   +---------+-----+-----+-----+--------+
+   | Product | Jan | Feb | Mar | Total  |   <- <thead>
+   +---------+-----+-----+-----+--------+
+   | Widget  |  .. |  .. |  .. |   ..   |   ~~ shaded row (zebra)
+   | Gadget  |  .. |  .. |  .. |   ..   |
+   | Gizmo   |  .. |  .. |  .. |   ..   |   ~~ shaded row
+   +---------+-----+-----+-----+--------+
+   | Total   |  .. |  .. |  .. |   ..   |   <- bold <tfoot>
+   +---------+-----+-----+-----+--------+
+   ```
 8. `hard/p02-solve.html` — A complex comparison table with merged headers (colspan), row headers (scope="row"), and styled with borders.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +---------+-------+-----+
+   |         |    Plan     |   <- "Plan" spans Basic+Pro (colspan)
+   | Feature +-------+-----+
+   |         | Basic | Pro |
+   +---------+-------+-----+
+   | Storage | 10GB  | 1TB |   <- row headers (scope="row")
+   | Users   |   1   |  10 |
+   | Support | Email | 24/7|
+   +---------+-------+-----+
+   ```
 9. `hard/p03-solve.html` — A responsive table wrapped in a scrollable container, with caption, proper sections, scope, and a `<style>` block for mobile.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   DESKTOP (wide):                 MOBILE (narrow):
+   +---+---+---+---+---+           +------------+--+
+   | a | b | c | d | e |           | a | b | c  | >|  <- wrapper scrolls
+   +---+---+---+---+---+           +------------+--+    sideways; table
+                                      keeps its shape
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

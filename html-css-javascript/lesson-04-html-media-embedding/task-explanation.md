@@ -74,19 +74,100 @@ The browser picks the right file for the screen size.
 This lesson has **9 practice problems** across three difficulty levels. Start with `easy/` and work your way up. Each problem file has the description at the top — **write your complete HTML from scratch below** to practice remembering syntax.
 
 ### Easy (start here)
-1. `easy/p01-solve.html` — An image gallery with 3 `<img>` tags, each with `src`, `alt`, and `width`.
-2. `easy/p02-solve.html` — A `<figure>` with an image and `<figcaption>` caption.
-3. `easy/p03-solve.html` — A `<video>` element with controls, a poster image, and one MP4 source.
+1. `easy/p01-image-gallery.html` — An image gallery with 3 `<img>` tags, each with `src`, `alt`, and `width`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Image Gallery                           <- <h2> heading
+   [photo]  [photo]  [photo]                 <- three 200px-wide
+                                               images in a row
+   ```
+2. `easy/p02-audio-player.html` — An `<audio>` player with controls, one MP3 `<source>`, and fallback text.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   | |> ====o========== 0:00 ((.))|   <- native audio player bar:
+                                        play button, timeline, volume
+   ```
+3. `easy/p03-video-player.html` — A `<video>` element with controls, `width="400"`, one MP4 `<source>`, and fallback text.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-----------------------------+
+   |                             |
+   |        [ video area ]       |   <- 400px-wide video
+   |                             |
+   | |> ======o========= 0:00    |   <- native controls + timeline
+   +-----------------------------+
+   ```
 
 ### Medium
-4. `medium/p01-solve.html` — A responsive image using `srcset` with 3 sizes and `sizes` attribute.
-5. `medium/p02-solve.html` — A `<picture>` element with a mobile and desktop source, plus a WebP source with JPEG fallback.
-6. `medium/p03-solve.html` — An `<audio>` player with controls and two sources (MP3 + OGG), plus a `<video>` with MP4 + WebM sources.
+4. `medium/p01-responsive-picture.html` — A `<picture>` element serving different images per screen size via `<source media="...">`, with an `<img>` fallback.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   DESKTOP (>=800px):              TABLET (>=400px):   PHONE (<400px):
+   +------------------------+      +-------------+     +--------+
+   |    big image loads     |      | medium img  |     | small  |
+   +------------------------+      +-------------+     +--------+
+   (browser picks the first matching <source>; <img> is the fallback)
+   ```
+5. `medium/p02-youtube-embed.html` — A YouTube video embedded with `<iframe>` using an `/embed/` URL, plus `title` and `allowfullscreen`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-----------------------------+
+   |                             |
+   |   [ YouTube thumbnail ]     |   <- 560x315 playable player
+   |          >                  |      embedded in the page
+   |                             |
+   +-----------------------------+
+   (a /watch?v= URL would refuse to load — /embed/ is required)
+   ```
+6. `medium/p03-audio-playlist.html` — A playlist: a `<ul>` where each `<li>` has a track label and its own `<audio controls>` player.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Tracklist
+   - Track 1   |> ====o====== 0:00   <- own player per track
+   - Track 2   |> ======o==== 0:00
+   ```
 
 ### Hard
-7. `hard/p01-solve.html` — A photo gallery with 6 `<figure>` elements, each with responsive `srcset` images, captions, and `loading="lazy"`.
-8. `hard/p02-solve.html` — A media page with a `<video>` (poster, controls, two formats, fallback text), an `<audio>` player, and a responsive `<picture>` hero image.
-9. `hard/p03-solve.html` — An embed page with a Google Maps `<iframe>` (title, lazy loading), a YouTube iframe, and a `<figure>` containing the iframe with a caption.
+7. `hard/p01-video-gallery-captions.html` — A gallery of 2+ videos, each in `<figure>` with `<figcaption>`; at least one video gets a subtitle `<track>`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-----------+     +-----------+
+   | [video]   |     | [video]   |   <- two 300px videos
+   | |> ==o=== |     | |> ==o=== |      first has CC subtitles
+   +-----------+     +-----------+
+   caption text      caption text    <- <figcaption> under each
+   ```
+8. `hard/p02-maps-embed.html` — A Google Maps `<iframe>` embed, `600x450`, `loading="lazy"`, `allowfullscreen`, `border:0`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-------------------------------+
+   |      [ interactive map ]      |   <- 600x450 Google map;
+   |   (roads, labels, zoom UI)    |      only loads when scrolled
+   +-------------------------------+      into view (lazy)
+   ```
+9. `hard/p03-media-landing-page.html` — A landing page combining it all: `<header>` title, auto-playing muted looping hero `<video>`, a 3-photo gallery, `<footer>`, and `object-fit: cover` styling.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-------------------------------+
+   |        PAGE TITLE             |   <- <header>
+   +-------------------------------+
+   |   [ hero video playing ]      |   <- autoplay+muted+loop,
+   |      (fills the box)          |      object-fit: cover
+   +-------------------------------+
+   | [photo] [photo] [photo]       |   <- 3-image gallery, alt each
+   +-------------------------------+
+   |        footer text            |   <- <footer>
+   +-------------------------------+
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

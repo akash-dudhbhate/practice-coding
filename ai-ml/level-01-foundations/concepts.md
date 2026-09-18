@@ -1,8 +1,9 @@
 # Level 01 — Concepts (Detailed Explanations)
 
-Read each section BEFORE attempting its problem. Each concept has:
-what it is in plain words → a worked example with real numbers →
-why ML cares → the code → what confuses beginners.
+> Read each section BEFORE attempting its problem. Each concept explains:
+> **What it is** · **Why it exists** · **Where it's used** ·
+> **What goes wrong** without it · worked example · code ·
+> expected output.
 
 ---
 
@@ -16,6 +17,23 @@ answer. **Supervised** = labeled data (learn the mapping
 input→answer). **Unsupervised** = no labels (find structure on your
 own). Supervised splits further: **regression** predicts a NUMBER,
 **classification** predicts a CATEGORY.
+
+**Why it exists:** Different data requires completely different
+algorithms — there's no universal learner. This triage exists so
+you pick a method that can actually use the data you have.
+
+**Where it's used:** The opening decision of every ML project,
+interview question, and sklearn API call (`fit(X, y)` vs
+`fit(X)`).
+
+**What goes wrong without it:** Picking the wrong type wastes
+weeks — run regression on a category and you get "predicted
+class 1.7"; run supervised learning on unlabeled data and
+`fit(X, y)` has no `y` to learn from. Also the classic mix-up:
+"classification" does NOT mean "puts things in groups" — that's
+clustering (unsupervised). Classification = predict a KNOWN
+category from labeled examples; clustering = invent the groups
+yourself.
 
 **Worked example:**
 ```
@@ -32,10 +50,6 @@ Scenario C: tumor malignant or benign from images
   → supervised-classification
 ```
 
-**Why ML cares:** Picking the wrong type wastes weeks. If you try
-regression on a category, or supervised on unlabeled data, nothing
-works. Every later level assumes you can do this triage instantly.
-
 **Code:**
 ```python
 def classify(scenario):
@@ -46,10 +60,9 @@ def classify(scenario):
     }[scenario]
 ```
 
-**Common confusion:** "Classification" does NOT mean "puts things in
-groups" — that's clustering (unsupervised). Classification = predict
-a known category FROM labeled examples. Clustering = invent the
-groups yourself because no labels exist.
+**Expected output:** `classify("A")` → `'supervised-regression'`,
+`classify("B")` → `'unsupervised'`, `classify("C")` →
+`'supervised-classification'`.
 
 ---
 
@@ -60,6 +73,22 @@ are the input columns — the clues the model reads. The **label (y)**
 is the output column — the thing you're trying to predict. The whole
 job of training is learning the mapping X → y.
 
+**Why it exists:** A model can't learn from "everything" — you
+must declare which columns are clues and which column is the
+answer. The X/y split is that declaration.
+
+**Where it's used:** The universal sklearn convention:
+`model.fit(X_train, y_train)`, `model.predict(X_test)`. Every
+dataset you'll ever touch gets carved into X and y.
+
+**What goes wrong without it:** Bad feature choice is the #1
+cause of bad models — a model can't predict price from house
+color if color doesn't matter. Leak the label into X and the
+model "learns" to copy the answer — 100% accuracy in testing,
+worthless in production. Also: the label is ONE thing you're
+predicting; at prediction time it's UNKNOWN — you only have
+labels for training data.
+
 **Worked example:**
 ```
 Predicting house price:
@@ -69,11 +98,6 @@ Predicting house price:
 One row of data:
   X = [1500, 3, "downtown", 12]  →  y = 320000
 ```
-
-**Why ML cares:** The entire X/y naming convention is everywhere:
-`model.fit(X_train, y_train)`, `model.predict(X_test)`. Bad feature
-choice is the #1 cause of bad models — a model can't predict price
-from house color if color doesn't matter.
 
 **Code:**
 ```python
@@ -86,9 +110,10 @@ def identify(scenario):
                 "label": "total_sales"}
 ```
 
-**Common confusion:** The label is always ONE thing you're predicting;
-features are MANY things you observe. Also: the label at prediction
-time is UNKNOWN — you only have labels for the training data.
+**Expected output:** `identify("A")` →
+`{'features': ['study_hours', 'attendance', 'past_scores'], 'label': 'pass_fail'}`;
+`identify("B")` →
+`{'features': ['month', 'last_month_sales', 'season'], 'label': 'total_sales'}`.
 
 ---
 
@@ -99,6 +124,23 @@ time is UNKNOWN — you only have labels for the training data.
 examples and it LEARNS the rules. Same goal — inputs to outputs —
 but who writes the rules differs.
 
+**Why it exists:** Some problems have rules too complex (faces)
+or too fast-changing (spam) to hand-write — ML exists for exactly
+those. The distinction exists so you don't reach for the
+expensive tool when the cheap one works.
+
+**Where it's used:** Scoping any project: "can we just write the
+rules?" is the first question a good engineer asks before
+proposing a model.
+
+**What goes wrong without it:** Using ML where a rule works = a
+model that's slower, flakier, and needs maintenance for something
+`sort()` does perfectly. Using rules where ML is needed = a spam
+filter that dies the day spammers change one word. "The problem
+is about data" does NOT mean "use ML" — sorting data is still
+traditional. Ask: "Can I write down the exact rules?" Yes →
+traditional. No → ML.
+
 **Worked example:**
 ```
 Cart total     → rules are fixed: sum(prices).      → traditional
@@ -107,11 +149,6 @@ Spam filter    → rules change daily, can't hand-code → ml
 Face detection → no one can write "if pixel pattern
                  looks like a face" by hand          → ml
 ```
-
-**Why ML cares:** ML is not magic for everything. If you can write
-the rule in 10 lines of `if` statements, do that — it's free, fast,
-and perfect. ML shines when rules are too complex (faces, speech) or
-constantly changing (spam, fraud).
 
 **Code:**
 ```python
@@ -124,9 +161,9 @@ def choose(scenario):
     }[scenario]
 ```
 
-**Common confusion:** "The problem is about data" does NOT mean "use
-ML." Sorting data and summing a cart are still traditional. Ask:
-"Can I write down the exact rules?" Yes → traditional. No → ML.
+**Expected output:** `choose("A")` → `'traditional'`,
+`choose("B")` → `'ml'`, `choose("C")` → `'traditional'`,
+`choose("D")` → `'ml'`.
 
 ---
 
@@ -136,9 +173,24 @@ ML." Sorting data and summing a cart are still traditional. Ask:
 
 **What it is:** Before touching code, answer 5 questions:
 (1) problem type, (2) features, (3) label, (4) where data comes
-from, (5) how you measure success. Skipping these is how projects
-die — you train the wrong model on the wrong data judged by the
-wrong metric.
+from, (5) how you measure success.
+
+**Why it exists:** Skipping design is how projects die — you can
+train a flawless model on the wrong data judged by the wrong
+metric and deliver nothing. The five questions exist to catch
+that before a single line of code.
+
+**Where it's used:** ML system-design interviews, project design
+docs, and the first page of every real proposal — "how would you
+build X?" always starts with these five, never with "I'd use a
+neural network."
+
+**What goes wrong without it:** Train first, think later → you
+get a model that optimizes accuracy when the business needed
+recall, or predicts a label nobody can act on. Choosing
+"accuracy" blindly is a rookie move — for spam, precision matters
+(don't nuke real mail); for disease screening, recall matters
+(don't miss a case). See `hard/p02` for why.
 
 **Worked example (spam classifier):**
 ```
@@ -150,10 +202,6 @@ wrong metric.
 5. metric: precision — a false alarm deletes a REAL email,
            which users hate more than seeing spam
 ```
-
-**Why ML cares:** This is literally what ML interviews and design
-docs ask. "How would you build X?" always starts with these five
-questions, not with "I'd use a neural network."
 
 **Code:**
 ```python
@@ -168,10 +216,9 @@ def design():
     }
 ```
 
-**Common confusion:** Metric choice is part of DESIGN, not an
-afterthought. For spam, precision matters (don't nuke real mail).
-For disease screening, recall matters (don't miss a case). Choosing
-"accuracy" blindly is a rookie move — see `hard/p02` for why.
+**Expected output:** A dict with keys `problem_type`, `features`,
+`label`, `data_source`, `metric` — values matching the worked
+example above.
 
 ---
 
@@ -180,6 +227,22 @@ For disease screening, recall matters (don't miss a case). Choosing
 **What it is:** Hold out a slice of data the model NEVER sees during
 training. Train on ~80%, evaluate on the ~20% test set. The test
 score estimates how the model does on genuinely new data.
+
+**Why it exists:** A model that memorized its training data looks
+perfect until it meets the real world. The test set exists to
+detect that — it's the only honest estimate of "will this work
+tomorrow?"
+
+**Where it's used:** Every level from here on starts with
+`train_test_split`; level-05 shows cross-validation, the
+grown-up version.
+
+**What goes wrong without it:** Testing on training data is like
+grading a student on the problems they memorized — you learn
+nothing and ship an overfit model. Subtler version: you may never
+"peek" at test data to make decisions — that includes normalizing
+with stats computed on ALL data (leakage!). Compute means/stds
+on train only, then apply to test.
 
 **Worked example:**
 ```
@@ -192,11 +255,6 @@ Results: train accuracy 99%, test accuracy 60%
   → the model memorized those 800 emails, didn't learn "spam-ness"
 ```
 
-**Why ML cares:** Testing on training data is like grading a student
-on the exact problems they memorized — you learn nothing. Every
-level from here on starts with `train_test_split` (level-05 shows
-cross-validation, the grown-up version).
-
 **Code:**
 ```python
 from sklearn.model_selection import train_test_split
@@ -204,10 +262,9 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42)
 ```
 
-**Common confusion:** You may never "peek" at the test set to make
-decisions — that includes normalizing with stats computed on ALL
-data (leakage!). Compute means/stds on train only, then apply to
-test.
+**Expected output:** Four arrays — `X_train` with ~80% of the rows
+(800 of 1000), `X_test` with ~20% (200), and the matching
+`y_train`/`y_test` labels, same order preserved.
 
 ---
 
@@ -217,6 +274,23 @@ test.
 category? labeled or not? simple or complex? There is no "best"
 algorithm — only "right for this problem."
 
+**Why it exists:** Algorithms have different assumptions —
+linearity, distance, tree-splits. Matching the assumption to the
+data's shape is why the menu exists; the no-free-lunch theorem
+guarantees no single winner.
+
+**Where it's used:** Interviewers love "which model and why?"
+The mental flowchart: labeled? → number or category? → need
+interpretability? → how complex is the pattern? You'll meet each
+hands-on in level-04.
+
+**What goes wrong without it:** Force a linear model on curved
+data → underfits no matter how long it trains. Throw a neural
+net at 50 rows → overfits instantly. And the name trap:
+"logistic regression" is for CLASSIFICATION despite having
+"regression" in its name — it outputs a probability that gets
+thresholded into yes/no.
+
 **Worked example:**
 ```
 A) tomorrow's temperature (a number, labeled)     → linear-regression
@@ -225,11 +299,6 @@ C) spam or not (binary category, labeled)         → logistic-regression
 D) house price from 50 features (number, labeled) → linear-regression
 E) objects in photos (complex patterns, labeled)  → neural-network
 ```
-
-**Why ML cares:** Interviewers love "which model and why?" The
-mental flowchart: labeled? → number or category? → need
-interpretability? → how complex is the pattern? You'll meet each
-of these hands-on in level-04.
 
 **Code:**
 ```python
@@ -243,10 +312,9 @@ def match(scenario):
     }[scenario]
 ```
 
-**Common confusion:** "Logistic regression" is for CLASSIFICATION
-(categories), despite having "regression" in its name. It outputs a
-probability that gets thresholded into yes/no. Don't let the name
-fool you.
+**Expected output:** `match("A")` → `'linear-regression'`,
+`match("B")` → `'kmeans-clustering'`, `match("C")` →
+`'logistic-regression'`, `match("E")` → `'neural-network'`.
 
 ---
 
@@ -258,6 +326,23 @@ fool you.
 Define → Collect → Preprocess → Split → Choose → Train → Evaluate →
 Deploy. "Training" is step 6 of 8 — most of the work is everything
 around it.
+
+**Why it exists:** Steps depend on each other — you can't
+preprocess data you haven't collected, or evaluate a model you
+haven't trained. The pipeline exists so nothing gets skipped
+under deadline pressure.
+
+**Where it's used:** The skeleton of EVERY project in this repo
+(and real jobs). Levels 02-05 are literally these steps zoomed
+in: 02 = preprocess, 03 = explore, 04 = choose+train, 05 =
+evaluate.
+
+**What goes wrong without it:** Beginners think "ML project =
+pick an algorithm." Skip preprocessing → model crashes on NaN.
+Skip the split → no honest evaluation. Skip deployment thinking
+→ a model that can't receive input in production. Steps 2-4
+(data) eat 80% of real-world time — a simple model on clean data
+beats a fancy model on garbage.
 
 **Worked example (diabetes risk predictor):**
 ```
@@ -274,10 +359,6 @@ around it.
 8. deployment:   API endpoint: patient data in → risk score out
 ```
 
-**Why ML cares:** This is the skeleton of EVERY project in this repo
-(and real jobs). Levels 02-05 are literally these steps zoomed in:
-02 = preprocess, 03 = explore, 04 = choose+train, 05 = evaluate.
-
 **Code:**
 ```python
 def design_pipeline():
@@ -293,9 +374,8 @@ def design_pipeline():
     }
 ```
 
-**Common confusion:** Beginners think "ML project = pick an
-algorithm." Actually steps 2-4 (data) eat 80% of real-world time.
-A simple model on clean data beats a fancy model on garbage.
+**Expected output:** A dict with all 8 keys (`problem` …
+`deployment`), matching the worked example step-for-step.
 
 ---
 
@@ -305,6 +385,22 @@ A simple model on clean data beats a fancy model on garbage.
 classifier. TP = said yes, was yes. TN = said no, was no.
 FP = said yes, was no (false alarm). FN = said no, was yes
 (missed case). Accuracy = (TP+TN)/total.
+
+**Why it exists:** One accuracy number hides WHICH errors you
+make. The matrix exists because "10 false alarms" and "10 missed
+cases" cost completely different things in the real world.
+
+**Where it's used:** Every classification report — level-05 turns
+these 4 numbers into precision, recall, F1, ROC-AUC. Medical,
+fraud, and spam systems are all specified in FP/FN terms.
+
+**What goes wrong without it:** 96% accuracy sounds great until
+you realize an "always healthy" predictor scores 92% on this data
+and catches ZERO sick people — on imbalanced data, accuracy lies
+and only the matrix shows it. Also: YOU choose which class is
+Positive — mixing up FP and FN flips the entire analysis
+(a missed disease becomes a "false alarm," the wrong thing gets
+optimized).
 
 **Worked example (1000 patients, 80 sick):**
 ```
@@ -317,11 +413,6 @@ But: the test missed 10 of 80 real cases (12.5% of the sick).
 For a medical test, FN is the worse error → "false-negative".
 ```
 
-**Why ML cares:** 96% accuracy sounds great until you realize a
-"always healthy" predictor scores 92% and catches ZERO sick people.
-On imbalanced data, accuracy lies. Level-05 turns these 4 numbers
-into precision, recall, F1, ROC-AUC.
-
 **Code:**
 ```python
 def analyze():
@@ -333,10 +424,8 @@ def analyze():
     }
 ```
 
-**Common confusion:** Which is the Positive? YOU choose — usually
-the rare/important class (sick, spam, fraud). FP means "flagged it
-but it was fine"; FN means "missed it and it was real." Mixing
-these up flips your entire analysis.
+**Expected output:** `{'TP': 70, 'FP': 30, 'TN': 890, 'FN': 10,
+'accuracy': 0.96, 'worse_error': 'false-negative'}`.
 
 ---
 
@@ -347,6 +436,23 @@ being too simple (underfitting — misses the real pattern). **Variance**
 = error from being too sensitive to the exact training data
 (overfitting — memorizes noise). Making the model more complex
 lowers bias but raises variance — you balance, you don't eliminate.
+
+**Why it exists:** "The model is bad" doesn't tell you what to fix.
+Bias/variance splits failure into two diseases with opposite cures
+— it's the diagnostic that tells you which knob to turn instead of
+guessing.
+
+**Where it's used:** Reading any train-vs-test score gap — the
+single most useful diagnostic in ML. Returns in every model level
+(04, 08, 09): regularization, pruning, and dropout are all
+variance-reducers.
+
+**What goes wrong without it:** Misdiagnose and you apply the
+wrong cure — adding complexity to an already-overfit model makes
+variance worse; gathering more data for a high-bias model changes
+nothing. High variance isn't "the model varies a lot" — it means
+the model CHANGES a lot when retrained on a different sample: it
+over-adapts to whatever noise was in the data it happened to see.
 
 **Worked example:**
 ```
@@ -360,12 +466,6 @@ Linear model with 70% train, 70% test:
   → high bias (underfitting)
   → fix: more complex model, more features
 ```
-
-**Why ML cares:** The train-vs-test gap is the single most useful
-diagnostic in ML. Gap big → variance. Both bad → bias. This tells
-you WHICH knob to turn instead of guessing. Returns in every model
-level (04, 08, 09) — regularization, pruning, and dropout are all
-variance-reducers.
 
 **Code:**
 ```python
@@ -381,10 +481,9 @@ def explain():
     }
 ```
 
-**Common confusion:** High variance is not "the model varies a lot"
-in its outputs — it means the model CHANGES a lot if you retrain it
-on a different sample of data. It over-adapts to whatever noise was
-in the training set it happened to see.
+**Expected output:** A dict with keys `bias`, `variance`,
+`high_bias`, `high_variance`, `tree_100_65`, `linear_70_70`,
+`tradeoff` — `explain()["high_variance"]` → `'overfitting'`.
 
 ---
 

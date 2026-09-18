@@ -57,18 +57,111 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.css` — Style a `.box` with width, padding, border, and margin. Show the four layers visually with different background/border colors.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   . . . margin 30px (transparent) . . .
+   . +=============================+ .
+   . | border 5px                  | .
+   . |  +----------------------+   | .
+   . |  | padding 20px (bg)    |   | .
+   . |  |   [ content 200px ]  |   | .
+   . |  +----------------------+   | .
+   . +=============================+ .
+   (total footprint is much wider than 200px)
+   ```
 2. `easy/p02-solve.css` — Apply the `border-box` reset (`*`) and style two boxes side by side with consistent widths.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +--------------------+--------------------+
+   |       .box1        |       .box2        |   <- each exactly 50%
+   | padding + border   | padding + border   |      wide; padding and
+   +--------------------+--------------------+      border are INSIDE
+                                                   (border-box)
+   ```
 3. `easy/p03-solve.css` — Style a `.button` with padding (10px 20px), border, border-radius, and margin between buttons.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   [  Button 1  ]   [  Button 2  ]   [  Button 3  ]
+       ^-- padded, rounded 6px corners,
+           margin space between neighbors
+   ```
 
 ### Medium
 4. `medium/p01-solve.css` — Style a `.card` with padding for internal spacing and margin between cards. Demonstrate margin vs padding with background colors.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-----------------+
+   |   (padding 20)  |   <- space INSIDE border, tinted by background
+   |   card content  |
+   +-----------------+
+       < 16px gap >      <- margin: transparent space BETWEEN cards
+   +-----------------+
+   |   next card     |
+   +-----------------+
+   ```
 5. `medium/p02-solve.css` — Demonstrate margin collapsing: two stacked boxes with different vertical margins. Comment what the actual gap is.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +---------+
+   | box A   |   margin-bottom: 30px
+   +---------+
+       ~ ~ ~      <- gap is 30px (the LARGER margin wins)
+   +---------+        NOT 30+20 = 50px -- margins collapse
+   | box B   |   margin-top: 20px
+   +---------+
+   ```
 6. `medium/p03-solve.css` — Style elements with `display: block`, `inline`, and `inline-block`. Show which respects width/height and which doesn't.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-------------------------------+
+   | .block fills the whole row    |   <- respects width + height
+   +-------------------------------+
+   text [inline] text   <- shrinks to content, IGNORES width/height
+   [inline-block] [inline-block]      <- sized, but flows in a row
+   ```
 
 ### Hard
 7. `hard/p01-solve.css` — A complete card layout: border-box reset, cards with padding/border/margin, max-width container, responsive images (`max-width: 100%`).
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+          +--------------------+
+          | [ img (fits) ]     |   <- max-width:100%, never overflows
+          | Card text          |
+          +--------------------+
+          | [ img ]            |   <- 960px-max container,
+          | Card text          |       auto-centered on the page
+          +--------------------+
+   ```
 8. `hard/p02-solve.css` — A button group using `inline-block` with consistent spacing, borders, border-radius, and hover states (no flexbox — use box model only).
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +-------+-------+-------+
+   | Left  | Mid   | Right |   <- buttons fused into one bar:
+   +-------+-------+-------+      shared borders, rounded ends,
+   (hover highlights one segment)   no gaps between them
+   ```
 9. `hard/p03-solve.css` — A page layout with header, sidebar, and content sections using margins, padding, borders, min-height, and max-width. Comment the box model of each section.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +------------------------------------------+
+   |                 HEADER                   |
+   +--------+-----------------+---------------+
+   |        |                 |
+   | SIDEBAR|    CONTENT      |   <- fixed-width sidebar,
+   | (fixed)|   (flows)       |       content fills the rest
+   +--------+-----------------+
+   |                 FOOTER                   |
+   +------------------------------------------+
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

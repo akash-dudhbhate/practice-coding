@@ -1,8 +1,8 @@
 # Level 08 — Concepts (Detailed Explanations)
 
-Read each section BEFORE attempting its problem. Each concept has:
-what it is in plain words → a worked example with real numbers →
-why ML cares → the code → what confuses beginners.
+Read each section BEFORE attempting its problem. Each concept explains:
+What it is · Why it exists · Where it's used · What goes wrong without it ·
+worked example · code · expected output.
 
 ---
 
@@ -14,6 +14,25 @@ why ML cares → the code → what confuses beginners.
 of inputs, add a bias, and output 1 if the result is positive,
 else 0. `output = step(x·w + b)`. It learns by a dead-simple rule:
 when the prediction is wrong, nudge the weights toward the input.
+
+**Why it exists:** Before the perceptron (1957), "learning a rule
+from data" had no concrete algorithm — you hand-coded every
+decision boundary. The perceptron was the first machine that could
+*find* a separating boundary by trial and error: wrong answer →
+adjust weights, right answer → leave them alone.
+
+**Where it's used:** Every neuron in every modern network is this
+exact pattern (dot product + bias + a decision function) — deep
+learning just chains millions of them. The perceptron update rule
+is the great-grandparent of gradient descent.
+
+**What goes wrong without it:** Without the update rule the
+weights never change — the model can't learn, period. Without a
+bias, the boundary is forced through the origin and can't even
+fit OR's offset. And a single perceptron can only draw ONE
+straight decision boundary: it solves OR and AND but famously
+CANNOT solve XOR — that limitation (medium/p01) is why hidden
+layers exist.
 
 **Worked example:** Learning the OR gate: `y=[0,1,1,1]` for
 `X=[[0,0],[0,1],[1,0],[1,1]]`. Start w=[0.1,0.1], b=0.0:
@@ -30,11 +49,6 @@ If instead we trained AND (y=[0,0,0,1]):
   The weights shrink until [0,1] and [1,0] no longer fire alone.
 ```
 
-**Why ML cares:** Every neuron in every network is this pattern
-(dot product + bias + a decision function) — deep learning just
-chains millions of them. The perceptron update rule is the great-
-grandparent of gradient descent.
-
 **Code:**
 ```python
 import numpy as np
@@ -45,10 +59,10 @@ elif y == 0 and pred == 1: # false alarm → push weights down
     w -= x; b -= 0.1
 ```
 
-**Common confusion:** A perceptron can only draw ONE straight
-decision boundary. It solves OR and AND but famously CANNOT solve
-XOR — that limitation (next level: medium/p01) is why hidden
-layers exist.
+**Expected output:** On OR data with w=[0.1,0.1], b=0.0, all 4
+predictions are already correct in epoch 1 — `[0, 1, 1, 1]` — so
+no updates fire. On AND data the same starting weights mislabel
+`[0,1]` and `[1,0]`; updates shrink w until only `[1,1]` fires.
 
 ---
 
@@ -58,6 +72,25 @@ layers exist.
 weighted sum. Without it, stacking layers is pointless — a stack
 of linear layers collapses into a single linear layer.
 Activations are what let networks learn curves.
+
+**Why it exists:** A deep network's whole promise is "more layers
+= more power." But two linear layers compose into one:
+`y = (x·W1)·W2 = x·(W1·W2)` — still a single linear map!
+Activations were introduced specifically to break that collapse so
+depth actually adds expressive power.
+
+**Where it's used:** ReLU is the default hidden activation in
+almost every modern network (cheap, trains well). Sigmoid appears
+on binary outputs; softmax on multi-class outputs; tanh inside
+RNNs. The choice of activation literally shapes what your network
+can express.
+
+**What goes wrong without it:** Stack 10 linear layers with no
+activation → you get the power of ONE layer; a 10-layer "deep" net
+can't fit XOR or any curve. And misuse hurts too: ReLU "kills"
+negative inputs — and their gradients too (dead neurons). That's
+fine for hidden layers, but never put ReLU on the final regression
+output — it can never predict a negative number.
 
 **Worked example:**
 ```
@@ -72,11 +105,6 @@ Why it matters: two linear layers `y = (x·W1)·W2` = `x·(W1·W2)` —
 still one linear map! With ReLU between them, the composition is
 nonlinear and can carve any shape.
 
-**Why ML cares:** ReLU is the default hidden activation in almost
-every modern network (cheap, trains well). Sigmoid appears on
-binary outputs; softmax on multi-class outputs. The choice of
-activation literally shapes what your network can express.
-
 **Code:**
 ```python
 import numpy as np
@@ -85,10 +113,13 @@ def relu(z):    return np.maximum(0, z)
 def tanh(z):    return np.tanh(z)
 ```
 
-**Common confusion:** ReLU "kills" negative inputs — and their
-gradients too (dead neurons). That's fine for hidden layers, but
-never put ReLU on the final regression output — it can never
-predict a negative number.
+**Expected output:**
+```
+sigmoid(0.0)   → 0.5
+sigmoid(10.0)  → 0.9999546021312976
+relu(np.array([-2, 3])) → array([0, 3])
+tanh(0.0)      → 0.0
+```
 
 ---
 
@@ -98,6 +129,26 @@ predict a negative number.
 can also run on a GPU and automatically track gradients.
 `requires_grad=True` tells torch to record every operation;
 `.backward()` then computes all gradients via the chain rule.
+
+**Why it exists:** Training a neural net means computing
+derivatives of the loss w.r.t. EVERY weight — thousands to
+billions of them. Deriving those by hand doesn't scale, and NumPy
+can't use GPUs or track gradients. Tensors exist to solve both:
+GPU-resident arrays that record their own computation graph.
+
+**Where it's used:** Autograd is WHY deep learning frameworks
+exist. Everything in levels 08-09 is tensors flowing through
+layers with gradients flowing back — training loops, backprop,
+optimizer updates.
+
+**What goes wrong without it:** Without autograd you'd write a
+manual derivative for every weight — fine for 2→2→1 (see hard/p01),
+impossible for a 100-layer network. Also: `requires_grad` only
+works on FLOAT tensors — `torch.tensor([1,2,3], requires_grad=True)`
+raises `RuntimeError: only Tensors of floating point dtype can
+require gradients` (what would d(integer)/dw even be?). And `*` is
+element-wise multiply; `@`/`torch.dot`/`torch.matmul` is real
+multiplication — same trap as NumPy.
 
 **Worked example:**
 ```python
@@ -115,21 +166,19 @@ loss.backward()
 print(a.grad)   # tensor([4., 5., 6.]) = d(dot)/da = b ✓
 ```
 
-**Why ML cares:** Autograd is WHY deep learning frameworks exist.
-Manually deriving gradients for a 100-layer network is impossible;
-`.backward()` does it in one line. Everything in levels 08-09 is
-tensors flowing through layers with gradients flowing back.
-
 **Code:**
 ```python
 x = torch.tensor(np_array, dtype=torch.float32)  # numpy → tensor
 y = torch.tensor(labels, dtype=torch.long)       # class labels need long
 ```
 
-**Common confusion:** `requires_grad` only works on FLOAT tensors
-(integers can't have gradients — what would d(integer)/dw even be?).
-And `*` is element-wise multiply; `@`/`torch.dot`/`torch.matmul` is
-real multiplication — same trap as NumPy.
+**Expected output:**
+```
+a + b           → tensor([5., 7., 9.])
+a * b           → tensor([ 4., 10., 18.])
+torch.dot(a, b) → tensor(32.)
+loss.backward() → a.grad = tensor([4., 5., 6.])  (= b)
+```
 
 ---
 
@@ -141,6 +190,24 @@ real multiplication — same trap as NumPy.
 [1,0]→1, [1,1]→0`. No single straight line separates the 1s from
 the 0s — a lone perceptron provably fails. A hidden layer
 (2→2→1) can bend the boundary and solve it.
+
+**Why it exists:** In 1969 Minsky & Papert proved perceptrons
+can't do XOR — and neural-net research nearly died. Hidden layers
+were the fix: an intermediate layer warps the input space so
+classes that weren't linearly separable become separable. That
+insight (hidden layers + backprop) IS deep learning.
+
+**Where it's used:** Every modern architecture is this idea scaled
+up — more layers = more space-warping. Any problem whose classes
+aren't separable by one straight boundary (images, audio, language)
+needs hidden layers.
+
+**What goes wrong without it:** Train a lone perceptron on XOR and
+the update rule cycles forever — errors never reach zero, the loss
+never falls, because no straight line can possibly fit. Note the
+flip side too: "more layers" isn't automatically better — XOR
+needs exactly ONE hidden layer. Depth adds power but also training
+difficulty; add it because the problem needs it.
 
 **Worked example:**
 ```
@@ -157,11 +224,6 @@ Result: preds ≈ [0.05, 0.95, 0.95, 0.04], loss → ~0.002
 The hidden layer warps the space so the classes DO separate.
 ```
 
-**Why ML cares:** This 1969 problem ("perceptrons can't do XOR")
-nearly killed neural-net research — the fix (hidden layers +
-backprop) IS deep learning. Every modern architecture is this
-idea scaled up: more layers = more space-warping.
-
 **Code:**
 ```python
 h   = sigmoid(X @ W1 + b1)        # forward: hidden
@@ -169,9 +231,9 @@ out = sigmoid(h @ W2 + b2)        # forward: output
 # backward: adjust W2,b2 from output error, then W1,b1 through the chain
 ```
 
-**Common confusion:** "More layers" isn't automatically better —
-XOR needs exactly ONE hidden layer. Depth adds power but also
-training difficulty; add it because the problem needs it.
+**Expected output:** After ~1000 epochs of training on XOR,
+`out ≈ [[0.05], [0.95], [0.95], [0.04]]` — matching `y=[0,1,1,0]`
+within ~0.05 — and loss drops to ≈ 0.002.
 
 ---
 
@@ -181,6 +243,24 @@ training difficulty; add it because the problem needs it.
 uses. Memorize it once, use it forever:
 1. forward pass → 2. compute loss → 3. zero gradients →
 4. backward pass → 5. optimizer step.
+
+**Why it exists:** Gradient descent is inherently a cycle: measure
+error, find the direction that reduces it, take a step, repeat.
+PyTorch keeps the steps explicit (instead of hiding them in one
+`fit()` call) so you can customize each stage — that's the whole
+point of a framework over a fixed recipe.
+
+**Where it's used:** This exact loop trains everything — MNIST
+nets, CNNs, transformers. The details change (batches, schedulers,
+mixed precision) but the skeleton never does. It's THE PyTorch
+pattern.
+
+**What goes wrong without it:** Forgetting `optimizer.zero_grad()`
+is THE beginner bug — PyTorch ACCUMULATES gradients across
+`backward()` calls, so without zeroing, each step uses stale
+summed gradients and training goes haywire (loss bounces or
+explodes). Skip `backward()` and weights never move; skip `step()`
+and you compute gradients but never apply them — loss sits flat.
 
 **Worked example:** Learn `y = 3x + 2` from noisy data:
 ```python
@@ -198,20 +278,15 @@ for epoch in range(100):
 # After training: model.weight ≈ 3.0, model.bias ≈ 2.0  ✓
 ```
 
-**Why ML cares:** This exact loop trains everything — MNIST nets,
-CNNs, transformers. The details change (batches, schedulers, mixed
-precision) but the skeleton never does. It's THE PyTorch pattern.
-
 **Code:**
 ```python
 import torch.nn as nn, torch.optim as optim
 model.weight.item(), model.bias.item()   # read learned params
 ```
 
-**Common confusion:** Forgetting `optimizer.zero_grad()` is THE
-beginner bug — PyTorch ACCUMULATES gradients across backward()
-calls, so without zeroing, each step uses stale summed gradients
-and training goes haywire.
+**Expected output:** After ~100 epochs, `model.weight.item()` ≈
+3.0 and `model.bias.item()` ≈ 2.0 (recovering `y = 3x + 2` up to
+the noise), and the printed loss falls from ~10+ to near 0.
 
 ---
 
@@ -221,6 +296,25 @@ and training goes haywire.
 with activations between them. For classification, the final layer
 outputs raw scores ("logits") — one per class — and
 CrossEntropyLoss turns them into a probability distribution.
+
+**Why it exists:** Flat feature vectors have no spatial structure,
+so convolutions don't apply — the MLP is the general-purpose
+network for tabular data. CrossEntropyLoss exists because "argmax
+of logits" isn't differentiable: it applies softmax internally and
+penalizes the distance between predicted and true class
+distributions.
+
+**Where it's used:** This is the "default neural network" —
+tabular classification, the base case before CNNs (level-09) or
+anything fancier. Adam is the default optimizer (adaptive learning
+rates per parameter — usually beats plain SGD).
+
+**What goes wrong without it:** CrossEntropyLoss wants raw LOGITS
+and class INDICES — if you softmax yourself, you double-softmax
+and gradients break; if you one-hot encode y, you get a dtype
+error (it expects `y=[0,1,1,0,...]` of dtype long). Also: reading
+predictions requires `argmax` — the raw logits themselves aren't
+labels.
 
 **Worked example:**
 ```python
@@ -237,11 +331,6 @@ optimizer = optim.Adam(model.parameters(), lr=0.01)
 # 200 epochs on make_classification data → ~0.95 test accuracy
 ```
 
-**Why ML cares:** This is the "default neural network" — tabular
-classification, the base case before CNNs (level-09) or anything
-fancier. Adam is the default optimizer (adaptive learning rates
-per parameter — usually beats plain SGD).
-
 **Code:**
 ```python
 X_t = torch.tensor(X, dtype=torch.float32)
@@ -249,9 +338,10 @@ y_t = torch.tensor(y, dtype=torch.long)      # class INDICES, not one-hot!
 preds = model(X_t).argmax(dim=1)             # highest logit wins
 ```
 
-**Common confusion:** CrossEntropyLoss wants raw LOGITS and class
-INDICES — do NOT softmax yourself (it's built in) and do NOT
-one-hot encode y (it expects `y=[0,1,1,0,...]` of dtype long).
+**Expected output:** `model(X_t)` returns raw logits like
+`tensor([[ 2.1, -0.7], ...])`; `argmax(dim=1)` → `tensor([0, ...])`.
+After ~200 epochs on make_classification data, test accuracy ≈
+0.95.
 
 ---
 
@@ -263,6 +353,26 @@ one-hot encode y (it expects `y=[0,1,1,0,...]` of dtype long).
 what `.backward()` does for you, exposed. For each weight, the
 gradient answers: "if I nudge this weight, how much does the loss
 change?" Then update: `w -= lr × gradient`.
+
+**Why it exists:** Someone has to know how to assign "blame" for
+the loss to each of millions of weights. Doing it numerically
+(wiggle each weight, re-run the network) costs 2 forward passes
+PER WEIGHT — hopeless at scale. Backprop computes all gradients in
+ONE backward pass by reusing shared error terms through the chain
+rule.
+
+**Where it's used:** You'll never write this in production —
+autograd does it — but understanding it explains everything:
+vanishing gradients, why ReLU helps, what `.backward()` actually
+computes. This is the "how does a car engine work" lesson for ML.
+
+**What goes wrong without it:** Without the chain rule, deeper
+layers get no usable error signal — the error must flow BACKWARD
+through the SAME weights it used going forward (`delta2 @ W2.T`).
+Each layer's gradient is error × local-derivative × input — forget
+any factor and the network learns nothing (loss just sits there).
+And with sigmoid everywhere, gradients shrink layer by layer
+(vanishing gradients) — the reason ReLU took over.
 
 **Worked example:** 2→2→1 net on XOR, one forward+backward trace:
 ```
@@ -283,11 +393,6 @@ Each weight's gradient = (error that reached it) × (its input).
 5000 epochs, lr=0.5 → loss ≈ 0.0005, XOR solved.
 ```
 
-**Why ML cares:** You'll never write this in production — autograd
-does it — but understanding it explains everything: vanishing
-gradients, why ReLU helps, what `.backward()` actually computes.
-This is the "how does a car engine work" lesson for ML.
-
 **Code:**
 ```python
 def sigmoid(z): return 1/(1+np.exp(-z))
@@ -295,10 +400,9 @@ def d_sigmoid(s): return s*(1-s)     # takes the ACTIVATED value
 W2 -= lr * (h.T @ delta2);  W1 -= lr * (X.T @ delta1)
 ```
 
-**Common confusion:** The error flows BACKWARD through the SAME
-weights it used going forward (`delta2 @ W2.T`), and each layer's
-gradient is error × local-derivative × input — forget any factor
-and the network learns nothing (loss just sits there).
+**Expected output:** After 5000 epochs at lr=0.5, the loss falls
+from ~0.25 (random guessing) to ≈ 0.0005, and `out` rounds to
+`[0, 1, 1, 0]` — XOR solved.
 
 ---
 
@@ -308,6 +412,26 @@ and the network learns nothing (loss just sits there).
 at once), and models behave differently when training vs.
 evaluating — `model.train()`/`model.eval()` and `torch.no_grad()`
 manage that.
+
+**Why it exists:** Two problems: (1) datasets bigger than memory
+can't be fed in one forward pass — mini-batches fix that AND the
+noisy gradient estimates help escape bad minima; (2) layers like
+dropout and batchnorm NEED different behavior during training vs.
+inference, so PyTorch gives the model a mode flag.
+
+**Where it's used:** Every real training pipeline uses DataLoader
+batching; every production inference wraps prediction in
+`model.eval()` + `torch.no_grad()`.
+
+**What goes wrong without it:** Train on the full dataset every
+step → slow epochs and memory blowups on big data. Evaluate in
+`train()` mode → dropout keeps randomly zeroing units and
+predictions change run to run (flaky, unreproducible accuracy).
+Evaluate without `no_grad()` → PyTorch builds a gradient graph it
+never uses → memory grows until OOM. Note: `model.eval()` alone
+does NOT stop gradient tracking — it only changes layer behavior;
+you need BOTH. And `train()`/`eval()` don't return anything —
+they set a flag in place.
 
 **Worked example:**
 ```python
@@ -328,11 +452,6 @@ for epoch in range(50):
 # train loss falls 0.x → 0.0x; val acc reaches ~0.95+
 ```
 
-**Why ML cares:** Batching is how you train on datasets bigger than
-memory and get gradient-estimate noise that actually helps escape
-bad minima. `eval()`/`no_grad()` are what make dropout behave and
-inference fast — production code always wraps prediction in them.
-
 **Code:**
 ```python
 from torch.utils.data import TensorDataset, DataLoader
@@ -340,11 +459,9 @@ with torch.no_grad():               # inside = pure inference
     logits = model(X_test)
 ```
 
-**Common confusion:** `model.eval()` does NOT turn off gradient
-tracking — it only changes layer behavior (dropout, batchnorm).
-You need BOTH `model.eval()` AND `torch.no_grad()` for proper
-inference. And `train()`/`eval()` don't return anything — they set
-a flag on the model in place.
+**Expected output:** 400 samples at batch_size=32 → 13 batches per
+epoch. Train loss falls from ~0.x to ~0.0x over 50 epochs;
+`acc` (a 0-dim tensor) reaches ≈ `tensor(0.95)` on validation.
 
 ---
 
@@ -354,6 +471,23 @@ a flag on the model in place.
 handwritten digits, each a 28×28 grayscale image, labels 0-9.
 `torchvision.datasets.MNIST` downloads it for you. An MLP that
 flattens each image into 784 pixels hits ~97% in a few epochs.
+
+**Why it exists:** You need a standard, real dataset to sanity-
+check the entire pipeline end-to-end — MNIST is small enough to
+train in minutes but real enough to prove a network actually
+learned. It became the shared benchmark every framework and paper
+uses as a first test.
+
+**Where it's used:** The standard sanity check — every framework
+tutorial, every new-idea paper starts here. It proves the MLP
+pipeline end-to-end on real data: download → DataLoader → train →
+evaluate. Level-09 swaps the MLP for a CNN and pushes past 99%.
+
+**What goes wrong without it:** Images arrive as `[batch, 1, 28,
+28]` — a Linear layer needs `[batch, 784]`. Forgetting to flatten
+(`x.view(-1, 784)`) gives a shape mismatch error. `ToTensor()`
+scales pixels to [0.0, 1.0] — feed raw 0-255 values and gradients
+explode. Also `download=True` needs internet the first run.
 
 **Worked example:**
 ```
@@ -371,12 +505,6 @@ Meaning: of 10,000 handwritten digits the model has NEVER seen,
 it reads ~9,700 correctly.
 ```
 
-**Why ML cares:** MNIST is the standard sanity check — every
-framework tutorial, every new-idea paper starts here. It also
-proves the MLP pipeline end-to-end on real data: download →
-DataLoader → train → evaluate. Level-09 swaps the MLP for a CNN
-and pushes past 99%.
-
 **Code:**
 ```python
 from torchvision import datasets, transforms
@@ -385,9 +513,10 @@ train = datasets.MNIST('./data', train=True, download=True,
 # model(x.view(-1, 784)) — flatten each batch before Linear
 ```
 
-**Common confusion:** Images arrive as [batch, 1, 28, 28] — a
-Linear layer needs [batch, 784]. Forgetting to flatten gives a
-shape error. Also `download=True` needs internet the first run.
+**Expected output:** `len(train)` → 60000; each item is a
+`[1, 28, 28]` tensor plus a label 0-9. After ~3 epochs with
+Adam(0.001) and CrossEntropyLoss, test accuracy ≈ 0.97 (~9,700 of
+10,000 unseen digits read correctly).
 
 ---
 

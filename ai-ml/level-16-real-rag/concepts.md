@@ -1,8 +1,8 @@
 # Level 16 — Concepts (Detailed Explanations)
 
-Read each section BEFORE attempting its problem. Each concept has:
-what it is in plain words → a worked example with real numbers →
-why ML cares → the code → what confuses beginners.
+Read each section BEFORE attempting its problem. Each concept explains:
+What it is · Why it exists · Where it's used · What goes wrong without
+it · worked example · code · expected output.
 
 ## The "Real RAG" mental model
 
@@ -33,6 +33,27 @@ role — it scores each word by how often it appears in this document
 versus how rare it is across all documents. Same input, same output
 shape, same downstream code.
 
+**Why it exists:** Text can't go into math — vectors can. Embeddings
+were invented so "find the most similar doc" becomes a matrix
+multiply (see p02) instead of a keyword search. The normalization
+step exists so a plain dot product equals cosine similarity —
+without it, long documents would always win on magnitude alone.
+
+**Where it's used:** Every vector-search and RAG system — FAISS,
+Pinecone, pgvector, OpenAI embeddings. TF-IDF specifically still
+powers keyword-ish search and baselines everywhere.
+
+**What goes wrong without it:**
+- `fit_transform` returns a *sparse* matrix — mostly zeros stored
+  compactly. `np.linalg.norm` and `@` don't behave the same on it;
+  always call `.toarray()` to get a dense matrix first, or your
+  similarities come out wrong or crash.
+- Without embeddings there's no similarity ordering — retrieval
+  degrades to substring matching, so "how to fix" never matches
+  "repair guide."
+- Skipping normalization → dot products, not cosines — longer docs
+  dominate every ranking regardless of relevance.
+
 **Worked example:**
 ```
 docs = ["machine learning models learn",
@@ -50,11 +71,6 @@ L2-normalize:  norm = sqrt(.44² + .44² + .56² + .44²) ≈ 1.0
                row / norm  →  unit vector, length exactly 1.0
 ```
 
-**Why ML cares:** Text can't go into math — vectors can. Once every
-doc is a row of a matrix, "find the most similar doc" is just a
-matrix multiply (see p02). The normalization step is what makes a
-plain dot product equal to cosine similarity.
-
 **Code:**
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -68,9 +84,12 @@ def embed(texts):
     return X / norms                            # every row = unit vec
 ```
 
-**Common confusion:** `fit_transform` returns a *sparse* matrix —
-mostly zeros stored compactly. `np.linalg.norm` and `@` don't behave
-the same on it; always call `.toarray()` to get a dense matrix first.
+**Expected output:**
+```python
+embed(docs)          # → array of shape (3, vocab_size)
+embed(docs)[0]       # → [0, .44, .44, .56, 0, .44, 0, 0, 0, ...]
+np.linalg.norm(embed(docs)[0])   # → 1.0  (every row is unit length)
+```
 
 ---
 
@@ -80,6 +99,25 @@ the same on it; always call `.toarray()` to get a dense matrix first.
 vectors, ignoring their lengths: `cos = (a·b) / (|a||b|)`. Identical
 direction → 1.0, unrelated → 0.0, opposite → −1.0. When vectors are
 already unit length, `a·b` alone IS the cosine.
+
+**Why it exists:** Raw dot products reward big vectors — a long doc
+scores high on everything. Cosine was invented to measure
+*direction* (relatedness) independent of magnitude, which is what
+"similar" actually means for text.
+
+**Where it's used:** This is the inner loop of EVERY vector
+database. "Retrieve the top-k docs" = compute `doc_matrix @
+query_vec`, sort, take the best k. Billions of dollars of infra
+(FAISS, Pinecone, pgvector) exists just to make this one operation
+fast at scale.
+
+**What goes wrong without it:**
+- Don't assume inputs are already normalized. A raw TF-IDF row or a
+  hand-made vector like `[1, 1]` isn't unit length — skipping the
+  division gives you dot products, not cosines, and scores stop
+  being comparable.
+- Without cosine you'd rank by vector magnitude — verbose docs beat
+  relevant short ones on every query.
 
 **Worked example:**
 ```
@@ -95,11 +133,6 @@ scores = [ (1·1 + 0·0) / (1·1)      = 1.0
            (1·1 + 0·1) / (1·1.414)  = 0.707 ]
 ```
 
-**Why ML cares:** This is the inner loop of EVERY vector database.
-"Retrieve the top-k docs" = compute `doc_matrix @ query_vec`, sort,
-take the best k. Billions of dollars of infra (FAISS, Pinecone,
-pgvector) exists just to make this one operation fast at scale.
-
 **Code:**
 ```python
 def cosine_all(query_vec, doc_matrix):
@@ -114,10 +147,11 @@ def cosine_all(query_vec, doc_matrix):
     return Dn @ q                          # one score per doc row
 ```
 
-**Common confusion:** Don't assume inputs are already normalized.
-The problem explicitly requires you to normalize BOTH sides — a raw
-TF-IDF row or a hand-made vector like `[1, 1]` isn't unit length, and
-skipping the division gives you dot products, not cosines.
+**Expected output:**
+```python
+cosine_all([1, 0], [[1, 0], [0, 1], [1, 1]])
+# → array([1.0, 0.0, 0.707])      # one score per doc row
+```
 
 ---
 
@@ -127,6 +161,28 @@ skipping the division gives you dot products, not cosines.
 before embedding. Each chunk remembers WHERE it came from —
 `start`/`end` character offsets — so an answer can point back to its
 source.
+
+**Why it exists:** Embedding a whole article into ONE vector
+averages away its meaning — a query about paragraph 30 matches the
+"average" of everything. Chunking was invented to keep each vector
+topically focused. Overlap exists because a fact can straddle a
+chunk boundary; the repeated chars guarantee it survives whole in at
+least one chunk. Metadata exists so retrieval results can cite their
+source.
+
+**Where it's used:** Every RAG ingest pipeline — document QA,
+chat-with-your-PDF, enterprise search. Offsets power "source:
+page 3" citations.
+
+**What goes wrong without it:**
+- No overlap → a fact split across the boundary matches NEITHER
+  chunk fully — it becomes unretrievable.
+- Beginners write `step = overlap` (wrong — overlap is how much is
+  *repeated*, step is how far you *move*). With size=100,
+  overlap=20 you advance 80 chars per chunk, not 20 — the wrong step
+  produces 5× too many nearly-identical chunks.
+- No metadata → retrieved text can't be traced back to its source —
+  no citations, no auditability.
 
 **Worked example:**
 ```
@@ -141,12 +197,6 @@ chunk 3:  start=240  end=300   (short tail — only 60 chars left)
 each chunk = {"id": 0, "text": "...", "start": 0, "end": 100}
 and text[start:end] == chunk["text"]  (the invariant!)
 ```
-
-**Why ML cares:** Embedding a whole article into ONE vector averages
-away its meaning — a query about paragraph 30 matches the "average"
-of everything. Overlap matters because a fact can straddle a chunk
-boundary; the repeated 20 chars guarantee it survives in at least one
-chunk whole.
 
 **Code:**
 ```python
@@ -164,9 +214,14 @@ def chunk_text(text, size=100, overlap=20):
     return chunks
 ```
 
-**Common confusion:** Beginners write `step = overlap` (wrong —
-overlap is how much is *repeated*, step is how far you *move*). With
-size=100, overlap=20 you advance 80 chars per chunk, not 20.
+**Expected output:**
+```python
+chunks = chunk_text(text_300_chars, size=100, overlap=20)
+len(chunks)                      → 4
+[(c["start"], c["end"]) for c in chunks]
+# → [(0, 100), (80, 180), (160, 260), (240, 300)]
+text[c["start"]:c["end"]] == c["text"]   # True for every chunk
+```
 
 ---
 
@@ -178,6 +233,28 @@ size=100, overlap=20 you advance 80 chars per chunk, not 20.
 stores embedded docs, `query(q_vec, k)` returns the top-k matches.
 That's the whole API of FAISS, Chroma, and Pinecone — everything else
 is performance.
+
+**Why it exists:** Embedding and storage must share ONE fitted
+vectorizer — otherwise stored vectors and query vectors live in
+different coordinate systems and scores mean nothing. The class was
+invented to own that invariant: the FIRST `add` calls
+`fit_transform` (it learns the vocabulary), every later `add` must
+call `transform` only. Re-fitting would build a different vocab,
+making old and new vectors incomparable. Real vector DBs fix their
+embedding model at index-creation time for exactly this reason.
+
+**Where it's used:** Every vector database and search index — this
+add/query contract is what FAISS, Chroma, Pinecone, and pgvector all
+implement.
+
+**What goes wrong without it:**
+- `np.argsort` sorts ASCENDING — `argsort(-scores)` (or
+  `argsort(scores)[::-1]`) is how you get best-first order. Forget
+  the minus and you return the LEAST similar docs first.
+- Re-fitting the vectorizer on a later `add` → different vocab →
+  silently corrupt retrieval where everything scores ~0.
+- Without a store object, embedder/matrix/texts drift apart in
+  separate variables and fall out of sync.
 
 **Worked example:**
 ```
@@ -193,13 +270,6 @@ store.query(q, k=2)
    → argsort descending → [(2, 0.6), (0, 0.0)]
    # idx 2 = the "neural networks" doc. Highest score first.
 ```
-
-**Why ML cares:** The FIRST `add` calls `fit_transform` — it learns
-the vocabulary. Every later `add` must call `transform` only.
-Re-fitting would build a different vocab, and then old stored vectors
-and new vectors would live in different coordinate systems —
-comparing them would be meaningless. Real vector DBs fix their
-embedding model at index-creation time for exactly this reason.
 
 **Code:**
 ```python
@@ -232,8 +302,14 @@ class VectorStore:
         return [(int(i), float(scores[i])) for i in top]
 ```
 
-**Common confusion:** `np.argsort` sorts ASCENDING. `argsort(-scores)`
-(or `argsort(scores)[::-1]`) is how you get best-first order.
+**Expected output:**
+```python
+store.add(["machine learning models learn",
+           "pasta needs boiling water",
+           "neural networks mimic neurons"])   # → 3
+store.query(store.vec.transform(["neural networks brain"]), k=2)
+# → [(2, ~0.6), (0, ~0.0)]    # (index, score), best first
+```
 
 ---
 
@@ -242,6 +318,26 @@ class VectorStore:
 **What it is:** Ingestion is the offline half of RAG — the work you do
 ONCE before any user asks anything: raw docs → chunks → store.add().
 The store embeds internally; ingest just orchestrates the loop.
+
+**Why it exists:** Embedding is expensive; you can't afford it per
+query. The ingest/query split was invented so the heavy work happens
+once at indexing time and queries stay milliseconds-fast — the
+fundamental shape of every search system (Google indexes the web
+nightly; it doesn't re-crawl per query).
+
+**Where it's used:** Every document-QA product's upload step,
+nightly reindex jobs, and any "add documents to the knowledge base"
+feature. It's also where chunk metadata pays off: chunk 7 came from
+doc 2, so an answer can say "source: pasta doc."
+
+**What goes wrong without it:**
+- Return the number of CHUNKS added (9), not the number of documents
+  (3) — the caller needs to know what actually entered the index.
+- Don't embed the chunks yourself — `store.add` already does
+  `fit_transform`/`transform` inside; double-embedding with a fresh
+  vectorizer produces vectors in the wrong coordinate system.
+- Embedding at query time per-request → every search pays full
+  indexing cost → unusable latency.
 
 **Worked example:**
 ```
@@ -255,12 +351,6 @@ doc 2 (~250 chars) → 3 chunks
 ingest(store, RAW_DOCS) → returns 9, store.texts has 9 entries
 ```
 
-**Why ML cares:** This separation — ingest once, query many — is the
-fundamental shape of every search system (Google indexes the web
-nightly; you don't re-crawl per query). It's also where chunk
-metadata pays off: chunk 7 came from doc 2, so an answer can say
-"source: pasta doc."
-
 **Code:**
 ```python
 def ingest(store, raw_docs, size=100, overlap=20):
@@ -272,9 +362,11 @@ def ingest(store, raw_docs, size=100, overlap=20):
     return len(chunk_texts)
 ```
 
-**Common confusion:** Return the number of CHUNKS added (9), not the
-number of documents (3). Also — don't embed the chunks yourself;
-`store.add` already does `fit_transform`/`transform` inside.
+**Expected output:**
+```python
+ingest(store, RAW_DOCS)      # → 9   (chunks, not docs)
+len(store.texts)             # → 9
+```
 
 ---
 
@@ -283,6 +375,25 @@ number of documents (3). Also — don't embed the chunks yourself;
 **What it is:** The online half: a user query comes in, gets embedded
 with the SAME fitted vectorizer, scored against every stored chunk,
 and the top-k raw texts come back.
+
+**Why it exists:** Retrieval exists because the LLM doesn't "know"
+your docs — someone must find the relevant paragraphs at question
+time. The critical invariant: embed the query with `store.vec` —
+the vectorizer fitted on the DOCS — never a fresh one. A different
+vectorizer = a different coordinate system = scores that mean
+nothing.
+
+**Where it's used:** This is the function every chat-with-your-docs
+product runs on every keystroke — support bots, PDF QA, enterprise
+search.
+
+**What goes wrong without it:**
+- `vec.transform([query])` needs a LIST — you're embedding one
+  document, and sklearn expects an iterable of texts. Pass `query`
+  without brackets and it treats each character as a doc → a
+  garbage query vector.
+- A fresh `TfidfVectorizer()` per query → vocab doesn't match the
+  stored matrix → wrong-shape or meaningless scores.
 
 **Worked example:**
 ```
@@ -296,12 +407,6 @@ retrieve(store, "how long to cook pasta?", store.vec, k=1)
    → ["Cooking pasta requires boiling salted water ..."]
 ```
 
-**Why ML cares:** This is the function every chat-with-your-docs
-product runs on every keystroke. The critical invariant: embed the
-query with `store.vec` — the vectorizer fitted on the DOCS — never a
-fresh one. A different vectorizer = a different coordinate system =
-scores that mean nothing.
-
 **Code:**
 ```python
 def retrieve(store, query, vec, k=3):
@@ -310,9 +415,11 @@ def retrieve(store, query, vec, k=3):
     return [store.texts[i] for i, _ in hits]
 ```
 
-**Common confusion:** `vec.transform([query])` needs a LIST — you're
-embedding one document, and sklearn expects an iterable of texts.
-Pass `query` without brackets and it treats each character as a doc.
+**Expected output:**
+```python
+retrieve(store, "how long to cook pasta?", store.vec, k=1)
+# → ["Cooking pasta requires boiling salted water ..."]
+```
 
 ---
 
@@ -324,6 +431,25 @@ Pass `query` without brackets and it treats each character as a doc.
 relevant chunks, paste them into a prompt as "context," and let a
 generator answer from them. Here a template string stands in for the
 LLM — the pipeline shape is identical to production.
+
+**Why it exists:** LLMs only know what was in their training data —
+they can't read your docs and will confidently hallucinate about
+them. RAG was invented to ground answers in retrieved text: hand the
+model the paragraphs and it reads them instead of guessing. If
+retrieval fetched garbage, the answer is garbage — which is why p02
+(evaluation) exists.
+
+**Where it's used:** This prompt — context block + question — is
+literally what ChatGPT plugins, Perplexity, and every support bot
+send to the model.
+
+**What goes wrong without it:**
+- Without retrieval, the model answers from parametric memory —
+  hallucinating about docs it has never seen, with total confidence.
+- The function returns an ANSWER string, not the prompt and not the
+  raw list of hits — returning the prompt is the classic bug here.
+  The prompt is a means to an end; in production it goes to an LLM,
+  here it feeds the template.
 
 **Worked example:**
 ```
@@ -349,12 +475,6 @@ answer = f"Based on the docs: {top_chunk}"
        → "...Python is a popular programming language..."
 ```
 
-**Why ML cares:** This prompt — context block + question — is
-literally what ChatGPT plugins, Perplexity, and every support bot
-send to the model. The LLM doesn't "know" your docs; you hand it the
-paragraphs and it reads them. If retrieval fetched garbage, the
-answer is garbage — which is why p02 (evaluation) exists.
-
 **Code:**
 ```python
 def rag_answer(query, store, vec, k=2):
@@ -366,9 +486,12 @@ def rag_answer(query, store, vec, k=2):
     return f"Based on the docs: {top}"
 ```
 
-**Common confusion:** The function returns an ANSWER string, not the
-prompt and not the raw list of hits. The prompt is a means to an end;
-in production it goes to an LLM, here it feeds the template.
+**Expected output:**
+```python
+rag_answer("which language is used for data science?", store, vec)
+# → "Based on the docs: Python is a popular programming language
+#    widely used for data science."
+```
 
 ---
 
@@ -378,6 +501,26 @@ in production it goes to an LLM, here it feeds the template.
 For each test query you know which keywords a correct chunk should
 contain; a "hit" means at least one expected keyword appears
 somewhere in the top-k retrieved texts. Hit rate = hits / n_queries.
+
+**Why it exists:** If retrieval fails, the generator never had a
+chance — the right paragraph simply wasn't in the prompt. Hit rate
+was invented to isolate the retriever's quality from the
+generator's, so you know WHICH half of the pipeline to fix.
+
+**Where it's used:** Offline evaluation of every search/RAG system —
+it's the RAG version of accuracy. Real systems use labeled
+relevance judgments (recall@k, MRR); keywords are the cheap version.
+
+**What goes wrong without it:**
+- Without it, a bad answer is undiagnosable — you can't tell if
+  retrieval missed or the generator bungled good context, so you
+  "fix" the wrong half.
+- It's ANY keyword, not ALL — `any(...)`, not `all(...)`. Requiring
+  all keywords turns near-misses into misses and understates your
+  retriever.
+- Compare case-insensitively: "Python" in the doc must match
+  "python" in the keyword list — case-sensitive matching produces
+  phantom misses.
 
 **Worked example:**
 ```
@@ -393,11 +536,6 @@ a bad query "best pizza toppings" → no expected kw → MISS
 hit_rate with 3 queries, 1 miss = 2/3 ≈ 0.67
 ```
 
-**Why ML cares:** If retrieval fails, the generator never had a
-chance — the right paragraph simply wasn't in the prompt. Hit rate
-isolates the retriever's quality from the generator's, so you know
-WHICH half of the pipeline to fix. It's the RAG version of accuracy.
-
 **Code:**
 ```python
 def eval_rag(queries, expected_keywords, store, vec, k=3):
@@ -412,9 +550,13 @@ def eval_rag(queries, expected_keywords, store, vec, k=3):
     return hits / len(queries)
 ```
 
-**Common confusion:** It's ANY keyword, not ALL — `any(...)`, not
-`all(...)`. And compare case-insensitively: "Python" in the doc must
-match "python" in the keyword list.
+**Expected output:**
+```python
+eval_rag(["language for data science", "tower in paris"],
+         [["python"], ["eiffel"]], store, vec, k=3)
+# → 1.0                              # both queries hit
+# with a third query that misses    → 0.6666...   (2/3)
+```
 
 ---
 
@@ -425,6 +567,25 @@ whiff on exact rare terms; keyword search nails exact terms but
 ignores meaning. Hybrid runs both and blends the scores:
 `fused = alpha·dense + (1−alpha)·keyword`. The keyword scorer is
 BM25, the classic ranking formula.
+
+**Why it exists:** Neither retrieval method alone covers the other's
+failures — embeddings underweight rare exact terms (SKUs, part
+numbers, odd names) while keyword search can't match paraphrases
+("how to fix" vs "repair guide"). Fusion was invented to get both
+signals in one ranking, with an alpha knob to trade them off.
+
+**Where it's used:** Production search — Elastic, Qdrant, Pinecone
+hybrid — always runs both. Fusion with max-normalization + an alpha
+knob is the standard recipe.
+
+**What goes wrong without it:**
+- You MUST normalize each score vector before fusing — raw BM25
+  scores (0-10+) dwarf cosine scores (0-1), so the blend would be
+  keyword-only in disguise. Max-normalize puts both on [0, 1] first.
+- Dense-only → queries with rare exact terms (a SKU, an error code)
+  miss their doc entirely.
+- Keyword-only → paraphrased queries score zero despite a perfect
+  match existing in the index.
 
 **Worked example:**
 ```
@@ -455,12 +616,6 @@ TF-IDF embeddings underweight — dense ranks it 3rd, kw ranks it 1st,
 fusion pulls it to the top.
 ```
 
-**Why ML cares:** Production search (Elastic, Qdrant, Pinecone hybrid)
-always runs both. Embeddings alone fail on SKUs, part numbers, and
-rare names; keywords alone fail on paraphrases ("how to fix" vs
-"repair guide"). Fusion with max-normalization + an alpha knob is the
-standard recipe.
-
 **Code:**
 ```python
 def hybrid(store, vec, query, docs, k=3, alpha=0.5):
@@ -480,10 +635,13 @@ def hybrid(store, vec, query, docs, k=3, alpha=0.5):
     return [(int(i), float(fused[i])) for i in top]
 ```
 
-**Common confusion:** You MUST normalize each score vector before
-fusing — raw BM25 scores (0-10+) dwarf cosine scores (0-1), so the
-blend would be keyword-only in disguise. Max-normalize puts both on
-[0, 1] first.
+**Expected output:**
+```python
+hybrid(store, vec, "great wall thousand miles", docs, k=3)
+# → [(3, ~1.0), (0, ~0.17), (4, ~0.10)]   # doc 3 (Great Wall) on top
+# the rare-term rescue case: kw spike + decent dense → fused pulls
+# the exact-match doc above pure-dense winners
+```
 
 ---
 

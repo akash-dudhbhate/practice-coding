@@ -64,18 +64,118 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.html` — A page with 3 images: one meaningful (with alt), one decorative (empty alt), one that's a link.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   [ photo ]     <- meaningful img, descriptive alt
+   [ border ]    <- decorative img, alt="" (screen readers skip it)
+   [ logo -> ]   <- img inside a link; alt = the LINK destination
+   Visually they look the same -- the difference is in the alt text.
+   ```
 2. `easy/p02-solve.html` — A form with 3 labeled inputs, each with `aria-describedby` hints.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Name:    [____________]
+            e.g. Jane Doe           <- hint text (aria-describedby)
+   Email:   [____________]
+            We'll never share it.
+   Phone:   [____________]
+            Include country code.
+   [ Submit ]
+   ```
 3. `easy/p03-solve.html` — A page with landmarks (`<header>`, `<nav>`, `<main>`, `<footer>`) and `<html lang="en">`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +------------------------------------------+
+   | HEADER:  Site title                      |
+   | NAV:     Home | About | Contact          |   <- labeled <nav>
+   +------------------------------------------+
+   | MAIN:    Section heading (h2) + content  |
+   +------------------------------------------+
+   | FOOTER:  (c) 2026                        |
+   +------------------------------------------+
+   ```
 
 ### Medium
 4. `medium/p01-solve.html` — A page with a skip link, proper landmarks, labeled nav, and a heading hierarchy (h1 → h2 → h3).
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   BEFORE Tab:               AFTER first Tab:
+   +---------------------+   +---------------------+
+   | Header + nav        |   |[Skip to content]    | <- revealed on focus
+   | H1 Heading          |   | Header + nav        |
+   |   H2 Section        |   | H1 -> H2 -> H3      |
+   |     H3 Subsection   |   |   (clean outline,   |
+   +---------------------+   |    no skipped levels)|
+                             +---------------------+
+   ```
 5. `medium/p02-solve.html` — An accessible form with fieldset/legend, required fields, `aria-describedby`, and error messages with `role="alert"`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +- User Form -------------------------------+
+   | Name:  [__________]                       |
+   | Email: [__________]   * Email is required |  <- error, role="alert"
+   |                                         |
+   | [ Submit ]                                |
+   +-------------------------------------------+
+   (empty submit surfaces announced error messages)
+   ```
 6. `medium/p03-solve.html` — An accessible data table with caption, scope, thead/tbody, and proper structure.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Employee Directory                       <- <caption>
+   +-------+-----------+------+
+   | Name  | Role      | Dept |   <- <th scope="col"> (bold)
+   +-------+-----------+------+
+   | Akash | Developer | Eng  |   <- row label: <th scope="row">
+   | Sara  | Designer  | UX   |
+   +-------+-----------+------+
+   ```
 
 ### Hard
 7. `hard/p01-solve.html` — A full accessible page: skip link, landmarks, labeled nav, accessible form, alt text, heading hierarchy, `lang` attribute, focus-visible styles.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   [Skip to content] <- appears on first Tab
+   +------------------------------------------+
+   | HEADER: title   NAV: Home About(*=curr.) |   <- aria-current style
+   +------------------------------------------+
+   | MAIN (h1):                               |
+   |   [ img with real alt ]                  |
+   |   Label: [________]  hint text           |   <- labeled field + hint
+   |   [ Button ] <- visible :focus outline   |
+   +------------------------------------------+
+   | FOOTER                                   |
+   +------------------------------------------+
+   ```
 8. `hard/p02-solve.html` — An accessible custom widget: a toggle button with `aria-expanded`, `aria-controls`, keyboard operability, and a live region for status.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   BEFORE click:               AFTER click:
+   [v Show details ]           [^ Hide details ]    <- aria-expanded flips
+                               +------------------+
+                               | Panel content    |   <- hidden -> shown
+                               +------------------+
+                               Status: "Panel opened" <- live region
+   ```
 9. `hard/p03-solve.html` — An accessible navigation menu with `aria-label`, `aria-current="page"` for the active link, keyboard focus styles, and a skip link.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   [Skip link appears on Tab]
+   +--------------------------------------------+
+   | *Home*   About   Contact                   |   <- Home bold/underlined
+   |  ^-- aria-current="page" visual style      |      (current page)
+   +--------------------------------------------+
+   Tabbing shows a clear outline on each link.
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

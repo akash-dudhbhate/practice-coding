@@ -1,8 +1,9 @@
 # Level 06 — Concepts (Detailed Explanations)
 
-Read each section BEFORE attempting its problem. Each concept has:
-what it is in plain words → a worked example with real numbers →
-why ML cares → the code → what confuses beginners.
+> Read each section BEFORE attempting its problem. Each concept explains:
+> **What it is** · **Why it exists** · **Where it's used** ·
+> **What goes wrong** without it · worked example · code ·
+> expected output.
 
 ---
 
@@ -15,6 +16,23 @@ straight lines, don't switch models — add new features that ARE
 the curves. `PolynomialFeatures(degree=2)` turns `[x]` into
 `[x, x²]`. LinearRegression stays linear, but in feature-space it
 can now draw parabolas.
+
+**Why it exists:** "Wrong model" is often really "wrong features."
+Polynomial features exist to let a simple, well-understood model
+fit nonlinear patterns — you upgrade the data, not the algorithm.
+
+**Where it's used:** Feature engineering for linear models — the
+lever you pull when "the model isn't good enough" but you don't
+want to abandon interpretability. A linear model + smart features
+beats a fancy model + dumb features surprisingly often.
+
+**What goes wrong without it:** Fit a line to a parabola → best
+case is a flat line through symmetric data: R² ≈ 0 or negative —
+literally worse than guessing the mean. Watch the trap both ways:
+the model is still LINEAR — it's linear in the new features
+(`y = a·x + b·x²` is a linear equation in `[x, x²]`). And degree
+too high → the polynomial wiggles through every training point —
+classic overfitting.
 
 **Worked example:**
 ```
@@ -30,11 +48,6 @@ After PolynomialFeatures(degree=2):
   model learns y = 0·x + 1·x²  → perfect fit, R² = 1.0
 ```
 
-**Why ML cares:** Feature engineering is often worth more than a
-fancier model. A linear model + smart features beats a fancy model
-+ dumb features surprisingly often. This is THE lever you pull
-when "the model isn't good enough."
-
 **Code:**
 ```python
 from sklearn.preprocessing import PolynomialFeatures
@@ -43,9 +56,10 @@ X_train_poly = poly.fit_transform(X_train)
 X_test_poly = poly.transform(X_test)   # transform only!
 ```
 
-**Common confusion:** The model is still LINEAR — it's linear in
-the new features. `y = a·x + b·x²` is a linear equation in
-`[x, x²]` even though the plot curves.
+**Expected output:** R² jumps from ≈0 (or negative) on raw x to
+`1.0` on `[x, x²]` — the model now draws the parabola exactly.
+`X_test` uses `transform` only — refitting on test would be
+leakage.
 
 ---
 
@@ -54,6 +68,23 @@ the new features. `y = a·x + b·x²` is a linear equation in
 **What it is:** Models only understand numbers, but you can't just
 assign `red=0, blue=1, green=2` — that falsely implies green is
 "more than" blue. Instead, each category gets its own 0/1 column.
+
+**Why it exists:** Label encoding smuggles in a fake ordering —
+the model believes green > blue and builds splits on arithmetic
+that means nothing. One-hot exists to represent categories as
+independent switches, no order implied.
+
+**Where it's used:** The default encoding for non-ordinal
+categories: countries, product types, user segments. (For truly
+ordered ones like S < M < L, a single LabelEncoder column is
+fine.)
+
+**What goes wrong without it:** With integer codes, a linear
+model learns "if color ≥ 2 then..." — a rule that means nothing
+and fails the day a new category lands. High-cardinality trap:
+`get_dummies` on a 10,000-value column (zip codes) creates 10,000
+new columns — memory explodes and each column is nearly all
+zeros. One-hot is for LOW-cardinality features.
 
 **Worked example:**
 ```
@@ -66,12 +97,6 @@ green      0            1            0
 Compare with LabelEncoder (the wrong way for this):
 `red=0, blue=1, green=2` → model thinks color order matters.
 
-**Why ML cares:** Real data is full of categories: countries,
-product types, user segments. Wrong encoding = the model learns
-fake patterns ("green > blue"). One-hot is the default for
-non-ordinal categories (no natural order). For truly ordered ones
-(S < M < L), LabelEncoder is fine.
-
 **Code:**
 ```python
 import pandas as pd
@@ -80,9 +105,9 @@ encoded = pd.get_dummies(df)   # auto-detects text columns
 # → columns: color_blue, color_green, color_red (all 0/1)
 ```
 
-**Common confusion:** `get_dummies` creates one column per unique
-value — if a column has 10,000 unique values (like zip codes), you
-get 10,000 new columns. One-hot is for LOW-cardinality features.
+**Expected output:** `encoded` → a 3×3 DataFrame with columns
+`color_blue, color_green, color_red`; row 0 = `[0,0,1]`, row 1 =
+`[1,0,0]`, row 2 = `[0,1,0]` — exactly one `1` per row.
 
 ---
 
@@ -92,6 +117,22 @@ get 10,000 new columns. One-hot is for LOW-cardinality features.
 dominates just because its numbers are bigger.
 - `StandardScaler`: `(x - mean) / std` → mean 0, std 1
 - `MinMaxScaler`: `(x - min) / (max - min)` → range [0, 1]
+
+**Why it exists:** Models can't tell units from importance — a
+feature measured in thousands mathematically outweighs one in
+decimals. Scaling exists so feature influence reflects signal,
+not units.
+
+**Where it's used:** Distance-based models (KNN, K-Means),
+gradient descent, SVM, regularized linear models, and PCA
+(`medium/p03`, level-07) which REQUIRES scaled data first.
+
+**What goes wrong without it:** Unscaled, income (range 80,000)
+drowns out age (range 20) — KNN picks neighbors by income alone;
+gradient descent zig-zags and converges slowly or diverges. The
+leakage trap: NEVER `fit_transform` on test data — that lets
+test-set statistics leak into training. Fit on train, then only
+`.transform()` everything else.
 
 **Worked example:**
 ```
@@ -106,11 +147,6 @@ income: 30000 → (30000-70000)/31623 ≈ -1.26
         → both columns now live around [-1.4, +1.4]
 ```
 
-**Why ML cares:** Distance-based models (KNN, K-Means) and gradient
-descent treat "bigger number" as "bigger difference." Unscaled,
-income (range 80,000) would drown out age (range 20) completely.
-Also, PCA (medium/p03, level-07) REQUIRES scaled data first.
-
 **Code:**
 ```python
 from sklearn.preprocessing import StandardScaler
@@ -119,9 +155,10 @@ X_train_s = scaler.fit_transform(X_train)
 X_test_s = scaler.transform(X_test)   # use TRAIN's mean/std
 ```
 
-**Common confusion:** NEVER `fit_transform` on test data — that
-would let test-set statistics leak into training (data leakage).
-Fit on train, then only `.transform()` everything else.
+**Expected output:** `X_train_s` → each column centered at mean 0
+with std 1 (age column becomes ≈ `[-1.41, -0.71, 0, 0.71,
+1.41]`); `X_test_s` uses TRAIN's mean/std so its values aren't
+necessarily centered — that's correct behavior, not a bug.
 
 ---
 
@@ -133,6 +170,24 @@ Fit on train, then only `.transform()` everything else.
 a lazy model predicts 0 always and scores 95% — while being
 useless. Fix by duplicating random minority samples until the
 classes are balanced.
+
+**Why it exists:** Gradient descent (and most learners) minimizes
+TOTAL error — on imbalanced data, ignoring the rare class is the
+cheap optimum. Oversampling exists to make the minority class
+impossible to ignore.
+
+**Where it's used:** Fraud detection, disease diagnosis, defect
+detection — the interesting class is ALWAYS the rare one. (The
+production version is SMOTE: synthetic interpolated samples
+instead of duplicates, via `imbalanced-learn`.)
+
+**What goes wrong without it:** 95% accuracy, 0% recall — the
+model literally never predicts the class you care about, and the
+accuracy number hides it (that's why these levels use recall/F1).
+Critical trap: oversample the TRAINING data only — duplicate
+minority rows into the test set and your evaluation is fake
+(you're testing on copies of training rows AND you've changed the
+real class ratio).
 
 **Worked example:**
 ```
@@ -146,12 +201,6 @@ np.random.choice(minority_idx, size=90, replace=True)
 Result: np.bincount(y_balanced) → [95, 95]
 ```
 
-**Why ML cares:** Fraud detection, disease diagnosis, defect
-detection — the interesting class is ALWAYS the rare one. Accuracy
-lies on imbalanced data; that's why levels use recall/F1 instead.
-(Real-world version: SMOTE creates synthetic samples instead of
-duplicates — same idea, needs `imbalanced-learn`.)
-
 **Code:**
 ```python
 minority_idx = np.where(y == 1)[0]
@@ -161,9 +210,9 @@ X_bal = np.vstack([X, X[extra]])
 y_bal = np.concatenate([y, y[extra]])
 ```
 
-**Common confusion:** Oversample the TRAINING data only — never
-the test set. Test data must stay realistically imbalanced, or
-your evaluation is fake.
+**Expected output:** `np.bincount(y_bal)` → `[95, 95]` — the
+minority class now has as many rows as the majority, so "predict
+0 always" scores 50% instead of 95% and can't win anymore.
 
 ---
 
@@ -173,6 +222,24 @@ your evaluation is fake.
 feature helped split the data — `feature_importances_`. Keeping
 only the top features often IMPROVES accuracy: noise features add
 variance without signal.
+
+**Why it exists:** More columns ≠ more signal — each useless
+feature is another chance to memorize noise. Importance exists to
+measure what the model actually used, so you can cut what it
+didn't.
+
+**Where it's used:** Faster training, less overfitting, easier
+interpretation — and "which features matter?" is the first thing
+stakeholders ask. RFE (level-04 `hard/p03`) automates the same
+pruning loop.
+
+**What goes wrong without it:** Keep all 10 features → the model
+spends splits on noise → test accuracy drops (0.90 vs 0.95 in the
+example). Reading importances wrong: `argsort` returns ASCENDING
+order — the top features are at the END (`[-5:]`, not `[:5]` —
+grab the wrong end and you keep the WORST features). And
+importance ≠ causation: it says "the model used this," not "this
+causes y"; correlated features split importance between them.
 
 **Worked example:**
 ```
@@ -187,10 +254,6 @@ All features acc:  0.90
 Top-5 acc:         0.95  ← higher! Removed noise = cleaner signal
 ```
 
-**Why ML cares:** Fewer features = faster training, less
-overfitting, easier interpretation. "Which features matter?" is
-also the first thing stakeholders ask — feature importance answers it.
-
 **Code:**
 ```python
 importances = rf.feature_importances_
@@ -198,9 +261,9 @@ top5_idx = np.argsort(importances)[-5:]
 rf2 = RandomForestClassifier().fit(X_train[:, top5_idx], y_train)
 ```
 
-**Common confusion:** argsort returns ASCENDING order — the top
-features are at the END: `[-5:]`, not `[:5]`. And importance ≠
-causation — it says "the model used this," not "this causes y."
+**Expected output:** `top5_idx` → `[3, 4, 5, 6, 8]`; retrained
+model scores `0.95` vs `0.90` with all features — dropping noise
+columns literally improved the model.
 
 ---
 
@@ -210,6 +273,24 @@ causation — it says "the model used this," not "this causes y."
 and projects onto those axes. 10 features → 3 components that
 still capture most of the information. Think of it as the best
 "shadow" of high-D data in fewer dimensions.
+
+**Why it exists:** High-dimensional data is slow to train, hard
+to visualize, and prone to overfitting (curse of dimensionality).
+PCA exists because most datasets' variance concentrates in a few
+directions — you keep the signal and drop the rest.
+
+**Where it's used:** Compression before training, 2D
+visualization (level-07 `easy/p03` projects iris to 2D),
+denoising, and as a preprocessing step before clustering.
+
+**What goes wrong without it:** Train on 100 correlated features
+→ slow, overfit, unvisualizable. Forget to scale first → the
+highest-magnitude column becomes "component 1" regardless of
+information content (PCA maximizes variance; unscaled income has
+the biggest variance by units alone). And the interpretation
+trap: components are NOT original features — `X_reduced[:,0]` is
+a weighted blend of all 10, so you lose interpretability to gain
+compactness.
 
 **Worked example:**
 ```
@@ -223,12 +304,6 @@ X_reduced.shape: (200, 3) — each row is now 3 numbers
 that summarize the original 10.
 ```
 
-**Why ML cares:** High-dimensional data is slow to train, hard to
-visualize, and prone to overfitting (curse of dimensionality).
-PCA compresses it. Also used for visualization (level-07 easy/p03
-projects iris to 2D) and as a preprocessing step before
-clustering.
-
 **Code:**
 ```python
 from sklearn.decomposition import PCA
@@ -238,10 +313,9 @@ X_reduced = pca.fit_transform(X_s)
 print(pca.explained_variance_ratio_.sum())   # e.g. 0.53
 ```
 
-**Common confusion:** PCA components are NOT original features —
-they're mixtures of all of them. `X_reduced[:, 0]` isn't
-"feature 0," it's a weighted blend. You lose interpretability
-to gain compactness.
+**Expected output:** `X_reduced.shape` → `(200, 3)`;
+`explained_variance_ratio_.sum()` → `0.53` — 3 blended features
+keeping 53% of the original 10 features' information.
 
 ---
 
@@ -253,6 +327,25 @@ to gain compactness.
 any sklearn Pipeline. Subclass `BaseEstimator` + `TransformerMixin`,
 implement `fit()` (learn stats, return `self`) and `transform()`
 (return modified data).
+
+**Why it exists:** Real feature engineering (log-transforms,
+binning, interaction terms) must happen INSIDE the pipeline so it
+applies identically to train/test/production — the mixin
+interface exists so your code gets the pipeline's leak-free
+guarantees for free.
+
+**Where it's used:** Production ML code — domain-specific
+transforms that sklearn doesn't ship, wired into the same
+Pipeline as scaling and the model.
+
+**What goes wrong without it:** `fit` MUST `return self` — the
+pipeline calls `fit` then chains into `transform` on the returned
+object; forget it and you get `AttributeError: 'NoneType' object
+has no attribute 'transform'`. Mutate X in place (skip
+`X.copy()`) → you corrupt the caller's data. And `log1p` =
+`log(1+x)` crashes on negative input — use `np.abs` if needed.
+Transform outside the pipeline → train/test processed
+differently → subtle skew.
 
 **Worked example:**
 ```python
@@ -276,21 +369,16 @@ pipe = Pipeline([
 pipe.fit(X_train, y_train)   # calls log.fit → log.transform → model.fit
 ```
 
-**Why ML cares:** Real feature engineering (log-transforms, binning,
-interaction terms) must happen INSIDE the pipeline so it applies
-identically to train/test/production data. Custom transformers make
-that possible — this is how production ML code is actually written.
-
 **Code:**
 ```python
 from sklearn.base import BaseEstimator, TransformerMixin
 # subclass both, implement fit + transform, fit returns self
 ```
 
-**Common confusion:** `fit` MUST `return self` — the pipeline calls
-`fit` then chains into `transform` on the returned object. Forgetting
-`return self` gives `AttributeError: 'NoneType'`. Also, `log1p` =
-`log(1+x)` and crashes on negative input — use `np.abs` if needed.
+**Expected output:** `pipe.fit(X_train, y_train)` runs end-to-end:
+columns 0 and 2 get `log1p(|x|)` applied identically in train and
+test; `pipe.score(X_test, y_test)` returns a normal accuracy with
+no leakage and no `AttributeError`.
 
 ---
 
@@ -299,6 +387,24 @@ from sklearn.base import BaseEstimator, TransformerMixin
 **What it is:** Create NEW features by combining existing ones.
 The model can't see relationships you don't give it — but a ratio
 or product of two columns can encode the pattern directly.
+
+**Why it exists:** Models see columns, not meaning — a linear
+model cannot divide income by age unless a column IS
+income/age. Feature engineering exists to hand the model the
+pattern pre-computed.
+
+**Where it's used:** The unglamorous secret of applied ML —
+Kaggle winners and production systems both win on features, not
+exotic models. A domain expert who knows "income/age matters"
+beats a bigger model that doesn't.
+
+**What goes wrong without it:** The model must somehow discover
+the ratio itself → a linear model CAN'T (division isn't linear)
+→ accuracy caps low while one derived column would have solved
+it. Opposite trap: more features ≠ better — each engineered
+feature needs a REASON (a hypothesis about the target); random
+feature soup just adds noise — combine with feature importance
+(`medium/p02`) to prune.
 
 **Worked example:**
 ```
@@ -315,11 +421,6 @@ Before: model must somehow divide income by age itself → hard
 After:  one weight on income_per_age solves it → ~95%+ accuracy
 ```
 
-**Why ML cares:** This is the unglamorous secret of applied ML.
-Kaggle winners and production systems both win on features, not
-exotic models. A domain expert who knows "income/age matters" beats
-a bigger model that doesn't.
-
 **Code:**
 ```python
 df['income_per_age'] = df['income'] / df['age']
@@ -327,10 +428,10 @@ df['is_weekend'] = (df['day_of_week'] >= 5).astype(int)
 df['income_log'] = np.log1p(df['income'])
 ```
 
-**Common confusion:** More features ≠ better. Each engineered
-feature should have a REASON (a hypothesis about the target).
-Random feature soup just adds noise — combine with feature
-importance (medium/p02) to prune.
+**Expected output:** `df` gains 3 columns: `income_per_age`
+(e.g., 60000/30 → `2000.0`), `is_weekend` (`0`/`1` flags),
+`income_log` (30000 → `10.3`, 110000 → `11.6` — the skew
+compressed). Model accuracy jumps to ~95%+ with the new columns.
 
 ---
 
@@ -339,6 +440,23 @@ importance (medium/p02) to prune.
 **What it is:** Alternative to resampling for imbalanced data:
 tell the model "mistakes on the minority class cost more." sklearn
 auto-computes weights inversely proportional to class frequency.
+
+**Why it exists:** Resampling changes the data; sometimes you
+can't or shouldn't. Class weighting exists to fix the incentive
+instead — same balance, achieved by pricing errors rather than
+duplicating rows.
+
+**Where it's used:** Fraud/disease/defect models where missing a
+positive (low recall) is far worse than a false alarm (low
+precision) — a one-line fix: no resampling, no extra libraries.
+
+**What goes wrong without it:** The default model on 95/5 data
+learns "always predict 0" — recall 0.00, catches ZERO minority
+cases, and accuracy still looks great. "Balanced" does NOT mean
+better accuracy — it usually LOWERS overall accuracy on purpose,
+trading it for catching the rare class. Judge it by recall/F1,
+not accuracy — if you evaluate the balanced model on accuracy
+you'll think it got worse when it got useful.
 
 **Worked example:**
 ```
@@ -354,12 +472,6 @@ Results on test set:
                   f1 = 0.25       (but lots of false alarms)
 ```
 
-**Why ML cares:** This is the precision-recall tradeoff in the
-flesh. For fraud/disease, missing a positive (low recall) is far
-worse than a false alarm (low precision) — so `class_weight` is
-often worth it. It's also a one-line fix: no resampling, no extra
-libraries.
-
 **Code:**
 ```python
 model = LogisticRegression(class_weight='balanced', max_iter=1000)
@@ -367,10 +479,10 @@ from sklearn.metrics import recall_score, f1_score
 recall = recall_score(y_test, y_pred)   # of those truly 1, how many found
 ```
 
-**Common confusion:** "Balanced" does NOT mean better accuracy —
-it usually LOWERS overall accuracy on purpose. It trades raw
-accuracy for catching the rare class. Judge it by recall/F1, not
-accuracy.
+**Expected output:** Default model: `recall = 0.0`. Balanced
+model: `recall ≈ 0.86`, `f1 ≈ 0.25` — you catch most of the rare
+class at the price of many false alarms, which is exactly the
+trade you asked for.
 
 ---
 

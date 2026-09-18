@@ -1,8 +1,9 @@
 # Level 05 — Concepts (Detailed Explanations)
 
-Read each section BEFORE attempting its problem. Each concept has:
-what it is in plain words → a worked example with real numbers →
-why ML cares → the code → what confuses beginners.
+> Read each section BEFORE attempting its problem. Each concept explains:
+> **What it is** · **Why it exists** · **Where it's used** ·
+> **What goes wrong** without it · worked example · code ·
+> expected output.
 
 ---
 
@@ -16,6 +17,25 @@ from TP/FP/TN/FN. **Accuracy** = fraction correct overall.
 actually yes. **Recall** = of everything actually YES, what fraction
 you caught. **F1** = harmonic mean of precision and recall — one
 number that punishes you if either is bad.
+
+**Why it exists:** Accuracy collapses all errors into one number —
+but a false alarm and a missed case cost completely different
+things. Precision/recall exist to separate "how trustworthy is a
+YES" from "how many YESes did we miss"; F1 exists because
+optimizing one can tank the other.
+
+**Where it's used:** THE vocabulary of model evaluation — every
+paper, dashboard, and interview uses it. The choice is a business
+decision: spam wants precision (don't delete real mail); disease
+screening wants recall (don't miss cases).
+
+**What goes wrong without it:** On imbalanced data accuracy lies —
+"always healthy" scores 92% while catching zero sick people
+(level-01 `hard/p02`). The classic mix-up: precision's denominator
+is PREDICTED positives (TP+FP); recall's is ACTUAL positives
+(TP+FN) — swap them and you optimize the wrong error. And
+`TP/(TP+FP)` crashes `ZeroDivisionError` when the model predicts
+no positives at all — guard it.
 
 **Worked example:**
 ```
@@ -32,12 +52,6 @@ f1        = 2·0.833·0.833/(0.833+0.833) = 0.833
 (P and R tie here because FP = FN = 1 — usually they differ!)
 ```
 
-**Why ML cares:** This is THE vocabulary of model evaluation — every
-paper, dashboard, and interview uses it. The choice is a business
-decision: spam wants precision (don't delete real mail); disease
-screening wants recall (don't miss cases). Accuracy lies on
-imbalanced data — always check P and R too.
-
 **Code:**
 ```python
 TP = sum(1 for t,p in zip(y_true,y_pred) if t==1 and p==1)
@@ -47,9 +61,8 @@ FN = sum(1 for t,p in zip(y_true,y_pred) if t==1 and p==0)
 precision = TP/(TP+FP) if TP+FP else 0.0   # guard ÷0!
 ```
 
-**Common confusion:** Precision's denominator is PREDICTED positives
-(TP+FP); recall's is ACTUAL positives (TP+FN). Mnemonic: precision
-asks "can I trust a YES?"; recall asks "did I miss any YESes?"
+**Expected output:** `TP=5, FP=1, TN=3, FN=1` →
+`accuracy 0.8, precision 0.833, recall 0.833, f1 0.833`.
 
 ---
 
@@ -59,6 +72,21 @@ asks "can I trust a YES?"; recall asks "did I miss any YESes?"
 from. Rows = reality, columns = prediction. TP = said yes, was yes;
 FN = said no, was yes (a miss); FP = said yes, was no (false
 alarm); TN = said no, was no.
+
+**Why it exists:** A single score hides WHERE the errors are —
+two FP and two FN tell a different story than five FP and zero FN.
+The matrix exists to keep the error TYPES visible.
+
+**Where it's used:** Every classification report — sklearn's
+`confusion_matrix`, `classification_report`, and all the metrics
+in `easy/p01` are computed from these four cells.
+
+**What goes wrong without it:** sklearn's `confusion_matrix`
+prints `[[TN, FP], [FN, TP]]` — actual as ROWS, predicted as
+COLUMNS, negative class first. Read it as `[[TP,...]]` and you
+flip every cell — your "false alarms" are actually missed cases
+and you tune the wrong error. Check `labels`/ordering before
+interpreting.
 
 **Worked example:**
 ```
@@ -73,12 +101,6 @@ Position-by-position:
 Totals: TP=5, FP=1, TN=3, FN=1  (sum = 10 = all predictions)
 ```
 
-**Why ML cares:** When someone says "the model is 80% accurate," the
-confusion matrix shows WHERE the errors are — two FP and two FN
-tell a different story than five FP and zero FN. Level-01 `hard/p02`
-showed why: on 92%-healthy patients, "always healthy" hits 92%
-accuracy with ZERO detected cases.
-
 **Code:**
 ```python
 def confusion(y_true, y_pred):
@@ -91,10 +113,9 @@ def confusion(y_true, y_pred):
     return c
 ```
 
-**Common confusion:** sklearn's `confusion_matrix` prints
-`[[TN, FP], [FN, TP]]` — actual as ROWS, predicted as COLUMNS, and
-negative class first. Reading it as [[TP,...]] flips everything;
-check `labels`/`y` ordering before interpreting.
+**Expected output:** `confusion(y_true, y_pred)` →
+`{'TP': 5, 'FP': 1, 'TN': 3, 'FN': 1}` — the four cells sum to
+10, the total number of predictions.
 
 ---
 
@@ -105,6 +126,24 @@ maybe your 20% happened to be easy. K-fold CV splits data into k
 parts, trains k times (each part takes a turn as test), giving k
 scores. **Mean** = performance estimate; **std** = how much luck
 matters.
+
+**Why it exists:** A single split's score has unknown error bars —
+you can't tell "the model is good" from "the split was easy."
+K-fold exists to turn one lucky-or-unlucky number into a
+distribution you can trust.
+
+**Where it's used:** The default answer to "how good is this
+model, really?" Every fold's test slice is unseen, so nothing
+leaks; grid search (`medium/p02`) and nested CV (`hard/p03`) are
+built on it.
+
+**What goes wrong without it:** Report one split's 97% and you
+might be quoting the lucky fold — the next split scores 90% and
+you can't explain the discrepancy to your team. Note what CV does
+NOT produce: one trained model — it gives k scores for
+EVALUATION; you still retrain on all data for deployment. And on
+imbalanced classes use `StratifiedKFold` (same ratio per fold,
+level-02 `hard/p03`) or some folds get zero positives.
 
 **Worked example:**
 ```
@@ -117,12 +156,6 @@ mean = 0.9667, std = 0.0211
 → "96.7% ± 2.1%" — far more honest than one 97% split.
 ```
 
-**Why ML cares:** It's the default answer to "how good is this
-model, really?" Every fold's test slice is unseen, so nothing leaks,
-and the spread tells you if a 3% improvement is real or noise.
-Grid search (`medium/p02`) and nested CV (`hard/p03`) are built on
-it.
-
 **Code:**
 ```python
 from sklearn.model_selection import cross_val_score
@@ -131,11 +164,9 @@ scores = cross_val_score(
 scores.mean(), scores.std()   # 0.9667, 0.0211
 ```
 
-**Common confusion:** CV does NOT produce one trained model — it
-produces k scores for EVALUATION. After estimating performance, you
-still retrain on all data (or keep the tuned model) for deployment.
-Also: for imbalanced classes use `StratifiedKFold` (same ratio per
-fold, level-02 `hard/p03`).
+**Expected output:** `scores` → `[0.967, 0.933, 0.967, 1.0,
+0.967]` (5 fold scores); `(scores.mean(), scores.std())` →
+`(0.9667, 0.0211)` — report as "96.7% ± 2.1%".
 
 ---
 
@@ -148,6 +179,22 @@ fold, level-02 `hard/p03`).
 Rate (recall) vs False Positive Rate at EVERY threshold from 0 to
 1. **AUC** = area under it: the probability the model ranks a random
 positive above a random negative. 1.0 = perfect, 0.5 = coin flip.
+
+**Why it exists:** Every metric at a fixed threshold conflates
+"how good is the ranking" with "where did we cut." AUC exists to
+judge RANKING quality alone — before you've decided how
+aggressive to be.
+
+**Where it's used:** Comparing models when the threshold isn't
+decided yet (`hard/p02`), and on imbalanced data where accuracy
+is meaningless — AUC stays honest when positives are rare.
+
+**What goes wrong without it:** `roc_curve` needs PROBABILITIES
+(`predict_proba`), not 0/1 predictions — feed it `predict` and
+you get a degenerate 3-point curve whose AUC is garbage. Misread
+the chart: the diagonal dashed line is random guessing (AUC
+0.5) — a model whose curve hugs that diagonal has learned
+nothing; a perfect model's curve hugs the top-left corner.
 
 **Worked example:**
 ```
@@ -162,11 +209,6 @@ Threshold 0.1: TPR high (catches almost all), FPR high (alarm storm)
 Curve bows toward top-left; AUC = 0.8854 here — good but imperfect.
 ```
 
-**Why ML cares:** AUC judges RANKING quality independent of any
-threshold — perfect when you haven't decided how aggressive to be.
-It's also robust to class imbalance, unlike accuracy. Comparing
-models by AUC (`hard/p02`) is standard practice.
-
 **Code:**
 ```python
 from sklearn.metrics import roc_curve, auc
@@ -176,10 +218,10 @@ a = auc(fpr, tpr)                            # 0.8854
 plt.plot(fpr, tpr); plt.savefig('roc_curve.png')
 ```
 
-**Common confusion:** `roc_curve` needs PROBABILITIES
-(`predict_proba`), not 0/1 predictions — feeding `predict` gives a
-degenerate 3-point curve. And a perfect model's curve hugs the
-top-left corner; the diagonal dashed line is random guessing.
+**Expected output:** `a` → `0.8854`; `roc_curve.png` shows a
+curve starting at (0,0), bowing up toward the top-left corner
+(faster than the diagonal), ending at (1,1) — visibly above the
+diagonal random-guess line.
 
 ---
 
@@ -189,6 +231,25 @@ top-left corner; the diagonal dashed line is random guessing.
 training (number of trees, max depth) — unlike weights, the model
 can't learn them. Grid search tries every combination, scores each
 via cross-validation, and returns the winner.
+
+**Why it exists:** The model can't learn its own knobs, and
+hand-tuning is guessing. Grid search exists to make "which
+settings" an experiment instead of a hunch — every combination,
+scored the same way.
+
+**Where it's used:** Tuning any model — defaults are rarely
+optimal. Using CV (not the test set!) to pick the winner is what
+keeps the test score honest; nested CV (`hard/p03`) is the
+extra-paranoid version.
+
+**What goes wrong without it:** Tune against the test set and
+the test set stops being a test — you picked the params that
+score best ON it (a subtle leak; your "honest" number is
+inflated). Reporting `best_score_` as your final result is
+optimistic too — it was chosen BECAUSE it was highest. The CV
+score and test score answer different questions: `best_score_`
+= "which setting won during tuning"; `score(X_test)` = "how good
+is the tuned model on untouched data."
 
 **Worked example:**
 ```
@@ -205,11 +266,6 @@ best_score_  ≈ 0.9x (mean CV accuracy of the winner)
 Then verify once on the held-out test set.
 ```
 
-**Why ML cares:** Default hyperparameters are rarely optimal, and
-hand-tuning is guessing. Grid search systematizes it — and using
-CV (not the test set!) to pick the winner is what keeps the test
-score honest. Nested CV (`hard/p03`) is the extra-paranoid version.
-
 **Code:**
 ```python
 from sklearn.model_selection import GridSearchCV
@@ -219,11 +275,10 @@ gs.fit(X_train, y_train)
 gs.best_params_, gs.best_score_, gs.score(X_test, y_test)
 ```
 
-**Common confusion:** The CV score and test score answer different
-questions: `best_score_` = "which setting won during tuning";
-`score(X_test)` = "how good is the tuned model on untouched data."
-Reporting `best_score_` as your final result is optimistic — it
-was chosen BECAUSE it was highest.
+**Expected output:** `gs.best_params_` → `{'max_depth': 10,
+'min_samples_split': 5, 'n_estimators': 200}`; `gs.best_score_`
+→ ~0.9x (the winner's mean CV accuracy); `gs.score(X_test,
+y_test)` → a slightly different, honest final number.
 
 ---
 
@@ -233,6 +288,21 @@ was chosen BECAUSE it was highest.
 10% of data, 20%, ..., 100%, scoring train and validation at each
 size. The SHAPE diagnoses your problem — it's the bias-variance
 tradeoff (level-01) drawn as a picture.
+
+**Why it exists:** "Should I collect more data or build a fancier
+model?" is THE most expensive question in ML — the learning curve
+exists to answer it from data you already have, for free.
+
+**Where it's used:** Deciding where to invest: validation still
+rising at 100% → data is the bottleneck (collect more). Flat val
++ low scores → model is the bottleneck (better model/features).
+
+**What goes wrong without it:** Guess wrong and you spend months
+collecting data for a high-bias model that can't use it — or
+swap in a fancier model when 10× more data was the real fix.
+Mechanically: the returned scores are a 2D array (sizes × folds)
+— average `axis=1` (over folds) for one point per size;
+averaging `axis=0` gives you 5 nonsense points per fold instead.
 
 **Worked example:**
 ```
@@ -248,11 +318,6 @@ Diagnosis by shape:
   Both high, converged   → done — more data won't help
 ```
 
-**Why ML cares:** "Should I collect more data or build a fancier
-model?" is THE most expensive question in ML — this chart answers
-it for free. Validation still rising at 100% → data is the
-bottleneck. Flat val + low scores → model is the bottleneck.
-
 **Code:**
 ```python
 from sklearn.model_selection import learning_curve
@@ -263,10 +328,10 @@ train_mean = train_sc.mean(axis=1)   # scores are (10 sizes, 5 folds)
 val_mean   = val_sc.mean(axis=1)
 ```
 
-**Common confusion:** The returned scores are a 2D array (sizes ×
-folds) — you must average `axis=1` (over folds) to get one point
-per size. Averaging `axis=0` gives you 5 nonsense points per fold
-instead.
+**Expected output:** `train_mean` → 10 values starting near 1.0
+and drifting down; `val_mean` → 10 values climbing from ~0.6
+toward ~0.85. Plotted: two lines converging from opposite sides
+with a visible gap — the classic "more data helps" shape.
 
 ---
 
@@ -280,6 +345,25 @@ cases) but precision falls (more false alarms). `precision_recall_
 curve` computes (precision, recall) at every threshold so you pick
 the tradeoff on purpose.
 
+**Why it exists:** The cost of a false alarm vs a missed case is
+a business decision, not a math one — the same model needs
+different thresholds for spam (precision) vs disease (recall).
+The curve exists so you can choose the tradeoff deliberately
+instead of accepting sklearn's default.
+
+**Where it's used:** Production classification — fraud flags,
+medical screening, content moderation: anywhere the two error
+types have different prices. It's why `hard/p02` compares models
+on more than one metric.
+
+**What goes wrong without it:** Ship the 0.5 default on a 90/10
+dataset and recall sits at 0.4 — you miss 60% of real cases while
+declaring victory on accuracy. Mechanically: `thresholds` has ONE
+FEWER element than `precisions`/`recalls` (sklearn appends a
+sentinel) — indexing `thresholds[idx]` is safe when idx comes
+from the recalls array, but don't assume equal lengths when
+slicing. And tune the threshold on VALIDATION data, not test.
+
 **Worked example:**
 ```
 Data: 90% class-0 / 10% class-1 (imbalanced, like fraud/disease)
@@ -292,12 +376,6 @@ idx = argmin(|recalls − 0.80|) → threshold ≈ 0.1466,
 precision there ≈ 0.50 — the literal price of higher recall.
 ```
 
-**Why ML cares:** In production you tune the threshold to the cost
-of errors — a disease screener accepts low precision for high
-recall; a spam filter does the reverse. This is where ML meets
-business logic, and it's why `hard/p02` compares models on more
-than one metric.
-
 **Code:**
 ```python
 from sklearn.metrics import precision_recall_curve
@@ -307,11 +385,9 @@ idx = np.argmin(np.abs(recalls - 0.8))
 threshold, precision = thresholds[idx], precisions[idx]
 ```
 
-**Common confusion:** `thresholds` has ONE FEWER element than
-`precisions`/`recalls` (sklearn appends a sentinel) — indexing
-`thresholds[idx]` is safe when idx comes from the recalls array,
-but don't assume equal lengths when slicing. Also: tune the
-threshold on VALIDATION data, not test, to keep test honest.
+**Expected output:** `threshold ≈ 0.1466`, `precision ≈ 0.50` —
+lowering the threshold from 0.5 to ~0.15 buys recall ≈ 0.80 at
+the cost of half your flags being false alarms.
 
 ---
 
@@ -321,6 +397,24 @@ threshold on VALIDATION data, not test, to keep test honest.
 compare them across SEVERAL metrics — accuracy (overall), F1
 (precision-recall balance), AUC (ranking quality). No single number
 crowns a winner; different metrics can rank models differently.
+
+**Why it exists:** "Best model" depends on what you're optimizing —
+a model can lose accuracy while winning AUC (it ranks better, its
+0.5 threshold just isn't optimal — fixable via `hard/p01`).
+Multi-metric comparison exists to keep you from crowning the
+wrong winner.
+
+**Where it's used:** The results table of every real ML
+experiment — and model selection interviews ("why did you pick
+this one?" needs a metric-aware answer).
+
+**What goes wrong without it:** Comparing on different splits or
+different data → you're measuring luck, not models. One metric
+only → you discard SVM for lower accuracy while its AUC (0.967)
+was better than KNN's — tune its threshold and it could win.
+Mechanical trap: `SVC` has NO `predict_proba` unless you pass
+`probability=True` at construction — forgetting it crashes the
+AUC column with `AttributeError`.
 
 **Worked example:**
 ```
@@ -337,11 +431,6 @@ despite LOWER accuracy: SVM ranks better, its 0.5 threshold just
 isn't optimal.
 ```
 
-**Why ML cares:** This table IS the "results section" of every real
-ML experiment. It teaches that "best" is metric-dependent — and
-that a model with lower accuracy but higher AUC might win once you
-tune its threshold (`hard/p01`).
-
 **Code:**
 ```python
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
@@ -353,9 +442,11 @@ for name, m in models.items():
                      "auc": roc_auc_score(y_test, prob)}
 ```
 
-**Common confusion:** `SVC` has NO `predict_proba` unless you pass
-`probability=True` at construction — it computes probabilities via
-a slow extra fitting step. Forgetting it crashes the AUC column.
+**Expected output:** `results` → a dict like
+`{'Logistic Regression': {'accuracy': 0.88, 'f1': 0.872, 'auc':
+0.946}, 'Random Forest': {0.94, 0.935, 0.989}, 'Gradient
+Boosting': {0.95, 0.946, 0.995}, ...}` — matching the worked
+table row for row.
 
 ---
 
@@ -367,6 +458,24 @@ tuning — your score is optimistically biased. **Nested CV** fixes
 it: an OUTER 5-fold loop evaluates; inside each outer-train chunk,
 an INNER 3-fold grid search tunes — the outer test fold never
 touches tuning.
+
+**Why it exists:** Tuning IS a form of learning — let the test
+folds influence it and they're no longer unseen. Nested CV exists
+to keep tuning quarantined inside training data at every level.
+
+**Where it's used:** The gold standard when data is small and you
+must both tune AND honestly evaluate — small medical/genomics
+datasets, any "we tuned and want a defensible score" situation.
+
+**What goes wrong without it:** Single-loop CV after grid search
+reports an inflated score — the params were chosen partly BECAUSE
+they fit those folds. Mechanical trap: pass the UNFITTED
+`GridSearchCV` object to `cross_val_score` — sklearn refits (and
+retunes) it inside each outer fold. Call `inner.fit(X, y)` first
+and tuning leaks across all folds, defeating the entire point.
+Note: if outer-fold best-params differ each fold, that's a signal
+your tuning is unstable — useful information a single grid search
+hides.
 
 **Worked example:**
 ```
@@ -380,11 +489,6 @@ mean = 0.885 ± 0.030 — unbiased estimate of "a tuned RF on
 this kind of data," even though params vary per fold.
 ```
 
-**Why ML cares:** It's the gold standard when data is small and you
-must both tune AND honestly evaluate. If outer-fold best-params
-differ each fold, that's a signal your tuning is unstable — useful
-information a single grid search hides.
-
 **Code:**
 ```python
 inner = GridSearchCV(
@@ -394,10 +498,10 @@ scores = cross_val_score(inner, X, y, cv=5)   # pass the OBJECT
 scores.mean(), scores.std()                    # 0.8850, 0.0300
 ```
 
-**Common confusion:** Pass the UNFITTED `GridSearchCV` object to
-`cross_val_score` — sklearn refits (and retunes) it inside each
-outer fold. Calling `inner.fit(X, y)` first leaks tuning across all
-folds and defeats the entire point.
+**Expected output:** `scores` → ≈ `[0.85, 0.90, 0.88, 0.90,
+0.90]`; `(scores.mean(), scores.std())` → `(0.8850, 0.0300)` —
+the honest estimate of a tuned model, lower than the optimistic
+single-loop number.
 
 ---
 

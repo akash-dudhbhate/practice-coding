@@ -1,8 +1,8 @@
 # Level 19 — Concepts (Detailed Explanations)
 
-Read each section BEFORE attempting its problem. Each concept has:
-what it is in plain words → a worked example with real numbers →
-why ML cares → the code → what confuses beginners.
+Read each section BEFORE attempting its problem. Each concept explains:
+What it is · Why it exists · Where it's used · What goes wrong without
+it · worked example · code · expected output.
 
 The theme: training a model once is easy. Knowing WHICH run produced
 it, WHAT data it saw, and WHETHER it's safe to ship — that's MLOps.
@@ -21,6 +21,26 @@ JSON object per line, so you can append without rewriting and parse
 line-by-line. Each record captures WHEN (timestamp), WHAT (name +
 params), and HOW WELL (metrics).
 
+**Why it exists:** "Which experiment got 0.97?" — without a log, the
+answer is lost in terminal scrollback. Run logging was invented so
+every experiment leaves a durable record; append-only matters
+because a corrupted or half-written run never erases the history
+before it.
+
+**Where it's used:** This is literally `mlflow.log_param` /
+`wandb.log` — those tools write the same record to a database and
+add a dashboard. Every serious training pipeline logs runs.
+
+**What goes wrong without it:**
+- Opening with `"w"` truncates the file and deletes all previous
+  runs — always `"a"`.
+- Write ONE line per run (`json.dumps` + `"\n"`), not `json.dump`
+  of a list — a JSON array in one file can't be appended without
+  rewriting the whole thing (and a crash mid-write corrupts all of
+  it, not just the last line).
+- No log at all → "the best model" is whichever run you happen to
+  remember — unreproducible and unarguable.
+
 **Worked example:**
 ```python
 log_run("lr-baseline", {"C": 1.0}, {"accuracy": 0.95})
@@ -35,12 +55,6 @@ writes to `runs.jsonl`:
 ```
 Two runs, two lines, nothing overwritten.
 
-**Why ML cares:** "Which experiment got 0.97?" Without a log, the
-answer is lost in terminal scrollback. This is literally
-`mlflow.log_param` / `wandb.log` — those tools write the same record
-to a database and add a dashboard. Append-only matters: a corrupted
-or half-written run never erases the history before it.
-
 **Code:**
 ```python
 def log_run(run_name, params, metrics):
@@ -52,10 +66,13 @@ def log_run(run_name, params, metrics):
     return record
 ```
 
-**Common confusion:** Opening with `"w"` truncates the file and
-deletes all previous runs — always `"a"`. And write ONE line per run
-(`json.dumps` + `"\n"`), not `json.dump` of a list — a JSON array in
-one file can't be appended without rewriting the whole thing.
+**Expected output:**
+```python
+log_run("lr-baseline", {"C": 1.0}, {"accuracy": 0.95})
+# → {'timestamp': 1717534800.12, 'name': 'lr-baseline',
+#    'params': {'C': 1.0}, 'metrics': {'accuracy': 0.95}}
+# runs.jsonl gains exactly ONE new line per call
+```
 
 ---
 
@@ -66,6 +83,26 @@ and load anywhere: a server, a CI job, a teammate's laptop. `joblib`
 serializes sklearn models efficiently (it's like `pickle` but faster
 on big numpy arrays).
 
+**Why it exists:** Training takes minutes to days; serving needs the
+model in milliseconds. Serialization was invented as the bridge —
+freeze the fitted weights into a file so any process can load them
+without retraining. It's also what a model registry stores
+(medium/p02): the `.joblib` file plus metadata about how it was made.
+
+**Where it's used:** Model registries, offline scoring jobs,
+model-as-a-file serving, sharing models between training and
+production environments.
+
+**What goes wrong without it:**
+- The saved file contains the FITTED model — learned coefficients
+  included. Re-fitting after loading re-rolls the dice on a model
+  you already validated.
+- Security: joblib/pickle files can execute code on load — only
+  load files you created or trust. A malicious .pkl is arbitrary
+  code execution.
+- Without serialization, the model lives only in the process that
+  trained it — process dies, model's gone; no deploys, no sharing.
+
 **Worked example:**
 ```python
 m = LogisticRegression(max_iter=200).fit(X, y)   # trained on iris
@@ -75,11 +112,6 @@ m2 = load_model("model.joblib")
 m2.predict(X[:3])   → array([0, 0, 0])
 # the fitted coefficients came along for the ride — no retraining
 ```
-
-**Why ML cares:** Training takes minutes to days; serving needs the
-model in milliseconds. Serialization is the bridge. It's also what a
-model registry stores (medium/p02): the `.joblib` file plus metadata
-about how it was made.
 
 **Code:**
 ```python
@@ -93,10 +125,12 @@ def load_model(path):
     return joblib.load(path)
 ```
 
-**Common confusion:** The saved file contains the FITTED model —
-learned coefficients included. You don't refit after loading.
-(Security note for later: joblib/pickle files can execute code on
-load — only load files you created or trust.)
+**Expected output:**
+```python
+save_model(m, "model.joblib")      # → "model.joblib"  (file written)
+m2 = load_model("model.joblib")
+m2.predict(X[:3])                  # → array([0, 0, 0])
+```
 
 ---
 
@@ -106,6 +140,29 @@ load — only load files you created or trust.)
 hyperparameters. Same params → same hash; any param differs →
 different hash. Used to dedupe runs and answer "have I trained this
 exact config before?"
+
+**Why it exists:** "Run #47 used config hash `9f2c`" is checkable;
+"I think I used C=1.0" isn't. Config hashing was invented so runs
+can be deduped, cached, and verified — the fingerprint is the
+contract that two configs are identical. Two keys make it stable:
+`sort_keys=True` (dict order doesn't change the string) and
+`default=str` (non-JSON values like tuples or class refs get
+stringified instead of crashing).
+
+**Where it's used:** Registries and caches key on this — dedupe in
+experiment trackers, cache keys in training pipelines, config
+comparison in CI.
+
+**What goes wrong without it:**
+- Python's builtin `hash()` is NOT stable across processes (it's
+  salted per-run for security) — `hash(obj)` today ≠ `hash(obj)` in
+  tomorrow's process. Always `hashlib` (md5/sha256) for anything
+  that must match later.
+- No `sort_keys` → `{"C":1,"max_iter":200}` and
+  `{"max_iter":200,"C":1}` hash differently despite being the same
+  config → phantom "new" configs, cache misses.
+- No `default=str` → a tuple or class reference in params crashes
+  `json.dumps` mid-run.
 
 **Worked example:**
 ```python
@@ -122,12 +179,6 @@ the pipeline: get_params() → {"C": 1.0, "max_iter": 200, ...}
   → md5(string.encode()).hexdigest()
 ```
 
-**Why ML cares:** Registries and caches key on this. "Run #47 used
-config hash `9f2c`" is checkable; "I think I used C=1.0" isn't. Two
-keys are what make it stable: `sort_keys=True` (dict order doesn't
-change the string) and `default=str` (non-JSON values like tuples or
-class refs get stringified instead of crashing).
-
 **Code:**
 ```python
 def model_hash(model):
@@ -135,10 +186,12 @@ def model_hash(model):
     return hashlib.md5(s.encode()).hexdigest()
 ```
 
-**Common confusion:** Python's builtin `hash()` is NOT stable across
-processes (it's salted per-run for security) — `hash(obj)` today ≠
-`hash(obj)` in tomorrow's process. Always `hashlib` (md5/sha256) for
-anything that must match later.
+**Expected output:**
+```python
+model_hash(a) == model_hash(b)     # → True   (same config → same hash)
+model_hash(a) == model_hash(c)     # → False  (different C)
+model_hash(a)                      # → "9f2c..."  (32 hex chars)
+```
 
 ---
 
@@ -150,6 +203,27 @@ anything that must match later.
 LIFECYCLE: start a run → log params/metrics as training progresses →
 end the run and flush to disk. That's the mlflow pattern
 (`with mlflow.start_run(): ...`).
+
+**Why it exists:** Metrics aren't known until training finishes —
+you log params at the start and metrics at the end (or per epoch).
+The open-run-then-flush pattern was invented so one crash
+mid-training doesn't leave a half-written line in the log: nothing
+hits disk until `end_run()`.
+
+**Where it's used:** `mlflow.start_run()`, wandb runs, Sacred/Neptune
+experiment objects — the start→log→end lifecycle is the universal
+tracker API.
+
+**What goes wrong without it:**
+- Guard `log_*` with "no active run" errors — calling `log_param`
+  before `start_run` should fail loudly, not silently write
+  nowhere. A silent no-op means your run logs nothing and you find
+  out after the experiment.
+- `end_run` must CLEAR `self._run`; leaving it set means the next
+  `start_run` could leak old metrics into a new run.
+- Writing each metric line-by-line as it arrives → a crash mid-run
+  leaves a half-record in the log, indistinguishable from a real
+  run.
 
 **Worked example:**
 ```python
@@ -163,11 +237,6 @@ t.end_run()                   # appends ONE line to runs.jsonl,
 → {'timestamp': 1717..., 'name': 'lr-v1',
    'params': {'C': 1.0}, 'metrics': {'accuracy': 0.95}}
 ```
-
-**Why ML cares:** Metrics aren't known until training finishes, and
-you log many of them per epoch in real life. The open-run-then-flush
-pattern means one crash mid-training doesn't leave a half-written
-line in the log — nothing hits disk until `end_run()`.
 
 **Code:**
 ```python
@@ -198,10 +267,16 @@ class ExperimentTracker:
         return run
 ```
 
-**Common confusion:** Guard `log_*` with "no active run" errors —
-calling `log_param` before `start_run` should fail loudly, not
-silently write nowhere. And `end_run` must CLEAR `self._run`; leaving
-it set means the next `start_run` could leak old metrics.
+**Expected output:**
+```python
+t = ExperimentTracker()
+t.start_run("lr-v1")
+t.log_param("C", 1.0); t.log_metric("accuracy", 0.95)
+t.end_run()
+# → {'timestamp': 1717..., 'name': 'lr-v1',
+#    'params': {'C': 1.0}, 'metrics': {'accuracy': 0.95}}
+t.log_param("x", 1)     # → RuntimeError: no active run
+```
 
 ---
 
@@ -210,6 +285,26 @@ it set means the next `start_run` could leak old metrics.
 **What it is:** A registry answers "what models do we have, which
 version is which, and how good is each?" It's a JSON file mapping
 `"name-vN"` → metadata, sitting next to the saved `.joblib` files.
+
+**Why it exists:** Teams need to answer "which model is in prod?"
+and "can we roll back to v1?" — questions a folder of anonymous
+`.joblib` files can't answer. The registry was invented as the
+versioned, queryable memory of every model ever trained. Same
+config hash on v1 and v2 but different metrics? That's a data or
+code change talking — the hash lets you see it (hard/p01 makes that
+check rigorous).
+
+**Where it's used:** MLflow Model Registry, SageMaker Model
+Registry, Hugging Face model repos — every production team keeps
+one.
+
+**What goes wrong without it:**
+- Version counts entries for THAT name only — `"iris-v1"`,
+  `"iris-v2"`; a `"mnist-v1"` entry doesn't bump iris's counter.
+  Count keys starting with `f"{name}-v"`, or different model
+  families corrupt each other's versioning.
+- No registry → "model_final_v2_REAL.joblib" chaos: nobody knows
+  which file is deployed or whether rollback is possible.
 
 **Worked example:**
 ```python
@@ -231,11 +326,6 @@ registry.json after both:
 version = (# existing "iris-v*" keys) + 1
 ```
 
-**Why ML cares:** This is how teams answer "which model is in prod?"
-and "can we roll back to v1?" Same config hash on v1 and v2 but
-different metrics? That's a data or code change talking — the hash
-lets you see it (hard/p01 makes that check rigorous).
-
 **Code:**
 ```python
 def register_model(model, name, metrics):
@@ -255,9 +345,15 @@ def register_model(model, name, metrics):
     return entry
 ```
 
-**Common confusion:** Version counts entries for THAT name only —
-`"iris-v1"`, `"iris-v2"`; a `"mnist-v1"` entry doesn't bump iris's
-counter. Count keys starting with `f"{name}-v"`.
+**Expected output:**
+```python
+e1 = register_model(m, "iris", {"accuracy": 0.93})
+e1["version"]                      # → 1
+e2 = register_model(m, "iris", {"accuracy": 0.95})
+e2["version"]                      # → 2
+# registry.json now has keys "iris-v1" and "iris-v2", each pointing
+# at its own .joblib file
+```
 
 ---
 
@@ -266,6 +362,25 @@ counter. Count keys starting with `f"{name}-v"`.
 **What it is:** Tracking is useless unless you can answer "which run
 won?" Scan every line of `runs.jsonl`, keep the run with the highest
 value for a chosen metric.
+
+**Why it exists:** A pile of run records without a "best" query is
+just a diary. Comparison was invented to turn the log into a
+decision: "best" is always relative to a metric — highest accuracy
+might come with terrible latency, so the metric name is a
+parameter, not hardcoded.
+
+**Where it's used:** `mlflow.search_runs` +
+`order_by("metrics.accuracy DESC")` minus the database —
+leaderboards, model selection, hyperparameter sweeps.
+
+**What goes wrong without it:**
+- `run.get("metrics", {})` — some runs may lack a `metrics` key
+  entirely, and `run["metrics"]` would KeyError mid-scan, killing
+  the whole comparison on the one malformed line.
+- Return `None` (not a crash) when nothing qualifies — an empty
+  file or all-missing-metric shouldn't raise.
+- Comparing on a metric the run didn't record → silently wrong
+  "best"; skipping runs missing the metric is the correct behavior.
 
 **Worked example:**
 ```
@@ -280,11 +395,6 @@ compare_runs("runs.jsonl", metric="accuracy")
 
 compare_runs("empty.jsonl") → None
 ```
-
-**Why ML cares:** This is `mlflow.search_runs` +
-`order_by("metrics.accuracy DESC")` minus the database. "Best" is
-always relative to a metric — highest accuracy might come with
-terrible latency, so the metric name is a parameter, not hardcoded.
 
 **Code:**
 ```python
@@ -303,10 +413,14 @@ def compare_runs(file, metric="accuracy"):
     return best
 ```
 
-**Common confusion:** `run.get("metrics", {})` — some runs may lack a
-`metrics` key entirely, and `run["metrics"]` would KeyError. Skip
-runs missing the metric, and return `None` (not a crash) when nothing
-qualifies.
+**Expected output:**
+```python
+compare_runs("runs.jsonl", metric="accuracy")
+# → {'name': 'lr-strong', 'metrics': {'accuracy': 0.97}, ...}
+compare_runs("runs.jsonl", metric="f1")
+# → {'name': 'svm-test', 'metrics': {'f1': 0.88}, ...}
+compare_runs("empty.jsonl")        # → None
+```
 
 ---
 
@@ -318,6 +432,27 @@ qualifies.
 hyperparameters, and DATA. A data hash fingerprints a dataset —
 shape plus sample values — so any silent change (new rows, a fixed
 preprocessing bug) produces a different hash.
+
+**Why it exists:** "The model got 0.96" is meaningless if nobody can
+say WHICH data produced it. Data hashing was invented as DVC /
+lakeFS / delta-table versioning in miniature: one hash per dataset
+version. If the data pipeline changes overnight, next morning's
+hash differs and your reproduction check (p02) screams instead of
+silently comparing apples to oranges.
+
+**Where it's used:** Data versioning tools (DVC, lakeFS, Pachyderm),
+training-data audits, and reproducibility checks in regulated
+industries.
+
+**What goes wrong without it:**
+- Hash a fingerprint (shape + head/tail samples), not the entire
+  dataset — full-data hashing works but is slow on gigabytes.
+- Rounding to 6 decimals matters: float noise like
+  `0.30000000000000004` vs `0.3` would flip the hash on identical
+  data → phantom "data changed" alerts.
+- No data pin → "we retrained on the same data" is unfalsifiable —
+  a preprocessing change slips in and metrics move for reasons
+  nobody can see.
 
 **Worked example:**
 ```python
@@ -331,13 +466,6 @@ data_version_hash(X[:100], y[:100])  → "72be..."   # different!
  "x_tail": [...last 5 rows...],
  "y_head": [0, 0, 0, 0, 0], "y_tail": [2, 2, 2, 2, 2]}
 ```
-
-**Why ML cares:** "The model got 0.96" is meaningless if nobody can
-say WHICH data produced it. This is DVC / lakeFS / delta-table
-versioning in miniature: one hash per dataset version. If the data
-pipeline changes overnight, next morning's hash differs and your
-reproduction check (p02) screams instead of silently comparing
-apples to oranges.
 
 **Code:**
 ```python
@@ -356,10 +484,12 @@ def data_version_hash(X, y):
         json.dumps(payload, sort_keys=True).encode()).hexdigest()
 ```
 
-**Common confusion:** Hash a fingerprint (shape + head/tail samples),
-not the entire dataset — full-data hashing works but is slow on
-gigabytes. Rounding to 6 decimals matters: float noise like
-`0.30000000000000004` vs `0.3` would flip the hash on identical data.
+**Expected output:**
+```python
+data_version_hash(X, y)               # → "a4f8..."  (32 hex chars)
+data_version_hash(X, y)               # → same value every call
+data_version_hash(X[:100], y[:100])   # → different hash
+```
 
 ---
 
@@ -368,6 +498,28 @@ gigabytes. Rounding to 6 decimals matters: float noise like
 **What it is:** A logged run is only trustworthy if you can REPRODUCE
 it: same data + same params + same seed → same metrics. This function
 re-runs the experiment and reports whether the claim holds up.
+
+**Why it exists:** This is the audit behind every "our model
+achieves X" claim. If retraining doesn't reproduce the metric, the
+run log was incomplete — a missing seed, an unlogged param, a
+dataset that drifted. Reproduction checks were invented to catch
+that in CI instead of in a customer escalation. The params MUST
+include `random_state` — without it, sklearn's solver init varies
+run to run.
+
+**Where it's used:** CI reproduction gates, audit trails, paper
+replication checks, "can we trust this registry entry" validation.
+
+**What goes wrong without it:**
+- Even when `data_ok` is False, still retrain and report `actual` —
+  the number is informative ("hash mismatch AND the metric moved"
+  vs "hash mismatch but same result" are very different bugs).
+  `match` just ANDs in `data_ok` at the end.
+- Missing `random_state` in logged params → the "same" training
+  gives a different score every run → irreproducible by
+  construction.
+- No reproduction check → a typo'd or incomplete log entry ships as
+  fact; nobody discovers the 0.96 was really 0.91 until prod.
 
 **Worked example:**
 ```python
@@ -386,13 +538,6 @@ result:
    'expected': 0.96, 'actual': 0.96, 'match': True}
   # match = data_ok AND |expected - actual| <= tol (0.01)
 ```
-
-**Why ML cares:** This is the audit behind every "our model achieves
-X" claim. If retraining doesn't reproduce the metric, the run log was
-incomplete — a missing seed, an unlogged param, a dataset that
-drifted. Better to find out in CI than in a customer escalation.
-Note the params MUST include `random_state` — without it, sklearn's
-solver init varies run to run.
 
 **Code:**
 ```python
@@ -414,10 +559,15 @@ def reproduce_run(run_file, run_id, tol=0.01):
             "match": data_ok and abs(expected - actual) <= tol}
 ```
 
-**Common confusion:** Even when `data_ok` is False, still retrain and
-report `actual` — the number is informative ("hash mismatch AND the
-metric moved" vs "hash mismatch but same result" are very different
-bugs). `match` just ANDs in `data_ok` at the end.
+**Expected output:**
+```python
+reproduce_run("runs.jsonl", "run-1")
+# → {'found': True, 'data_ok': True, 'expected': 0.96,
+#    'actual': 0.96, 'match': True}
+reproduce_run("runs.jsonl", "run-missing")
+# → {'found': False, 'data_ok': False, 'expected': None,
+#    'actual': None, 'match': False}
+```
 
 ---
 
@@ -427,6 +577,26 @@ bugs). `match` just ANDs in `data_ok` at the end.
 blocks DEPLOYS when metrics drop. The gate checks each metric against
 a minimum threshold and reports EVERY failure — never just asserts
 the first one.
+
+**Why it exists:** A model that misses the bar must never ship —
+this gate was invented as the automated guardrail between
+"notebook experiment" and "production deploy." Reporting ALL
+failures (not failing fast) is a deliberate design choice: an
+engineer seeing three failing metrics debugs once, not three times.
+
+**Where it's used:** Model deploy pipelines — the check between
+"training finished" and "new version promoted" in every mature
+MLOps setup.
+
+**What goes wrong without it:**
+- A missing metric is a FAILURE (`"missing metric: recall"`), not
+  a skip — silently ignoring absent metrics means a renamed metric
+  key would quietly disable the safety check forever.
+- Fail-fast (assert on first failure) → fix metric A, re-run, hit
+  metric B, fix, re-run, hit metric C — three deploy cycles instead
+  of one report.
+- No gate → a regression ships automatically; the first alert is
+  the production dashboard tanking.
 
 **Worked example:**
 ```python
@@ -442,12 +612,6 @@ ci_gate({"accuracy": 0.95, "f1": 0.91}, {"accuracy": 0.8, "f1": 0.9})
 → {'pass': True, 'failures': []}
 ```
 
-**Why ML cares:** A model that misses the bar never ships — this is
-the automated guardrail between "notebook experiment" and
-"production deploy." Reporting ALL failures (not failing fast) is a
-deliberate design choice: an engineer seeing three failing metrics
-debugs once, not three times.
-
 **Code:**
 ```python
 def ci_gate(metrics, thresholds):
@@ -460,10 +624,17 @@ def ci_gate(metrics, thresholds):
     return {"pass": not failures, "failures": failures}
 ```
 
-**Common confusion:** A missing metric is a FAILURE
-(`"missing metric: recall"`), not a skip — silently ignoring absent
-metrics means a renamed metric key would quietly disable the safety
-check forever.
+**Expected output:**
+```python
+ci_gate({"accuracy": 0.9, "f1": 0.85},
+        {"accuracy": 0.8, "f1": 0.9})
+# → {'pass': False, 'failures': ['f1: 0.85 < 0.9']}
+ci_gate({"accuracy": 0.9}, {"accuracy": 0.8, "recall": 0.7})
+# → {'pass': False, 'failures': ['missing metric: recall']}
+ci_gate({"accuracy": 0.95, "f1": 0.91},
+        {"accuracy": 0.8, "f1": 0.9})
+# → {'pass': True, 'failures': []}
+```
 
 ---
 

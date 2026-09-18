@@ -47,18 +47,85 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.jsx` — **Document Title Updater:** Update `document.title` to show the current count. Effect runs when count changes. Practice `useEffect` with a dependency.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Browser tab:  { Count: 2 }          <- tab title updates too!
+   +---------------+
+   | [ Count: 2 ]  |   <- button increments the count
+   +---------------+
+   ```
 2. `easy/p02-solve.jsx` — **Mount Message:** Log "Component mounted" to console once when the component appears. Practice `useEffect` with empty dependency array.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   PAGE:                          CONSOLE:
+   Check the console!             Component mounted   <- exactly once
+   ```
 3. `easy/p03-solve.jsx` — **Window Width Tracker:** Track and display the window width. Add resize listener in `useEffect`, clean up on unmount. Practice event listener + cleanup.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Window width: 1024px        <- <p> updates live on resize
+   ```
 
 ### Medium
 4. `medium/p01-solve.jsx` — **Fetch User on Mount:** Fetch user data from an API (use a mock function or `jsonplaceholder`). Show loading state, then data. Practice fetch-on-mount pattern.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   FIRST:           THEN (after fetch resolves):
+   Loading...       Leanne Graham          <- name
+                    Sincere@april.biz      <- email
+   ```
 5. `medium/p02-solve.jsx` — **Countdown Timer:** A countdown from 10 to 0 using `setInterval`. Clean up the interval on unmount and when countdown reaches 0. Practice timer + cleanup.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   10   ->   9   ->   8   ->  ...  ->   0   ->   Done!
+   (one number per second, big <p> or <h1>)
+   ```
 6. `medium/p03-solve.jsx` — **Re-fetch on Prop Change:** Fetch user data when `userId` prop changes. Show different user data when the prop updates. Practice effect with dependency.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   userId=1:                userId=2 (prop changed):
+   Leanne Graham            Ervin Howell
+   Sincere@april.biz        Shanna@melissa.tv
+   (Loading... flashes between the two)
+   ```
 
 ### Hard
 7. `hard/p01-solve.jsx` — **Live Search with Debounce:** Search input that debounces API calls (wait 500ms after typing stops). Clean up the timeout on each keystroke. Practice timer cleanup + dependency.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------+
+   | lean                 |     <- type; ONE fetch fires
+   +----------------------+        ~500ms after you stop
+   * Leanne Graham
+   * Clementine Bauch           <- <ul> of matching names
+   ```
 8. `hard/p02-solve.jsx` — **Mouse Position Tracker:** Track mouse X/Y position globally. Add `mousemove` listener in effect, clean up on unmount. Show coordinates and a dot following the cursor.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   X: 342, Y: 187                  <- coordinates <p>
+   .
+   .        * <-- small red dot follows the cursor
+   .
+   ```
 9. `hard/p03-solve.jsx` — **Multiple Effects Chat:** A chat component with 3 effects: fetch messages on room change, update document title, set up a mock WebSocket with cleanup. Practice multiple effects with different dependencies.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Browser tab: { Room: general }       <- title = roomId
+   Chat room: general                   <- heading
+   * Post title one
+   * Post title two
+   * Post title three                   <- 5 messages, reload on
+   ...                                     roomId change
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.
