@@ -9,3 +9,17 @@ CONCEPT: Variables, types, functions, arithmetic, return values.
 # TODO: Write your complete solution from scratch below (function signature + body).
 #       Remove this TODO line when done.
 """
+
+# celcius=40
+# Fahrenheit=celcius * 9 / 5 + 32
+# print(Fahrenheit)
+
+
+c=20
+def celsius_to_fahrenheit(c):
+    f = c * 9 / 5 + 32
+    return f
+
+print(celsius_to_fahrenheit(c))
+
+# output=68.0

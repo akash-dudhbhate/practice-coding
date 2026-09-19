@@ -9,3 +9,23 @@ CONCEPT: Variables, types, functions, modulo operator.
 # TODO: Write your complete solution from scratch below (function signature + body).
 #       Remove this TODO line when done.
 """
+
+# num1=9
+# num2=5
+
+# if(num1%2==0):
+#     print("num1 is even")
+# else:
+#     print("num2 is odd")    
+# output : num2 is odd
+
+
+num1=6
+
+
+if(num1%2==0):
+    print("num1 is even")
+else:
+    print("num1 is odd")  
+    
+    # output:num1 is even  

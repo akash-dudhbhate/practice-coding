@@ -10,3 +10,16 @@ CONCEPT: Variables, types, functions, conditionals.
 #       Remove this TODO line when done.
 
 """
+a=10
+b=2
+def max_of_two(a,b):
+    if a>b: 
+        return a
+    else:
+        return b
+    
+print(max_of_two(a, b))
+
+
+
+

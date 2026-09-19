@@ -17,5 +17,14 @@ C) Determining if a tumor is malignant or benign from medical images.
 
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+# A) Predicting the price of a house based on its size and location.
+ans_A="REGRESSION"
+
+
+# B) Grouping shoppers into clusters based on purchase history (no labels).
+ans_B="UNSUPERVISED LEARNING"
+# C) Determining if a tumor is malignant or benign from medical images.
+ans_C="CLASSIFICATION"
+
+print(ans_A)
+print(ans_B)
