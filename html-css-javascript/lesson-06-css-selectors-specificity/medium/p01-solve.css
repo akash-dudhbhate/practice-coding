@@ -1,0 +1,18 @@
+/*
+LESSON 06 — CSS Selectors & Specificity
+========================================
+
+PROBLEM: Combinators (Medium)
+Target elements by their relationship to others.
+
+TRY THIS:
+  - Descendant: article p — <p> anywhere inside <article> (color #444).
+  - Child: ul > li — <li> directly inside a <ul> (list-style: square).
+  - Adjacent sibling: h2 + p — <p> immediately after an <h2> (bold).
+
+EXPECTED OUTPUT: Only matching relationships are styled — nested lists
+keep their markers, only the first paragraph after h2 is bold.
+
+CHECK: python3 check.py medium/p01
+*/
+/* TODO: Write your complete CSS from scratch below. */

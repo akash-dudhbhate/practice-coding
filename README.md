@@ -9,12 +9,12 @@ A structured, lesson-by-lesson curriculum to master **UI/Frontend expertise, Bac
 - **Reference solutions** for every problem (in `solutions/` subdirectory)
 - **34 sellable projects** (19 mini, 10 medium, 5 capstone) — each with step-by-step task breakdowns
 - **Detailed concept explanations** — every concept has WHAT / WHY / WHERE / WHAT-GOES-WRONG
-- **Mastery exercises** — 4 additional files per lesson (400 total) for deep understanding:
-  - `debug-exercises.md` — fix broken code (trains error spotting & debugging intuition)
-  - `intuition-checks.md` — predict output without running (builds mental models)
-  - `common-mistakes.md` — anti-patterns and what NOT to do (prevents bad habits)
-  - `approach-comparison.md` — 2-3 ways to solve with trade-offs (builds judgment)
-  - `refactoring-challenges.md` — fix ugly working code, learn clean-code patterns (100 files)
+- **Mastery exercises** — one `EXTRA-PRACTICE.md` per lesson bundling 5 deep-practice modes:
+  - intuition checks — predict output without running (builds mental models)
+  - debug exercises — fix broken code (trains error spotting)
+  - common mistakes — anti-patterns and what NOT to do
+  - refactoring challenges — fix ugly working code, learn clean-code patterns
+  - approach comparison — 2-3 ways to solve with trade-offs (builds judgment)
 - **Study schedule** — 12-week day-by-day plan with milestones (see [STUDY-SCHEDULE.md](STUDY-SCHEDULE.md))
 
 See the full roadmap: [ROADMAP.md](ROADMAP.md)
@@ -26,11 +26,9 @@ See the full roadmap: [ROADMAP.md](ROADMAP.md)
    - `concepts.md` — detailed explanations of every concept (WHY it exists, WHERE it's used, WHAT GOES WRONG without it)
    - `task-explanation.md` — teaches the concept and lists all 9 practice problems.
    - `coding-check.md` — checklist to verify each solution is correct.
-   - `debug-exercises.md` — 3 broken code snippets to fix (trains debugging intuition).
-   - `intuition-checks.md` — 5 "predict the output" questions (builds mental models).
-   - `common-mistakes.md` — anti-patterns and what NOT to do (prevents bad habits).
-   - `approach-comparison.md` — 2-3 ways to solve the same problem with trade-offs.
-   - `refactoring-challenges.md` — 3 "before/after" code transformations to train clean-code instincts.
+   - `EXTRA-PRACTICE.md` — all extra drills in one file: intuition checks
+     (predict the output), debug exercises (fix broken code), common
+     mistakes, refactoring challenges, and approach comparisons.
    - `easy/` — 3 easy leetcode-style problems (concept reinforcement). Write from scratch.
    - `medium/` — 3 medium problems (logic building, reusing easy concepts). Write from scratch.
    - `hard/` — 3 hard problems (combining concepts, edge cases, efficiency). Write from scratch.
@@ -70,6 +68,8 @@ Each level = one topic, one mini-project, 9 auto-checked problems.
 ```
 ai-ml/
 ├── FOUNDATIONS (00-13)
+│   ├── level-00a-what-is-ai/    # ZERO-knowledge start: what is AI, weights, RAG
+│   ├── level-00b-weights-deep-dive/ # Chapters: weight→bias→loss→GD→dot product
 │   ├── level-00-setup-math/     # Python env, vectors, stats, gradients
 │   ├── level-01-foundations/    # What is ML, features/labels, problem types
 │   ├── level-02-python-ml/      # NumPy, Pandas, sklearn basics

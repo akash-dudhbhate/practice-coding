@@ -1,0 +1,23 @@
+/*
+LESSON 07 — CSS Box Model
+==========================
+
+PROBLEM: Page Layout with Box Model (Hard)
+Build header / sidebar / content / footer without flexbox or grid.
+
+TRY THIS:
+  - * { box-sizing: border-box; margin: 0; padding: 0 }.
+  - header: padding + border-bottom.
+  - .sidebar: width: 250px, min-height, padding, border-right,
+    float: left.
+  - .content: margin-left: 250px (clears the sidebar), padding,
+    min-height, max-width.
+  - footer: clear: both + border-top.
+  - Comment the box model of each section.
+
+EXPECTED OUTPUT: A classic two-column page: fixed sidebar, flowing
+content, header and footer spanning the width.
+
+CHECK: python3 check.py hard/p03
+*/
+/* TODO: Write your complete CSS from scratch below. */

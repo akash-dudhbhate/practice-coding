@@ -1,10 +1,37 @@
 <!--
-PROBLEM: Build a Form (Easy)
-============================
+LESSON 01 — HTML Structure
+EASY P02 — Build a Form
+============================================
 
-CONCEPT: HTML forms, input types, labels.
+CONCEPT:
+  Forms collect user input. Every field gets a <label> tied to its
+  input with for="id", and the input's type decides what the browser
+  accepts (text, email, etc.). A submit control sends the form.
 
-<!-- See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG). -->
+PROBLEM:
+  Build a simple contact form with these exact parts:
+  - One <form> element wrapping everything.
+  - <label for="name"> paired with <input type="text" id="name">.
+  - <label for="email"> paired with <input type="email" id="email">.
+  - A submit control: <button type="submit"> or
+    <input type="submit">.
+  - Totals: at least 2 <label> and 2 <input> elements (or 1 input +
+    a submit button), with one input of type="email".
 
-<!-- TODO: Write your complete solution from scratch below.
-     Remove this comment when done. -->
+TRY THIS:
+  Write the full HTML document from scratch below the TODO, then open
+  this file in a browser and try typing into the fields.
+
+EXPECTED OUTPUT:
+  A form showing a Name field, an Email field, and a Submit button.
+  Entering a bad email makes the browser complain on submit.
+
+CHECK: python3 check.py easy/p02
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Build a Form</title></head>
+<body>
+  <!-- TODO: Write your solution from scratch. -->
+</body>
+</html>

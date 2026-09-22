@@ -6,7 +6,7 @@ Real APIs stream tokens one at a time — the user sees text appear
 as it's generated. Your job: implement a `stream()` generator
 that yields chunks.
 
-TASK:
+PROBLEM:
   Implement `stream(prompt)` — a GENERATOR (use `yield`):
     - get the full reply from chat()
     - split into word-chunks
@@ -14,14 +14,14 @@ TASK:
     (in real APIs, you'd iterate the response stream — here we
      simulate it so the CODE SHAPE is identical)
 
-INPUT:  list(stream("Tell me a joke"))
-OUTPUT: ["Why", "did", "the", "chicken", ...] — word chunks
+TRY THIS INPUT:   list(stream("Tell me a joke"))
+EXPECTED OUTPUT:  ["Why", "did", "the", "chicken", ...] — word chunks
 
 WHY: streaming = perceived speed. ChatGPT types character by
   character for this exact reason. Your code must handle
   a generator, not a string.
 
-Run:  python3 hard/p01-stream-tokens.py
+RUN: python3 hard/p01-stream-tokens.py
 CHECK: python3 check.py hard/p01
 """
 

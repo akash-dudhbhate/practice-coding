@@ -1,5 +1,6 @@
 """SOLUTION: Flask with Jinja2 templates (Hard)"""
 from flask import Flask, render_template_string, request, redirect
+from jinja2 import DictLoader
 
 app = Flask(__name__)
 
@@ -23,6 +24,10 @@ NEW_POST_TEMPLATE = """{% extends 'base.html' %}{% block content %}
 <form method="POST"><input name="title" placeholder="Title"><br>
 <textarea name="content" placeholder="Content"></textarea><br>
 <button type="submit">Create</button></form>{% endblock %}"""
+
+# Provide 'base.html' to the Jinja loader so {% extends %} works
+# even though the template lives in a Python string, not a file.
+app.jinja_loader = DictLoader({"base.html": BASE_TEMPLATE})
 
 posts = []
 next_id = 1

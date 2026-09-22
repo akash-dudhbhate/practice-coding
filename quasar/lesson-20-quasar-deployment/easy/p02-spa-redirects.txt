@@ -1,0 +1,7 @@
+# LESSON 20 EASY P02 — SPA Redirect Rules
+# PROBLEM: Write both host-specific redirect configs that send every
+# route to the app entry point so client-side routes don't 404 on
+# refresh — a plain-text rule file for Netlify and a JSON config with
+# a catch-all rewrite for Vercel. Explain why they're needed.
+# CHECK: python3 check.py easy/p02
+# TODO: write both configs below

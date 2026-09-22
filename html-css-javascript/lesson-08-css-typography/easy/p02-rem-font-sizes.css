@@ -1,0 +1,19 @@
+/*
+LESSON 08 — CSS Text & Typography
+==================================
+
+PROBLEM: rem Font Sizes (Easy)
+Build a size scale on a 16px root using rem units.
+
+TRY THIS:
+  - html { font-size: 16px } as the root.
+  - body { font-size: 1rem }; h1 { font-size: 2rem };
+    h2 { font-size: 1.5rem }.
+  - .small { font-size: 0.875rem }.
+
+EXPECTED OUTPUT: A clear size hierarchy where every size scales
+together if the root font-size changes.
+
+CHECK: python3 check.py easy/p02
+*/
+/* TODO: Write your complete CSS from scratch below. */

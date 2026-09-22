@@ -1,0 +1,19 @@
+/*
+LESSON 06 — CSS Selectors & Specificity
+========================================
+
+PROBLEM: Link Pseudo-Classes (Easy)
+Style links in their different states, plus a button class.
+
+TRY THIS:
+  - Default a { color: blue }.
+  - a:hover { color: red }.
+  - a:focus with text-decoration: underline.
+  - A .btn class with padding (e.g. 8px 16px) and display: inline-block.
+
+EXPECTED OUTPUT: Links are blue, turn red on hover, underline on
+keyboard focus; .btn elements look like padded buttons.
+
+CHECK: python3 check.py easy/p02
+*/
+/* TODO: Write your complete CSS from scratch below. */

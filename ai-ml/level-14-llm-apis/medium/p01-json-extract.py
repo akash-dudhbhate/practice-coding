@@ -5,7 +5,7 @@ LEVEL 14 — MEDIUM P01 — JSON Extraction
 LLMs output text. But your code needs STRUCTURED data.
 The fix: prompt for JSON, parse it, handle failure.
 
-TASK:
+PROBLEM:
   Implement `extract(text)`:
     - prompt: "Extract name, age, city from: {text}.
                Return ONLY valid JSON."
@@ -13,14 +13,14 @@ TASK:
     - json.loads the reply
     - return the dict
 
-INPUT:  extract("My name is Alice, I'm 30, from Paris")
-OUTPUT: {"name": "Alice", "age": 30, "city": "Paris"}
+TRY THIS INPUT:   extract("My name is Alice, I'm 30, from Paris")
+EXPECTED OUTPUT:  {"name": "Alice", "age": 30, "city": "Paris"}
         (in simulated mode: returns canned dict with these keys)
 
 WHY: every real LLM app needs structured output — this is how
   you feed LLM answers into databases, APIs, other code.
 
-Run:  python3 medium/p01-json-extract.py
+RUN: python3 medium/p01-json-extract.py
 CHECK: python3 check.py medium/p01
 """
 

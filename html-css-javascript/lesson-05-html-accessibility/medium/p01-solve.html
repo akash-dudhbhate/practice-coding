@@ -1,0 +1,31 @@
+<!--
+LESSON 05 — HTML Accessibility
+===============================
+
+PROBLEM: Skip Link + Heading Hierarchy (Medium)
+Keyboard users jump past the nav; headings never skip levels.
+
+TRY THIS:
+  - <a href="#main" class="skip-link"> hidden off-screen
+    (position: absolute; left: -9999px), revealed on :focus.
+  - <main id="main">, <nav aria-label="...">.
+  - Heading order h1 -> h2 -> h3, no gaps.
+
+EXPECTED OUTPUT: First Tab reveals the skip link; headings form a
+clean outline.
+
+CHECK: python3 check.py medium/p01
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skip Link Page</title>
+  <style>
+    /* TODO: CSS (if needed) */
+  </style>
+</head>
+<body>
+  <!-- TODO: Write your complete solution from scratch here. -->
+</body>
+</html>

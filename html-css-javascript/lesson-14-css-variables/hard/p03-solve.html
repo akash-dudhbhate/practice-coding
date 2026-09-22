@@ -1,0 +1,33 @@
+<!--
+LESSON 14 — CSS Variables
+==========================
+
+PROBLEM: Multi-Theme System + localStorage (Hard)
+Light / dark / high-contrast themes that persist across reloads.
+
+TRY THIS:
+  - :root + [data-theme="dark"] + [data-theme="contrast"], each
+    defining --bg, --text, --card-bg, --border, --link.
+  - body/.card/a consume the vars; body has a transition.
+  - Three switcher buttons calling a setTheme() that sets
+    documentElement.dataset.theme AND localStorage.setItem('theme', t).
+  - On load, read localStorage.getItem('theme') and apply it.
+
+EXPECTED OUTPUT: Clicking a theme button restyles the page, and the
+choice survives a refresh.
+
+CHECK: python3 check.py hard/p03
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Theme System</title>
+  <style>
+    /* TODO: Write your CSS here. */
+  </style>
+</head>
+<body>
+  <!-- TODO: Write your complete solution from scratch here. -->
+</body>
+</html>

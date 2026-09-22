@@ -1,0 +1,20 @@
+/*
+LESSON 07 — CSS Box Model
+==========================
+
+PROBLEM: Button Group (Hard)
+Join buttons into a segmented control — no flexbox allowed.
+
+TRY THIS:
+  - .btn-group .btn { display: inline-block; padding; border;
+    border-radius }.
+  - margin-right: -1px so adjacent borders overlap cleanly.
+  - :hover state that inverts colors.
+  - :first-child / :last-child rounding the outer corners only.
+
+EXPECTED OUTPUT: Buttons fused into one bar: shared borders, rounded
+ends, and a clear hover state — all with pure box model.
+
+CHECK: python3 check.py hard/p02
+*/
+/* TODO: Write your complete CSS from scratch below. */

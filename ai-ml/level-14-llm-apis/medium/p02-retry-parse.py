@@ -5,7 +5,7 @@ LEVEL 14 — MEDIUM P02 — Retry on Parse Failure
 Real LLMs sometimes return malformed JSON — "Here's the JSON: {...}"
 or trailing commas. Production code RETRIES instead of crashing.
 
-TASK:
+PROBLEM:
   Implement `parse_or_retry(text)`:
     - first attempt: prompt + json.loads (like p01)
     - if json.loads raises → retry ONCE with a stronger prompt:
@@ -14,13 +14,13 @@ TASK:
     - if second attempt also fails → return {"error": "unparseable"}
     - return the dict on success
 
-INPUT:  parse_or_retry("Alice is 30, lives in Paris")
-OUTPUT: {"name": ..., "age": ..., "city": ...} or {"error": ...}
+TRY THIS INPUT:   parse_or_retry("Alice is 30, lives in Paris")
+EXPECTED OUTPUT:  {"name": ..., "age": ..., "city": ...} or {"error": ...}
 
 WHY: LLM output is unreliable — never assume parseable.
   One retry fixes ~90% of malformed responses.
 
-Run:  python3 medium/p02-retry-parse.py
+RUN: python3 medium/p02-retry-parse.py
 CHECK: python3 check.py medium/p02
 """
 

@@ -221,7 +221,11 @@ def run_one(cid):
         if passed:
             with open(w) as f:
                 if "DONE" not in f.readline().strip(): print("  → add '# DONE' to mark complete")
-    except Exception as e: print(f"{cid}: ERROR — {e}")
+    except Exception as e:
+        if "NoneType" in str(e):
+            print(f"{cid}: FAIL — a function returned None — write the body!")
+        else:
+            print(f"{cid}: ERROR — {e}")
 
 
 if __name__ == "__main__": main()

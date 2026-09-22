@@ -1,0 +1,34 @@
+<!--
+LESSON 20 — JavaScript Events
+==============================
+
+PROBLEM: Infinite Scroll (Hard)
+Load 5 more items whenever the user nears the bottom.
+
+TRY THIS:
+  - #container + #loading indicator; a count + loading flag.
+  - loadMore(): guard on loading, show #loading, setTimeout 500ms,
+    append 5 .item divs, hide the indicator.
+  - onScroll(): if scrollY + innerHeight >= scrollHeight - 100,
+    call loadMore. Register via window.addEventListener("scroll", ...)
+    and comment how removeEventListener would clean up.
+  - Call loadMore() once initially.
+
+EXPECTED OUTPUT: Scrolling to the bottom appends more items after a
+short 'Loading more...' pause.
+
+CHECK: python3 check.py hard/p03
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Infinite Scroll</title>
+  <style>
+    /* TODO: CSS (if needed) */
+  </style>
+</head>
+<body>
+  <!-- TODO: Write your HTML here, then your <script> below. -->
+</body>
+</html>

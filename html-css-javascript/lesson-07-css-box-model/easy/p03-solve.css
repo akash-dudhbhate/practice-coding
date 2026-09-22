@@ -1,0 +1,19 @@
+/*
+LESSON 07 — CSS Box Model
+==========================
+
+PROBLEM: Button Box Model (Easy)
+Style a .button entirely with box-model properties.
+
+TRY THIS:
+  - .button with padding: 10px 20px.
+  - border: 1px solid + border-radius: 6px.
+  - background + contrasting text color.
+  - margin for spacing between buttons; display: inline-block.
+
+EXPECTED OUTPUT: Pill-like buttons with comfortable internal spacing
+and gaps between neighbors.
+
+CHECK: python3 check.py easy/p03
+*/
+/* TODO: Write your complete CSS from scratch below. */

@@ -4,17 +4,17 @@ LEVEL 14 — EASY P01 — First Real LLM Call
 
 The simplest possible LLM interaction. One function, one call.
 
-TASK:
+PROBLEM:
   Implement `ask_llm(question)`:
     - import `chat` from llm.py  (sys.path insert is done below)
     - call it with the question
     - return the reply string
 
-INPUT:  ask_llm("What is 2+2?")
-OUTPUT: a non-empty string — in simulated mode it echoes the prompt;
+TRY THIS INPUT:   ask_llm("What is 2+2?")
+EXPECTED OUTPUT:  a non-empty string — in simulated mode it echoes the prompt;
         with Ollama/OpenAI it's a real model reply.
 
-Run:  python3 easy/p01-first-call.py
+RUN: python3 easy/p01-first-call.py
 CHECK: python3 check.py easy/p01
 """
 

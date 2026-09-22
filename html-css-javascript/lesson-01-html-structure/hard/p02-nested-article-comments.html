@@ -1,10 +1,42 @@
 <!--
-PROBLEM: Nested Article with Comments (Hard)
-=============================================
+LESSON 01 — HTML Structure
+HARD P02 — Nested Article with Comments
+============================================
 
-CONCEPT: Semantic nesting, article within article, proper heading hierarchy.
+CONCEPT:
+  <article> can nest inside <article>: a blog post is one article,
+  and each comment is its own self-contained article inside it.
+  Heading levels should step down (h1 post, h2 comments, h3 comment
+  authors) so the document outline stays sensible.
 
-<!-- See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG). -->
+PROBLEM:
+  Build a blog post with a comments thread using these exact parts:
+  - An outer <article> for the post, with a <header> holding the
+    <h1> title and a <time datetime="YYYY-MM-DD"> date.
+  - A <p> of post content, then a <section> with an <h2> (e.g.
+    "Comments") wrapping the thread.
+  - 2 comment <article> elements inside the section, each with a
+    heading (<h3>) and a <p>.
+  - 1 more <article> nested INSIDE a comment (a reply), using <h4>.
+  - Totals: at least 4 <article> elements (1 post + 2 comments +
+    1 nested reply).
 
-<!-- TODO: Write your complete solution from scratch below.
-     Remove this comment when done. -->
+TRY THIS:
+  Write the full HTML document from scratch below the TODO, then open
+  this file in a browser — the reply should visually belong to its
+  parent comment.
+
+EXPECTED OUTPUT:
+  A post titled with an <h1>, a dated header, body text, then a
+  Comments section containing two comments — one of which has a
+  nested reply inside it.
+
+CHECK: python3 check.py hard/p02
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Nested Article Comments</title></head>
+<body>
+  <!-- TODO: Write your solution from scratch. -->
+</body>
+</html>

@@ -8,7 +8,7 @@ def main():
         pd.DataFrame({
             "name": ["Alice", "Bob", "Charlie", "Diana"],
             "age": [25, 30, 22, 28],
-            "city": ["Mumbai", "Delhi", "Mumbai", "Pune"]
+            "city": ["Mumbai", "Delhi", "Mumbai", "Mumbai"]
         }).to_csv(csv_path, index=False)
 
     df = pd.read_csv(csv_path)

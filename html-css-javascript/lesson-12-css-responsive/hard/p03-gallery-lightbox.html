@@ -1,0 +1,30 @@
+<!--
+PROBLEM: Responsive Gallery with CSS Lightbox (Hard)
+=====================================================
+
+CONCEPT: auto-fit/minmax grids + the :target selector for a CSS-only lightbox.
+
+TASK: Build an image gallery with a click-to-zoom lightbox:
+      - A grid (class "gallery") using
+        repeat(auto-fit, minmax(250px, 1fr))
+      - At least 4 thumbnail <img> images, each with loading="lazy",
+        wrapped in <a href="#imgN"> links
+      - For each thumbnail, a lightbox overlay: <div class="lightbox"
+        id="imgN"> containing a large <img> and a close link
+        (class "close", href="#")
+      - .lightbox is display: none by default and display: flex when
+        targeted (.lightbox:target)
+      - Optional extra: swap in <picture>/<source> or srcset for
+        different images per breakpoint
+      - Include the viewport meta tag
+
+TRY THIS INPUT: Open this file in a browser; click a thumbnail, then
+                click the × to close.
+
+EXPECTED OUTPUT: A responsive grid of photos; clicking one opens a
+                 full-screen dark overlay with the large image — no
+                 JavaScript needed.
+
+TODO: Write your complete solution from scratch below.
+      Remove this comment when done.
+-->
