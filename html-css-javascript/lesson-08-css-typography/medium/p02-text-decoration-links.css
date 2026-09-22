@@ -1,0 +1,19 @@
+/*
+LESSON 08 — CSS Text & Typography
+==================================
+
+PROBLEM: Text-Decoration (Medium)
+Style links and completed items with text-decoration.
+
+TRY THIS:
+  - a { text-decoration: underline; color: #0066cc }.
+  - a:hover { text-decoration: none } (underline disappears).
+  - nav a { text-decoration: none } (nav links stay clean).
+  - .done { text-decoration: line-through }.
+
+EXPECTED OUTPUT: Underlined links that lose the underline on hover,
+clean nav links, and struck-through "done" items.
+
+CHECK: python3 check.py medium/p02
+*/
+/* TODO: Write your complete CSS from scratch below. */

@@ -1,0 +1,19 @@
+/*
+LESSON 08 — CSS Text & Typography
+==================================
+
+PROBLEM: Letter-Spacing & Text-Transform (Medium)
+Change the case and tracking of display text.
+
+TRY THIS:
+  - h1 { letter-spacing: 2px; text-transform: uppercase }.
+  - .btn { letter-spacing: 1px; text-transform: uppercase }.
+  - .label { text-transform: capitalize }.
+  - .lower { text-transform: lowercase }.
+
+EXPECTED OUTPUT: Wide-tracked uppercase headings and buttons, a
+capitalized label, and forced-lowercase text.
+
+CHECK: python3 check.py medium/p03
+*/
+/* TODO: Write your complete CSS from scratch below. */

@@ -1,12 +1,23 @@
-/*
-PROBLEM: JS Functions & Control Flow — Medium P03
-=================================================
+/**
+LESSON 17 — JavaScript Functions & Control Flow
+================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Switch Statement (Medium)
+Write getDayType(day) -> Weekend / Weekday / Invalid.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - switch on day.toLowerCase().
+  - "saturday"/"sunday" -> "Weekend" (fall-through cases).
+  - monday-friday -> "Weekday"; default -> "Invalid".
 
+EXPECTED OUTPUT:
+  getDayType("Saturday") === "Weekend"
+  getDayType("Monday") === "Weekday"
+  getDayType("Funday") === "Invalid"
+
+TEST: node medium/p03-solve.js
+
+CHECK: python3 check.py medium/p03
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

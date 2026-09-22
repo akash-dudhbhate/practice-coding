@@ -85,18 +85,126 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.vue` — Build a basic layout with q-layout, q-header (toolbar + title), and q-page-container with a simple q-page.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +==========================================+
+   | My App                          (colored |  <- q-header bar
+   +==========================================+
+   |                                          |
+   |         Welcome!                         |  <- centered content
+   |                                          |
+   +==========================================+
+   ```
 2. `easy/p02-solve.vue` — Add a left drawer with a navigation list (3 items: Home, About, Contact) and a toggle button in the header.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +==========================================+
+   | [=] My App                               |  <- [=] hamburger toggles
+   +=======+==================================+
+   | Home  |                                  |
+   | About |   page content                   |  <- q-drawer slides
+   | Contact|                                 |     in/out on the left
+   +=======+==================================+
+   ```
 3. `easy/p03-solve.vue` — Add a footer with 3 q-tabs (Home, Search, Settings) below the page container.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +==========================================+
+   | My App                                   |  <- q-header
+   +==========================================+
+   |                                          |
+   |         page content                     |
+   |                                          |
+   +==========================================+
+   |  *Home*   Search   Settings              |  <- q-footer q-tabs,
+   +==========================================+     active tab highlighted
+   ```
 
 ### Medium
 4. `medium/p01-solve.vue` — Build a responsive layout: drawer auto-opens on desktop (`show-if-above`), toggleable on mobile, with breakpoint at 1024px.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   DESKTOP (>=1024px):       MOBILE (<1024px):
+   +===+=====================+  +========================+
+   | = | My App              |  | [=] My App             |
+   +---+---------------------+  +========================+
+   |Nav| content             |  | content                |
+   +---+---------------------+  | (drawer = overlay)     |
+     drawer always visible      +========================+
+   ```
 5. `medium/p02-solve.vue` — Create a layout with both left and right drawers. Left = nav menu, Right = notifications panel. Both toggleable from header buttons.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +==========================================+
+   | [=] My App                        [bell] |  <- two toggle buttons
+   +=====+============================+=======+
+   | Nav |                            | Notif |
+   |menu |      page content          | panel |
+   +=====+============================+=======+
+     left drawer              right drawer
+   ```
 6. `medium/p03-solve.vue` — Build a layout with `mini` mode drawer. A button in the header toggles between mini (icons only) and full (icons + labels) mode.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   MINI (icons only):        FULL (icons + labels):
+   +==+======================+  +=====+==================+
+   |<>| My App               |  |  <> | My App           |
+   +--+----------------------+  +-----+------------------+
+   |H |                      |  | Hme | Home             |
+   |A |   content            |  | Abt | About            |
+   |C |                      |  | Ctc | Contact          |
+   +--+----------------------+  +-----+------------------+
+   ```
 
 ### Hard
 7. `hard/p01-solve.vue` — Create a header with `reveal` behavior (hides on scroll down, shows on scroll up). Include a toolbar with menu button, title, and 2 action buttons.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   SCROLL UP:                SCROLL DOWN:
+   +========================+  +========================+
+   |[=] My App    [s][gear] |  |                        |
+   +========================+  | (header slides away    |
+   |  .content.             |  |  revealing content)    |
+   |  .content.             |  |  .content.             |
+   |  .content.             |  |  .content.             |
+   +========================+  +========================+
+   ```
 8. `hard/p02-solve.vue` — Build a complete admin layout: header with user avatar dropdown, left drawer with collapsible nav sections (Dashboard, Users, Settings with sub-items), footer with status text.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +==========================================+
+   | [=] Admin              [avatar v]        |  <- dropdown menu
+   +======+===================================+
+   | Dash |                                   |
+   | Users v       content                    |  <- expands: List, Add
+   |  List|                                   |
+   |  Add |                                   |
+   | Sett >                                   |
+   +======+===================================+
+   | Status: Online                           |  <- q-footer
+   +==========================================+
+   ```
 9. `hard/p03-solve.vue` — Create two separate layouts (MainLayout with header+drawer, BlankLayout with just q-page-container) and wire up routes so /login uses BlankLayout and /dashboard uses MainLayout.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   /login (BlankLayout):     /dashboard (MainLayout):
+   +========================+  +========================+
+   |                        |  | [=] My App             |
+   |    +--------------+    |  +=====+==================+
+   |    | Login form   |    |  | Nav | Dashboard        |
+   |    +--------------+    |  |     | content          |
+   |    bare q-page         |  +=====+==================+
+   +========================+  +========================+
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

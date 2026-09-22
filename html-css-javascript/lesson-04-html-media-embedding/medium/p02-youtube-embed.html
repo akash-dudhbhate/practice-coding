@@ -1,0 +1,32 @@
+<!--
+LESSON 04 — HTML Media & Embedding
+===================================
+
+PROBLEM: YouTube Embed (Medium)
+Embed a YouTube video with an <iframe> — with the accessibility
+attributes a real site needs.
+
+TRY THIS:
+  - An <iframe> whose src is a YouTube *embed* URL:
+      https://www.youtube.com/embed/VIDEO_ID  (note /embed/, not /watch)
+  - Attributes: width="560" height="315" title="YouTube video"
+    frameborder="0" allowfullscreen
+  - title= matters — screen readers announce it.
+
+EXPECTED OUTPUT: A playable YouTube player embedded in the page.
+
+WHY: /watch?v= URLs refuse to embed (X-Frame-Options). Only
+/embed/ URLs work in iframes.
+
+CHECK: python3 check.py medium/p02
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Embed</title>
+</head>
+<body>
+  <!-- TODO: Write your <iframe> YouTube embed here. -->
+</body>
+</html>

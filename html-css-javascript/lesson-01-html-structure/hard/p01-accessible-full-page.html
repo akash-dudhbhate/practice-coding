@@ -1,10 +1,42 @@
 <!--
-PROBLEM: Accessible Full Page (Hard)
-=====================================
+LESSON 01 — HTML Structure
+HARD P01 — Accessible Full Page
+============================================
 
-CONCEPT: Full semantic page, accessibility (ARIA, alt, labels, landmarks).
+CONCEPT:
+  Accessibility means the page works for everyone, including screen-
+  reader and keyboard users. Landmark tags (<header>, <nav>, <main>,
+  <footer>) give the page a map; a "skip link" lets keyboard users
+  jump past the nav; aria-label names regions; and alt text
+  describes images.
 
-<!-- See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG). -->
+PROBLEM:
+  Build a complete accessible page with these exact parts:
+  - A skip link: <a href="#main" class="skip-link">Skip to main
+    content</a> as the first element in <body>.
+  - A <header> containing a <nav aria-label="Main navigation"> with
+    a <ul> of at least 2 links.
+  - A <main id="main"> holding exactly one <h1>, a <p>, and at least
+    one <img> — every <img> must have an alt attribute.
+  - A <footer> at the end (e.g. a copyright line).
+  - Optional: a <style> block hiding .skip-link until :focus.
 
-<!-- TODO: Write your complete solution from scratch below.
-     Remove this comment when done. -->
+TRY THIS:
+  Write the full HTML document from scratch below the TODO, open it
+  in a browser, and press Tab — the skip link should be the first
+  thing focused.
+
+EXPECTED OUTPUT:
+  A page with a header + nav, a main area with one big heading and
+  image(s), and a footer. Tabbing reveals the skip link that jumps
+  to <main id="main">.
+
+CHECK: python3 check.py hard/p01
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Accessible Full Page</title></head>
+<body>
+  <!-- TODO: Write your solution from scratch. -->
+</body>
+</html>

@@ -1,11 +1,18 @@
 /*
-PROBLEM: Box Model & Spacing — Medium P01
-=========================================
+LESSON 07 — CSS Box Model
+==========================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Padding vs Margin (Medium)
+Make the difference between internal and external spacing visible.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - .card with padding: 20px (inside the background).
+  - margin: 16px (separating cards from each other).
+  - A light background + thin border so the padding area is obvious.
+
+EXPECTED OUTPUT: Card content sits 20px inside the border (padding),
+while 16px of transparent space separates cards (margin).
+
+CHECK: python3 check.py medium/p01
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

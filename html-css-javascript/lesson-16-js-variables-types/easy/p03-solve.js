@@ -1,12 +1,21 @@
-/*
-PROBLEM: JS Variables, Types & Operators — Easy P03
-===================================================
+/**
+LESSON 16 — JavaScript Variables & Types
+=========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Truthy or Falsy (Easy)
+Write isTruthy(value) -> true/false, then test the edge cases.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - function isTruthy(value) { return Boolean(value); }
+  - console.log it for: 0, "", null, undefined, NaN, false,
+    [], {}, "0", "false".
 
+EXPECTED OUTPUT:
+  First six print false; [], {}, "0", "false" print true.
+
+TEST: node easy/p03-solve.js
+
+CHECK: python3 check.py easy/p03
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

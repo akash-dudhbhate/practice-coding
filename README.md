@@ -9,12 +9,12 @@ A structured, lesson-by-lesson curriculum to master **UI/Frontend expertise, Bac
 - **Reference solutions** for every problem (in `solutions/` subdirectory)
 - **34 sellable projects** (19 mini, 10 medium, 5 capstone) — each with step-by-step task breakdowns
 - **Detailed concept explanations** — every concept has WHAT / WHY / WHERE / WHAT-GOES-WRONG
-- **Mastery exercises** — 4 additional files per lesson (400 total) for deep understanding:
-  - `debug-exercises.md` — fix broken code (trains error spotting & debugging intuition)
-  - `intuition-checks.md` — predict output without running (builds mental models)
-  - `common-mistakes.md` — anti-patterns and what NOT to do (prevents bad habits)
-  - `approach-comparison.md` — 2-3 ways to solve with trade-offs (builds judgment)
-  - `refactoring-challenges.md` — fix ugly working code, learn clean-code patterns (100 files)
+- **Mastery exercises** — one `EXTRA-PRACTICE.md` per lesson bundling 5 deep-practice modes:
+  - intuition checks — predict output without running (builds mental models)
+  - debug exercises — fix broken code (trains error spotting)
+  - common mistakes — anti-patterns and what NOT to do
+  - refactoring challenges — fix ugly working code, learn clean-code patterns
+  - approach comparison — 2-3 ways to solve with trade-offs (builds judgment)
 - **Study schedule** — 12-week day-by-day plan with milestones (see [STUDY-SCHEDULE.md](STUDY-SCHEDULE.md))
 
 See the full roadmap: [ROADMAP.md](ROADMAP.md)
@@ -26,11 +26,9 @@ See the full roadmap: [ROADMAP.md](ROADMAP.md)
    - `concepts.md` — detailed explanations of every concept (WHY it exists, WHERE it's used, WHAT GOES WRONG without it)
    - `task-explanation.md` — teaches the concept and lists all 9 practice problems.
    - `coding-check.md` — checklist to verify each solution is correct.
-   - `debug-exercises.md` — 3 broken code snippets to fix (trains debugging intuition).
-   - `intuition-checks.md` — 5 "predict the output" questions (builds mental models).
-   - `common-mistakes.md` — anti-patterns and what NOT to do (prevents bad habits).
-   - `approach-comparison.md` — 2-3 ways to solve the same problem with trade-offs.
-   - `refactoring-challenges.md` — 3 "before/after" code transformations to train clean-code instincts.
+   - `EXTRA-PRACTICE.md` — all extra drills in one file: intuition checks
+     (predict the output), debug exercises (fix broken code), common
+     mistakes, refactoring challenges, and approach comparisons.
    - `easy/` — 3 easy leetcode-style problems (concept reinforcement). Write from scratch.
    - `medium/` — 3 medium problems (logic building, reusing easy concepts). Write from scratch.
    - `hard/` — 3 hard problems (combining concepts, edge cases, efficiency). Write from scratch.
@@ -58,24 +56,66 @@ See the full roadmap: [ROADMAP.md](ROADMAP.md)
 | 1 | HTML / CSS / JavaScript | `html-css-javascript/` | 20 | Master UI/frontend fundamentals → advanced UI expertise |
 | 2 | React | `react/` | 20 | Master component-based UI architecture & state |
 | 3 | Python | `python/` | 20 | Master backend programming, logic, and scripting |
-| 4 | AI / ML | `ai-ml/` | 20 | Master AI/ML concepts, models, and applied ML |
+| 4 | AI / ML | `ai-ml/` | 14 levels | Master AI/ML: setup→math, classical ML, DL, LLMs, RAG, agents |
 | 5 | Quasar (Vue) | `quasar/` | 20 | Master cross-platform app development with Quasar + Vue 3 |
 
-## Progress Tracking
+## AI/ML Track — Level-Based (NEW structure)
 
-```bash
-python3 progress.py              # compact: only lessons with progress
-python3 progress.py --all        # show all 100 lessons
-python3 progress.py --projects   # show project status only
+The `ai-ml/` track is organized as **21 levels** (00-20), not lessons.
+Levels 00-13 = Foundations tier. Levels 14-20 = **Mastery tier**.
+Each level = one topic, one mini-project, 9 auto-checked problems.
+
+```
+ai-ml/
+├── FOUNDATIONS (00-13)
+│   ├── level-00a-what-is-ai/    # ZERO-knowledge start: what is AI, weights, RAG
+│   ├── level-00b-weights-deep-dive/ # Chapters: weight→bias→loss→GD→dot product
+│   ├── level-00-setup-math/     # Python env, vectors, stats, gradients
+│   ├── level-01-foundations/    # What is ML, features/labels, problem types
+│   ├── level-02-python-ml/      # NumPy, Pandas, sklearn basics
+│   ├── level-03-visualization/  # Matplotlib/Seaborn, EDA dashboards
+│   ├── level-04-supervised/     # Regression, classification, trees, ensembles
+│   ├── level-05-evaluation/     # Metrics, CV, ROC, grid search, model compare
+│   ├── level-06-advanced-ml/    # Feature engineering, imbalance, PCA
+│   ├── level-07-unsupervised/   # Clustering, DBSCAN, anomaly detection
+│   ├── level-08-neural-networks/# Perceptron→PyTorch, backprop, MNIST
+│   ├── level-09-deep-learning/  # CNNs, CIFAR-10, transfer learning, augmentation
+│   ├── level-10-deployment/     # Flask/FastAPI, Docker, monitoring, A/B test
+│   ├── level-11-llm-prompt/     # Prompt engineering, CoT, evaluation
+│   ├── level-12-rag/            # TF-IDF retrieval, chunking, vector stores
+│   └── level-13-agentic-ai/     # Agents, tools, ReAct, planning, memory
+│
+├── MASTERY TIER (14-20)
+│   ├── level-14-llm-apis/       # Real API calls: OpenAI/Ollama/simulated
+│   ├── level-15-transformers/   # Attention, QKV, tokenizer, mini-GPT internals
+│   ├── level-16-real-rag/       # Embeddings, vector store, hybrid search, eval
+│   ├── level-17-fine-tuning/    # Freeze backbone, replace head, LoRA, forgetting
+│   ├── level-18-agent-frameworks/# Graph agents, state machines, LangGraph-style
+│   ├── level-19-mlops/          # Experiment tracking, registry, reproducibility
+│   └── level-20-math-deep/      # Eigen/SVD, Newton, Adam, KL divergence, PCA
+│
+└── requirements.txt             # pip install -r ai-ml/requirements.txt
 ```
 
-This scans every problem file, detects which ones are completed (no remaining `TODO` markers), and prints **green** horizontal bar charts showing completion percentage per subject, broken down by **easy / medium / hard**.
+**Mastery tier notes:** levels 14-18 use a **simulated LLM backend**
+by default (no API key needed). Set `LLM_BACKEND=ollama` or
+`LLM_BACKEND=openai` to use a real model — same code path.
 
-A file is considered **completed** when:
-- It contains no `TODO` markers (case-insensitive).
-- For Python files: no function body is just `pass` (the placeholder).
+**How to work a level:**
+```bash
+cd ai-ml/level-XX-topic/
+python3 check.py easy/p01       # check one problem
+python3 check.py all            # check all 9 in the level
+python3 progress.py             # from repo root: see overall progress
+python3 progress.py --verify 07 # auto-mark DONE for all passing
+```
 
-A project is considered **completed** when its README no longer has placeholder text.
+**Cumulative capstone:** `CAPSTONE/` — the DataMind AI assistant.
+Each level adds a milestone to `datamind.py`. By level 13 you have
+a complete AI system you built yourself.
+
+**Other tracks** (html-css-javascript, react, python, quasar) still use
+the original lesson-XX structure with 20 lessons each.
 
 ## Commands you can use
 

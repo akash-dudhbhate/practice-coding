@@ -1,14 +1,33 @@
 """
-PROBLEM: Max of Two Numbers (Easy)
-===================================
+LESSON 01 — Variables, Types & Functions
+EASY P01 — Max of Two Numbers
+============================================
 
-CONCEPT: Variables, types, functions, conditionals.
+CONCEPT:
+  A function takes inputs (parameters) and gives back a result with
+  `return`. To compare two values you use an `if` statement: if the
+  first is bigger, return it, otherwise return the second.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a function `max_of_two(a: int, b: int) -> int` that returns
+  the larger of the two integers. If they are equal, return either one.
+  Do NOT use the built-in max() — write the comparison yourself.
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+TRY THIS INPUT:
+  ```python
+  print(max_of_two(3, 7))
+  print(max_of_two(10, 5))
+  print(max_of_two(4, 4))
+  ```
 
+EXPECTED OUTPUT:
+  ```
+  7
+  10
+  4
+  ```
+
+CHECK: python3 check.py easy/p01
 """
 a=10
 b=2

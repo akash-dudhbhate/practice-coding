@@ -1,11 +1,20 @@
 /*
-PROBLEM: CSS Selectors & Specificity — Hard P03
-===============================================
+LESSON 06 — CSS Selectors & Specificity
+========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Specificity Challenge (Hard)
+Prove you can predict and control the cascade — without !important.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Class beats element: p { ... } then p.text or .text wins.
+  - ID beats class: #main overrides .text on the same property.
+  - Override an ID with MORE specificity: e.g. body #main (1,0,1)
+    beats #main (1,0,0) — no !important allowed.
+  - Comment the specificity of each rule.
+
+EXPECTED OUTPUT: Three escalating rules where each winner is explained
+by specificity, including one selector that beats a bare ID.
+
+CHECK: python3 check.py hard/p03
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

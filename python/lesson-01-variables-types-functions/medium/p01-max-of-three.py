@@ -1,10 +1,18 @@
 """
-PROBLEM: Max of Three (Medium)
-==============================
+LESSON 01 — Variables, Types & Functions
+MEDIUM P01 — Max of Three Numbers
+============================================
 
-CONCEPT: Reuse logic from easy/p01-max-of-two. Functions calling functions.
+CONCEPT:
+  Functions can call other functions — that's how big programs are
+  built from small pieces. If you already have max_of_two(a, b), the
+  max of three numbers is just max_of_two(max_of_two(a, b), c):
+  first find the bigger of a and b, then compare that with c.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a function `max_of_three(a: int, b: int, c: int) -> int` that
+  returns the largest of the three integers. Write your own max_of_two
+  helper in this file and reuse it — do NOT use the built-in max().
 
 # TODO: Write your complete solution from scratch below (function signature + body).
 #       Remove this TODO line when done.

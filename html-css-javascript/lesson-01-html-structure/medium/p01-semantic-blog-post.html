@@ -1,10 +1,37 @@
 <!--
-PROBLEM: Semantic Blog Post (Medium)
-====================================
+LESSON 01 — HTML Structure
+MEDIUM P01 — Semantic Blog Post
+============================================
 
-CONCEPT: Semantic HTML5 tags — article, header, time, section, footer.
+CONCEPT:
+  Semantic tags describe what content IS, not how it looks. An
+  <article> is a self-contained piece (like a blog post); inside it,
+  <header>, <section>, and <footer> split it into meaningful parts,
+  and <time datetime="..."> marks a machine-readable date.
 
-<!-- See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG). -->
+PROBLEM:
+  Build a blog post with these exact parts:
+  - One <article> wrapping the whole post.
+  - A <header> containing the post's <h1> title and a
+    <time datetime="YYYY-MM-DD"> publication date.
+  - At least two <section> elements for the body, each opened by an
+    <h2> heading with a <p> of text.
+  - A <footer> inside the article (e.g. author byline).
 
-<!-- TODO: Write your complete solution from scratch below.
-     Remove this comment when done. -->
+TRY THIS:
+  Write the full HTML document from scratch below the TODO, then open
+  this file in a browser to read your post.
+
+EXPECTED OUTPUT:
+  A blog post page: big title, a date under it, two titled sections
+  of text, and a small footer line like "Written by ...".
+
+CHECK: python3 check.py medium/p01
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Semantic Blog Post</title></head>
+<body>
+  <!-- TODO: Write your solution from scratch. -->
+</body>
+</html>

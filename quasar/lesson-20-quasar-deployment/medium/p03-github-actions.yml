@@ -1,0 +1,7 @@
+# LESSON 20 MEDIUM P03 — GitHub Actions CI/CD
+# PROBLEM: Write a workflow that on push to the default branch checks out
+# the code, sets up Node, caches the npm cache keyed on the lockfile,
+# installs deps, lints, runs unit tests, builds the SPA bundle, and
+# publishes it to Netlify using repo secrets for credentials.
+# CHECK: python3 check.py medium/p03
+# TODO: write the workflow below

@@ -1,12 +1,23 @@
-/*
-PROBLEM: JS Variables, Types & Operators — Hard P01
-===================================================
+/**
+LESSON 16 — JavaScript Variables & Types
+=========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Deep Type Check (Hard)
+Write deepTypeCheck(value) returning the REAL type string.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Handle the famous bugs: null -> "null" (typeof says "object"),
+    [] -> "array" (typeof says "object").
+  - Use === null and Array.isArray before falling back to typeof.
 
+EXPECTED OUTPUT:
+  null -> "null"     [] -> "array"      {} -> "object"
+  "hi" -> "string"   42 -> "number"     undefined -> "undefined"
+  a function -> "function"
+
+TEST: node hard/p01-solve.js
+
+CHECK: python3 check.py hard/p01
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

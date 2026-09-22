@@ -1,12 +1,21 @@
-/*
-PROBLEM: JS Functions & Control Flow — Medium P01
-=================================================
+/**
+LESSON 17 — JavaScript Functions & Control Flow
+================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Rest Parameters (Medium)
+Write sumAll(...nums) that totals any number of arguments.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - function sumAll(...nums) — nums is a real array.
+  - nums.reduce((sum, n) => sum + n, 0).
 
+EXPECTED OUTPUT:
+  sumAll(1, 2, 3, 4, 5) === 15
+  sumAll() === 0
+
+TEST: node medium/p01-solve.js
+
+CHECK: python3 check.py medium/p01
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

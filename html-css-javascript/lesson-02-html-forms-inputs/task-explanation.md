@@ -62,18 +62,112 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.html` — A login form with email + password inputs, labels, and a submit button.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Email:    [__________________]
+   Password: [..................]   <- typed text masked as dots
+   [ Login ]
+   (empty submit -> browser validation bubble appears)
+   ```
 2. `easy/p02-solve.html` — A contact form with text input, email input, textarea, and submit button.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Name:    [__________________]
+   Email:   [__________________]
+   Message: [__________________]
+            [__________________]    <- taller <textarea> box
+            [__________________]
+   [ Send ]
+   ```
 3. `easy/p03-solve.html` — A signup form with text, email, password, and a checkbox for terms.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Name:     [__________________]
+   Email:    [__________________]
+   Password: [..................]
+   [x] I agree to the terms           <- small checkbox + its label
+   [ Sign Up ]                        <- blocked until the box is ticked
+   ```
 
 ### Medium
 4. `medium/p01-solve.html` — A survey form with radio buttons, checkboxes, and a select dropdown.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +- Survey -------------------------+
+   | (o) Yes   ( ) No   ( ) Maybe     |   <- radios: pick ONE
+   | [x] News  [ ] Offers  [ ] Tips   |   <- checkboxes: pick many
+   | Rating:  [ Excellent        v ]  |   <- dropdown (<select>)
+   |          [ Submit ]              |
+   +----------------------------------+
+   (fieldset box with "Survey" legend caption)
+   ```
 5. `medium/p02-solve.html` — A product order form with number input (min/max), select for size, checkboxes for extras.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +- Order ---------------------------+
+   | Quantity: [   2   ^ v ]  (1-100)   |   <- number spinner, min/max
+   | Size:     [ Medium       v ]       |   <- dropdown
+   | [x] Gift wrap   [ ] Express ship   |   <- extras checkboxes
+   |          [ Place Order ]           |
+   +------------------------------------+
+   ```
 6. `medium/p03-solve.html` — A registration form with validation: required fields, email pattern, password minlength, number range.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   Name:     [__________________]   <- required
+   Email:    [__________________]   <- must match email format
+   Password: [..................]   <- minlength enforced
+   Age:      [____]                 <- must be >= 18
+   [ Register ]
+   (bad values -> browser shows an error bubble on submit)
+   ```
 
 ### Hard
 7. `hard/p01-solve.html` — A complete checkout form: shipping address, payment fields, validation, proper labels and grouping.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +- Shipping Address -----------------+
+   | Street: [___________________]      |
+   | ZIP:    [_____]    (pattern)       |
+   +------------------------------------+
+   +- Payment --------------------------+
+   | Card #: [________________] 16 digs |
+   | CVV:    [___]            3 digits  |
+   +------------------------------------+
+   [ Pay Now ]   <- two boxed fieldset sections
+   ```
 8. `hard/p02-solve.html` — A job application form with file upload, date picker, textarea cover letter, select for position, radio for availability.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +- Job Application ---------------------------+
+   | Position: [ Frontend Dev          v ]         |
+   | Resume:   [ Choose File ]  no file chosen     |  <- file picker
+   | Start:    [ dd/mm/yyyy        (cal) ]         |  <- date picker
+   | Cover:    [____________________________]      |
+   |           [____________________________]      |  <- big textarea
+   | (o) Full-time    ( ) Part-time                |  <- radio pair
+   | [ Apply ]                                     |
+   +---------------------------------------------+
+   ```
 9. `hard/p03-solve.html` — A settings/preferences form with grouped fieldsets, checkboxes, radios, selects, and a reset button.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +- Notifications ---+  +- Privacy -----+  +- Display ------+
+   | [x] Email         |  | (o) Public    |  | Theme: [Dark v]|
+   | [ ] SMS           |  | ( ) Private   |  | Lang:  [EN  v] |
+   +-------------------+  +---------------+  +----------------+
+   [ Save ]   [ Reset ]   <- Reset restores the defaults instantly
+   (Email + one privacy option come pre-selected)
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

@@ -1,11 +1,32 @@
 <!--
-PROBLEM: HTML Accessibility Deep Dive — Hard P03
-================================================
+LESSON 05 — HTML Accessibility
+===============================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Accessible Nav Menu (Hard)
+A primary nav with current-page marking and visible focus.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Skip link to <main id="main">.
+  - <nav aria-label="Primary"> holding a <ul> of links.
+  - Active link has aria-current="page" (+ a visual style via
+    a[aria-current="page"]).
+  - a:focus-visible gets a clear outline.
+
+EXPECTED OUTPUT: Keyboard users see where focus is and screen readers
+announce which page is current.
+
+CHECK: python3 check.py hard/p03
 -->
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible Nav Menu</title>
+  <style>
+    /* TODO: CSS (if needed) */
+  </style>
+</head>
+<body>
+  <!-- TODO: Write your complete solution from scratch here. -->
+</body>
+</html>

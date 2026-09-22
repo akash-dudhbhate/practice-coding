@@ -1,12 +1,22 @@
-/*
-PROBLEM: JS Variables, Types & Operators — Medium P02
-=====================================================
+/**
+LESSON 16 — JavaScript Variables & Types
+=========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Coercion Demo (Medium)
+Write coerceDemo(a, b) returning how JS coerces the pair.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Return an object { addition: a + b, subtraction: a - b,
+    equality: a == b, strictEquality: a === b }.
 
+EXPECTED OUTPUT:
+  coerceDemo("5", 5) ===
+    { addition: "55", subtraction: 0, equality: true,
+      strictEquality: false }
+
+TEST: node medium/p02-solve.js
+
+CHECK: python3 check.py medium/p02
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

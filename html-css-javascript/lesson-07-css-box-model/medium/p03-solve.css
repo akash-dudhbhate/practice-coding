@@ -1,11 +1,20 @@
 /*
-PROBLEM: Box Model & Spacing — Medium P03
-=========================================
+LESSON 07 — CSS Box Model
+==========================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: display block vs inline vs inline-block (Medium)
+Show which display values respect width and height.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - .block { display: block; width + height } — respects both.
+  - .inline { display: inline; width + height } — ignores both.
+  - .inline-block { display: inline-block; width + height } —
+    respects both but flows inline.
+  - Distinct backgrounds so the difference is visible.
+
+EXPECTED OUTPUT: The inline element shrugs off its width/height while
+block and inline-block honor them.
+
+CHECK: python3 check.py medium/p03
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

@@ -1,21 +1,26 @@
 <!--
-PROBLEM: Quasar Layout System — Easy P03
-========================================
+LESSON 02 — Quasar Layout System
+EASY P03 — Footer with Tabs
+============================================
+CONCEPT: q-footer renders a bottom bar. q-tabs inside it work like
+mobile bottom navigation — v-model tracks the active tab.
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Build a layout with a q-header and a q-page-container, then
+add a q-footer containing q-tabs with 3 q-tab entries: Home, Search,
+Settings (each with a name, icon, and label).
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS: align="justify" spreads the tabs evenly; bind v-model to a
+ref starting on 'home'.
+
+EXPECTED OUTPUT: a page with a top header and a bottom footer bar
+containing 3 selectable tabs; the active one is highlighted.
+
+CHECK: python3 check.py easy/p03
 -->
-
 <template>
-  <!-- TODO: Write your complete solution from scratch below. -->
-  <!--       Remove this TODO comment when done. -->
+  <!-- TODO: write your template here -->
 </template>
 
 <script setup>
-// TODO: Add your script logic here.
+// TODO: write your script here
 </script>
-
-<style scoped>
-/* TODO: Add your styles here. */
-</style>

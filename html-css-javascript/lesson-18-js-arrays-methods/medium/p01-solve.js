@@ -1,12 +1,20 @@
-/*
-PROBLEM: JS Arrays & Array Methods — Medium P01
-===============================================
+/**
+LESSON 18 — JavaScript Arrays & Methods
+========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Method Chaining (Medium)
+Write processNumbers(nums) chaining map -> filter -> sort.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - .map(n => n * 2) then .filter(n => n > 10) then
+    .sort((a, b) => a - b), all in one chain.
 
+EXPECTED OUTPUT:
+  processNumbers([3, 7, 1, 8, 5, 12]) === [14, 16, 24]
+
+TEST: node medium/p01-solve.js
+
+CHECK: python3 check.py medium/p01
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

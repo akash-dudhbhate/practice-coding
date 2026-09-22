@@ -1,0 +1,19 @@
+/*
+LESSON 08 — CSS Text & Typography
+==================================
+
+PROBLEM: Font-Family Stacks (Easy)
+Assign appropriate font stacks to different kinds of text.
+
+TRY THIS:
+  - body { font-family: "Helvetica Neue", Arial, sans-serif }.
+  - h1 { font-family: Georgia, serif }.
+  - code { font-family: "Courier New", monospace }.
+  - Always end a stack with a generic family (serif/sans-serif/monospace).
+
+EXPECTED OUTPUT: Body text in a sans font, headings in serif, code
+snippets in monospace.
+
+CHECK: python3 check.py easy/p01
+*/
+/* TODO: Write your complete CSS from scratch below. */

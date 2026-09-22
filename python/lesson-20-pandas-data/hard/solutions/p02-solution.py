@@ -29,7 +29,7 @@ def main():
     # Fill missing values
     df["age"] = df["age"].fillna(df["age"].mean())
     df["salary"] = df["salary"].fillna(df["salary"].median())
-    df["email"] = df["email"].replace("", "unknown@e.com")
+    df["email"] = df["email"].replace("", "unknown@e.com").fillna("unknown@e.com")
 
     print("\nCleaned:\n", df)
     df.to_csv("clean_data.csv", index=False)

@@ -1,12 +1,23 @@
-/*
-PROBLEM: JS Objects & DOM Manipulation — Medium P01
-===================================================
+/**
+LESSON 19 — JavaScript Objects & DOM
+=====================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Merge Configs (Medium)
+Write mergeConfigs(defaults, userPrefs) with spread — prefs win.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - return { ...defaults, ...userPrefs }.
+  - Test with defaults {theme, fontSize, lang} and prefs overriding
+    two of them.
 
+EXPECTED OUTPUT:
+  mergeConfigs({theme:"light",fontSize:14,lang:"en"},
+               {theme:"dark",fontSize:16})
+    -> { theme: "dark", fontSize: 16, lang: "en" }
+
+TEST: node medium/p01-solve.js
+
+CHECK: python3 check.py medium/p01
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

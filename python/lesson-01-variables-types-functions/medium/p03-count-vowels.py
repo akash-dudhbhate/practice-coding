@@ -1,10 +1,18 @@
 """
-PROBLEM: Count Vowels (Medium)
-==============================
+LESSON 01 — Variables, Types & Functions
+MEDIUM P03 — Count Vowels
+============================================
 
-CONCEPT: Strings, loops, counting, conditionals.
+CONCEPT:
+  A string is a sequence of characters, so a `for` loop visits each
+  character one at a time. Keep a counter variable, add 1 whenever the
+  character is a vowel, and return the counter at the end — this
+  "loop and accumulate" pattern shows up everywhere.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a function `count_vowels(text: str) -> int` that returns the
+  number of vowels (a, e, i, o, u) in `text`. The count must be
+  case-insensitive, so 'A' counts just like 'a'.
 
 # TODO: Write your complete solution from scratch below (function signature + body).
 #       Remove this TODO line when done.

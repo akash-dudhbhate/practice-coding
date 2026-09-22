@@ -36,18 +36,110 @@
 
 ### Easy
 1. `easy/p01-solve.html` — Center a box (200x200) both horizontally and vertically in the viewport using flexbox.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +------------------------------------------+
+   |                                          |
+   |              +--------+                  |
+   |              | 200x200|                  |   <- dead-center box,
+   |              |  box   |                  |      stays centered at
+   |              +--------+                  |      any window size
+   |                                          |
+   +------------------------------------------+
+   ```
 2. `easy/p02-solve.html` — Create a navbar with logo on the left and 3 nav links on the right using `justify-content: space-between`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +------------------------------------------+
+   | LOGO                   Home About Contact|   <- space-between:
+   +------------------------------------------+      logo pinned left,
+                                                     links pinned right
+   ```
 3. `easy/p03-solve.html` — Create a row of 4 equal-width cards using `flex: 1` and `gap: 16px`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +--------+  +--------+  +--------+  +--------+
+   | Card 1 |  | Card 2 |  | Card 3 |  | Card 4 |   <- equal widths
+   +--------+  +--------+  +--------+  +--------+      (flex:1), 16px gaps
+   ```
 
 ### Medium
 4. `medium/p01-solve.html` — Create a sidebar + content layout: fixed 250px sidebar, content fills remaining space. Add a header spanning full width on top.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +------------------------------------------+
+   |                 HEADER                   |   <- spans full width
+   +--------+---------------------------------+
+   |        |                                 |
+   | SIDEBAR|           CONTENT               |   <- fixed 250px sidebar,
+   | 250px  |         (fills the rest)        |       content flex:1
+   +--------+---------------------------------+
+   ```
 5. `medium/p02-solve.html` — Create a wrapping card grid: cards are minimum 300px wide, wrap to next line on smaller screens. Use `flex-wrap` and `gap`.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   WIDE window:                      NARROW window:
+   +------+  +------+  +------+      +--------+  +--------+
+   | card |  | card |  | card |      |  card  |  |  card  |
+   +------+  +------+  +------+      +--------+  +--------+
+   +------+  +------+                +--------+
+   | card |  | card |                |  card  |   <- wraps (min 300px),
+   +------+  +------+                +--------+     no media queries
+   ```
 6. `medium/p03-solve.html` — Create a product card with image on left, details on right. Use flexbox for the internal layout. On mobile (max-width 600px), switch to column layout.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   DESKTOP (row):                   MOBILE <600px (column):
+   +-------+------------------+     +----------+
+   | photo | title            |     |  photo   |
+   |       | price / details  |     +----------+
+   +-------+------------------+     | details  |
+                                    +----------+
+   ```
 
 ### Hard
 7. `hard/p01-solve.html` — Build a complete page layout: sticky header, sidebar, main content area, and sticky footer. All using flexbox. Content area scrolls independently.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +------------------------------------------+
+   | HEADER (sticky, stays on top)            |
+   +--------+---------------------------------+
+   |        | content line 1                  |
+   | side-  | content line 2  ~scrolls on     |
+   | bar    | content line 3   its own~       |
+   |        | content line 4                  |
+   +--------+---------------------------------+
+   | FOOTER (sticky, pinned at bottom)        |
+   +------------------------------------------+
+   ```
 8. `hard/p02-solve.html` — Build a feature section: 3 columns on desktop, 2 on tablet, 1 on mobile. Each column has an icon, title, and description. Use flex-wrap with appropriate flex-basis.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   DESKTOP (3 cols):         TABLET (2 cols):      MOBILE (1 col):
+   [ic] [ic] [ic]            [ic] [ic]               [ic]
+   ttl  ttl  ttl             ttl  ttl                ttl
+   desc desc desc            desc desc               desc
+                             [ic] [ic]               [ic]  ...
+   ```
 9. `hard/p03-solve.html` — Build a pricing table with 3 tiers side by side. Middle tier is highlighted (larger, different color, "Popular" badge). Use flexbox for alignment, `order` to control visual order, and `align-self: stretch` for equal heights.
+
+   ```
+   WHAT IT SHOULD LOOK LIKE:
+   +---------+   +===========+   +---------+
+   | Basic   |   |* POPULAR *|   |   Pro   |   <- middle tier taller,
+   | $9/mo   |   |  $19/mo   |   |  $29/mo |      scaled up + badged
+   | feats   |   |  feats    |   |  feats  |   <- equal heights
+   | [Buy]   |   |  [Buy]    |   |  [Buy]  |      (align-self: stretch)
+   +---------+   +===========+   +---------+
+   ```
 
 ### How to work
 - Write your complete HTML + CSS solution (inline or in `<style>` tags).

@@ -1,12 +1,24 @@
-/*
-PROBLEM: JS Variables, Types & Operators — Hard P03
-===================================================
+/**
+LESSON 16 — JavaScript Variables & Types
+=========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Analyze a String (Hard)
+Write analyzeString(str) returning a full stats object.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Return { original, length, wordCount, charCount (no spaces),
+    reversed, isPalindrome, mostFrequentChar, wordList }.
+  - split/reverse/join for reversed; split(/\s+/) for words;
+    a frequency map for mostFrequentChar; compare a cleaned
+    lowercase alphanumeric string with its reverse for isPalindrome.
 
+EXPECTED OUTPUT:
+  analyzeString("race car").isPalindrome === true
+  analyzeString("race car").wordCount === 2
+
+TEST: node hard/p03-solve.js
+
+CHECK: python3 check.py hard/p03
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

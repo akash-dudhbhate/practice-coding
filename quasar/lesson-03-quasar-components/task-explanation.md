@@ -66,18 +66,122 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.vue` — Build a q-card with an image, title section, body text section, and two action buttons (Share, Read More).
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +------------------------------+
+   |##############################|  <- q-img
+   |##############################|
+   +------------------------------+
+   | Card Title                   |  <- q-card-section title
+   | subtitle text                |
+   | Some body paragraph text...  |
+   +------------------------------+
+   |              [Share][Read >] |  <- q-card-actions
+   +------------------------------+
+   ```
 2. `easy/p02-solve.vue` — Build a q-list with 3 q-items, each having an avatar icon, a label, a caption, and a side badge showing a status.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +--------------------------------------+
+   | (i) Alice    alice@x.com   [Active]  |  <- q-item + q-badge
+   |--------------------------------------|
+   | (i) Bob      bob@x.com     [Away]    |
+   |--------------------------------------|
+   | (i) Carol    carol@x.com   [Offline] |
+   +--------------------------------------+
+   ```
 3. `easy/p03-solve.vue` — Build a simple q-tabs with 3 tabs (Overview, Details, Reviews) and matching q-tab-panels showing different text content.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +--------------------------------------+
+   | *Overview* | Details | Reviews       |  <- q-tabs, active marked
+   +--------------------------------------+
+   | Overview panel text here...          |  <- q-tab-panel swaps
+   +--------------------------------------+
+   ```
 
 ### Medium
 4. `medium/p01-solve.vue` — Build a q-table with 3 columns (Name, Email, Role) and 5 sample rows. Enable sorting on Name and Email columns.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Users                                          <- title
+   +----------+----------------------+------------+
+   | Name  v  | Email  v             | Role       |  <- sortable headers
+   +----------+----------------------+------------+
+   | Alice    | alice@x.com          | Admin      |
+   | Bob      | bob@x.com            | User       |
+   | ...      | ...                  | ...        |  (5 rows)
+   +----------+----------------------+------------+
+   ```
 5. `medium/p02-solve.vue` — Build a q-dialog that opens from a button click. Inside the dialog, show a q-card with a form (name input, email input) and Cancel/Save buttons using v-close-popup.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +==========================================+
+   |%%%%%%% +--------------------------+ %%%%%|
+   |%%%%%%% | Name:  [______________]  | %%%%%|  <- q-dialog card
+   |%%%%%%% | Email: [______________]  | %%%%%|
+   |%%%%%%% |        [Cancel] [Save]   | %%%%%|
+   |%%%%%%% +--------------------------+ %%%%%|
+   +==========================================+
+   [ Open Dialog ]   <- q-btn trigger on page
+   ```
 6. `medium/p03-solve.vue` — Build a filter bar with 4 removable q-chips (e.g., "JavaScript", "Vue", "Quasar", "CSS"). Clicking the X on a chip removes it from the list.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   [ JavaScript x ] [ Vue x ] [ Quasar x ] [ CSS x ]
+        <- colored q-chips; X removes that chip
+   (empty row shows "No filters selected")
+   ```
 
 ### Hard
 7. `hard/p01-solve.vue` — Build a q-table with a custom body-cell slot for the Status column — render a q-badge (green "Active" or red "Inactive") based on row data. Include 5 rows with mixed statuses.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----+-------+------------+
+   | ID | Name  | Status     |
+   +----+-------+------------+
+   | 1  | Alice | ( Active ) |   <- green q-badge via slot
+   | 2  | Bob   | (Inactive) |   <- red q-badge
+   | .. | ...   | ...        |
+   +----+-------+------------+
+   ```
 8. `hard/p02-solve.vue` — Build a user profile card using q-card, q-avatar, q-chip (for skills), q-separator, and q-list (for contact info). The card should have an avatar, name, bio, 3 skill chips, and a contact list with 3 items.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------------------+
+   |            ( O )                 |  <- q-avatar centered
+   |          Alice Dev               |  <- name + role
+   |          Frontend Dev            |
+   |  Short bio line goes here...     |
+   |  [Vue][Quasar][CSS]              |  <- 3 skill q-chips
+   |----------------------------------|  <- q-separator
+   | (mail) alice@x.com               |  <- contact q-list
+   | (phone) +1 555-0100              |
+   | (pin) San Francisco              |
+   +----------------------------------+
+   ```
 9. `hard/p03-solve.vue` — Build a settings page with q-expansion-item sections (Profile, Privacy, Notifications). Each section expands to show relevant q-toggle switches. Use q-separator between sections.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +--------------------------------------+
+   | v Profile                            |  <- expanded
+   |   Public profile        [ (o) ]      |  <- q-toggle on
+   |   Show email            [ ( ) ]      |  <- q-toggle off
+   |--------------------------------------|
+   | > Privacy                            |  <- collapsed
+   |--------------------------------------|
+   | > Notifications                      |  <- collapsed
+   +--------------------------------------+
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

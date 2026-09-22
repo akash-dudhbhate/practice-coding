@@ -38,18 +38,115 @@ $q.dialog({ component: MyDialog, componentProps: { data } })
 
 ### Easy
 1. `easy/p01-solve.vue` — Create a component with 4 buttons that show different notification types (positive, negative, warning, info). Each notification has a custom message, icon, and position.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   [Positive] [Negative] [Warning] [Info]
+   +------+                              <- each toast in a
+   |Saved!|   +--------+                 different position:
+   +------+   |Failed! |                 top, bottom, left,
+               +--------+                    right corner
+   ```
 2. `easy/p02-solve.vue` — Create a delete confirmation flow: button opens a dialog, confirm triggers a "deleted" notification with an Undo action (5s timeout). Cancel shows a "cancelled" notification.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   [ Delete ]
+   +----------------------------------+
+   | Delete this item?                |  <- $q.dialog
+   |            [Cancel] [ Delete ]   |
+   +----------------------------------+
+   -> +---------------------------+
+      | Item deleted      [ UNDO ]|      <- toast w/ undo (5s)
+      +---------------------------+
+   ```
 3. `easy/p03-solve.vue` — Create a prompt dialog: button opens a dialog with a text input. On OK, show a notification with the entered text. Validate that the input is not empty.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------------------+
+   | Enter your name:                 |
+   | [_______________________]        |  <- empty input blocked
+   |               [Cancel] [ OK ]    |
+   +----------------------------------+
+   -> toast: "Hello, <entered text>"
+   ```
 
 ### Medium
 4. `medium/p01-solve.vue` — Create a loading flow: button starts a persistent "Loading..." notification (timeout=0), simulates a 3-second operation, then dismisses the loading and shows a success notification. Use the dismiss function.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   [ Run ]  (disabled while running)
+   +---------------------------+
+   | (o) Loading...            |   <- persistent toast, 3s
+   +---------------------------+
+        -> +------------------+
+           | Done!            |      <- success replaces it
+           +------------------+
+   ```
 5. `medium/p02-solve.vue` — Create a bottom sheet with 4 actions (Share, Copy, Edit, Delete). On select, show a notification with the selected action. Use `$q.bottomSheet`. Style for mobile.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +==========================================+
+   | (share) Share                            |
+   | (copy)  Copy                             |   <- bottom sheet rows
+   | (edit)  Edit                             |
+   | (trash) Delete                           |
+   +==========================================+
+   tap one -> toast "You chose: Edit"
+   ```
 6. `medium/p03-solve.vue` — Create a custom dialog component: a dialog with a form (name, email). Use `$q.dialog({ component: CustomFormDialog })`. On OK, emit the form data. Show a notification with the data.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------------------+
+   | Name:  [_______________]         |
+   | Email: [_______________]         |  <- custom component dialog
+   |             [Cancel] [ OK ]      |
+   +----------------------------------+
+   -> toast: "Ada / ada@x.com"
+   ```
 
 ### Hard
 7. `hard/p01-solve.vue` — Build a complete CRUD feedback system: a composable `useCrudNotifications` that wraps create/update/delete operations with consistent notifications. Include: success (positive), error (negative), delete with undo (5s), and loading states.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   [Create] [Update] [Delete] [Fail]
+   +---------------------------+
+   | (o) Saving...             |   <- loading toast first
+   +---------------------------+
+   | Created!                  |   <- then success toast
+   +---------------------------+
+   | Deleted!          [ UNDO ]|   <- delete has undo action
+   +---------------------------+
+   ```
 8. `hard/p02-solve.vue` — Build a multi-step dialog wizard: a custom dialog component with 3 steps (form, review, confirm). Navigation between steps. On finish, emit the collected data. Include validation per step. Close on cancel.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +--------------------------------------+
+   | Step 1 of 3: Details                 |
+   | Name: [ Ada___________ ]             |
+   |                    [Cancel] [ Next ] |  <- Next blocked if invalid
+   +--------------------------------------+
+   step 2: choose plan -> step 3: confirm
+   -> toast with the collected data
+   ```
 9. `hard/p03-solve.vue` — Build a notification center: a component that shows a bell icon with a badge count. Clicking opens a dropdown with all notifications. Notifications can be marked as read. Include different types (info, warning, error). Persist read state to localStorage.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   (bell)(3)                          <- badge = unread count
+   +----------------------------------+
+   | * New message          (info)    |  <- unread = bold/bright
+   | * Disk almost full     (warning) |
+   |   Old alert (read, greyed out)   |  <- clicked = marked read
+   +----------------------------------+
+   (badge drops as you read; survives reload)
+   ```
 
 ### How to work
 - Write your complete Vue/Quasar solution.

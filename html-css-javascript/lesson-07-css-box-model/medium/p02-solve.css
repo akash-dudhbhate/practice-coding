@@ -1,11 +1,18 @@
 /*
-PROBLEM: Box Model & Spacing — Medium P02
-=========================================
+LESSON 07 — CSS Box Model
+==========================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Margin Collapsing (Medium)
+Demonstrate that adjacent vertical margins collapse.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - .box-a with margin-bottom: 30px, a background, and a height.
+  - .box-b with margin-top: 20px, a different background, and a height.
+  - A comment stating the ACTUAL gap (the max — 30px, not 50px).
+
+EXPECTED OUTPUT: The visible gap between the stacked boxes is 30px —
+the two margins overlap instead of adding up.
+
+CHECK: python3 check.py medium/p02
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

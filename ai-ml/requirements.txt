@@ -1,0 +1,41 @@
+# AI/ML Track Dependencies
+# Install: pip install -r requirements.txt
+# Levels 00-07 need only the core stack; 08+ need torch/flask/fastapi.
+# Levels 14-20 are the Mastery tier — mostly same deps + optional extras.
+
+# --- Core (levels 00-07) ---
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+matplotlib>=3.7
+seaborn>=0.13
+scipy>=1.10
+joblib>=1.3
+
+# --- Deep learning (levels 08-09, 15, 17) ---
+# CPU build is enough for all exercises:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch>=2.0
+torchvision>=0.15
+
+# --- Deployment (level 10, 19) ---
+flask>=3.0
+fastapi>=0.110
+uvicorn>=0.29
+httpx2>=0.1        # required by fastapi.testclient
+
+# --- Mastery tier (levels 14-20) ---
+# Level 14+ use simulated LLM backend by default — no key needed.
+# To use a real model, install ONE of these:
+# openai>=1.0                    # OpenAI backend (needs OPENAI_API_KEY)
+# anthropic>=0.40               # Claude backend
+# --- or run Ollama locally (free, no pip install): ---
+#   curl -fsSL https://ollama.com/install.sh | sh && ollama pull llama3.2
+#   then: LLM_BACKEND=ollama python3 ...
+
+# Optional heavier deps for deeper mastery work:
+# sentence-transformers>=2.2    # real embeddings (level-16 uses TF-IDF fallback)
+# faiss-cpu>=1.7               # real vector DB (level-16 uses in-memory fallback)
+# peft>=0.7                    # LoRA fine-tuning (level-17 teaches concept in pure torch)
+# mlflow>=2.0                  # experiment tracking UI (level-19 teaches pattern w/ jsonl)
+# transformers>=4.35           # pretrained models (level-15/17 teach internals)

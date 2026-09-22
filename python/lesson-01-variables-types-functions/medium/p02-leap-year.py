@@ -1,10 +1,20 @@
 """
-PROBLEM: Leap Year (Medium)
-===========================
+LESSON 01 — Variables, Types & Functions
+MEDIUM P02 — Leap Year
+============================================
 
-CONCEPT: Conditionals, boolean logic, combining multiple conditions.
+CONCEPT:
+  Some yes/no questions need several conditions checked in a specific
+  order. A year is a leap year if it's divisible by 4 — EXCEPT century
+  years (divisible by 100), which are leap years only if also divisible
+  by 400. Checking the most specific rule first (400) makes the logic
+  simple.
 
-# See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+PROBLEM:
+  Write a function `is_leap_year(year: int) -> bool` that returns
+  True if `year` is a leap year. Rules: divisible by 400 -> True;
+  else divisible by 100 -> False; else divisible by 4 -> True;
+  otherwise -> False.
 
 # TODO: Write your complete solution from scratch below (function signature + body).
 #       Remove this TODO line when done.

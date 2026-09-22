@@ -1,12 +1,21 @@
-/*
-PROBLEM: JS Arrays & Array Methods — Medium P02
-===============================================
+/**
+LESSON 18 — JavaScript Arrays & Methods
+========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: groupBy with reduce (Medium)
+Write groupBy(arr, key) -> { keyValue: [items...] }.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - arr.reduce((groups, item) => { ... }, {}).
+  - const val = item[key]; push into groups[val] (init [] if needed).
 
+EXPECTED OUTPUT:
+  groupBy(users, "city") ===
+    { Mumbai: [Alice, Charlie], London: [Bob] }
+
+TEST: node medium/p02-solve.js
+
+CHECK: python3 check.py medium/p02
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

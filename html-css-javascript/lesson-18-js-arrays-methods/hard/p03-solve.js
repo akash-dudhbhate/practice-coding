@@ -1,12 +1,23 @@
-/*
-PROBLEM: JS Arrays & Array Methods — Hard P03
-=============================================
+/**
+LESSON 18 — JavaScript Arrays & Methods
+========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Pagination (Hard)
+Write createPagination(items, page, pageSize) returning full info.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - totalPages = Math.ceil(items.length / pageSize).
+  - start = (page - 1) * pageSize; items = slice(start, start+pageSize).
+  - Return { items, currentPage, totalPages, hasNext, hasPrev }.
 
+EXPECTED OUTPUT:
+  createPagination(1..25 array, 2, 10) ===
+    { items: [11..20], currentPage: 2, totalPages: 3,
+      hasNext: true, hasPrev: true }
+
+TEST: node hard/p03-solve.js
+
+CHECK: python3 check.py hard/p03
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

@@ -1,10 +1,39 @@
 <!--
-PROBLEM: Data Table with Semantics (Hard)
-==========================================
+LESSON 01 — HTML Structure
+HARD P03 — Data Table with Semantics
+============================================
 
-CONCEPT: Complex tables — thead, tbody, tfoot, caption, scope, colgroup.
+CONCEPT:
+  Big data tables need extra semantics to stay accessible. <caption>
+  names the table, <colgroup>/<col> describe columns, <tfoot> holds
+  totals, and scope="col"/scope="row" on <th> tells screen readers
+  which direction a header applies to.
 
-<!-- See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG). -->
+PROBLEM:
+  Build a report table (e.g. quarterly sales) with these exact parts:
+  - One <table> (add border="1" so cells are visible).
+  - A <caption> describing the table.
+  - A <colgroup> with at least 4 <col> elements.
+  - A <thead> row of <th scope="col"> column headers.
+  - A <tbody> with at least 2 rows, each starting with a
+    <th scope="row"> row header followed by <td> cells.
+  - A <tfoot> with a totals row (also led by <th scope="row">).
 
-<!-- TODO: Write your complete solution from scratch below.
-     Remove this comment when done. -->
+TRY THIS:
+  Write the full HTML document from scratch below the TODO, then open
+  this file in a browser to see the full structured table.
+
+EXPECTED OUTPUT:
+  A bordered table with a caption on top, a header row (Product /
+  Q1 / Q2 / Q3 / Total), two data rows, and a bold totals row at the
+  bottom.
+
+CHECK: python3 check.py hard/p03
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Data Table Semantics</title></head>
+<body>
+  <!-- TODO: Write your solution from scratch. -->
+</body>
+</html>

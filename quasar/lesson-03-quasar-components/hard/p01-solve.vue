@@ -1,21 +1,28 @@
 <!--
-PROBLEM: Quasar Components Deep Dive — Hard P01
-===============================================
+LESSON 03 — Quasar Components
+HARD P01 — Table with Custom Status Cell
+============================================
+CONCEPT: q-table slots let you override cell rendering — the slot
+name is body-cell-<column-name>, and it receives props (incl.
+props.value) for the current cell.
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Build a q-table with columns ID, Name, Status and 5 rows
+with mixed 'Active'/'Inactive' statuses. Use a
+#body-cell-status slot to render a q-badge — green when the value is
+'Active', red when 'Inactive'.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS: inside the slot use <q-td :props="props"> to keep table
+cell styling.
+
+EXPECTED OUTPUT: a table where the Status column shows colored
+badges instead of plain text.
+
+CHECK: python3 check.py hard/p01
 -->
-
 <template>
-  <!-- TODO: Write your complete solution from scratch below. -->
-  <!--       Remove this TODO comment when done. -->
+  <!-- TODO: write your template here -->
 </template>
 
 <script setup>
-// TODO: Add your script logic here.
+// TODO: write your script here
 </script>
-
-<style scoped>
-/* TODO: Add your styles here. */
-</style>

@@ -1,12 +1,23 @@
-/*
-PROBLEM: JS Variables, Types & Operators — Medium P03
-=====================================================
+/**
+LESSON 16 — JavaScript Variables & Types
+=========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Safe Number Parsing (Medium)
+Write parseNumber(str) that converts strings without surprises.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - "" -> 0, "42" -> parseInt, "3.14" -> parseFloat,
+    "42px" -> 42 (leading digits), anything else -> NaN.
+  - Use regex tests + parseInt/parseFloat/Number appropriately.
 
+EXPECTED OUTPUT:
+  parseNumber("42") === 42      parseNumber("3.14") === 3.14
+  parseNumber("abc") is NaN     parseNumber("") === 0
+  parseNumber("42px") === 42
+
+TEST: node medium/p03-solve.js
+
+CHECK: python3 check.py medium/p03
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

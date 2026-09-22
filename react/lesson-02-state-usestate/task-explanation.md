@@ -38,18 +38,104 @@ This lesson has **9 practice problems** across three difficulty levels. Start wi
 
 ### Easy (start here)
 1. `easy/p01-solve.jsx` — **Counter:** A button that increments a count. Display the count inside the button. Start at 0.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   BEFORE:                 AFTER 3 CLICKS:
+   +---------------+       +---------------+
+   | [  Count: 0  ]|       | [  Count: 3  ]|
+   +---------------+       +---------------+
+   ```
 2. `easy/p02-solve.jsx` — **Toggle Text:** A button that toggles between showing "ON" and "OFF". Use a boolean state variable.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   BEFORE:                 AFTER 1 CLICK:
+   +---------+             +---------+
+   | [  OFF  ]|            | [  ON   ]|
+   +---------+             +---------+
+   ```
 3. `easy/p03-solve.jsx` — **Text Input Display:** An input field where whatever you type appears below it in real time. Use string state.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------+
+   | hello                |   <- <input> (controlled)
+   +----------------------+
+   hello                       <- <p> echoes each keystroke
+   ```
 
 ### Medium
 4. `medium/p01-solve.jsx` — **Todo List Add/Remove:** A todo list where you can add items (input + button) and remove items (click to remove). Use array state with immutable updates.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +------------------+ +-----+
+   | Buy milk         | | Add |
+   +------------------+ +-----+
+   * Buy milk              <- <li>; click it to delete
+   * Walk the dog          <- <li>
+   ```
 5. `medium/p02-solve.jsx` — **Counter with Increment/Decrement/Reset:** Three buttons: +1, -1, and Reset. Use functional updates (`prev => prev + 1`). Prevent count from going below 0.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   Count: 2                      <- <p> (never goes below 0)
+   +-----+ +-----+ +-------+
+   | +1  | | -1  | | Reset |
+   +-----+ +-----+ +-------+
+   ```
 6. `medium/p03-solve.jsx` — **Form with Multiple Fields:** A form with name and email inputs. Display the values below as you type. Use a single object state with spread updates.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------+
+   | Ada                  |   <- name input
+   +----------------------+
+   | ada@x.com            |   <- email input
+   +----------------------+
+   Name: Ada                   <- live <p> echoes
+   Email: ada@x.com
+   ```
 
 ### Hard
 7. `hard/p01-solve.jsx` — **Shopping Cart:** Add products to a cart, update quantities (+/-), remove items, and show total price. Use array of objects state with immutable updates.
-8. `hard/p02-solve.jsx` — **Multi-Step Form:** A 3-step form (name → email → review) with Next/Back buttons. Validate each step before proceeding. Store all data in one state object.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   [Apple $1.50] [Bread $2.25] [Milk $3.00]   <- product buttons
+
+   Cart:
+   Apple  $1.50  x2  [ + ] [ - ] [Remove]
+   Bread  $2.25  x1  [ + ] [ - ] [Remove]
+   ----------------------------------------
+   Total: $5.25                              <- updates on change
+   ```
+8. `hard/p02-solve.jsx` — **Multi-Step Form:** A 3-step form (name -> email -> review) with Next/Back buttons. Validate each step before proceeding. Store all data in one state object.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   STEP 1:                 STEP 3 (Review):
+   Step 1 of 3             Step 3 of 3
+   +----------------+      Name:  Ada
+   | Ada            |      Email: ada@x.com
+   +----------------+
+             [ Next ]      [ Back ]  [ Submit ]
+   (Next disabled while the field is empty)
+   ```
 9. `hard/p03-solve.jsx` — **Accordion Component:** A list of sections where clicking one expands it and collapses others (only one open at a time). Track open index in state.
+
+   WHAT IT SHOULD LOOK LIKE:
+   ```
+   +----------------------------------+
+   | Section 1                      v |  <- open, content visible
+   |   This is the first content.     |
+   +----------------------------------+
+   | Section 2                      > |  <- collapsed
+   +----------------------------------+
+   | Section 3                      > |  <- collapsed
+   +----------------------------------+
+   ```
 
 ### How to work
 - Open a problem file, read the description in the header comment.

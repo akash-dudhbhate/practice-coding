@@ -1,12 +1,20 @@
-/*
-PROBLEM: JS Arrays & Array Methods — Medium P03
-===============================================
+/**
+LESSON 18 — JavaScript Arrays & Methods
+========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Remove Duplicates (Medium)
+Write removeDuplicates(arr) returning a new unique array.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Either [...new Set(arr)] or
+    arr.filter((item, i) => arr.indexOf(item) === i).
 
+EXPECTED OUTPUT:
+  removeDuplicates([1, 2, 2, 3, 4, 4, 5]) === [1, 2, 3, 4, 5]
+
+TEST: node medium/p03-solve.js
+
+CHECK: python3 check.py medium/p03
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

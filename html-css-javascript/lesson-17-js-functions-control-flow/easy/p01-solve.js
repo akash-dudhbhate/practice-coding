@@ -1,12 +1,21 @@
-/*
-PROBLEM: JS Functions & Control Flow — Easy P01
-===============================================
+/**
+LESSON 17 — JavaScript Functions & Control Flow
+================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Arrow Function + Default Param (Easy)
+Write multiply(a, b = 1) as an arrow function.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - const multiply = (a, b = 1) => a * b;
+  - console.log both multiply(5, 3) and multiply(5).
 
+EXPECTED OUTPUT:
+  15
+  5
+
+TEST: node easy/p01-solve.js
+
+CHECK: python3 check.py easy/p01
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

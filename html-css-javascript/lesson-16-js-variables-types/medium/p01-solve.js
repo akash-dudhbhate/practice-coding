@@ -1,12 +1,23 @@
-/*
-PROBLEM: JS Variables, Types & Operators — Medium P01
-=====================================================
+/**
+LESSON 16 — JavaScript Variables & Types
+=========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Format a Price (Medium)
+Write formatPrice(amount, currency) -> "$1,234.50" style strings.
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Map currency codes to symbols ({ USD: "$", EUR: "€", ... }).
+  - Number(amount).toFixed(2), then insert thousands separators
+    (regex or toLocaleString-style logic).
+  - Template literal for the final string.
 
+EXPECTED OUTPUT:
+  formatPrice(1234.5, "USD") === "$1,234.50"
+  formatPrice(99.999, "EUR") === "€100.00"
+
+TEST: node medium/p01-solve.js
+
+CHECK: python3 check.py medium/p01
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.

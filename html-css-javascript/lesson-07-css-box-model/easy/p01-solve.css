@@ -1,11 +1,20 @@
 /*
-PROBLEM: Box Model & Spacing — Easy P01
-=======================================
+LESSON 07 — CSS Box Model
+==========================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: The Four Layers (Easy)
+Style a .box so width, padding, border, and margin are all visible.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - .box with width: 200px.
+  - padding: 20px (internal space, tinted by background).
+  - border: 5px solid with a distinct border-color.
+  - margin: 30px (transparent space outside the border).
+  - A background color so the padding area shows.
+
+EXPECTED OUTPUT: A 200px-wide box whose total footprint is visibly
+larger than 200px once padding + border + margin are added.
+
+CHECK: python3 check.py easy/p01
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

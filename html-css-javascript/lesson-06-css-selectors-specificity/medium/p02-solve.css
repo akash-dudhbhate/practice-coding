@@ -1,11 +1,19 @@
 /*
-PROBLEM: CSS Selectors & Specificity — Medium P02
-=================================================
+LESSON 06 — CSS Selectors & Specificity
+========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Specificity Demonstration (Medium)
+Write rules at element, class, and ID level that override each other.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - p { color: black } (element level, 0,0,1).
+  - p.text or .text { color: blue } (class level, 0,1,0 — beats element).
+  - p#important or #important { color: red } (ID level, 1,0,0 — wins).
+  - Add a comment explaining which wins and why.
+
+EXPECTED OUTPUT: A paragraph with id="important" renders red even though
+class and element rules also match it.
+
+CHECK: python3 check.py medium/p02
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

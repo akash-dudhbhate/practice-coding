@@ -1,11 +1,18 @@
 /*
-PROBLEM: Box Model & Spacing — Easy P02
-=======================================
+LESSON 07 — CSS Box Model
+==========================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: border-box Reset (Easy)
+Apply the universal box-sizing reset and place two boxes side by side.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - * { box-sizing: border-box }.
+  - .box1, .box2 grouped rule: width: 50%, padding, border,
+    display: inline-block, vertical-align: top.
+
+EXPECTED OUTPUT: Two boxes each exactly half the row — padding and
+border are INSIDE the 50% width thanks to border-box.
+
+CHECK: python3 check.py easy/p02
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

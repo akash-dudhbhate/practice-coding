@@ -1,11 +1,19 @@
 /*
-PROBLEM: Box Model & Spacing — Hard P01
-=======================================
+LESSON 07 — CSS Box Model
+==========================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Complete Card Layout (Hard)
+A centered container of cards using only box-model tools.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - * { box-sizing: border-box } reset.
+  - .container { max-width: 960px; margin: 0 auto }.
+  - .card with padding, border, vertical margin, background.
+  - .card img { max-width: 100%; height: auto } responsive images.
+
+EXPECTED OUTPUT: A max-width, auto-centered column of evenly spaced
+cards whose images never overflow.
+
+CHECK: python3 check.py hard/p01
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

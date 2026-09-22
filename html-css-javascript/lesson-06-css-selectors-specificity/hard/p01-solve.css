@@ -1,11 +1,24 @@
 /*
-PROBLEM: CSS Selectors & Specificity — Hard P01
-===============================================
+LESSON 06 — CSS Selectors & Specificity
+========================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Complete Stylesheet (Hard)
+Combine every selector type in one stylesheet.
 
-See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Element: body base styles.
+  - Class: .card with padding + border.
+  - ID: #header with background + color.
+  - Descendant: article p.
+  - Child: nav > ul.
+  - Adjacent sibling: h2 + p.
+  - Pseudo-class: a:hover.
+  - Grouped: h1, h2, h3.
+  - Comment the specificity (e.g. 0,1,0) of each rule.
+
+EXPECTED OUTPUT: A stylesheet that demonstrates the full selector
+toolbox, each rule labeled with its specificity.
+
+CHECK: python3 check.py hard/p01
 */
-
-<!-- TODO: Write your complete solution from scratch below. -->
-<!--       Remove this TODO comment when done. -->
+/* TODO: Write your complete CSS from scratch below. */

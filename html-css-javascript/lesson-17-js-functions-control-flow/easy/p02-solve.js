@@ -1,12 +1,20 @@
-/*
-PROBLEM: JS Functions & Control Flow — Easy P02
-===============================================
+/**
+LESSON 17 — JavaScript Functions & Control Flow
+================================================
 
-CONCEPT: See concepts.md for the full list of concepts in this lesson.
+PROBLEM: Destructured Params (Easy)
+Write formatName({ first, last }) -> "First LAST".
 
-// See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
+TRY THIS:
+  - Destructure the object right in the parameter list.
+  - Uppercase the last name with toUpperCase().
 
+EXPECTED OUTPUT:
+  formatName({ first: "Akash", last: "dev" }) === "Akash DEV"
+
+TEST: node easy/p02-solve.js
+
+CHECK: python3 check.py easy/p02
 */
 
 // TODO: Write your complete solution from scratch below.
-//       Remove this TODO line when done.
