@@ -31,5 +31,13 @@ EXPECTED OUTPUT:
 CHECK: python3 check.py hard/p02
 """
 
-# === WRITE YOUR CODE BELOW ===
-# TODO: Write your solution from scratch.
+def reverse_string(s):
+    result = ""
+
+    for char in s:
+        result = char + result
+
+    return result
+
+print(reverse_string("madhuri"))
+# output:iruhdam

@@ -34,5 +34,21 @@ EXPECTED OUTPUT:
 CHECK: python3 check.py hard/p03
 """
 
-# === WRITE YOUR CODE BELOW ===
-# TODO: Write your solution from scratch.
+
+def is_prime(n):
+    if n < 2:
+      return False
+    for i in range (2,n):
+      if n % i==0:
+        return False
+      return True
+print(is_prime(7))
+print(is_prime(1))
+print(is_prime(4))
+print(is_prime(13))
+      
+# output:
+# True
+# False
+# False
+# True
