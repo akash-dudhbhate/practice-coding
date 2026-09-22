@@ -18,5 +18,15 @@ Examples:
 
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+def count_vowels(text):
+    count = 0
+
+    for char in text:
+        char = char.lower()
+
+        if char in "aeiou":
+            count += 1
+
+    return count
+
+print(count_vowels("hello"))

@@ -8,3 +8,5 @@ CONCEPT: Loops, string building, logic building (no shortcuts).
 
 # TODO: Write your complete solution from scratch below (function signature + body).
 #       Remove this TODO line when done.
+
+"""

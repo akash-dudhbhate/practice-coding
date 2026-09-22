@@ -6,7 +6,13 @@ CONCEPT: Variables, types, functions, conditionals.
 
 # See concepts.md in this lesson folder for detailed explanations (WHY/WHERE/WHAT-GOES-WRONG).
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
-
 """
+
+def max_of_two(a, b):
+    if a > b:
+        return a
+    else:
+        return b
+
+print(max_of_two(10, 20))
+print(max_of_two(50, 30))

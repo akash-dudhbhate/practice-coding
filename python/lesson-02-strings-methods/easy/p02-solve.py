@@ -18,6 +18,12 @@ Examples:
     reverse_string("a")     -> "a"
 
 """
+def reverse_string(text):
+    reversed_text = ""
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+    for i in range(len(text) - 1, -1, -1):
+        reversed_text += text[i]
+
+    return reversed_text
+
+print(reverse_string("hello"))

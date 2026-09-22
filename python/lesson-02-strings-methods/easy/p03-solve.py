@@ -19,5 +19,11 @@ Examples:
 
 """
 
-# TODO: Write your complete solution from scratch below (function signature + body).
-#       Remove this TODO line when done.
+def is_palindrome(text):
+    text = text.lower()
+
+    return text == text[::-1]
+
+print(is_palindrome("racecar"))
+print(is_palindrome("hello"))
+print(is_palindrome("Aa"))
